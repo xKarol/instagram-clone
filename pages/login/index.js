@@ -1,20 +1,16 @@
 import Image from "next/image";
 import Link from "next/Link";
-import Phone from "../../assets/images/login-phone.png";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../assets/svg/instagram-logo.svg";
 import { AiFillFacebook } from "react-icons/ai";
+import PhoneGallery from "../../components/PhoneGallery";
 
 export default function Login() {
   return (
     <>
       <div className="flex justify-center items-center p-[50px] gap-5">
-        <Image
-          src={Phone}
-          alt="instagram phone photo"
-          className="object-contain"
-        />
+        <PhoneGallery />
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
           <div className="bg-[#ffffff] border border-gray-200 flex items-center flex-col px-[35px] py-5 w-full">
             <div className="max-w-[200px] mb-[20px]">
@@ -56,8 +52,8 @@ export default function Login() {
           <div className="bg-[#ffffff] border border-gray-200 flex items-center flex-col p-[20px] w-full mt-[10px]">
             <span className="text-[14px]">
               Don&apos;t have an account?{" "}
-              <Link href="">
-                <span className="text-blue font-medium">Sign Up</span>
+              <Link href="/sign-up">
+                <a className="text-blue font-medium">Sign Up</a>
               </Link>
             </span>
           </div>
