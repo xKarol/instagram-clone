@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-100;
+  }
+}
+
+@layer components {
+  .formButton {
+    @apply bg-gray-100 p-2 border border-gray-200 rounded-sm text-[12px];
+  }
+}
