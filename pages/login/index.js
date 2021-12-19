@@ -9,10 +9,10 @@ import PhoneGallery from "../../components/PhoneGallery";
 export default function Login() {
   return (
     <>
-      <div className="flex justify-center items-center p-[50px] gap-5">
+      <div className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
-          <div className="bg-[#ffffff] border border-gray-200 flex items-center flex-col px-[35px] py-5 w-full">
+          <div className="bg-white border border-gray-200 flex items-center flex-col px-[35px] py-5 w-full">
             <div className="max-w-[200px] mb-[20px]">
               <Image src={Logo} alt="instagram logo" />
             </div>
@@ -29,7 +29,7 @@ export default function Login() {
               />
               <button
                 disabled={true}
-                className="p-2 rounded-sm text-[12px] w-full text-[#fff] bg-blue mt-[10px] py-[5px] font-medium disabled:opacity-25"
+                className="p-[10px] rounded-sm text-[14px] w-full text-white bg-blue mt-[10px] py-[5px] font-medium disabled:opacity-25"
               >
                 Log In
               </button>
@@ -49,7 +49,7 @@ export default function Login() {
               Forgot password?
             </a>
           </div>
-          <div className="bg-[#ffffff] border border-gray-200 flex items-center flex-col p-[20px] w-full mt-[10px]">
+          <div className="bg-white border border-gray-200 flex items-center flex-col p-[20px] w-full mt-[10px]">
             <span className="text-[14px]">
               Don&apos;t have an account?{" "}
               <Link href="/sign-up">
