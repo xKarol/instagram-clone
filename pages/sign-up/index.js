@@ -1,11 +1,47 @@
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/Link";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../assets/svg/instagram-logo.svg";
 import { AiFillFacebook } from "react-icons/ai";
+import {
+  MIN_PASSWORD,
+  MAX_USERNAME,
+  MAX_FULL_NAME,
+} from "../../constants/validation";
 
-export default function Login() {
+export default function SignUp() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [password, setPassword] = useState("");
+  const passwordRef = useRef(null);
+  const passwordShowBtnRef = useRef(null);
+
+  const disabledBtn =
+    !email ||
+    !username ||
+    !(username.length < MAX_USERNAME) ||
+    !fullName ||
+    !(fullName.length < MAX_FULL_NAME) ||
+    !(password.length >= MIN_PASSWORD);
+
+  const handleRegister = () => {};
+
+  const togglePassword = () => {
+    const type =
+      passwordRef.current.getAttribute("type") === "password"
+        ? "text"
+        : "password";
+    if (type === "password") {
+      passwordShowBtnRef.current.innerText = "Show";
+    } else {
+      passwordShowBtnRef.current.innerText = "Hide";
+    }
+    passwordRef.current.setAttribute("type", type);
+  };
+
   return (
     <>
       <div className="flex justify-center items-center p-[50px] gap-[25px]">
@@ -33,27 +69,49 @@ export default function Login() {
                 type="text"
                 placeholder="Mobile Number or Email"
                 className="formButton w-full"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+
               <input
                 type="text"
                 placeholder="Full Name"
                 className="formButton w-full"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Username"
                 className="formButton w-full"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
-              <input
-                type="password"
-                placeholder="Password"
-                className="formButton w-full"
-              />
+              <div className="relative">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="formButton w-full"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  ref={passwordRef}
+                />
+                <span
+                  className={`absolute top-1/2 right-[10px] -translate-y-1/2 text-[14px] font-[600] cursor-pointer ${
+                    !password && "hidden"
+                  }`}
+                  onClick={togglePassword}
+                  ref={passwordShowBtnRef}
+                >
+                  Show
+                </span>
+              </div>
               <button
-                disabled={true}
+                disabled={disabledBtn}
                 className="p-[10px] rounded-sm text-[14px] w-full text-white bg-blue mt-[10px] py-[5px] font-medium disabled:opacity-25"
+                onClick={handleRegister}
               >
-                Log In
+                Sign Up
               </button>
             </form>
             <span className="text-[12px] text-gray-300 text-center my-[20px]">
