@@ -10,8 +10,10 @@ import {
   MAX_USERNAME,
   MAX_FULL_NAME,
 } from "../../constants/validation";
+import { signUpUser } from "../../services/firebase";
 
 export default function SignUp() {
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
@@ -27,7 +29,23 @@ export default function SignUp() {
     !(fullName.length < MAX_FULL_NAME) ||
     !(password.length >= MIN_PASSWORD);
 
-  const handleRegister = () => {};
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (disabledBtn) return;
+    try {
+      const { createUser, setUser } = await signUpUser(
+        username,
+        fullName,
+        email,
+        password
+      );
+      console.log(createUser, setUser);
+    } catch (error) {
+      console.log(error);
+
+      setError(error);
+    }
+  };
 
   const togglePassword = () => {
     const type =
@@ -64,7 +82,10 @@ export default function SignUp() {
               </div>
               <div className="flex-1 h-[1px] bg-gray-200"></div>
             </div>
-            <form className="w-full flex flex-col gap-[5px]">
+            <form
+              className="w-full flex flex-col gap-[5px]"
+              onSubmit={(e) => handleRegister(e)}
+            >
               <input
                 type="text"
                 placeholder="Mobile Number or Email"
@@ -109,7 +130,6 @@ export default function SignUp() {
               <button
                 disabled={disabledBtn}
                 className="p-[10px] rounded-sm text-[14px] w-full text-white bg-blue mt-[10px] py-[5px] font-medium disabled:opacity-25"
-                onClick={handleRegister}
               >
                 Sign Up
               </button>
