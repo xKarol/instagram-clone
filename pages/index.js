@@ -7,12 +7,14 @@ export default function Home() {
   return (
     <>
       <Header user={user} />
-      <div className="grid grid-cols-[1fr_300px]">
-        <div className="flex border border-blue">
-          {/* Stories */}
-          {/* Timeline */}
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-[1fr_300px]">
+          <div className="flex border border-blue">
+            {/* Stories */}
+            {/* Timeline */}
+          </div>
+          <Suggestions user={user} />
         </div>
-        <Suggestions user={user} />
       </div>
     </>
   );
