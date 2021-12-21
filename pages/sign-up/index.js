@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/Link";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
-import Logo from "../../assets/svg/instagram-logo.svg";
+import Logo from "../../components/Logo";
 import { AiFillFacebook } from "react-icons/ai";
 import {
   MIN_PASSWORD,
@@ -61,9 +61,7 @@ export default function SignUp() {
       <div className="flex justify-center items-center p-[50px] gap-[25px]">
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
           <div className="bg-white border border-gray-200 flex items-center flex-col px-[35px] py-5 w-full">
-            <div className="max-w-[200px] mb-[5px]">
-              <Image src={Logo} alt="instagram logo" />
-            </div>
+            <Logo size={200} className="mb-[20px]" />
             <h1 className="font-medium text-gray-300 text-center mb-[15px]">
               Sign up to see photos and videos from your friends.
             </h1>

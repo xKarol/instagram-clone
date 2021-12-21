@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/Link";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
-import Logo from "../../assets/svg/instagram-logo.svg";
+import Logo from "../../components/Logo";
 import { AiFillFacebook } from "react-icons/ai";
 import PhoneGallery from "../../components/PhoneGallery";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -42,9 +42,7 @@ export default function Login() {
         <PhoneGallery />
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
           <div className="bg-white border border-gray-200 flex items-center flex-col px-[35px] py-5 w-full">
-            <div className="max-w-[200px] mb-[20px]">
-              <Image src={Logo} alt="instagram logo" />
-            </div>
+            <Logo size={200} className="mb-[20px]" />
             <form
               className="w-full flex flex-col gap-[5px]"
               onSubmit={(e) => handleLogin(e)}

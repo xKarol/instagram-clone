@@ -5,15 +5,13 @@ import { RiMessengerLine } from "react-icons/ri";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaRegCompass } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import Logo from "../assets/svg/instagram-logo.svg";
+import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 
 export default function Header({ user }) {
   return (
     <header className="w-full h-[50px] border-b border-b-gray-200 flex items-center justify-between px-[10px]">
-      <div className="max-w-[100px] flex justify-center">
-        <Image src={Logo} alt="instagram logo" />
-      </div>
+      <Logo size={100} />
       <div className="relative">
         <BiSearch className="absolute left-[50px] top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
         <input
