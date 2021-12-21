@@ -5,7 +5,7 @@ import useAuthListener from "../hooks/useAuth";
 import UserContext from "../context/UserContext";
 
 export default function MyApp({ Component, pageProps }) {
-  const { user } = useAuthListener();
+  const { user} = useAuthListener();
   return (
     <>
       <Head>
