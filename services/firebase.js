@@ -9,7 +9,6 @@ export async function signUpUser(username, fullname, email, password) {
     email,
     password
   );
-  console.log(createUser);
   const setUser = await setDoc(doc(db, "users", createUser.user.uid), {
     username: username,
     fullName: fullname,

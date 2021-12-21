@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/Link";
 import AppStore from "../../assets/images/appstore.png";
@@ -5,8 +6,36 @@ import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../assets/svg/instagram-logo.svg";
 import { AiFillFacebook } from "react-icons/ai";
 import PhoneGallery from "../../components/PhoneGallery";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { MIN_PASSWORD } from "../../constants/validation";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const [error, setError] = useState("");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const disabledBtn = !login || !(password.length >= MIN_PASSWORD);
+  const router = useRouter();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (disabledBtn) return;
+    const auth = getAuth();
+    try {
+      await signInWithEmailAndPassword(auth, login, password);
+      router.push("/");
+    } catch (error) {
+      const errorMessages = {
+        "auth/invalid-email": "Invalid Email",
+        "auth/wrong-password": "Invalid Password",
+      };
+      setError(
+        errorMessages[error.code]
+          ? errorMessages[error.code]
+          : "A problem occured"
+      );
+    }
+  };
   return (
     <>
       <div className="flex justify-center items-center p-[50px] gap-[25px]">
@@ -16,19 +45,26 @@ export default function Login() {
             <div className="max-w-[200px] mb-[20px]">
               <Image src={Logo} alt="instagram logo" />
             </div>
-            <form className="w-full flex flex-col gap-[5px]">
+            <form
+              className="w-full flex flex-col gap-[5px]"
+              onSubmit={(e) => handleLogin(e)}
+            >
               <input
                 type="text"
                 placeholder="Phone number, username or email"
                 className="formButton w-full"
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
                 className="formButton w-full"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button
-                disabled={true}
+                disabled={disabledBtn}
                 className="p-[10px] rounded-sm text-[14px] w-full text-white bg-blue mt-[10px] py-[5px] font-medium disabled:opacity-25"
               >
                 Log In

@@ -11,6 +11,7 @@ import {
   MAX_FULL_NAME,
 } from "../../constants/validation";
 import { signUpUser } from "../../services/firebase";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
   const [error, setError] = useState("");
@@ -20,6 +21,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const passwordRef = useRef(null);
   const passwordShowBtnRef = useRef(null);
+  const router = useRouter();
 
   const disabledBtn =
     !email ||
@@ -33,16 +35,10 @@ export default function SignUp() {
     e.preventDefault();
     if (disabledBtn) return;
     try {
-      const { createUser, setUser } = await signUpUser(
-        username,
-        fullName,
-        email,
-        password
-      );
-      console.log(createUser, setUser);
+      await signUpUser(username, fullName, email, password);
+      router.push("/");
     } catch (error) {
-      console.log(error);
-
+      console.error(error);
       setError(error);
     }
   };
@@ -153,7 +149,7 @@ export default function SignUp() {
           <div className="bg-white border border-gray-200 flex items-center flex-col p-[20px] w-full mt-[10px]">
             <span className="text-[14px]">
               Have an account?{" "}
-              <Link href="/login">
+              <Link href="/sign-in">
                 <a className="text-blue font-medium">Log In</a>
               </Link>
             </span>
