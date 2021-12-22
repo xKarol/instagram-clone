@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-import DefaultAvatar from "../assets/images/default-avatar.png";
+import DefaultAvatar from "../assets/images/default-avatar.jpg";
 
 export default function Avatar({ src, size, className }) {
   return (
