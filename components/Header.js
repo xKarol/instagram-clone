@@ -10,7 +10,7 @@ import Avatar from "../components/Avatar";
 
 export default function Header({ user }) {
   return (
-    <header className="border-b border-b-gray-200 ">
+    <header className="border-b border-b-gray-200 mb-[40px]">
       <nav className="w-full max-w-5xl mx-auto h-[50px] flex items-center justify-between">
         <Logo size={100} />
         <div className="relative">

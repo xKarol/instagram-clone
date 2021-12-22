@@ -13,6 +13,6 @@
     @apply bg-gray-100 p-[8px] border border-gray-200 rounded-sm text-[12px];
   }
   .storyBorder {
-    @apply bg-gradient-to-tr from-[#DE0546] to-[#F69D4A] rounded-full;
+    @apply bg-gradient-to-b from-[#DE0546] to-[#F69D4A] rounded-full;
   }
 }

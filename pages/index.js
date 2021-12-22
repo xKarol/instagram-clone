@@ -10,7 +10,7 @@ export default function Home() {
       <Header user={user} />
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-[1fr_300px]">
-          <div className="flex flex-col border border-blue">
+          <div className="flex flex-col pr-[20px]">
             <Stories user={user} />
             {/* Timeline */}
           </div>
