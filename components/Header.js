@@ -6,7 +6,7 @@ import { BiSearch } from "react-icons/bi";
 import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 
-export default function Header({ user }) {
+export default function Header({ user, setShow }) {
   return (
     <header className="border-b border-b-gray-200 bg-white fixed z-10 top-0 left-0 right-0">
       <nav className="w-full max-w-[975px] mx-auto h-[60px] flex items-center justify-between px-[20px] 1000px:px-0">
@@ -28,7 +28,7 @@ export default function Header({ user }) {
           <button>
             <FiSend />
           </button>
-          <button>
+          <button onClick={() => setShow(true)}>
             <MdOutlineAddBox />
           </button>
           <button>

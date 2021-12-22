@@ -6,15 +6,16 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      "sm": "640px",
-      "md": "768px",
+      sm: "640px",
+      md: "768px",
       "1000px": "1000px",
-      "lg": "1024px",
-      "xl": "1280px",
+      lg: "1024px",
+      xl: "1280px",
       "2xl": "1536px",
     },
     colors: {
       transparent: "transparent",
+      black: "#000000",
       white: "#ffffff",
       gray: {
         100: "#fafafa",
