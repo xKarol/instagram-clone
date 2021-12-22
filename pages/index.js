@@ -11,13 +11,14 @@ export default function Home() {
     <>
       <Header user={user} />
       <div className="max-w-[975px] mx-auto mt-[90px]">
-        <div className="grid grid-cols-[665px_300px]">
-          <div className="flex flex-col pr-[20px]" ref={feedRef}>
-            <Stories user={user} />
-            {/* Timeline */}
-          </div>
-          <Suggestions user={user} feedRef={feedRef} />
+        <div
+          className="max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]"
+          ref={feedRef}
+        >
+          <Stories user={user} />
+          {/* Timeline */}
         </div>
+        <Suggestions user={user} feedRef={feedRef} />
       </div>
     </>
   );

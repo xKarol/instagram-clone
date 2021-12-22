@@ -17,10 +17,10 @@ export default function Suggestions({ user, feedRef }) {
       window.removeEventListener("resize", checkResize);
     };
   }, [feedRef]);
-  
+
   return (
     <div
-      className="fixed w-[300px] right-0 top-[90px] left-[700px]"
+      className="fixed w-[300px] right-0 top-[90px] left-[700px] z-10 hidden 1000px:block"
       ref={sideBoxRef}
     >
       <div className="h-[100px] flex items-center gap-[25px] text-[14px]">
