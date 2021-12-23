@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Suggestions from "../components/Suggestions";
 import Stories from "../components/Stories";
 import Modal from "../components/Modal";
-import Upload from "../components/Upload";
+import Upload from "../components/upload/Upload";
 
 export default function Home() {
   const [show, setShow] = useState(false);
