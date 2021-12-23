@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Suggestions from "../components/Suggestions";
 import Stories from "../components/Stories";
 import Modal from "../components/Modal";
-import Upload from "../components/upload/Upload";
+import Upload from "../components/upload";
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -24,13 +24,7 @@ export default function Home() {
         </div>
         <Suggestions user={user} feedRef={feedRef} />
       </div>
-      <Modal
-        show={show}
-        setShow={setShow}
-        element={
-          <Upload />
-        }
-      />
+      <Modal show={show} setShow={setShow} element={<Upload />} />
     </>
   );
 }
