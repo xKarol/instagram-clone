@@ -12,8 +12,11 @@ export default function Modal({ show, setShow, element }) {
         className="absolute top-[15px] right-[15px] text-white text-[30px] cursor-pointer"
         onClick={() => setShow(false)}
       />
-      <main className="bg-white rounded-2xl z-10" onClick={(e) => e.stopPropagation()}>
-          {element}
+      <main
+        className="bg-white rounded-2xl z-10 overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {element}
       </main>
     </div>
   );
