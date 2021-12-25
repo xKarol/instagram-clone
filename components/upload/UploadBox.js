@@ -17,12 +17,10 @@ export default function UploadBox({
 
   const handleUpload = (e) => {
     const checkFilesData = checkFileExtension(e.target.files);
-    console.log(checkFilesData);
     setFiles(checkFilesData);
     checkFilesData.forEach((file) => {
       const reader = new FileReader();
       reader.addEventListener("load", function () {
-        console.log(reader.result);
         setPreviewFiles((prevData) => [...prevData, reader.result]);
       });
       reader.readAsDataURL(file);
@@ -86,7 +84,7 @@ export default function UploadBox({
 
   return (
     <section
-      className={`h-full w-full mx-auto flex flex-col items-center justify-center gap-[15px] ${
+      className={`h-full w-[400px] mx-auto flex flex-col items-center justify-center gap-[15px] ${
         isDragging && "bg-gray-100"
       }`}
     >

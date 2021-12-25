@@ -4,8 +4,7 @@ import { GoLocation } from "react-icons/go";
 import Avatar from "../Avatar";
 import { MAX_POST_CAPTION } from "../../constants/validation";
 
-export default function Details() {
-  const [caption, setCaption] = useState("");
+export default function Details({caption, setCaption }) {
 
   const handleCaption = (e) => {
     const text = e.target.value;
@@ -13,7 +12,7 @@ export default function Details() {
     setCaption(text.replace(/  +/g, " ")); //double space block
   };
   return (
-    <section className="flex flex-col border border-transparent border-l-gray-200 h-full w-[300px] overflow-y-scroll">
+    <section className="flex flex-col border border-transparent border-l-gray-200 h-full min-w-[350px] overflow-y-scroll">
       <header className="p-[15px] flex space-x-[10px] items-center font-medium">
         <Avatar src={null} size={30} />
         <span>karol</span>
@@ -21,7 +20,7 @@ export default function Details() {
       <textarea
         autoComplete="off"
         placeholder="Write a caption..."
-        className="px-[15px] outline-none min-h-[150px] resize-none"
+        className="px-[15px] outline-none min-h-[180px] resize-none"
         value={caption}
         onChange={(e) => handleCaption(e)}
       />

@@ -23,6 +23,7 @@ module.exports = {
         300: "#8e8e8e",
       },
       blue: "#0095F6",
+      red: "#ff0000",
     },
   },
   plugins: [],
