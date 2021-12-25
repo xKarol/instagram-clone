@@ -4,6 +4,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { validFileExtensions } from "../../constants/arrays";
 import { checkFileExtension } from "../../services/utils";
 import { CROP_PAGE } from "../../constants/globals";
+import Error from "./Error";
 
 export default function UploadBox({
   error,
@@ -18,6 +19,7 @@ export default function UploadBox({
   const handleUpload = (e) => {
     const checkFilesData = checkFileExtension(e.target.files);
     setFiles(checkFilesData);
+    setError({});
     checkFilesData.forEach((file) => {
       const reader = new FileReader();
       reader.addEventListener("load", function () {
@@ -88,25 +90,25 @@ export default function UploadBox({
         isDragging && "bg-gray-100"
       }`}
     >
-      <div
-        className={`text-[100px] pointer-events-none ${
-          isDragging && "text-blue"
-        }`}
-      >
-        {error?.file ? <AiOutlineExclamationCircle /> : <FaPhotoVideo />}
-      </div>
-      <span className="text-[20px] text-center pointer-events-none">
-        {error?.file ? (
-          <div className="flex flex-col">
-            <p>This file is not supported</p>
+      {error?.file ? (
+        <Error
+          caption={<p className="text-[20px]">This file is not supported</p>}
+          info={
             <p className="text-[13px] text-gray-300">
               <b>{error?.file}</b> could not be uploaded.
             </p>
-          </div>
-        ) : (
-          "Drag photos and videos here"
-        )}
-      </span>
+          }
+        />
+      ) : (
+        <>
+          <FaPhotoVideo
+            className={`text-[100px] ${isDragging && "text-blue"}`}
+          />
+          <span className="text-[20px] text-center pointer-events-none">
+            Drag photos and videos here
+          </span>
+        </>
+      )}
       <button
         className={`bg-blue text-white px-[10px] py-[5px] rounded-[5px] font-medium text-[14px] ${
           isDragging && "pointer-events-none"

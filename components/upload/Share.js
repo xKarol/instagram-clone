@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
+import Error from "./Error";
 
 function Share({ files, caption }) {
   const [loading, setLoading] = useState(false);
@@ -32,25 +33,40 @@ function Share({ files, caption }) {
         setUploaded(true);
       } catch (error) {
         setError(true);
-        console.log(error);
       }
     };
     uploadFile();
   }, [files, user.username, caption]);
   return (
     <div className="w-[400px] flex flex-col justify-center items-center space-y-[15px]">
-      <div
-        className={`${
-          loading && "animate-spin"
-        } flex items-center justify-center w-[100px] h-[100px] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] rounded-full relative`}
-      >
-        <div className="bg-white w-[92px] h-[92px] rounded-full " />
-        {uploaded && (
-          <IoMdCheckmark className="absolute text-[35px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#fcb045]" />
-        )}
-      </div>
-      {!loading && (
-        <p className="text-gray-300 text-[18px]">Your post has been shared.</p>
+      {error ? (
+        <>
+          <Error
+            caption={
+              <p className="text-[20px] text-gray-300 text-center">
+                Your post could not be shared. Please try again.
+              </p>
+            }
+          />
+        </>
+      ) : (
+        <>
+          <div
+            className={`${
+              loading && "animate-spin"
+            } flex items-center justify-center w-[100px] h-[100px] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] rounded-full relative`}
+          >
+            <div className="bg-white w-[92px] h-[92px] rounded-full " />
+            {uploaded && (
+              <IoMdCheckmark className="absolute text-[35px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#fcb045]" />
+            )}
+          </div>
+          {!loading && (
+            <p className="text-gray-300 text-[18px]">
+              Your post has been shared.
+            </p>
+          )}
+        </>
       )}
     </div>
   );
