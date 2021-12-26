@@ -2,6 +2,7 @@ import { db } from "../config/firebase.config";
 import {
   setDoc,
   getDocs,
+  getDoc,
   doc,
   collection,
   query,
@@ -25,14 +26,26 @@ export async function signUpUser(username, fullname, email, password) {
   return { createUser, setUser };
 }
 
-export async function getPhotos(username) {
-  //TODO pobieranie zdjec obserwujacych
-  const q = query(
-    collection(db, "photos"),
-    where("username", "==", username),
-    orderBy("timestamp", "desc")
-  );
+export async function getUser(username) {
+  const q = query(doc(db, "users"), where("username", "==", username));
+  const userDoc = await getDoc(q);
+  const user = userDoc.data();
+  return user;
+}
+
+export async function getPhotos() {
+  const q = query(collection(db, "photos"), orderBy("timestamp", "desc"));
   const photosDocs = await getDocs(q);
-  const photos = photosDocs.docs.map((doc) => doc.data());
+  const photos = await Promise.all(
+    photosDocs.docs.map(async (docData) => {
+      const username = docData.data().username;
+      const userRef = await getDoc(doc(db, "users", username));
+      return {
+        user: userRef.data(),
+        ...docData.data(),
+        photoId: docData.id,
+      };
+    })
+  );
   return photos;
 }

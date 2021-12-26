@@ -17,8 +17,7 @@ export default function Home() {
   useEffect(() => {
     const getData = async () => {
       if (user.username) {
-        const photos = await getPhotos(user.username);
-        console.log(photos);
+        const photos = await getPhotos();
         setPhotos(photos);
       }
     };
