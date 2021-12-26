@@ -27,9 +27,9 @@ export async function signUpUser(username, fullname, email, password) {
 }
 
 export async function getUser(username) {
-  const q = query(doc(db, "users"), where("username", "==", username));
-  const userDoc = await getDoc(q);
-  const user = userDoc.data();
+  const q = query(collection(db, "users"), where("username", "==", username));
+  const userDoc = await getDocs(q);
+  const user = userDoc.docs[0].data();
   return user;
 }
 
@@ -39,9 +39,9 @@ export async function getPhotos() {
   const photos = await Promise.all(
     photosDocs.docs.map(async (docData) => {
       const username = docData.data().username;
-      const userRef = await getDoc(doc(db, "users", username));
+      const userData = await getUser(username);
       return {
-        user: userRef.data(),
+        user: userData,
         ...docData.data(),
         photoId: docData.id,
       };

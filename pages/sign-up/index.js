@@ -12,6 +12,8 @@ import {
 } from "../../constants/validation";
 import { signUpUser } from "../../services/firebase";
 import { useRouter } from "next/router";
+import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
+import LoginPending from "../../components/LoginPending";
 
 export default function SignUp() {
   const [error, setError] = useState("");
@@ -21,6 +23,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const passwordRef = useRef(null);
   const passwordShowBtnRef = useRef(null);
+  const loggedIn = useRedirectLoggedUser("/");
   const router = useRouter();
 
   const disabledBtn =
@@ -55,6 +58,8 @@ export default function SignUp() {
     }
     passwordRef.current.setAttribute("type", type);
   };
+
+  if (loggedIn) return <LoginPending />; // waiting for redirect
 
   return (
     <>

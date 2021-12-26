@@ -1,26 +1,33 @@
 import { useState, useEffect } from "react";
-import { db } from "../config/firebase.config";
+import { db, auth } from "../config/firebase.config";
 import { getDoc, doc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+
 export default function useAuthListener() {
-  const [user, setUser] = useState({ loggedIn: false });
+  const [user, setUser] = useState({ loggedIn: false, pending: true });
 
   useEffect(() => {
-    const auth = getAuth();
-    const listener = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const docSnap = await getDoc(doc(db, "users", user.uid));
+    const listener = onAuthStateChanged(auth, async (authUser) => {
+      if (authUser) {
+        const docSnap = await getDoc(doc(db, "users", authUser.uid));
         const userData = docSnap.data();
         if (!userData) {
           // TODO delete user
         } else {
-          setUser({ loggedIn: true, uid: user.uid, ...userData });
+          setUser({
+            loggedIn: true,
+            pending: false,
+            uid: authUser.uid,
+            ...userData,
+          });
         }
+      } else {
+        setUser({ loggedIn: false, pending: false });
       }
     });
 
     return () => listener();
   }, []);
 
-  return { user };
+  return { setUser, user };
 }

@@ -6,21 +6,24 @@ import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../components/Logo";
 import { AiFillFacebook } from "react-icons/ai";
 import PhoneGallery from "../../components/PhoneGallery";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
 import { useRouter } from "next/router";
+import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
+import LoginPending from "../../components/LoginPending";
 
 export default function Login() {
   const [error, setError] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const disabledBtn = !login || !(password.length >= MIN_PASSWORD);
+  const loggedIn = useRedirectLoggedUser("/");
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     if (disabledBtn) return;
-    const auth = getAuth();
     try {
       await signInWithEmailAndPassword(auth, login, password);
       router.push("/");
@@ -36,6 +39,9 @@ export default function Login() {
       );
     }
   };
+
+  if (loggedIn) return <LoginPending />; // waiting for redirect
+
   return (
     <>
       <div className="flex justify-center items-center p-[50px] gap-[25px]">

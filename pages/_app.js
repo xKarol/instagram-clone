@@ -1,11 +1,12 @@
 import Head from "next/head";
 import "../styles/globals.css";
-import "../config/firebase.config";
+import LoginPending from "../components/LoginPending";
 import useAuthListener from "../hooks/useAuth";
 import UserContext from "../context/UserContext";
 
 export default function MyApp({ Component, pageProps }) {
-  const { user} = useAuthListener();
+  const { setUser, user } = useAuthListener();
+
   return (
     <>
       <Head>
@@ -13,8 +14,8 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="description" content="Instagram Clone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <UserContext.Provider value={user}>
-        <Component {...pageProps} />
+      <UserContext.Provider value={(setUser, user)}>
+        {user?.pending ? <LoginPending /> : <Component {...pageProps} />}
       </UserContext.Provider>
     </>
   );
