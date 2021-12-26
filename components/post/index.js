@@ -26,7 +26,7 @@ export default function Post({ username, image, caption, timestamp }) {
         <MiniComment username={username} comment={"test"} />
         <MiniComment username={username} comment={"test 1"} />
         <MiniComment username={username} comment={"test 2"} />
-        <Date date={null} />
+        <Date date={timestamp} />
       </div>
       <CreateComment />
     </div>

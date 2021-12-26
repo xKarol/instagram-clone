@@ -23,8 +23,10 @@ export default function Suggestions({ user, feedRef }) {
       className="fixed w-[300px] right-0 top-[90px] left-[700px] z-10 hidden 1000px:block"
       ref={sideBoxRef}
     >
-      <div className="h-[100px] flex items-center gap-[25px] text-[14px]">
-        <Avatar src={user?.avatar} size={55} />
+      <div className="h-[100px] flex items-center gap-[20px] text-[14px]">
+        <span className="h-[55px] w-[55px]">
+          <Avatar src={user?.avatar} size={55} />
+        </span>
         <div className="flex flex-col leading-[20px]">
           <span className="font-medium">karol</span>
           <span className="text-gray-300">Karol Piskorz</span>
