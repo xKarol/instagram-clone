@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      <Header user={user} setShow={setShow} />
+      <Header setShow={setShow} />
       <div className="max-w-[975px] mx-auto mt-[90px]">
         <div
           className="max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]"
