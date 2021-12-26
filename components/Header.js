@@ -37,7 +37,7 @@ export default function Header({ user, setShow }) {
           <button>
             <IoMdHeartEmpty />
           </button>
-          <button>
+          <button className="w-[23px] h-[23px]">
             <Avatar src={user?.avatar} size={23} />
           </button>
         </div>
