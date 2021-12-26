@@ -21,7 +21,7 @@ export default function Header({ user, setShow }) {
             className="w-full bg-gray-100 py-[17px] pl-[30px] pr-[10px] text-[14px] h-[30px] border border-gray-200 rounded-sm placeholder:text-gray-300"
           />
         </div>
-        <div className="sm:pl-[20px] flex shrink-0 items-center gap-[10px] sm:gap-[20px] text-[27px]">
+        <div className="sm:pl-[20px] flex shrink-0 items-center gap-[10px] sm:gap-[20px] text-[23px]">
           <button>
             <MdHomeFilled />
           </button>
