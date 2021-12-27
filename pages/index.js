@@ -9,7 +9,7 @@ import Post from "../components/post";
 import { getPhotos } from "../services/firebase";
 
 export default function Home() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
   const [photos, setPhotos] = useState([]);
   const user = useContext(UserContext);
   const feedRef = useRef(null);
