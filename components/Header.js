@@ -46,14 +46,22 @@ export default function Header({ setShow }) {
                 <button>
                   <FaRegCompass />
                 </button>
-                <button onClick={() => setShowDropdown(!showDropdown)}>
-                  <IoMdHeartEmpty />
+                <button
+                  id="dropdown"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                >
+                  <IoMdHeartEmpty className="pointer-events-none" />
                 </button>
                 <button
                   className="w-[23px] h-[23px]"
+                  id="dropdown"
                   onClick={() => setShowDropdown(!showDropdown)}
                 >
-                  <Avatar src={user?.avatar} size={23} />
+                  <Avatar
+                    src={user?.avatar}
+                    size={23}
+                    className="pointer-events-none"
+                  />
                 </button>
               </>
             ) : (
@@ -73,7 +81,11 @@ export default function Header({ setShow }) {
           </div>
         </nav>
       </header>
-      <DropdownMenu setShow={setShowDropdown} show={showDropdown} element={<ProfileDropdown />} />
+      <DropdownMenu
+        setShow={setShowDropdown}
+        show={showDropdown}
+        element={<ProfileDropdown />}
+      />
     </>
   );
 }

@@ -9,7 +9,7 @@ import Post from "../components/post";
 import { getPhotos } from "../services/firebase";
 
 export default function Home() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const [photos, setPhotos] = useState([]);
   const user = useContext(UserContext);
   const feedRef = useRef(null);
@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <Header setShow={setShow} />
-      <div className="max-w-[975px] mx-auto mt-[90px]">
+      <div className="max-w-[975px] mx-auto mt-[90px] pb-[50px] ">
         <div
           className="max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]"
           ref={feedRef}
@@ -37,7 +37,7 @@ export default function Home() {
             <Post key={index} {...photo} />
           ))}
         </div>
-        <Suggestions user={user} feedRef={feedRef} />
+        <Suggestions feedRef={feedRef} />
       </div>
       <Modal show={show} setShow={setShow} element={<Upload />} />
     </>

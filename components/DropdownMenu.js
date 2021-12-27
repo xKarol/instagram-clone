@@ -4,19 +4,20 @@ export default function DropdownMenu({ setShow, show, element }) {
   const [selectTarget, setTarget] = useState(null);
   const DropdownRef = useRef(null);
 
+  const handleResize = () => {
+    if (!selectTarget) return;
+    const rect = selectTarget.getBoundingClientRect();
+    DropdownRef.current.style.left = `${rect.left - 170}px`;
+  };
+
   useEffect(() => {
-    const handleResize = (e) => {
-      // if (!show) return;
-      const getTarget = selectTarget ? selectTarget : e;
-      const rect = getTarget.getBoundingClientRect();
-      //TODO naprawic bug z use ref undefined
-      DropdownRef.current.style.left = `${rect.left - 170}px`;
-    };
     const handleClick = (e) => {
+      if (e.target.id !== "dropdown") {
+        if (!show) return;
+        setShow(false);
+        return;
+      }
       setTarget(e.target);
-      handleResize(e.target);
-      if (!show) return;
-      setShow(false);
     };
     window.addEventListener("resize", handleResize);
     document.addEventListener("click", handleClick);
@@ -24,18 +25,22 @@ export default function DropdownMenu({ setShow, show, element }) {
       document.removeEventListener("click", handleClick);
       window.removeEventListener("resize", handleResize);
     };
-  }, [selectTarget, show, DropdownRef.current]);
+  }, [show]);
+
+  useEffect(() => {
+    handleResize();
+  }, [selectTarget]);
 
   return (
     <>
-      {show && (
-        <div
-          className="fixed min-w-[220px] rounded-md top-[55px] z-50 shadow-[0_0_10px_2px_rgba(0,0,0,0.1)]"
-          ref={DropdownRef}
-        >
-          {element}
-        </div>
-      )}
+      <div
+        className={`fixed min-w-[220px] rounded-md top-[55px] z-50 shadow-[0_0_10px_2px_rgba(0,0,0,0.1)] ${
+          !show && "hidden"
+        }`}
+        ref={DropdownRef}
+      >
+        {element}
+      </div>
     </>
   );
 }
