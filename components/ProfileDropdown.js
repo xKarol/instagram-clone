@@ -2,6 +2,7 @@ import { CgProfile } from "react-icons/cg";
 import { BiBookmark } from "react-icons/bi";
 import { RiSettings3Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
+import { logOut } from "../services/firebase.js";
 
 export default function ProfileDropdown() {
   return (
@@ -24,7 +25,10 @@ export default function ProfileDropdown() {
       <li className="flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
         <BsArrowRepeat /> Switch Accounts
       </li>
-      <li className="rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100">
+      <li
+        onClick={logOut}
+        className="rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100"
+      >
         Log Out
       </li>
     </ul>
