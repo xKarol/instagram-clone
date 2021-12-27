@@ -6,6 +6,29 @@
   body {
     @apply bg-gray-100;
   }
+  .skeleton {
+    background-color: #dbdbdb;
+    opacity: 0.25;
+    background-image: linear-gradient(
+      to right,
+      #dbdbdb 0%,
+      rgba(0, 0, 0, 0.05) 20%,
+      #dbdbdb 40%,
+      #dbdbdb 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 450px 400px;
+    animation: shimmer 1s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -450px 0;
+    }
+    100% {
+      background-position: 450px 0;
+    }
+  }
 }
 
 @layer components {
