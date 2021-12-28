@@ -3,6 +3,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { addComment } from "../../services/firebase";
 import UserContext from "../../context/UserContext";
 import Loading from "../Loading";
+import { trimSpace } from "../../services/utils";
 
 export default function CreateComment({ postId }) {
   const [comment, setComment] = useState("");
@@ -16,9 +17,9 @@ export default function CreateComment({ postId }) {
 
   const addNewComment = async (e) => {
     e.preventDefault();
-    if (disabled) return;
+    if (disabled || pending) return;
     setPending(true);
-    await addComment(comment, postId, user?.username);
+    await addComment(trimSpace(comment), postId, user?.username);
     setComment("");
     setPending(false);
   };

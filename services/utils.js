@@ -13,3 +13,11 @@ export const random = (max) => {
 export const isFollowing = (docId, followings = []) => {
   return Boolean(followings.filter((profile) => profile.uid === docId).length);
 };
+
+export const truncate = (str, size = 10) => {
+  return str.length > size ? str.substring(0, size) + "..." : str;
+};
+
+export const trimSpace = (str) => {
+  return str.replace(/\s+$/, "");
+};

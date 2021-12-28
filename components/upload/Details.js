@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsEmojiSmile, BsChevronDown } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import Avatar from "../Avatar";
-import { MAX_POST_CAPTION } from "../../constants/validation";
+import { MAX_POST_CAPTION } from "../../constants/post";
 
 export default function Details({caption, setCaption }) {
 
