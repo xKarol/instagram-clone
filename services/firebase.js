@@ -1,5 +1,6 @@
 import { db } from "../config/firebase.config";
 import {
+  addDoc,
   setDoc,
   getDoc,
   getDocs,
@@ -10,6 +11,7 @@ import {
   query,
   where,
   orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -85,6 +87,25 @@ export async function getUserByUsername(username, extradata = true) {
   }
 }
 
+export async function getPhotoComments(postId) {
+  const commentsDocs = await getDocs(
+    collection(db, "photos", postId, "comments")
+  );
+  const comments = await Promise.all(
+    commentsDocs.docs.map(async (docData) => {
+      const username = docData.data().username;
+      const userData = await getUserByUsername(username, false);
+      return {
+        username: userData.username,
+        avatar: userData.avatar,
+        ...docData.data(),
+        commentId: docData.id,
+      };
+    })
+  );
+  return comments;
+}
+
 export async function getPhotos() {
   const q = query(collection(db, "photos"), orderBy("timestamp", "desc"));
   const photosDocs = await getDocs(q);
@@ -92,13 +113,16 @@ export async function getPhotos() {
     photosDocs.docs.map(async (docData) => {
       const username = docData.data().username;
       const userData = await getUserByUsername(username, false);
+      const comments = await getPhotoComments(docData.id);
       return {
         user: userData,
         ...docData.data(),
         photoId: docData.id,
+        comments: comments,
       };
     })
   );
+
   return photos;
 }
 
@@ -148,4 +172,13 @@ export const getUserStories = async (docId) => {
     })
   );
   return stories;
+};
+
+export const addComment = async (comment, postId, username) => {
+  if (!comment.length) return;
+  return await addDoc(collection(db, "photos", postId, "comments"), {
+    comment: comment,
+    username: username,
+    timestamp: serverTimestamp(),
+  });
 };
