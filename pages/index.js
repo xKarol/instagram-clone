@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import UserContext from "../context/UserContext";
 import Header from "../components/Header";
 import Suggestions from "../components/Suggestions";
-import Stories from "../components/Stories";
+import Stories from "../components/stories";
 import Modal from "../components/Modal";
 import Upload from "../components/upload";
 import Post from "../components/post";

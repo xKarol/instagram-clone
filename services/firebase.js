@@ -130,3 +130,22 @@ export const unfollowUser = async (userDocId, docId) => {
   await deleteDoc(doc(db, "users", docId, "followers", userDocId));
   await deleteDoc(doc(db, "users", userDocId, "followings", docId));
 };
+
+export const getUserStories = async (docId) => {
+  const storiesDocs = await getDocs(
+    collection(db, "users", docId, "followings")
+  );
+  const stories = await Promise.all(
+    storiesDocs.docs.map(async (docData) => {
+      const userId = docData.data().uid;
+      const userData = await getUserByUID(userId, false);
+      return {
+        username: userData?.username,
+        avatar: userData?.avatar,
+        ...docData.data(),
+        storyId: docData.id,
+      };
+    })
+  );
+  return stories;
+};
