@@ -4,13 +4,13 @@ import UserContext from "../context/UserContext";
 
 export default function useRedirectLoggedUser(path = "/") {
   const router = useRouter();
-  const user = useContext(UserContext);
+  const { loggedIn } = useContext(UserContext);
 
   useEffect(() => {
-    if (user?.loggedIn) {
+    if (loggedIn) {
       router.push(path);
     }
-  }, [path]);
+  }, [path, loggedIn]);
 
-  return user?.loggedIn;
+  return loggedIn;
 }

@@ -8,20 +8,19 @@ import MiniComment from "./MiniComment";
 import Date from "./Date";
 import CreateComment from "./CreateComment";
 
-export default function Post({ username, user, image, caption, timestamp }) {
-  const { userAvatar: avatar } = user;
+export default function Post({user, timestamp, image, caption}) {
   return (
     <div className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm">
-      <Header username={username} avatar={null} />
-      <Photo image={image} username={username} caption={caption} />
+      <Header username={user?.username} avatar={user?.avatar} />
+      <Photo image={image} username={user?.username} caption={caption} />
       <div className="px-[16px]">
         <Navbar />
         <Likes likes={0} />
-        <Caption username={username} caption={caption} />
+        <Caption username={user?.username} caption={caption} />
         <Comments />
-        <MiniComment username={username} comment={"test"} />
-        <MiniComment username={username} comment={"test 1"} />
-        <MiniComment username={username} comment={"test 2"} />
+        <MiniComment username={user?.username} comment={"test"} />
+        <MiniComment username={user?.username} comment={"test 1"} />
+        <MiniComment username={user?.username} comment={"test 2"} />
         <Date timestamp={timestamp} />
       </div>
       <CreateComment />

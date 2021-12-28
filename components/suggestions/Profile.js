@@ -3,10 +3,10 @@ import Avatar from "../Avatar";
 import UserContext from "../../context/UserContext";
 
 export default function MiniProfile() {
-  const user = useContext(UserContext);
+  const { loggedIn, user } = useContext(UserContext);
   return (
     <>
-      {user?.loggedIn && (
+      {loggedIn && (
         <div className="h-[100px] flex items-center gap-[20px] text-[14px]">
           <span className="h-[55px] w-[55px]">
             <Avatar src={user?.avatar} size={55} />

@@ -2,32 +2,33 @@ import { useState, useEffect } from "react";
 import { db, auth } from "../config/firebase.config";
 import { getDoc, doc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { getUserByUID } from "../services/firebase";
 
 export default function useAuthListener() {
-  const [user, setUser] = useState({ loggedIn: false, pending: true });
+  const [user, setUser] = useState({ });
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [pending, setPending] = useState(true);
 
   useEffect(() => {
     const listener = onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
-        const docSnap = await getDoc(doc(db, "users", authUser.uid));
-        const userData = docSnap.data();
+        const userData = await getUserByUID(authUser.uid);
         if (!userData) {
           // TODO delete user
         } else {
-          setUser({
-            loggedIn: true,
-            pending: false,
-            uid: authUser.uid,
-            ...userData,
-          });
+          setLoggedIn(true);
+          setPending(false);
+          setUser(userData);
         }
       } else {
-        setUser({ loggedIn: false, pending: false });
+        setLoggedIn(false);
+        setPending(false);
+        setUser({});
       }
     });
 
     return () => listener();
   }, []);
 
-  return { setUser, user };
+  return { setUser, user, pending, loggedIn };
 }

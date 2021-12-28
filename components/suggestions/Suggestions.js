@@ -7,7 +7,7 @@ import Skeleton from "../Skeleton";
 export default function Suggestions() {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const getData = async () => {

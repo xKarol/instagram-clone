@@ -10,7 +10,7 @@ function Share({ files, caption }) {
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [error, setError] = useState(false);
-  const user = useContext(UserContext);
+  const {user} = useContext(UserContext);
 
   useEffect(() => {
     const uploadFile = async () => {

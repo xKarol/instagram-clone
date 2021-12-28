@@ -14,7 +14,7 @@ import ProfileDropdown from "../components/ProfileDropdown";
 //TODO use context zamiast propsow
 export default function Header({ setShow }) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const user = useContext(UserContext);
+  const { loggedIn, user } = useContext(UserContext);
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function Header({ setShow }) {
             />
           </div>
           <div className="sm:pl-[20px] flex shrink-0 items-center gap-[10px] sm:gap-[20px] text-[23px]">
-            {user?.loggedIn ? (
+            {loggedIn ? (
               <>
                 <button>
                   <MdHomeFilled />

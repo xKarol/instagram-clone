@@ -1,7 +1,9 @@
 import { db } from "../config/firebase.config";
 import {
   setDoc,
+  getDoc,
   getDocs,
+  deleteDoc,
   limit,
   doc,
   collection,
@@ -38,11 +40,49 @@ export async function logOut() {
   return { res };
 }
 
-export async function getUserByUsername(username) {
+export async function getUserMainData(username) {
   const q = query(collection(db, "users"), where("username", "==", username));
   const userDoc = await getDocs(q);
-  const user = userDoc.docs[0].data();
+  const user = { ...userDoc.docs[0].data(), uid: userDoc.docs[0].id };
   return user;
+}
+
+export async function getUserByUID(uid, extradata = true) {
+  const userDoc = await getDoc(doc(db, "users", uid));
+  const user = { ...userDoc.data(), uid: userDoc.id };
+  if (extradata) {
+    const followings = await getUserFollowings(user?.uid);
+    const followers = await getUserFollowers(user?.uid);
+    return { ...user, followers: followers, followings: followings };
+  } else {
+    return { ...user };
+  }
+}
+
+export async function getUserFollowers(uid) {
+  const userFollowersDoc = await getDocs(
+    collection(db, "users", uid, "followers")
+  );
+  const followers = userFollowersDoc.docs.map((doc) => ({ ...doc.data() }));
+  return followers;
+}
+export async function getUserFollowings(uid) {
+  const userFollowingsDoc = await getDocs(
+    collection(db, "users", uid, "followings")
+  );
+  const followings = userFollowingsDoc.docs.map((doc) => ({ ...doc.data() }));
+  return followings;
+}
+
+export async function getUserByUsername(username, extradata = true) {
+  const user = await getUserMainData(username);
+  if (extradata) {
+    const followings = await getUserFollowings(user?.uid);
+    const followers = await getUserFollowers(user?.uid);
+    return { ...user, followers: followers, followings: followings };
+  } else {
+    return { ...user };
+  }
 }
 
 export async function getPhotos() {
@@ -51,7 +91,7 @@ export async function getPhotos() {
   const photos = await Promise.all(
     photosDocs.docs.map(async (docData) => {
       const username = docData.data().username;
-      const userData = await getUserByUsername(username);
+      const userData = await getUserByUsername(username, false);
       return {
         user: userData,
         ...docData.data(),
@@ -89,8 +129,4 @@ export const unfollowUser = async (userDocId, docId) => {
   if (userDocId === docId) return;
   await deleteDoc(doc(db, "users", docId, "followers", userDocId));
   await deleteDoc(doc(db, "users", userDocId, "followings", docId));
-};
-
-export const handleFollowUser = async (userDocId, docId, setFollow) => {
-  setFollow ? followUser(userDocId, docId) : unfollowUser(userDocId, docId);
 };
