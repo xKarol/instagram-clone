@@ -5,12 +5,13 @@ import UserContext from "../../context/UserContext";
 import PhotoContext from "../../context/PhotoContext";
 import Loading from "../Loading";
 import { trimSpace } from "../../services/utils";
+import { serverTimestamp } from "firebase/firestore";
 
 export default function CreateComment() {
   const [comment, setComment] = useState("");
   const [pending, setPending] = useState(false);
   const { user } = useContext(UserContext);
-  const { photo } = useContext(PhotoContext);
+  const { photo, setComments } = useContext(PhotoContext);
   const disabled = !comment.length;
 
   const handleComment = (e) => {
@@ -21,7 +22,21 @@ export default function CreateComment() {
     e.preventDefault();
     if (disabled || pending) return;
     setPending(true);
-    await addComment(trimSpace(comment), photo.photoId, user?.username);
+    const res = await addComment(
+      trimSpace(comment),
+      photo.photoId,
+      user?.username
+    );
+    setComments((prevState) => [
+      {
+        commentId: res.id,
+        comment: trimSpace(comment),
+        username: user?.username,
+        avatar: user?.avatar,
+        timestamp: serverTimestamp(),
+      },
+      ...prevState,
+    ]);
     setComment("");
     setPending(false);
   };

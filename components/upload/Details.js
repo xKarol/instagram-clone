@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { BsEmojiSmile, BsChevronDown } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import Avatar from "../Avatar";
 import { MAX_POST_CAPTION } from "../../constants/post";
+import UploadContext from "../../context/UploadContext";
 
-export default function Details({caption, setCaption }) {
-
+export default function Details() {
+  const { caption, setCaption } = useContext(UploadContext);
   const handleCaption = (e) => {
     const text = e.target.value;
     if (text.length >= MAX_POST_CAPTION) return;

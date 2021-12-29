@@ -4,13 +4,15 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
+import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
 
-function Share({ files, caption }) {
+function Share() {
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [error, setError] = useState(false);
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const { files, caption } = useContext(UploadContext);
 
   useEffect(() => {
     const uploadFile = async () => {

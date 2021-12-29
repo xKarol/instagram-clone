@@ -10,9 +10,10 @@ import Avatar from "../components/Avatar";
 import UserContext from "../context/UserContext";
 import DropdownMenu from "../components/DropdownMenu";
 import ProfileDropdown from "../components/ProfileDropdown";
+import Upload from "../components/upload";
 
-//TODO use context zamiast propsow
-export default function Header({ setShow }) {
+export default function Header() {
+  const [show, setShow] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const { loggedIn, user } = useContext(UserContext);
 
@@ -81,6 +82,7 @@ export default function Header({ setShow }) {
           </div>
         </nav>
       </header>
+      <Upload show={show} setShow={setShow} />
       <DropdownMenu
         setShow={setShowDropdown}
         show={showDropdown}

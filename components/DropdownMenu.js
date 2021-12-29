@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
 
 export default function DropdownMenu({ setShow, show, element }) {
   const [selectTarget, setTarget] = useState(null);
@@ -27,7 +27,7 @@ export default function DropdownMenu({ setShow, show, element }) {
     };
   }, [show]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     handleResize();
   }, [selectTarget]);
 

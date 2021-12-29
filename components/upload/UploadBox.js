@@ -1,29 +1,34 @@
+import { useContext } from "react";
 import { useState, useEffect, useRef } from "react";
 import { FaPhotoVideo } from "react-icons/fa";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { validFileExtensions } from "../../constants/arrays";
 import { checkFileExtension } from "../../services/utils";
 import { CROP_PAGE } from "../../constants/globals";
 import Error from "./Error";
+import Progress from "../Progress";
+import UploadContext from "../../context/UploadContext";
 
-export default function UploadBox({
-  error,
-  setError,
-  setFiles,
-  setPreviewFiles,
-  setPage,
-}) {
+export default function UploadBox() {
+  const { error, setError, setFiles, setPreviewFiles, setPage } =
+    useContext(UploadContext);
+
   const fileRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleUpload = (e) => {
     const checkFilesData = checkFileExtension(e.target.files);
     setFiles(checkFilesData);
     setError({});
+    //todo asynchroniczna petla aby nie dawac setpage w petli?? sprawdzic czy sie da zrobic
     checkFilesData.forEach((file) => {
       const reader = new FileReader();
       reader.addEventListener("load", function () {
         setPreviewFiles((prevData) => [...prevData, reader.result]);
+      });
+      reader.addEventListener("progress", function ({ loaded, total }) {
+        setProgress((loaded / total) * 100);
+        console.log((loaded / total) * 100);
       });
       reader.readAsDataURL(file);
       setPage(CROP_PAGE);
@@ -86,10 +91,11 @@ export default function UploadBox({
 
   return (
     <section
-      className={`h-full w-[400px] mx-auto flex flex-col items-center justify-center gap-[15px] ${
+      className={`h-full w-[425px] mx-auto flex flex-col items-center justify-center gap-[15px] ${
         isDragging && "bg-gray-100"
       }`}
     >
+      {progress !== 0 && <Progress value={progress} className={"absolute top-[45px] left-0 right-0"}/>}
       {error?.file ? (
         <Error
           caption={<p className="text-[20px]">This file is not supported</p>}

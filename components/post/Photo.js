@@ -6,14 +6,23 @@ import { AiFillHeart } from "react-icons/ai";
 import { likePost } from "../../services/firebase";
 
 export default function Photo() {
-  const { photo, liked, setLiked } = useContext(PhotoContext);
+  const { photo, liked, setLiked, setLikes, likes } = useContext(PhotoContext);
   const { user } = useContext(UserContext);
   const [heart, setHeart] = useState(false);
+  const [pending, setPending] = useState(false);
 
-  const handleLike = () => {
-    likePost(photo?.photoId, user?.uid, liked);
-    setLiked(!liked);
+  const handleLike = async () => {
+    if (pending) return;
+    setPending(true);
     setHeart(true);
+    if (liked) {
+      setLikes(likes.filter((like) => like?.uid !== user?.uid));
+    } else {
+      setLikes([...likes, { uid: user?.uid }]);
+    }
+    setLiked(!liked);
+    await likePost(photo?.photoId, user?.uid, liked);
+    setPending(false);
   };
 
   useEffect(() => {
@@ -30,7 +39,7 @@ export default function Photo() {
         <div className="z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <AiFillHeart
             className={`${
-              !liked && "scaleAnim"
+              liked && "scaleAnim"
             } text-white drop-shadow-xl opacity-90 text-[100px]`}
           />
         </div>

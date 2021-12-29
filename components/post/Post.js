@@ -13,6 +13,8 @@ import UserContext from "../../context/UserContext";
 
 export default function Post({ data: photo }) {
   const [liked, setLiked] = useState(false);
+  const [comments, setComments] = useState(photo?.comments);
+  const [likes, setLikes] = useState(photo?.likes);
   const { user } = useContext(UserContext);
 
   useLayoutEffect(() => {
@@ -24,7 +26,9 @@ export default function Post({ data: photo }) {
   }, [photo?.likes, user?.uid]);
 
   return (
-    <PhotoContext.Provider value={{ photo, liked, setLiked }}>
+    <PhotoContext.Provider
+      value={{ photo, liked, setLiked, setComments, setLikes, likes }}
+    >
       <div className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm">
         <Header />
         <Photo />
@@ -32,9 +36,9 @@ export default function Post({ data: photo }) {
           <Navbar />
           <Likes />
           <Caption />
-          <Comments count={photo?.comments?.length} />
-          {!!photo?.comments.length &&
-            photo?.comments
+          <Comments count={comments?.length} />
+          {!!comments.length &&
+            comments
               .slice(0, 3)
               .map((comment) => (
                 <MiniComment

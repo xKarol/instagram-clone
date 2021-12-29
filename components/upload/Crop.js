@@ -6,14 +6,14 @@ import CropButton from "./CropButton";
 export default function Crop({ src, disableBtns }) {
   //   TODO many images feature
   return (
-    <div className="relative h-full w-[400px] max-w-[400px]">
-      {src.length && (
+    <div className="relative block h-full w-[400px] max-w-[400px]">
+      {!!src.length && (
         <>
           <Image
             src={src[0]}
+            layout="fill"
             objectFit="cover"
             alt="upload image"
-            layout="fill"
           />
           {!disableBtns && (
             <>
