@@ -1,28 +1,14 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import UserContext from "../context/UserContext";
+import { useRef, useState } from "react";
 import Header from "../components/Header";
 import Suggestions from "../components/Suggestions";
 import Stories from "../components/stories";
 import Modal from "../components/Modal";
 import Upload from "../components/upload";
-import Post from "../components/post";
-import { getPhotos } from "../services/firebase";
+import Posts from "../components/post";
 
 export default function Home() {
   const [show, setShow] = useState(false);
-  const [photos, setPhotos] = useState([]);
-  const { user } = useContext(UserContext);
   const feedRef = useRef(null);
-
-  useEffect(() => {
-    const getData = async () => {
-      if (user.username) {
-        const photos = await getPhotos();
-        setPhotos(photos);
-      }
-    };
-    getData();
-  }, [user.username]);
 
   return (
     <>
@@ -32,10 +18,8 @@ export default function Home() {
           className="max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]"
           ref={feedRef}
         >
-          <Stories user={user} />
-          {photos.map((photo, index) => (
-            <Post key={index} {...photo} />
-          ))}
+          <Stories />
+          <Posts />
         </div>
         <Suggestions feedRef={feedRef} />
       </div>

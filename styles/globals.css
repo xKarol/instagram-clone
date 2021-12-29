@@ -49,6 +49,20 @@
     animation: spin 1s infinite linear;
     pointer-events: none;
   }
+  .scaleAnim {
+    animation: scaleAnim 0.2s ease-in-out;
+  }
+  @keyframes scaleAnim {
+    0% {
+      transform: scale(0);
+    }
+    70% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 }
 
 @layer components {

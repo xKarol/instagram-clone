@@ -2,13 +2,15 @@ import { useState, useContext } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { addComment } from "../../services/firebase";
 import UserContext from "../../context/UserContext";
+import PhotoContext from "../../context/PhotoContext";
 import Loading from "../Loading";
 import { trimSpace } from "../../services/utils";
 
-export default function CreateComment({ postId }) {
+export default function CreateComment() {
   const [comment, setComment] = useState("");
   const [pending, setPending] = useState(false);
   const { user } = useContext(UserContext);
+  const { photo } = useContext(PhotoContext);
   const disabled = !comment.length;
 
   const handleComment = (e) => {
@@ -19,7 +21,7 @@ export default function CreateComment({ postId }) {
     e.preventDefault();
     if (disabled || pending) return;
     setPending(true);
-    await addComment(trimSpace(comment), postId, user?.username);
+    await addComment(trimSpace(comment), photo.photoId, user?.username);
     setComment("");
     setPending(false);
   };

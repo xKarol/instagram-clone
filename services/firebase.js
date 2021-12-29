@@ -88,9 +88,11 @@ export async function getUserByUsername(username, extradata = true) {
 }
 
 export async function getPhotoComments(postId) {
-  const commentsDocs = await getDocs(
-    collection(db, "photos", postId, "comments")
+  const q = query(
+    collection(db, "photos", postId, "comments"),
+    orderBy("timestamp", "desc")
   );
+  const commentsDocs = await getDocs(q);
   const comments = await Promise.all(
     commentsDocs.docs.map(async (docData) => {
       const username = docData.data().username;
@@ -106,6 +108,11 @@ export async function getPhotoComments(postId) {
   return comments;
 }
 
+export async function getPhotoLikes(postId) {
+  const likesDocs = await getDocs(collection(db, "photos", postId, "likes"));
+  return likesDocs.docs.map((doc) => doc.data());
+}
+
 export async function getPhotos() {
   const q = query(collection(db, "photos"), orderBy("timestamp", "desc"));
   const photosDocs = await getDocs(q);
@@ -114,11 +121,13 @@ export async function getPhotos() {
       const username = docData.data().username;
       const userData = await getUserByUsername(username, false);
       const comments = await getPhotoComments(docData.id);
+      const likes = await getPhotoLikes(docData.id);
       return {
         user: userData,
         ...docData.data(),
         photoId: docData.id,
         comments: comments,
+        likes: likes,
       };
     })
   );
@@ -181,4 +190,12 @@ export const addComment = async (comment, postId, username) => {
     username: username,
     timestamp: serverTimestamp(),
   });
+};
+
+export const likePost = async (postId, userId, liked) => {
+  !liked
+    ? setDoc(doc(db, "photos", postId, "likes", userId), {
+        uid: userId,
+      })
+    : deleteDoc(doc(db, "photos", postId, "likes", userId));
 };
