@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { BsEmojiSmile, BsChevronDown } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import Avatar from "../Avatar";
@@ -6,12 +6,22 @@ import { MAX_POST_CAPTION } from "../../constants/post";
 import UploadContext from "../../context/UploadContext";
 
 export default function Details() {
-  const { caption, setCaption } = useContext(UploadContext);
+  const [photoCaption, setPhotoCaption] = useState("");
+  const {
+    state: { caption },
+    dispatch,
+  } = useContext(UploadContext);
+
   const handleCaption = (e) => {
     const text = e.target.value;
     if (text.length >= MAX_POST_CAPTION) return;
-    setCaption(text.replace(/  +/g, " ")); //double space block
+    setPhotoCaption(text.replace(/  +/g, " ")); //double space block
   };
+
+  const handleBlur = () => {
+    dispatch({ caption: photoCaption });
+  };
+
   return (
     <section className="flex flex-col border border-transparent border-l-gray-200 h-full min-w-[350px] overflow-y-scroll">
       <header className="p-[15px] flex space-x-[10px] items-center font-medium">
@@ -22,8 +32,9 @@ export default function Details() {
         autoComplete="off"
         placeholder="Write a caption..."
         className="px-[15px] outline-none min-h-[180px] resize-none"
-        value={caption}
+        value={photoCaption}
         onChange={(e) => handleCaption(e)}
+        onBlur={handleBlur}
       />
       <div className="flex items-center justify-between px-[15px] my-[10px] text-gray-300">
         <BsEmojiSmile className="text-[18px] cursor-pointer" />

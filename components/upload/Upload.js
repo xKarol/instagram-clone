@@ -16,9 +16,12 @@ import {
 } from "../../constants/globals";
 
 export default function Upload() {
-  const { page, previewFiles, setShowDiscardBox, showDiscardBox } =
-    useContext(UploadContext);
-
+  const {
+    state: { page, previewFiles },
+    setShowDiscardBox,
+    showDiscardBox,
+  } = useContext(UploadContext);
+  console.log(page);
   return (
     <>
       <Head>

@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { validFileExtensions } from "../../constants/arrays";
 import { checkFileExtension } from "../../services/utils";
@@ -9,62 +8,57 @@ import Progress from "../Progress";
 import UploadContext from "../../context/UploadContext";
 
 export default function UploadBox() {
-  const { error, setError, setFiles, setPreviewFiles, setPage } =
-    useContext(UploadContext);
+  const {
+    state: { error, files, previewFiles},
+    dispatch,
+  } = useContext(UploadContext);
 
   const fileRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const handleUpload = (e) => {
-    const checkFilesData = checkFileExtension(e.target.files);
-    setFiles(checkFilesData);
-    setError({});
-    //todo asynchroniczna petla aby nie dawac setpage w petli?? sprawdzic czy sie da zrobic
-    checkFilesData.forEach((file) => {
-      const reader = new FileReader();
-      reader.addEventListener("load", function () {
-        setPreviewFiles((prevData) => [...prevData, reader.result]);
-      });
-      reader.addEventListener("progress", function ({ loaded, total }) {
-        setProgress((loaded / total) * 100);
-        console.log((loaded / total) * 100);
-      });
-      reader.readAsDataURL(file);
-      setPage(CROP_PAGE);
-    });
+  useEffect(() => {
+    const reader = new FileReader();
+    const handleLoad = () => {
+      dispatch({ previewFiles:  [...previewFiles, reader.result]});
+    };
+    const handleProgress = ({ loaded, total }) => {
+      const progress = (loaded / total) * 100;
+      setProgress(progress);
+      progress >= 100 && dispatch({ page: CROP_PAGE });
+    };
+    if (files.length) {
+      reader.addEventListener("load", handleLoad);
+      reader.addEventListener("progress", handleProgress);
+      reader.readAsDataURL(files[0]);
+    }
+    return () => {
+      reader.removeEventListener("load", handleLoad);
+      reader.removeEventListener("progress", handleProgress);
+    };
+  }, [files]);
+
+  const handleUpload = (inputFiles) => {
+    if (error?.file) return;
+    const checkFilesData = checkFileExtension(inputFiles);
+    dispatch({ files: checkFilesData });
+    dispatch({ error: {} });
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
+    if (error?.file) return;
     const filesData = e.dataTransfer.files;
     const checkFilesData = checkFileExtension(filesData);
     if (filesData.length != checkFilesData.length) {
       const invalidFile = Object.values(filesData).filter(
         (file) => !validFileExtensions.includes(file.name.split(".").pop())
       )[0];
-      setError({ file: invalidFile?.name });
-      setFiles({});
+      dispatch({ error: { file: invalidFile?.name } });
+      dispatch({ files: [] });
     } else {
-      setError({});
-      setFiles(checkFilesData);
-      //add fileList to input
-      let list = new DataTransfer(),
-        file;
-      checkFilesData.forEach(
-        ({ name, type, lastModified, size, lastModifiedDate }) => {
-          file = new File([""], name, {
-            type: type,
-            lastModified: lastModified,
-            size: size,
-            lastModifiedDate: lastModifiedDate,
-          });
-          list.items.add(file);
-        }
-      );
-      fileRef.current.files = list.files;
-      // fileRef.current.value = null; //trigger on change
-      console.log(fileRef.current.files);
+      dispatch({ error: {} });
+      dispatch({ files: checkFilesData });
     }
     setIsDragging(false);
   };
@@ -95,7 +89,12 @@ export default function UploadBox() {
         isDragging && "bg-gray-100"
       }`}
     >
-      {progress !== 0 && <Progress value={progress} className={"absolute top-[45px] left-0 right-0"}/>}
+      {progress !== 0 && (
+        <Progress
+          value={progress}
+          className={"absolute top-[45px] left-0 right-0"}
+        />
+      )}
       {error?.file ? (
         <Error
           caption={<p className="text-[20px]">This file is not supported</p>}
@@ -108,7 +107,9 @@ export default function UploadBox() {
       ) : (
         <>
           <FaPhotoVideo
-            className={`text-[100px] ${isDragging && "text-blue"}`}
+            className={`pointer-events-none text-[100px] ${
+              isDragging && "text-blue"
+            }`}
           />
           <span className="text-[20px] text-center pointer-events-none">
             Drag photos and videos here
@@ -129,7 +130,7 @@ export default function UploadBox() {
         multiple
         accept="image/png, image/jpg, image/jpeg"
         ref={fileRef}
-        onChange={(e) => handleUpload(e)}
+        onChange={(e) => handleUpload(e.target.files)}
       />
     </section>
   );

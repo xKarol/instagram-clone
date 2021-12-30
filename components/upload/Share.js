@@ -1,56 +1,56 @@
 import { useState, useEffect, useContext } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../config/firebase.config";
+import { db, storage } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
 import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
+import { trimSpace } from "../../services/utils";
 
 function Share() {
-  const [loading, setLoading] = useState(false);
-  const [uploaded, setUploaded] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
-  const { files, caption } = useContext(UploadContext);
+  const {
+    state: { uploaded, caption, files, previewFiles },
+    dispatch,
+  } = useContext(UploadContext);
 
   useEffect(() => {
     const uploadFile = async () => {
-      if (!files.length || loading) return;
+      if (!files.length) return;
       //TODO multiple files upload
       try {
-        setLoading(true);
         const fileName = Date.now() + "_" + files[0].name;
-        const storage = getStorage();
         const imageRef = ref(storage, `images/${user.username}/${fileName}`);
-        await uploadBytes(imageRef, files[0]);
+        await uploadString(imageRef, previewFiles[0], "data_url");
         const downloadURL = await getDownloadURL(imageRef);
         await addDoc(collection(db, "photos"), {
           image: downloadURL,
           username: user.username,
-          caption: caption,
+          caption: trimSpace(caption),
           timestamp: serverTimestamp(),
         });
         setLoading(false);
-        setUploaded(true);
-      } catch (error) {
+        dispatch({ uploaded: true });
+      } catch {
         setError(true);
       }
     };
     uploadFile();
-  }, [files, user.username, caption]);
+  }, []);
+
   return (
     <div className="w-[400px] flex flex-col justify-center items-center space-y-[15px]">
       {error ? (
-        <>
-          <Error
-            caption={
-              <p className="text-[20px] text-gray-300 text-center">
-                Your post could not be shared. Please try again.
-              </p>
-            }
-          />
-        </>
+        <Error
+          caption={
+            <p className="text-[20px] text-gray-300 text-center">
+              Your post could not be shared. Please try again.
+            </p>
+          }
+        />
       ) : (
         <>
           <div

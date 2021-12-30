@@ -1,36 +1,52 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import Modal from "../Modal";
 import UploadContext from "../../context/UploadContext";
 import UploadContainer from "./Upload";
+import { CROP_PAGE, CREATE_PAGE, SHARE_PAGE } from "../../constants/globals";
+
+const initialState = {
+  uploaded: false,
+  page: 0,
+  caption: "",
+  error: {},
+  files: [],
+  previewFiles: [],
+};
+
+const reducer = (state, newState) => ({ ...state, ...newState });
 
 export default function Upload({ show, setShow }) {
-  const [error, setError] = useState({});
-  const [files, setFiles] = useState("");
-  const [caption, setCaption] = useState("");
-  const [page, setPage] = useState(0);
   const [showDiscardBox, setShowDiscardBox] = useState(false);
-  const [previewFiles, setPreviewFiles] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const blockClose = () => {
+    if (
+      state.page === CROP_PAGE ||
+      state.page === CREATE_PAGE ||
+      (state.page === SHARE_PAGE && !state.uploaded)
+    ) {
+      setShow(true);
+      setShowDiscardBox(true);
+    }
+  };
 
   return (
     <UploadContext.Provider
       value={{
+        state,
+        dispatch,
         setShow,
         show,
-        setPage,
-        page,
-        error,
-        caption,
-        setCaption,
-        setError,
-        setFiles,
-        files,
-        setPreviewFiles,
-        previewFiles,
         setShowDiscardBox,
         showDiscardBox,
       }}
     >
-      <Modal show={show} setShow={setShow} element={<UploadContainer />} />
+      <Modal
+        show={show}
+        setShow={setShow}
+        element={<UploadContainer />}
+        onClose={blockClose}
+      />
     </UploadContext.Provider>
   );
 }
