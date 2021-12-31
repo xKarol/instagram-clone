@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import Head from "next/head";
-import { getUserByUsername, getUserPhotos } from "../../services/firebase";
 import Layout from "../Layout";
 import Header from "../Header";
 import Statistics from "./Statistics";
@@ -9,26 +7,12 @@ import Nav from "./Nav";
 import Photos from "./Photos";
 import NotFoundPage from "../../pages/404";
 import ProfileContext from "../../context/ProfileContext";
+import useProfile from "../../hooks/useProfile";
 
 export default function Profile({ profile }) {
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({});
-  const [photos, setPhotos] = useState([]);
-
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      const user = await getUserByUsername(profile);
-      const photos = await getUserPhotos(profile);
-      setUser(user);
-      setPhotos(photos);
-      setLoading(false);
-    };
-    loadData();
-  }, [profile]);
+  const { setUser, user, setPhotos, photos, loading } = useProfile(profile);
 
   if (!user) return <NotFoundPage />;
-
   return (
     <>
       <Head>
@@ -38,7 +22,9 @@ export default function Profile({ profile }) {
           } • Instagram`}
         </title>
       </Head>
-      <ProfileContext.Provider value={{ user, photos }}>
+      <ProfileContext.Provider
+        value={{ setUser, user, setPhotos, photos, loading }}
+      >
         <Layout>
           <Header />
           <div className="flex flex-col">
