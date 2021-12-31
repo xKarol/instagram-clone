@@ -9,7 +9,9 @@ export default function Header() {
 
   return (
     <div className="flex h-[60px] items-center px-[20px]">
-      <Avatar src={photo?.user?.avatar} size={30} className={"mr-[15px]"} />
+      <div className={"w-[30px] h-[30px] mr-[15px]"}>
+        <Avatar src={photo?.user?.avatar} />
+      </div>
       <Link href={`/${photo?.user?.username}`}>
         <a className="text-[14px] font-medium hover:underline">
           {photo?.user?.username}

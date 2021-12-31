@@ -62,7 +62,6 @@ export default function Header() {
                 >
                   <Avatar
                     src={user?.avatar}
-                    size={23}
                     className="pointer-events-none"
                   />
                 </button>

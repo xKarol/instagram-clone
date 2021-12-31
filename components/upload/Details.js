@@ -4,6 +4,7 @@ import { GoLocation } from "react-icons/go";
 import Avatar from "../Avatar";
 import { MAX_POST_CAPTION } from "../../constants/post";
 import UploadContext from "../../context/UploadContext";
+import UserContext from "../../context/UserContext";
 
 export default function Details() {
   const [photoCaption, setPhotoCaption] = useState("");
@@ -11,6 +12,7 @@ export default function Details() {
     state: { caption },
     dispatch,
   } = useContext(UploadContext);
+  const { user } = useContext(UserContext);
 
   const handleCaption = (e) => {
     const text = e.target.value;
@@ -25,8 +27,10 @@ export default function Details() {
   return (
     <section className="flex flex-col border border-transparent border-l-gray-200 h-full min-w-[350px] overflow-y-scroll">
       <header className="p-[15px] flex space-x-[10px] items-center font-medium">
-        <Avatar src={null} size={30} />
-        <span>karol</span>
+        <div className="w-[30px] h-[30px]">
+          <Avatar src={user?.avatar} />
+        </div>
+        <span>{user?.username}</span>
       </header>
       <textarea
         autoComplete="off"

@@ -3,10 +3,8 @@ import Head from "next/head";
 import { getUserByUsername, getUserPhotos } from "../../services/firebase";
 import Layout from "../Layout";
 import Header from "../Header";
-import Avatar from "../Avatar";
 import Statistics from "./Statistics";
-import Biography from "./Biography";
-import ProfileHeader from "./Header";
+import ProfileData from "./ProfileData";
 import Nav from "./Nav";
 import Photos from "./Photos";
 import NotFoundPage from "../../pages/404";
@@ -39,23 +37,16 @@ export default function Profile({ profile }) {
             : `${user?.fullName} (@${user?.username}) • Instagram`}
         </title>
       </Head>
-      <Header />
       <Layout>
+        <Header />
         <div className="flex flex-col">
-          <div className="flex mb-[50px]">
-            <div className="w-[150px] h-[150px] mx-[100px]">
-              <Avatar src={user?.avatar} size={150} />
-            </div>
-            <main className="flex flex-col space-y-[15px]">
-              <ProfileHeader username={user?.username} />
-              <Statistics
-                posts={photos?.length}
-                followers={user?.followers?.length}
-                following={user?.followings?.length}
-              />
-              <Biography biography={user?.fullName} />
-            </main>
-          </div>
+          <ProfileData user={user} photos={photos} />
+          <Statistics
+            posts={photos?.length}
+            followers={user?.followers?.length}
+            following={user?.followings?.length}
+            className={"md:hidden"}
+          />
           <Nav />
           <Photos photos={photos} />
         </div>

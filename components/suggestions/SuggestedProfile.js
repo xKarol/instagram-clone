@@ -29,8 +29,8 @@ export default function SuggestedProfile({ avatar, username, docId }) {
   return (
     <li className="flex items-center text-[14px] gap-[15px] py-[5px]">
       <Link href={`/${username}`}>
-        <a>
-          <Avatar src={avatar} size={30} className={"cursor-pointer"} />
+        <a className="w-[30px] h-[30px]">
+          <Avatar src={avatar} className={"cursor-pointer"} />
         </a>
       </Link>
       <div className="flex flex-col leading-[20px] font-medium">
