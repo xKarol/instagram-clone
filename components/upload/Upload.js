@@ -21,7 +21,7 @@ export default function Upload() {
     setShowDiscardBox,
     showDiscardBox,
   } = useContext(UploadContext);
-  console.log(page);
+
   return (
     <>
       <Head>

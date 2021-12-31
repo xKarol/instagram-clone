@@ -1,23 +1,19 @@
 import { useContext } from "react";
 import ProfileContext from "../../context/ProfileContext";
-import { RiSettings3Line } from "react-icons/ri";
-import EditButton from "./EditButton";
+import Actions from "./Actions";
 
 export default function Header() {
-  const { user } = useContext(ProfileContext);
+  const { user: profileUser } = useContext(ProfileContext);
 
   return (
     <>
-      <div className="flex items-center space-x-[15px]">
-        <span className="text-[26px] font-light truncate">
-          {user?.username}
+      <div className="flex items-center space-x-[10px]">
+        <span className="text-[26px] font-light truncate mr-[10px]">
+          {profileUser?.username}
         </span>
-        <EditButton className={"hidden md:block"}>Edit Profile</EditButton>
-        <RiSettings3Line className="text-[25px] cursor-pointer" />
+        <Actions className={"hidden md:flex"} />
       </div>
-      <EditButton className={"mt-[10px] w-[50vw] md:hidden"}>
-        Edit Profile
-      </EditButton>
+      <Actions className={"md:hidden"} />
     </>
   );
 }

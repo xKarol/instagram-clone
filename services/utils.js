@@ -11,7 +11,7 @@ export const random = (max) => {
 };
 
 export const isFollowing = (docId, followings = []) => {
-  return Boolean(followings.filter((profile) => profile.uid === docId).length);
+  return followings.findIndex((profile) => profile.uid === docId) !== -1;
 };
 
 export const truncate = (str, size = 10) => {
