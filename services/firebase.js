@@ -43,13 +43,15 @@ export async function logOut() {
 }
 
 export async function getUserMainData(username) {
+  if (!username) return;
   const q = query(collection(db, "users"), where("username", "==", username));
   const userDoc = await getDocs(q);
-  const user = { ...userDoc.docs[0].data(), uid: userDoc.docs[0].id };
+  const user = { ...userDoc?.docs[0]?.data(), uid: userDoc?.docs[0]?.id };
   return user;
 }
 
 export async function getUserByUID(uid, extradata = true) {
+  if (!uid) return;
   const userDoc = await getDoc(doc(db, "users", uid));
   const user = { ...userDoc.data(), uid: userDoc.id };
   if (extradata) {
@@ -62,6 +64,7 @@ export async function getUserByUID(uid, extradata = true) {
 }
 
 export async function getUserFollowers(uid) {
+  if (!uid) return;
   const userFollowersDoc = await getDocs(
     collection(db, "users", uid, "followers")
   );
@@ -69,6 +72,7 @@ export async function getUserFollowers(uid) {
   return followers;
 }
 export async function getUserFollowings(uid) {
+  if (!uid) return;
   const userFollowingsDoc = await getDocs(
     collection(db, "users", uid, "followings")
   );
@@ -78,6 +82,7 @@ export async function getUserFollowings(uid) {
 
 export async function getUserByUsername(username, extradata = true) {
   const user = await getUserMainData(username);
+  if (!user?.uid) return;
   if (extradata) {
     const followings = await getUserFollowings(user?.uid);
     const followers = await getUserFollowers(user?.uid);

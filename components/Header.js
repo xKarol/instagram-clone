@@ -35,9 +35,11 @@ export default function Header() {
           <div className="sm:pl-[20px] flex shrink-0 items-center gap-[10px] sm:gap-[20px] text-[23px]">
             {loggedIn ? (
               <>
-                <button>
-                  <MdHomeFilled />
-                </button>
+                <Link href="/" passHref>
+                  <button>
+                    <MdHomeFilled />
+                  </button>
+                </Link>
                 <button>
                   <FiSend />
                 </button>

@@ -9,6 +9,7 @@ import Biography from "./Biography";
 import ProfileHeader from "./Header";
 import Nav from "./Nav";
 import Photos from "./Photos";
+import NotFoundPage from "../../pages/404";
 
 export default function Profile({ profile }) {
   const [loading, setLoading] = useState(false);
@@ -22,11 +23,12 @@ export default function Profile({ profile }) {
       const photos = await getUserPhotos(profile);
       setUser(user);
       setPhotos(photos);
-      console.log(photos);
       setLoading(false);
     };
     loadData();
   }, [profile]);
+
+  if (!user) return <NotFoundPage />;
 
   return (
     <>

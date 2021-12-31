@@ -33,7 +33,7 @@ export default function Suggestions() {
           <button className="ml-auto font-medium text-[12px]">See All</button>
         </div>
         <ul className="flex flex-col">
-          {loading && (
+          {loading ? (
             <>
               {[...new Array(5)].map((_, i) => (
                 <div
@@ -48,16 +48,19 @@ export default function Suggestions() {
                 </div>
               ))}
             </>
+          ) : (
+            <>
+              {suggestions &&
+                suggestions.map(({ avatar, username, docId }) => (
+                  <SuggestedProfile
+                    key={docId}
+                    avatar={avatar}
+                    username={username}
+                    docId={docId}
+                  />
+                ))}
+            </>
           )}
-          {suggestions &&
-            suggestions.map(({ avatar, username, docId }) => (
-              <SuggestedProfile
-                key={docId}
-                avatar={avatar}
-                username={username}
-                docId={docId}
-              />
-            ))}
         </ul>
       </div>
     </>

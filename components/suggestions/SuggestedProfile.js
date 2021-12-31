@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useContext } from "react";
 import Avatar from "../Avatar";
 import { isFollowing } from "../../services/utils";
@@ -27,9 +28,15 @@ export default function SuggestedProfile({ avatar, username, docId }) {
 
   return (
     <li className="flex items-center text-[14px] gap-[15px] py-[5px]">
-      <Avatar src={avatar} size={30} />
+      <Link href={`/${username}`}>
+        <a>
+          <Avatar src={avatar} size={30} className={"cursor-pointer"} />
+        </a>
+      </Link>
       <div className="flex flex-col leading-[20px] font-medium">
-        <span>{username}</span>
+        <Link href={`/${username}`} passHref>
+          <a className="cursor-pointer hover:underline">{username}</a>
+        </Link>
         <span className="text-gray-300 text-[12px] font-normal">Popular</span>
       </div>
       <button
