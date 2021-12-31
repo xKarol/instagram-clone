@@ -131,7 +131,6 @@ export async function getPhotos() {
       };
     })
   );
-
   return photos;
 }
 
@@ -199,3 +198,25 @@ export const likePost = async (postId, userId, liked) => {
       })
     : deleteDoc(doc(db, "photos", postId, "likes", userId));
 };
+
+export async function getUserPhotos(username) {
+  const q = query(
+    collection(db, "photos"),
+    where("username", "==", username),
+    orderBy("timestamp", "desc")
+  );
+  const photosDocs = await getDocs(q);
+  const photos = await Promise.all(
+    photosDocs.docs.map(async (docData) => {
+      const comments = await getPhotoComments(docData.id);
+      const likes = await getPhotoLikes(docData.id);
+      return {
+        ...docData.data(),
+        photoId: docData.id,
+        comments: comments,
+        likes: likes,
+      };
+    })
+  );
+  return photos;
+}

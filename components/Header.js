@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="border-b border-b-gray-200 bg-white fixed z-10 top-0 left-0 right-0">
+      <header className="border-b border-b-gray-200 bg-white fixed z-50 top-0 left-0 right-0">
         <nav className="w-full max-w-[975px] mx-auto h-[60px] flex items-center justify-between px-[20px] 1000px:px-0">
           <div className="flex-1 shrink-0 max-w-[300px] min-w-[110px] sm:basis-[150px]">
             <Logo size={110} />

@@ -12,6 +12,7 @@ export default function Header() {
   const {
     state: { error, page, uploaded },
     dispatch,
+    setShowDiscardBox,
   } = useContext(UploadContext);
   const menuTitle = ["Create new post", "Crop", "Create new post", "Sharing"];
 

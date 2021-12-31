@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Suggestions from "../components/Suggestions";
 import Stories from "../components/stories";
 import Posts from "../components/post";
+import Layout from "../components/Layout";
 
 export default function Home() {
   const feedRef = useRef(null);
@@ -10,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="max-w-[975px] mx-auto mt-[90px] pb-[50px] ">
+      <Layout>
         <div
           className="max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]"
           ref={feedRef}
@@ -19,7 +20,7 @@ export default function Home() {
           <Posts />
         </div>
         <Suggestions feedRef={feedRef} />
-      </div>
+      </Layout>
     </>
   );
 }
