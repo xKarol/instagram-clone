@@ -8,6 +8,7 @@ import ProfileData from "./ProfileData";
 import Nav from "./Nav";
 import Photos from "./Photos";
 import NotFoundPage from "../../pages/404";
+import ProfileContext from "../../context/ProfileContext";
 
 export default function Profile({ profile }) {
   const [loading, setLoading] = useState(false);
@@ -32,25 +33,22 @@ export default function Profile({ profile }) {
     <>
       <Head>
         <title>
-          {loading
-            ? profile
-            : `${user?.fullName} (@${user?.username}) • Instagram`}
+          {`${
+            loading ? `@${profile}` : `${user?.fullName} (@${user?.username})`
+          } • Instagram`}
         </title>
       </Head>
-      <Layout>
-        <Header />
-        <div className="flex flex-col">
-          <ProfileData user={user} photos={photos} />
-          <Statistics
-            posts={photos?.length}
-            followers={user?.followers?.length}
-            following={user?.followings?.length}
-            className={"md:hidden"}
-          />
-          <Nav />
-          <Photos photos={photos} />
-        </div>
-      </Layout>
+      <ProfileContext.Provider value={{ user, photos }}>
+        <Layout>
+          <Header />
+          <div className="flex flex-col">
+            <ProfileData user={user} photos={photos} />
+            <Statistics className={"md:hidden"} />
+            <Nav />
+            <Photos />
+          </div>
+        </Layout>
+      </ProfileContext.Provider>
     </>
   );
 }
