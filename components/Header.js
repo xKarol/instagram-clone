@@ -8,8 +8,8 @@ import { BiSearch } from "react-icons/bi";
 import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 import UserContext from "../context/UserContext";
-import DropdownMenu from "../components/DropdownMenu";
-import ProfileDropdown from "../components/ProfileDropdown";
+import DropdownMenu from "./dropdown";
+import ProfileDropdown from "./dropdown/ProfileDropdown";
 import Upload from "../components/upload";
 
 export default function Header() {

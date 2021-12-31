@@ -4,8 +4,8 @@ import { CgProfile } from "react-icons/cg";
 import { BiBookmark } from "react-icons/bi";
 import { RiSettings3Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
-import { logOut } from "../services/firebase.js";
-import UserContext from "../context/UserContext";
+import { logOut } from "../../services/firebase.js";
+import UserContext from "../../context/UserContext";
 
 export default function ProfileDropdown() {
   const { user } = useContext(UserContext);
