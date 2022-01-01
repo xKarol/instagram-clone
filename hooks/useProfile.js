@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getUserByUsername, getUserPhotos } from "../services/firebase";
 
 export default function usePhotos(profile) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [photos, setPhotos] = useState([]);
 

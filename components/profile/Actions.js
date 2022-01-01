@@ -13,19 +13,17 @@ import {
   followUser,
   unfollowUser,
 } from "../../services/firebase";
+import Skeleton from "../Skeleton";
 
 export default function Actions({ className }) {
-  const { user: profileUser } = useContext(ProfileContext);
+  const { user: profileUser, loading } = useContext(ProfileContext);
   const { user, setUser } = useContext(UserContext);
   const [pending, setPending] = useState(false);
   const isFollowed = isFollowing(profileUser?.uid, user?.followings);
-  const isFollowMe =
-    profileUser?.followings?.findIndex(
-      (follow) => follow?.uid === user?.uid
-    ) !== -1;
+  const isFollowMe = isFollowing(user?.uid, profileUser?.followings);
 
   const handleFollow = async () => {
-    if (pending) return;
+    if (pending || loading) return;
     setPending(true);
     !isFollowed
       ? await followUser(user.uid, profileUser?.uid)
@@ -37,56 +35,76 @@ export default function Actions({ className }) {
 
   return (
     <div className={`flex space-x-[10px] items-center ${className}`}>
-      {user?.username === profileUser?.username ? (
+      {loading ? (
         <>
-          <Button className={"bg-transparent"}>Edit Profile</Button>
-          <RiSettings3Line className="text-[25px] cursor-pointer" />{" "}
+          <Skeleton className={"w-[80px] h-[20px] rounded-md"} />
+          <Skeleton className={"w-[30px] h-[20px] rounded-md"} />
         </>
-      ) : isFollowMe ? (
+      ) : (
         <>
-          <Button
-            className={"border-none bg-blue text-white px-[20px] min-w-[100px]"}
-            onClick={handleFollow}
-          >
-            {!pending ? (
-              "Follow Back"
-            ) : (
-              <Loading className={"w-[15px] h-[15px]"} />
-            )}
-          </Button>
-          <Button className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
-            <BiChevronDown />
-          </Button>
+          {user?.username === profileUser?.username ? (
+            <>
+              <Button className={"bg-transparent"}>Edit Profile</Button>
+              <RiSettings3Line className="text-[25px] cursor-pointer" />{" "}
+            </>
+          ) : isFollowMe ? (
+            <>
+              <Button
+                className={
+                  "border-none bg-blue text-white px-[20px] min-w-[100px]"
+                }
+                onClick={handleFollow}
+              >
+                {!pending ? (
+                  "Follow Back"
+                ) : (
+                  <Loading className={"w-[15px] h-[15px]"} />
+                )}
+              </Button>
+              <Button className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
+                <BiChevronDown />
+              </Button>
+            </>
+          ) : isFollowed ? (
+            <>
+              <Button className={"px-[20px]"}>Message</Button>
+              <Button
+                className="px-[30px] cursor-pointer"
+                onClick={handleFollow}
+              >
+                {!pending ? (
+                  <FaUserCheck />
+                ) : (
+                  <Loading className={"w-[15px] h-[15px]"} />
+                )}
+              </Button>
+              <Button className="text-[25px] px-[5px] cursor-pointer">
+                <BiChevronDown />
+              </Button>
+            </>
+          ) : !isFollowed ? (
+            <>
+              <Button
+                className={
+                  "border-none bg-blue text-white px-[20px] min-w-[75px]"
+                }
+                onClick={handleFollow}
+              >
+                {!pending ? (
+                  "Follow"
+                ) : (
+                  <Loading className={"w-[15px] h-[15px]"} />
+                )}
+              </Button>
+              <Button className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
+                <BiChevronDown />
+              </Button>
+            </>
+          ) : null}
+          {user?.username !== profileUser?.username && (
+            <HiOutlineDotsHorizontal className="text-[25px] cursor-pointer" />
+          )}
         </>
-      ) : isFollowed ? (
-        <>
-          <Button className={"px-[20px]"}>Message</Button>
-          <Button className="px-[30px] cursor-pointer" onClick={handleFollow}>
-            {!pending ? (
-              <FaUserCheck />
-            ) : (
-              <Loading className={"w-[15px] h-[15px]"} />
-            )}
-          </Button>
-          <Button className="text-[25px] px-[5px] cursor-pointer">
-            <BiChevronDown />
-          </Button>
-        </>
-      ) : !isFollowed ? (
-        <>
-          <Button
-            className={"border-none bg-blue text-white px-[20px] min-w-[75px]"}
-            onClick={handleFollow}
-          >
-            {!pending ? "Follow" : <Loading className={"w-[15px] h-[15px]"} />}
-          </Button>
-          <Button className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
-            <BiChevronDown />
-          </Button>
-        </>
-      ) : null}
-      {user?.username !== profileUser?.username && (
-        <HiOutlineDotsHorizontal className="text-[25px] cursor-pointer" />
       )}
     </div>
   );
