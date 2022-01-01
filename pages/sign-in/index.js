@@ -1,10 +1,6 @@
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/Link";
-import AppStore from "../../assets/images/appstore.png";
-import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../components/Logo";
-import { AiFillFacebook } from "react-icons/ai";
 import PhoneGallery from "../../components/PhoneGallery";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
@@ -12,9 +8,17 @@ import { MIN_PASSWORD } from "../../constants/validation";
 import { useRouter } from "next/router";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
+import Error from "../../components/form-validation/Error";
+import Submit from "../../components/form-validation/Submit";
+import InputField from "../../components/form-validation/InputField";
+import FacebookLogin from "../../components/form-validation/FacebookLogin";
+import Separator from "../../components/form-validation/Separator";
+import Box from "../../components/form-validation/Box";
+import AppLinks from "../../components/form-validation/AppLinks";
 
 export default function Login() {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const disabledBtn = !login || !(password.length >= MIN_PASSWORD);
@@ -25,18 +29,22 @@ export default function Login() {
     e.preventDefault();
     if (disabledBtn) return;
     try {
+      setLoading(true);
       await signInWithEmailAndPassword(auth, login, password);
       router.push("/");
     } catch (error) {
       const errorMessages = {
-        "auth/invalid-email": "Invalid Email",
-        "auth/wrong-password": "Invalid Password",
+        "auth/user-not-found": "User not found.",
+        "auth/invalid-email": "Invalid Email.",
+        "auth/wrong-password": "Invalid Password.",
       };
       setError(
         errorMessages[error.code]
           ? errorMessages[error.code]
-          : "A problem occured"
+          : "A problem occured."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,71 +55,45 @@ export default function Login() {
       <div className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
-          <div className="bg-white border border-gray-200 flex items-center flex-col px-[35px] py-5 w-full">
-            <Logo size={200} className="mb-[20px]" />
+          <Box>
+            <Logo size={200} className="mb-[20px]" link={false} />
             <form
               className="w-full flex flex-col gap-[5px]"
               onSubmit={(e) => handleLogin(e)}
             >
-              <input
-                type="text"
-                placeholder="Phone number, username or email"
-                className="formButton w-full"
+              <InputField
+                placeholder="Username or email"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
               />
-              <input
+              <InputField
                 type="password"
                 placeholder="Password"
-                className="formButton w-full"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button
+              <Submit
+                text={"Log In"}
                 disabled={disabledBtn}
-                className="p-[10px] rounded-sm text-[14px] w-full text-white bg-blue mt-[10px] py-[5px] font-medium disabled:opacity-25"
-              >
-                Log In
-              </button>
+                pending={loading}
+              />
             </form>
-            <div className="flex w-full items-center my-[20px]">
-              <div className="flex-1 h-[1px] bg-gray-200"></div>
-              <div className="text-gray-300 mx-[20px] text-[12px] font-bold uppercase">
-                OR
-              </div>
-              <div className="flex-1 h-[1px] bg-gray-200"></div>
-            </div>
-            <div className="flex items-center text-[#385185] font-medium text-[14px]">
-              <AiFillFacebook className="text-[20px] text-[#385185] mr-[5px]" />
-              Log in with Facebook
-            </div>
-            <a href="" className="text-[12px] text-[#385185] mt-[20px]">
+            <Separator />
+            <FacebookLogin className="text-[#385185] mb-[10px]" />
+            <Error error={error} />
+            <a href="" className="text-[12px] text-[#385185] mt-[10px]">
               Forgot password?
             </a>
-          </div>
-          <div className="bg-white border border-gray-200 flex items-center flex-col p-[20px] w-full mt-[10px]">
+          </Box>
+          <Box className="mt-[10px]">
             <span className="text-[14px]">
-              Don&apos;t have an account?{" "}
+              Don&apos;t have an account?&nbsp;
               <Link href="/sign-up">
                 <a className="text-blue font-medium">Sign Up</a>
               </Link>
             </span>
-          </div>
-          <span className="text-[14px] my-[15px]">Get the app.</span>
-          <div className="flex gap-[5px]">
-            <Image
-              src={AppStore}
-              alt="Download on the App Store"
-              height={40}
-              width={130}
-            />
-            <Image
-              src={GooglePlay}
-              alt="Download on the Google Play"
-              height={40}
-              width={130}
-            />
-          </div>
+          </Box>
+          <AppLinks />
         </div>
       </div>
     </>
