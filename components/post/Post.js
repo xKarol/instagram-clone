@@ -44,7 +44,6 @@ export default function Post({ data: photo }) {
                 <MiniComment
                   key={comment.commentId}
                   username={comment.username}
-                  avatar={comment.avatar}
                   comment={comment.comment}
                 />
               ))}

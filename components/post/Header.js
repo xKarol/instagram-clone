@@ -4,11 +4,11 @@ import Avatar from "../Avatar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PhotoContext from "../../context/PhotoContext";
 
-export default function Header() {
+export default function Header({ className }) {
   const { photo } = useContext(PhotoContext);
 
   return (
-    <div className="flex h-[60px] items-center px-[20px]">
+    <div className={`flex h-[60px] items-center px-[20px] ${className}`}>
       <Link href={`/${photo?.user?.username}`}>
         <a className={"w-[30px] h-[30px] mr-[15px]"}>
           <Avatar src={photo?.user?.avatar} />

@@ -139,6 +139,23 @@ export async function getPhotos() {
   return photos;
 }
 
+export async function getPhotoById(id) {
+  const photoDoc = await getDoc(doc(db, "photos", id));
+  if (!photoDoc.exists()) return null;
+  const username = photoDoc.data().username;
+  const userData = await getUserByUsername(username, false);
+  const comments = await getPhotoComments(photoDoc.id);
+  const likes = await getPhotoLikes(photoDoc.id);
+  const photoData = {
+    user: userData,
+    ...photoDoc.data(),
+    photoId: photoDoc.id,
+    comments: comments,
+    likes: likes,
+  };
+  return photoData;
+}
+
 export async function getProfilesSuggestion() {
   //TODO poprawic pobieranie losowych uzytkownikow
   const rand = random(1000000);

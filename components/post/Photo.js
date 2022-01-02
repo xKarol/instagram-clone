@@ -34,7 +34,7 @@ export default function Photo() {
   }, [heart]);
 
   return (
-    <div className="w-full relative" onDoubleClick={handleLike}>
+    <div className="w-full relative h-full" onDoubleClick={handleLike}>
       {heart && (
         <div className="z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <AiFillHeart
@@ -44,17 +44,19 @@ export default function Photo() {
           />
         </div>
       )}
-      <Image
-        src={photo?.image}
-        alt={`${photo?.user?.username}'s photo ${
-          photo?.caption && photo?.caption
-        }`}
-        layout="responsive"
-        width={"100%"}
-        height={"100%"}
-        objectFit="cover"
-        priority
-      />
+      <div className="block relative">
+        <Image
+          src={photo?.image}
+          alt={`${photo?.user?.username}'s photo ${
+            photo?.caption && photo?.caption
+          }`}
+          layout="responsive"
+          width={300}
+          height={400}
+          objectFit="cover"
+          priority
+        />
+      </div>
     </div>
   );
 }

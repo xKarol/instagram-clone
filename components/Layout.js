@@ -1,7 +1,7 @@
-export default function Layout(props) {
+export default function Layout({ children, className }) {
   return (
-    <div className="max-w-[975px] mx-auto mt-[90px] pb-[50px] ">
-      {props.children}
+    <div className={`max-w-[975px] mx-auto mt-[90px] pb-[50px] ${className}`}>
+      {children}
     </div>
   );
 }
