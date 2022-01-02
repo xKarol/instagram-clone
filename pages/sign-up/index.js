@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/Link";
@@ -68,6 +69,9 @@ export default function SignUp() {
 
   return (
     <>
+      <Head>
+        <title>Sign Up • Instagram</title>
+      </Head>
       <div className="flex justify-center items-center p-[50px] gap-[25px]">
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
           <Box>

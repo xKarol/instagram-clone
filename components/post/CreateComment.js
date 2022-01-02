@@ -10,9 +10,9 @@ import { serverTimestamp } from "firebase/firestore";
 export default function CreateComment() {
   const [comment, setComment] = useState("");
   const [pending, setPending] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, loggedIn } = useContext(UserContext);
   const { photo, setComments } = useContext(PhotoContext);
-  const disabled = !comment.length;
+  const disabled = !comment.length || !loggedIn;
 
   const handleComment = (e) => {
     setComment(e.target.value);
@@ -20,7 +20,7 @@ export default function CreateComment() {
 
   const addNewComment = async (e) => {
     e.preventDefault();
-    if (disabled || pending) return;
+    if (disabled || pending || !loggedIn) return;
     setPending(true);
     const res = await addComment(
       trimSpace(comment),
@@ -65,7 +65,7 @@ export default function CreateComment() {
           />
         </div>
         <button
-          className="text-blue bg-transparent font-medium text-[14px] cursor-pointer disabled:opacity-50"
+          className="text-blue bg-transparent font-medium text-[14px] cursor-pointer disabled:cursor-default disabled:opacity-50"
           disabled={disabled}
         >
           Post

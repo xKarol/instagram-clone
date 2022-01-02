@@ -13,7 +13,10 @@ const initialState = {
   previewFiles: [],
 };
 
-const reducer = (state, newState) => ({ ...state, ...newState });
+const reducer = (state, newState) => {
+  if (newState.reset) return initialState;
+  return { ...state, ...newState };
+};
 
 export default function Upload({ show, setShow }) {
   const [showDiscardBox, setShowDiscardBox] = useState(false);

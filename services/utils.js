@@ -21,3 +21,8 @@ export const truncate = (str, size = 10) => {
 export const trimSpace = (str) => {
   return str.replace(/\s+$/, "");
 };
+
+export const isValidEmail = (email) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};

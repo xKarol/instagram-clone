@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import Link from "next/Link";
 import Logo from "../../components/Logo";
@@ -6,6 +7,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
 import { useRouter } from "next/router";
+import { isValidEmail } from "../../services/utils";
+import { getUserByUsername } from "../../services/firebase";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
 import Error from "../../components/form-validation/Error";
@@ -30,9 +33,19 @@ export default function Login() {
     if (disabledBtn) return;
     try {
       setLoading(true);
-      await signInWithEmailAndPassword(auth, login, password);
+      if (isValidEmail(login)) {
+        //email login
+        await signInWithEmailAndPassword(auth, login, password);
+      } else {
+        //username login
+        const { email } = await getUserByUsername(login, false);
+        if (email) {
+          await signInWithEmailAndPassword(auth, email, password);
+        }
+      }
       router.push("/");
     } catch (error) {
+      console.log(error.message);
       const errorMessages = {
         "auth/user-not-found": "User not found.",
         "auth/invalid-email": "Invalid Email.",
@@ -52,6 +65,9 @@ export default function Login() {
 
   return (
     <>
+      <Head>
+        <title>Login • Instagram</title>
+      </Head>
       <div className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">

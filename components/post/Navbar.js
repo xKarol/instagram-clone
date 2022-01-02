@@ -10,10 +10,10 @@ import UserContext from "../../context/UserContext";
 export default function Navbar() {
   const { photo, liked, setLiked, setLikes, likes } = useContext(PhotoContext);
   const [pending, setPending] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, loggedIn } = useContext(UserContext);
 
   const handleLike = async () => {
-    if (pending) return;
+    if (pending || !loggedIn) return;
     setPending(true);
     if (liked) {
       setLikes(likes.filter((like) => like?.uid !== user?.uid));
