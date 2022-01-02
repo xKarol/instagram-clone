@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db, storage } from "../../config/firebase.config";
+import { db } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
 import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
 import { trimSpace } from "../../services/utils";
+import { uploadPhoto } from "../../services/storage";
 
 function Share() {
   const [loading, setLoading] = useState(true);
@@ -20,12 +20,13 @@ function Share() {
   useEffect(() => {
     const uploadFile = async () => {
       if (!files.length) return;
-      //TODO multiple files upload
       try {
-        const fileName = Date.now() + "_" + files[0].name;
-        const imageRef = ref(storage, `images/${user.username}/${fileName}`);
-        await uploadString(imageRef, previewFiles[0], "data_url");
-        const downloadURL = await getDownloadURL(imageRef);
+        const downloadURL = await uploadPhoto(
+          user.username,
+          previewFiles[0],
+          files[0].name
+        );
+        console.log(downloadURL);
         await addDoc(collection(db, "photos"), {
           image: downloadURL,
           username: user.username,

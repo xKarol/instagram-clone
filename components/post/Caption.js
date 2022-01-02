@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useContext, useState } from "react";
 import { MAX_CAPTION } from "../../constants/post";
 import { truncate } from "../../services/utils";
@@ -8,11 +9,14 @@ export default function Caption() {
   const {
     photo: { caption, user },
   } = useContext(PhotoContext);
+
   return (
     <>
       <div className="w-full text-[14px] flex leading-[15px]">
         <span className="font-medium">
-          {user?.username}
+          <Link href={`/${user?.username}`}>
+            <a className="hover:underline">{user?.username}</a>
+          </Link>
           {caption && (
             <>
               &nbsp;
