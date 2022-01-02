@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import LoginPending from "../components/LoginPending";
 import useAuthListener from "../hooks/useAuth";
 import UserContext from "../context/UserContext";
+import NextNprogress from "nextjs-progressbar";
 
 export default function MyApp({ Component, pageProps }) {
   const { setUser, user, pending, loggedIn } = useAuthListener();
@@ -15,6 +16,7 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <UserContext.Provider value={{ setUser, user, pending, loggedIn }}>
+        <NextNprogress options={{ showSpinner: false }} />
         {pending ? <LoginPending /> : <Component {...pageProps} />}
       </UserContext.Provider>
     </>
