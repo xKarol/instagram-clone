@@ -16,6 +16,7 @@ export default function Post({ data: photo }) {
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState(photo?.comments);
   const [likes, setLikes] = useState(photo?.likes);
+  const [showModal, setShowModal] = useState(false);
   const { user } = useContext(UserContext);
 
   useLayoutEffect(() => {
@@ -28,7 +29,16 @@ export default function Post({ data: photo }) {
 
   return (
     <PhotoContext.Provider
-      value={{ photo, liked, setLiked, setComments, setLikes, likes }}
+      value={{
+        showModal,
+        setShowModal,
+        photo,
+        liked,
+        setLiked,
+        setComments,
+        setLikes,
+        likes,
+      }}
     >
       <div className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm">
         <Header />

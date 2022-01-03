@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import "../styles/globals.css";
 import LoginPending from "../components/LoginPending";
@@ -7,6 +8,7 @@ import NextNprogress from "nextjs-progressbar";
 
 export default function MyApp({ Component, pageProps }) {
   const { setUser, user, pending, loggedIn } = useAuthListener();
+  const [photos, setPhotos] = useState([]);
 
   return (
     <>
@@ -15,7 +17,9 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="description" content="Instagram Clone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <UserContext.Provider value={{ setUser, user, pending, loggedIn }}>
+      <UserContext.Provider
+        value={{ setUser, setPhotos, photos, user, pending, loggedIn }}
+      >
         <NextNprogress options={{ showSpinner: false }} />
         {pending ? <LoginPending /> : <Component {...pageProps} />}
       </UserContext.Provider>

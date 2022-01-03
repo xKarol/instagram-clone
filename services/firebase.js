@@ -264,3 +264,7 @@ export async function getUserPhotos(username) {
   );
   return photos;
 }
+
+export async function deletePost(postId) {
+  return await deleteDoc(doc(db, "photos", postId));
+}

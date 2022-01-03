@@ -23,6 +23,7 @@ export default function () {
   const { id } = router.query;
   const { user } = useContext(UserContext);
   const [liked, setLiked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { photo, loading, likes, comments, setLikes, setComments } =
     usePhoto(id);
 
@@ -51,7 +52,16 @@ export default function () {
         <Header />
         {photo && (
           <PhotoContext.Provider
-            value={{ photo, liked, setLiked, setComments, setLikes, likes }}
+            value={{
+              showModal,
+              setShowModal,
+              photo,
+              liked,
+              setLiked,
+              setComments,
+              setLikes,
+              likes,
+            }}
           >
             <div className="flex h-[600px] bg-white border border-gray-200">
               <div className="w-[480px] h-full">

@@ -21,14 +21,14 @@ function Share() {
     const uploadFile = async () => {
       if (!files.length) return;
       try {
-        const downloadURL = await uploadPhoto(
+        const { downloadURL, fileName } = await uploadPhoto(
           user.username,
           previewFiles[0],
           files[0].name
         );
-        console.log(downloadURL);
         await addDoc(collection(db, "photos"), {
           image: downloadURL,
+          fileName: fileName,
           username: user.username,
           caption: trimSpace(caption),
           timestamp: serverTimestamp(),

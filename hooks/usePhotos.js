@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getPhotos } from "../services/firebase";
+import UserContext from "../context/UserContext";
 
 export default function usePhotos() {
-  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { setPhotos, photos } = useContext(UserContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -13,7 +14,7 @@ export default function usePhotos() {
       setLoading(false);
     };
     getData();
-  }, []);
+  }, [photos]);
 
   return { photos, loading };
 }

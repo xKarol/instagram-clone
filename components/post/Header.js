@@ -3,9 +3,11 @@ import { useContext } from "react";
 import Avatar from "../Avatar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PhotoContext from "../../context/PhotoContext";
+import Modal from "../Modal";
+import Options from "./Options";
 
 export default function Header({ className }) {
-  const { photo } = useContext(PhotoContext);
+  const { photo, showModal, setShowModal } = useContext(PhotoContext);
 
   return (
     <div className={`flex h-[60px] items-center px-[20px] ${className}`}>
@@ -19,7 +21,16 @@ export default function Header({ className }) {
           {photo?.user?.username}
         </a>
       </Link>
-      <HiOutlineDotsHorizontal className="ml-auto text-[25px] cursor-pointer" />
+      <HiOutlineDotsHorizontal
+        onClick={() => setShowModal(true)}
+        className="ml-auto text-[25px] cursor-pointer"
+      />
+      <Modal
+        show={showModal}
+        setShow={setShowModal}
+        closeHide
+        element={<Options />}
+      />
     </div>
   );
 }
