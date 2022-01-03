@@ -14,7 +14,7 @@ export default function usePhotos() {
       setLoading(false);
     };
     getData();
-  }, [photos]);
+  }, []);
 
   return { photos, loading };
 }

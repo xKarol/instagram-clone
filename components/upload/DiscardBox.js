@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UploadContext from "../../context/UploadContext";
+import Button from "../Modal/Button";
 
 export default function DiscardBox() {
   const { dispatch, setShow, setShowDiscardBox } = useContext(UploadContext);
@@ -16,18 +17,10 @@ export default function DiscardBox() {
       <p className="text-[14px] text-gray-300 mb-[25px]">
         If you leave, your edits won&apos;t be saved.
       </p>
-      <button
-        onClick={handleClose}
-        className="p-[10px] w-full font-medium text-[14px] text-red border border-transparent border-t-gray-200"
-      >
+      <Button onClick={handleClose} className={"text-red font-medium"}>
         Discard
-      </button>
-      <button
-        onClick={() => setShowDiscardBox(false)}
-        className="p-[10px] w-full text-[14px] border border-transparent border-t-gray-200"
-      >
-        Cancel
-      </button>
+      </Button>
+      <Button onClick={() => setShowDiscardBox(false)}>Cancel</Button>
     </div>
   );
 }

@@ -6,12 +6,13 @@ import UserContext from "../../context/UserContext";
 import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
 import { trimSpace } from "../../services/utils";
+import { getPhotoById } from "../../services/firebase";
 import { uploadPhoto } from "../../services/storage";
 
 function Share() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setPhotos, photos } = useContext(UserContext);
   const {
     state: { uploaded, caption, files, previewFiles },
     dispatch,
@@ -26,15 +27,17 @@ function Share() {
           previewFiles[0],
           files[0].name
         );
-        await addDoc(collection(db, "photos"), {
+        const photoDoc = await addDoc(collection(db, "photos"), {
           image: downloadURL,
           fileName: fileName,
           username: user.username,
           caption: trimSpace(caption),
           timestamp: serverTimestamp(),
         });
-        setLoading(false);
         dispatch({ uploaded: true });
+        const photoData = await getPhotoById(photoDoc.id);
+        setPhotos([photoData, ...photos]);
+        setLoading(false);
       } catch {
         setError(true);
       }

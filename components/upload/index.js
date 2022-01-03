@@ -30,6 +30,8 @@ export default function Upload({ show, setShow }) {
     ) {
       setShow(true);
       setShowDiscardBox(true);
+    } else {
+      state?.uploaded && dispatch({ reset: true });
     }
   };
 

@@ -11,19 +11,14 @@ export default function Options() {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const { photo, setShowModal } = useContext(PhotoContext);
-  const {
-    user: { username },
-    photos,
-    setPhotos,
-    loggedIn,
-  } = useContext(UserContext);
+  const { user, photos, setPhotos, loggedIn } = useContext(UserContext);
+  const isCreator = photo?.user?.uid === user.uid;
 
   const handleDelete = async () => {
-    if (pending || !loggedIn) return;
-    if (!photo.fileName) return;
+    if (!photo.fileName || !isCreator || pending || !loggedIn) return;
     setPending(true);
     await deletePost(photo.photoId);
-    await deletePhotoFromStorage(username, photo.fileName);
+    await deletePhotoFromStorage(user.username, photo.fileName);
     setPhotos(photos.filter((el) => el?.photoId !== photo?.photoId));
     setPending(false);
     setShowModal(false);
@@ -31,11 +26,14 @@ export default function Options() {
       router.push("/");
     }
   };
+  
   return (
     <div className="flex flex-col items-center w-[400px]">
-      <Button onClick={handleDelete} className={"text-red font-medium"}>
-        {!pending ? "Delete" : <Loading />}
-      </Button>
+      {!!isCreator && (
+        <Button onClick={handleDelete} className={"text-red font-medium"}>
+          {!pending ? "Delete" : <Loading />}
+        </Button>
+      )}
       <Button>Share to...</Button>
       <Button>Copy link</Button>
       <Button onClick={() => setShowModal(false)}>Cancel</Button>
