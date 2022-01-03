@@ -44,15 +44,13 @@ export default function Photo() {
           />
         </div>
       )}
-      <div className="block relative">
+      <div className="w-full pb-[125%] relative">
         <Image
           src={photo?.image}
           alt={`${photo?.user?.username}'s photo ${
             photo?.caption && photo?.caption
           }`}
-          layout="responsive"
-          width={300}
-          height={400}
+          layout="fill"
           objectFit="cover"
           priority
         />

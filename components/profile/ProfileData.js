@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Avatar from "../Avatar";
 import Biography from "./Biography";
+import ChangeAvatar from "./ChangeAvatar";
 import ProfileHeader from "./Header";
 import Statistics from "./Statistics";
 import ProfileContext from "../../context/ProfileContext";
@@ -18,7 +19,9 @@ export default function ProfileData() {
         <div className="flex">
           <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] mx-[25px] md:mx-[100px]">
             {!loading ? (
-              <Avatar src={user?.avatar} />
+              <ChangeAvatar>
+                <Avatar src={user?.avatar} />
+              </ChangeAvatar>
             ) : (
               <Skeleton className={"w-full h-full rounded-full"} />
             )}

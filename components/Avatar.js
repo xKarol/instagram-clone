@@ -8,7 +8,7 @@ export default function Avatar({ src, className }) {
     >
       <Image
         src={src ? src : DefaultAvatar}
-        objectFit="contain"
+        objectFit="cover"
         layout="fill"
         alt="avatar"
       />
