@@ -92,6 +92,13 @@ export async function getUserByUsername(username, extradata = true) {
   }
 }
 
+export async function getCommentLikes(postId, commentId) {
+  const commentsDocs = await getDocs(
+    collection(db, "photos", postId, "comments", commentId, "likes")
+  );
+  return commentsDocs.docs.map((doc) => doc.data());
+}
+
 export async function getPhotoComments(postId) {
   const q = query(
     collection(db, "photos", postId, "comments"),
@@ -102,11 +109,13 @@ export async function getPhotoComments(postId) {
     commentsDocs.docs.map(async (docData) => {
       const username = docData.data().username;
       const userData = await getUserByUsername(username, false);
+      const commentLikes = await getCommentLikes(postId, docData.id);
       return {
         username: userData.username,
         avatar: userData.avatar,
         ...docData.data(),
         commentId: docData.id,
+        likes: commentLikes,
       };
     })
   );
@@ -219,6 +228,19 @@ export const likePost = async (postId, userId, liked) => {
         uid: userId,
       })
     : deleteDoc(doc(db, "photos", postId, "likes", userId));
+};
+
+export const likeComment = async (postId, commentId, userId, liked) => {
+  !liked
+    ? setDoc(
+        doc(db, "photos", postId, "comments", commentId, "likes", userId),
+        {
+          uid: userId,
+        }
+      )
+    : deleteDoc(
+        doc(db, "photos", postId, "comments", commentId, "likes", userId)
+      );
 };
 
 export async function getUserPhotos(username) {

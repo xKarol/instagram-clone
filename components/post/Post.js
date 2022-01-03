@@ -4,12 +4,13 @@ import Photo from "./Photo";
 import Navbar from "./Navbar";
 import Likes from "./Likes";
 import Caption from "./Caption";
-import Comments from "./Comments";
-import MiniComment from "./MiniComment";
+import CommentsCounter from "./CommentsCounter";
+import Comments from "./comments";
 import Date from "./Date";
-import CreateComment from "./CreateComment";
+import AddComment from "./AddComment";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
+import { MINI_COMMENT } from "../../constants/post";
 
 export default function Post({ data: photo }) {
   const [liked, setLiked] = useState(false);
@@ -36,21 +37,11 @@ export default function Post({ data: photo }) {
           <Navbar />
           <Likes />
           <Caption />
-          <Comments count={comments?.length} />
-          {!!comments.length &&
-            comments
-              .slice(0, 3)
-              .map((comment) => (
-                <MiniComment
-                  key={comment.commentId}
-                  username={comment.username}
-                  comment={comment.comment}
-                />
-              ))}
-
+          <CommentsCounter count={comments?.length} />
+          <Comments comments={comments} type={MINI_COMMENT} />
           <Date timestamp={photo?.timestamp} />
         </div>
-        <CreateComment />
+        <AddComment />
       </div>
     </PhotoContext.Provider>
   );

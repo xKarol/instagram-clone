@@ -7,7 +7,7 @@ import Loading from "../Loading";
 import { trimSpace } from "../../services/utils";
 import { serverTimestamp } from "firebase/firestore";
 
-export default function CreateComment() {
+export default function AddComment() {
   const [comment, setComment] = useState("");
   const [pending, setPending] = useState(false);
   const { user, loggedIn } = useContext(UserContext);
