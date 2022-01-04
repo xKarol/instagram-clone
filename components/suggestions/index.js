@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Profile from "./Profile";
 import SuggestionsBox from "./Suggestions";
 
 export default function Suggestions({ feedRef }) {
   const sideBoxRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const checkResize = () => {
       sideBoxRef.current.style.left = `${
         feedRef.current.offsetWidth + feedRef.current.offsetLeft + 10

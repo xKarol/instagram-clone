@@ -1,27 +1,9 @@
-import { useState, useEffect, useContext } from "react";
 import SuggestedProfile from "./SuggestedProfile";
-import { getProfilesSuggestion } from "../../services/firebase";
-import UserContext from "../../context/UserContext";
+import useProfilesSuggestions from "../../hooks/useProfilesSuggestions";
 import Skeleton from "../Skeleton";
 
 export default function Suggestions() {
-  const [suggestions, setSuggestions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { user } = useContext(UserContext);
-
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      const suggestions = await getProfilesSuggestion();
-      setSuggestions(
-        suggestions
-          .filter((suggestion) => suggestion.username !== user.username)
-          .slice(0, 5)
-      );
-      setLoading(false);
-    };
-    getData();
-  }, []);
+  const { suggestions, loading } = useProfilesSuggestions();
 
   return (
     <>
@@ -33,9 +15,8 @@ export default function Suggestions() {
           <button className="ml-auto font-medium text-[12px]">See All</button>
         </div>
         <ul className="flex flex-col">
-          {loading ? (
-            <>
-              {[...new Array(5)].map((_, i) => (
+          {loading
+            ? [...new Array(5)].map((_, i) => (
                 <div
                   key={i}
                   className="flex space-x-[10px] items-center py-[5px]"
@@ -46,21 +27,16 @@ export default function Suggestions() {
                     <Skeleton className="w-[80px] h-[15px] rounded-[4px]" />
                   </div>
                 </div>
+              ))
+            : suggestions &&
+              suggestions.map(({ avatar, username, docId }) => (
+                <SuggestedProfile
+                  key={docId}
+                  avatar={avatar}
+                  username={username}
+                  docId={docId}
+                />
               ))}
-            </>
-          ) : (
-            <>
-              {suggestions &&
-                suggestions.map(({ avatar, username, docId }) => (
-                  <SuggestedProfile
-                    key={docId}
-                    avatar={avatar}
-                    username={username}
-                    docId={docId}
-                  />
-                ))}
-            </>
-          )}
         </ul>
       </div>
     </>
