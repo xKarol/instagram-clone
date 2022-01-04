@@ -7,7 +7,7 @@ export default function Suggestions() {
 
   return (
     <>
-      <div className="flex flex-col">
+      <section className="flex flex-col">
         <div className="flex mb-[5px]">
           <h1 className="font-medium text-gray-300 text-[14px]">
             Suggestions For You
@@ -38,7 +38,7 @@ export default function Suggestions() {
                 />
               ))}
         </ul>
-      </div>
+      </section>
     </>
   );
 }

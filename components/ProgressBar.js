@@ -1,4 +1,4 @@
-export default function Progress({ value, className }) {
+export default function ProgressBar({ value, className }) {
   return (
     <div className={`h-[4px] ${className}`}>
       <div

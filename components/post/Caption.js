@@ -13,7 +13,7 @@ export default function Caption() {
   return (
     <>
       <div className="w-full text-[14px] flex leading-[15px]">
-        <span className="font-medium">
+        <h3 className="font-medium">
           <Link href={`/${user?.username}`}>
             <a className="hover:underline">{user?.username}</a>
           </Link>
@@ -34,7 +34,7 @@ export default function Caption() {
               )}
             </>
           )}
-        </span>
+        </h3>
       </div>
     </>
   );

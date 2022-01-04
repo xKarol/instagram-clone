@@ -1,5 +1,5 @@
 import { useState, useReducer } from "react";
-import Modal from "../Modal";
+import Modal from "../modal";
 import UploadContext from "../../context/UploadContext";
 import Upload from "./Upload";
 import { CROP_PAGE, CREATE_PAGE, SHARE_PAGE } from "../../constants/globals";

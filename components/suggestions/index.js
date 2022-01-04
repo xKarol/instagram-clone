@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef } from "react";
 import Profile from "./Profile";
-import SuggestionsBox from "./Suggestions";
+import Suggestions from "./Suggestions";
 
-export default function Suggestions({ feedRef }) {
+export default function ({ feedRef }) {
   const sideBoxRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -19,12 +19,12 @@ export default function Suggestions({ feedRef }) {
   }, [feedRef]);
 
   return (
-    <section
+    <aside
       className="fixed w-[300px] right-0 top-[90px] left-[700px] z-10 hidden 1000px:block"
       ref={sideBoxRef}
     >
       <Profile />
-      <SuggestionsBox />
-    </section>
+      <Suggestions />
+    </aside>
   );
 }

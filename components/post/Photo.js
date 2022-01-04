@@ -36,7 +36,7 @@ export default function Photo() {
   return (
     <div className="w-full relative h-full" onDoubleClick={handleLike}>
       {heart && (
-        <div className="z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <AiFillHeart
             className={`${
               liked && "scaleAnim"

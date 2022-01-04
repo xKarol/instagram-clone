@@ -6,7 +6,7 @@ import Crop from "./crop";
 import Details from "./settings";
 import UploadBox from "./UploadBox";
 import Share from "./Share";
-import Modal from "../Modal";
+import Modal from "../modal";
 import DiscardBox from "./DiscardBox";
 import {
   MAIN_PAGE,

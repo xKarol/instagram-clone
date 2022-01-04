@@ -26,7 +26,7 @@ export default function Stories() {
       {loggedIn && !!user?.followings?.length && (
         <section className="w-full bg-white border border-gray-200 flex flex-col py-[20px] pb-[10px] rounded-sm">
           {!!loading && <Loading />}
-          <div className="w-full flex space-x-[10px] overflow-x-hidden px-[20px]">
+          <div className="w-full flex space-x-[10px] overflow-y-scroll scrollbar-hide px-[20px]">
             {!!loading &&
               [...new Array(12)].map((_, index) => (
                 <Skeleton

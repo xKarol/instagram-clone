@@ -7,7 +7,7 @@ export default function Logo({ size = 200, className, link = true }) {
     <Link href={`${link ? "/" : ""}`}>
       <a
         className={`min-w-[${size}px] flex items-center ${className} ${
-          !link && "outline-none"
+          !link && "outline-none cursor-default"
         }`}
       >
         <Image

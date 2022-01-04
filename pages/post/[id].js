@@ -63,13 +63,13 @@ export default function () {
               likes,
             }}
           >
-            <div className="flex h-[600px] bg-white border border-gray-200">
-              <div className="w-[480px] h-full">
+            <article className="flex h-[600px] bg-white border border-gray-200">
+              <section className="w-[480px] h-full">
                 <Photo />
-              </div>
-              <div className="flex flex-col w-[350px]">
+              </section>
+              <section className="flex flex-col w-[350px]">
                 <PostHeader className={"px-[15px]"} />
-                <div className="px-[20px] flex-1 overflow-y-scroll scrollbar-hide">
+                <section className="px-[20px] flex-1 overflow-y-scroll scrollbar-hide">
                   {photo?.caption && (
                     <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
                       <div className="space-x-[15px] flex">
@@ -91,15 +91,15 @@ export default function () {
                     </div>
                   )}
                   <Comments comments={comments} type={NORMAL_COMMENT} />
-                </div>
+                </section>
                 <div className="px-[15px]">
                   <Navbar />
                   <Likes />
                   <Date timestamp={photo?.timestamp} />
                 </div>
                 <AddComment />
-              </div>
-            </div>
+              </section>
+            </article>
           </PhotoContext.Provider>
         )}
       </Layout>

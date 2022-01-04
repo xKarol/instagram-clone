@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Avatar from "../Avatar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PhotoContext from "../../context/PhotoContext";
-import Modal from "../Modal";
+import Modal from "../modal";
 import Options from "./Options";
 
 export default function Header({ className }) {

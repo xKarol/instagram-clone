@@ -4,12 +4,12 @@ import { validFileExtensions } from "../../constants/arrays";
 import { checkFileExtension } from "../../services/utils";
 import { CROP_PAGE } from "../../constants/globals";
 import Error from "./Error";
-import Progress from "../Progress";
+import ProgressBar from "../ProgressBar";
 import UploadContext from "../../context/UploadContext";
 
 export default function UploadBox() {
   const {
-    state: { error, files, previewFiles},
+    state: { error, files, previewFiles },
     dispatch,
   } = useContext(UploadContext);
 
@@ -20,7 +20,7 @@ export default function UploadBox() {
   useEffect(() => {
     const reader = new FileReader();
     const handleLoad = () => {
-      dispatch({ previewFiles:  [...previewFiles, reader.result]});
+      dispatch({ previewFiles: [...previewFiles, reader.result] });
     };
     const handleProgress = ({ loaded, total }) => {
       const progress = (loaded / total) * 100;
@@ -90,7 +90,7 @@ export default function UploadBox() {
       }`}
     >
       {progress !== 0 && (
-        <Progress
+        <ProgressBar
           value={progress}
           className={"absolute top-[45px] left-0 right-0"}
         />
