@@ -9,13 +9,17 @@ import Logo from "../components/Logo";
 import Avatar from "../components/Avatar";
 import UserContext from "../context/UserContext";
 import DropdownMenu from "./dropdown";
-import ProfileDropdown from "./dropdown/ProfileDropdown";
 import Upload from "../components/upload";
+import * as dropdown from "../constants/dropdown";
 
 export default function Header() {
   const [show, setShow] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(null);
   const { loggedIn, user } = useContext(UserContext);
+
+  const handleShowDropdown = (type) => {
+    setShowDropdown(showDropdown === null ? type : null);
+  };
 
   return (
     <>
@@ -51,19 +55,18 @@ export default function Header() {
                 </button>
                 <button
                   id="dropdown"
-                  onClick={() => setShowDropdown(!showDropdown)}
+                  onClick={() =>
+                    handleShowDropdown(dropdown.NOTIFICATIONS_DROPDOWN)
+                  }
                 >
                   <IoMdHeartEmpty className="pointer-events-none" />
                 </button>
                 <button
                   className="w-[23px] h-[23px]"
                   id="dropdown"
-                  onClick={() => setShowDropdown(!showDropdown)}
+                  onClick={() => handleShowDropdown(dropdown.PROFILE_DROPDOWN)}
                 >
-                  <Avatar
-                    src={user?.avatar}
-                    className="pointer-events-none"
-                  />
+                  <Avatar src={user?.avatar} className="pointer-events-none" />
                 </button>
               </>
             ) : (
@@ -84,11 +87,7 @@ export default function Header() {
         </nav>
       </header>
       <Upload show={show} setShow={setShow} />
-      <DropdownMenu
-        setShow={setShowDropdown}
-        show={showDropdown}
-        element={<ProfileDropdown />}
-      />
+      <DropdownMenu setShow={setShowDropdown} show={showDropdown} />
     </>
   );
 }

@@ -1,8 +1,13 @@
 import { useEffect, useLayoutEffect, useState, useRef } from "react";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+import ProfileDropdown from "./ProfileDropdown";
+import NotificationDropdown from "./NotificationDropdown";
+import * as dropdown from "../../constants/dropdown";
 
-export default function DropdownMenu({ setShow, show, element }) {
+export default function DropdownMenu({ setShow, show }) {
   const [selectTarget, setTarget] = useState(null);
   const DropdownRef = useRef(null);
+  const { width } = useWindowDimensions();
 
   const handleResize = () => {
     if (!selectTarget) return;
@@ -13,33 +18,32 @@ export default function DropdownMenu({ setShow, show, element }) {
   useEffect(() => {
     const handleClick = (e) => {
       if (e.target.id !== "dropdown") {
-        if (!show) return;
-        setShow(false);
+        if (show === null) return;
+        setShow(null);
         return;
       }
       setTarget(e.target);
     };
-    window.addEventListener("resize", handleResize);
     document.addEventListener("click", handleClick);
     return () => {
       document.removeEventListener("click", handleClick);
-      window.removeEventListener("resize", handleResize);
     };
   }, [show]);
 
   useLayoutEffect(() => {
     handleResize();
-  }, [selectTarget]);
+  }, [selectTarget, width]);
 
   return (
     <>
       <div
         className={`fixed min-w-[220px] rounded-md top-[55px] z-50 shadow-[0_0_10px_2px_rgba(0,0,0,0.1)] ${
-          !show && "hidden"
+          show === null && "hidden"
         }`}
         ref={DropdownRef}
       >
-        {element}
+        {show === dropdown.PROFILE_DROPDOWN && <ProfileDropdown />}
+        {show === dropdown.NOTIFICATIONS_DROPDOWN && <NotificationDropdown />}
       </div>
     </>
   );
