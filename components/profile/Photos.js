@@ -9,9 +9,7 @@ export default function Photos() {
       {photos.map((photo) => (
         <Photo
           key={photo?.photoId}
-          src={photo?.image}
-          comments={photo?.comments?.length}
-          likes={photo?.likes?.length}
+          data={photo}
         />
       ))}
     </div>

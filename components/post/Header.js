@@ -21,10 +21,12 @@ export default function Header({ className }) {
           {photo?.user?.username}
         </a>
       </Link>
-      <HiOutlineDotsHorizontal
+      <button
         onClick={() => setShowModal(true)}
         className="ml-auto text-[25px] cursor-pointer"
-      />
+      >
+        <HiOutlineDotsHorizontal />
+      </button>
       <Modal
         show={showModal}
         setShow={setShowModal}

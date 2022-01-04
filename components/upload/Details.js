@@ -56,22 +56,22 @@ export default function Details() {
           <GoLocation className="absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
       </div>
-      <div className="flex border border-transparent border-t-gray-200 cursor-pointer">
+      <button className="flex border border-transparent border-t-gray-200 cursor-pointer">
         <div className="relative w-[calc(100%-15px)] mx-auto flex">
           <p className="w-full px-[10px] h-[40px] flex items-center">
             Accessibility
           </p>
           <BsChevronDown className="absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
-      </div>
-      <div className="flex border border-transparent border-t-gray-200 cursor-pointer">
+      </button>
+      <button className="flex border border-transparent border-t-gray-200 cursor-pointer">
         <div className="relative w-[calc(100%-15px)] mx-auto flex">
           <p className="w-full px-[10px] h-[40px] flex items-center">
             Advanced Settings
           </p>
           <BsChevronDown className="absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
-      </div>
+      </button>
     </section>
   );
 }

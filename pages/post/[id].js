@@ -69,7 +69,7 @@ export default function () {
               </div>
               <div className="flex flex-col w-[350px]">
                 <PostHeader className={"px-[15px]"} />
-                <div className="px-[20px] flex-1">
+                <div className="px-[20px] flex-1 overflow-y-scroll scrollbar-hide">
                   {photo?.caption && (
                     <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
                       <div className="space-x-[15px] flex">

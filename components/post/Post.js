@@ -47,7 +47,7 @@ export default function Post({ data: photo }) {
           <Navbar />
           <Likes />
           <Caption />
-          <CommentsCounter count={comments?.length} />
+          <CommentsCounter />
           <Comments comments={comments} type={MINI_COMMENT} />
           <Date timestamp={photo?.timestamp} />
         </div>

@@ -20,23 +20,23 @@ export default function ProfileDropdown() {
           Profile
         </a>
       </Link>
-      <li className="flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+      <button className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
         <BiBookmark />
         Saved
-      </li>
-      <li className="flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+      </button>
+      <button className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
         <RiSettings3Line />
         Settings
-      </li>
-      <li className="flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+      </button>
+      <button className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
         <BsArrowRepeat /> Switch Accounts
-      </li>
-      <li
+      </button>
+      <button
         onClick={logOut}
-        className="rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100"
+        className="w-full flex rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100"
       >
         Log Out
-      </li>
+      </button>
     </ul>
   );
 }

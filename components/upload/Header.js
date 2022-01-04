@@ -38,10 +38,12 @@ export default function Header() {
       </span>
       {page != MAIN_PAGE && page !== SHARE_PAGE && (
         <>
-          <BsArrowLeft
+          <button
             className="ml-[15px] text-[25px] cursor-pointer"
             onClick={handlePrevPage}
-          />
+          >
+            <BsArrowLeft />
+          </button>
           <button
             className="text-blue bg-transparent text-[14px] font-medium mr-[15px]"
             onClick={handleNextPage}

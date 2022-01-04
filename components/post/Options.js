@@ -26,7 +26,7 @@ export default function Options() {
       router.push("/");
     }
   };
-  
+
   return (
     <div className="flex flex-col items-center w-[400px]">
       {!!isCreator && (
