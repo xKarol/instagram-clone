@@ -102,7 +102,7 @@ export default function Login() {
             </a>
           </Box>
           <Box className="mt-[10px]">
-            <span className="text-[14px]">
+            <span className="text-[14px] text-center">
               Don&apos;t have an account?&nbsp;
               <Link href="/sign-up">
                 <a className="text-blue font-medium">Sign Up</a>
