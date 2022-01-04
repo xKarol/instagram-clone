@@ -28,9 +28,9 @@ export default function Upload() {
         <title>Create new post • Instagram</title>
         <meta name="description" content="Instagram Upload Photos" />
       </Head>
-      <div className="h-[400px] relative transition-all ease-in-out delay-300">
+      <article className="h-[400px] relative transition-all ease-in-out delay-300">
         <Header />
-        <div className="flex h-[calc(100%-45px)] flex-col sm:flex-row">
+        <section className="flex h-[calc(100%-45px)] flex-col sm:flex-row">
           {page === MAIN_PAGE && <UploadBox />}
           {page === CROP_PAGE && <Crop src={previewFiles} />}
           {page === CREATE_PAGE && (
@@ -40,8 +40,8 @@ export default function Upload() {
             </>
           )}
           {page === SHARE_PAGE && <Share />}
-        </div>
-      </div>
+        </section>
+      </article>
       <Modal
         show={showDiscardBox}
         setShow={setShowDiscardBox}

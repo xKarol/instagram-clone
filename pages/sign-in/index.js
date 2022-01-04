@@ -68,7 +68,7 @@ export default function Login() {
       <Head>
         <title>Login • Instagram</title>
       </Head>
-      <div className="flex justify-center items-center p-[50px] gap-[25px]">
+      <section className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
         <div className="w-[350px] max-w-[350px] flex flex-col items-center">
           <Box>
@@ -111,7 +111,7 @@ export default function Login() {
           </Box>
           <AppLinks />
         </div>
-      </div>
+      </section>
     </>
   );
 }

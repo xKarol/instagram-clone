@@ -19,12 +19,12 @@ export default function Suggestions({ feedRef }) {
   }, [feedRef]);
 
   return (
-    <div
+    <section
       className="fixed w-[300px] right-0 top-[90px] left-[700px] z-10 hidden 1000px:block"
       ref={sideBoxRef}
     >
       <Profile />
       <SuggestionsBox />
-    </div>
+    </section>
   );
 }

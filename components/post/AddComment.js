@@ -42,7 +42,7 @@ export default function AddComment() {
   };
 
   return (
-    <div className="w-full px-[16px] py-[12px] flex items-center border border-transparent border-t-gray-200">
+    <section className="w-full px-[16px] py-[12px] flex items-center border border-transparent border-t-gray-200">
       <button className="text-[22px] cursor-pointer mr-[15px]">
         <BsEmojiSmile />
       </button>
@@ -71,6 +71,6 @@ export default function AddComment() {
           Post
         </button>
       </form>
-    </div>
+    </section>
   );
 }

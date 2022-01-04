@@ -5,20 +5,23 @@ import UserContext from "../context/UserContext";
 export default function useProfilesSuggestions() {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, loggedIn } = useContext(UserContext);
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
       const suggestions = await getProfilesSuggestion();
+
       setSuggestions(
-        suggestions
-          .filter((suggestion) => suggestion.username !== user?.username)
-          .slice(0, 5)
+        loggedIn
+          ? suggestions
+              .filter((suggestion) => suggestion.username !== user?.username)
+              .slice(0, 5)
+          : suggestions
       );
       setLoading(false);
     };
-    user?.username && getData();
+    getData();
   }, [user.uid]);
 
   return { setSuggestions, suggestions, loading };

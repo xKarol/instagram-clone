@@ -11,7 +11,7 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
   return (
     <>
       {show && (
-        <div
+        <section
           className={`fixed ${
             !show ? "hidden" : null
           } left-0 top-0 h-screen w-screen bg-black/75 z-50 flex items-center justify-center`}
@@ -31,7 +31,7 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
           >
             {element}
           </main>
-        </div>
+        </section>
       )}
     </>
   );

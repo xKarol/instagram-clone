@@ -40,19 +40,19 @@ export default function Post({ data: photo }) {
         likes,
       }}
     >
-      <div className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm">
+      <article className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm">
         <Header />
         <Photo />
-        <div className="px-[16px]">
+        <section className="px-[16px]">
           <Navbar />
           <Likes />
           <Caption />
           <CommentsCounter />
           <Comments comments={comments} type={MINI_COMMENT} />
           <Date timestamp={photo?.timestamp} />
-        </div>
+        </section>
         <AddComment />
-      </div>
+      </article>
     </PhotoContext.Provider>
   );
 }

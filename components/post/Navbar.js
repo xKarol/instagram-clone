@@ -26,7 +26,7 @@ export default function Navbar() {
   };
   
   return (
-    <div className="w-full h-[50px] flex gap-[15px] text-[25px] items-center">
+    <nav className="w-full h-[50px] flex gap-[15px] text-[25px] items-center">
       <button
         onClick={handleLike}
         className={`cursor-pointer transition-opacity hover:opacity-50 ${
@@ -44,6 +44,6 @@ export default function Navbar() {
       <button className="ml-auto cursor-pointer transition-opacity hover:opacity-50">
         <RiBookmarkLine />
       </button>
-    </div>
+    </nav>
   );
 }

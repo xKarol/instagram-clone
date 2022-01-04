@@ -28,7 +28,7 @@ export default function Options() {
   };
 
   return (
-    <div className="flex flex-col items-center w-[400px]">
+    <section className="flex flex-col items-center w-[400px]">
       {!!isCreator && (
         <Button onClick={handleDelete} className={"text-red font-medium"}>
           {!pending ? "Delete" : <Loading />}
@@ -37,6 +37,6 @@ export default function Options() {
       <Button>Share to...</Button>
       <Button>Copy link</Button>
       <Button onClick={() => setShowModal(false)}>Cancel</Button>
-    </div>
+    </section>
   );
 }

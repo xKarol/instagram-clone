@@ -8,7 +8,7 @@ export default function MiniProfile() {
   return (
     <>
       {loggedIn && (
-        <div className="h-[100px] flex items-center gap-[20px] text-[14px]">
+        <article className="h-[100px] flex items-center gap-[20px] text-[14px]">
           <Link href={`/${user?.username}`}>
             <a className="h-[55px] w-[55px]">
               <Avatar src={user?.avatar} />
@@ -23,7 +23,7 @@ export default function MiniProfile() {
           <button className="ml-auto text-blue font-medium text-[12px]">
             Switch
           </button>
-        </div>
+        </article>
       )}
     </>
   );
