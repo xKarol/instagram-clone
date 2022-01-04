@@ -10,7 +10,6 @@ import { getPhotoById } from "../../services/firebase";
 import { uploadPhoto } from "../../services/storage";
 
 function Share() {
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { user, setPhotos, photos } = useContext(UserContext);
   const {
@@ -37,7 +36,6 @@ function Share() {
         dispatch({ uploaded: true });
         const photoData = await getPhotoById(photoDoc.id);
         setPhotos([photoData, ...photos]);
-        setLoading(false);
       } catch {
         setError(true);
       }

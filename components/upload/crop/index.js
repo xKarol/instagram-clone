@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { BiExpandAlt, BiZoomIn } from "react-icons/bi";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
-import CropButton from "./CropButton";
+import Button from "./Button";
 
-export default function Crop({ src, disableBtns }) {
+export default function ({ src, disableBtns }) {
   //   TODO many images feature
   return (
     <div className="relative block h-full w-[400px] max-w-[400px]">
@@ -17,15 +17,15 @@ export default function Crop({ src, disableBtns }) {
           />
           {!disableBtns && (
             <>
-              <CropButton
+              <Button
                 style={"left-[15px]"}
                 Icon={<BiExpandAlt className="text-gray-100" />}
               />
-              <CropButton
+              <Button
                 style={"left-[55px]"}
                 Icon={<BiZoomIn className="text-gray-100" />}
               />
-              <CropButton
+              <Button
                 style={"right-[15px]"}
                 Icon={<MdOutlinePhotoLibrary className="text-gray-100" />}
               />

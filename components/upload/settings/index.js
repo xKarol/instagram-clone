@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
-import { BsEmojiSmile, BsChevronDown } from "react-icons/bs";
+import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
-import Avatar from "../Avatar";
-import { MAX_POST_CAPTION } from "../../constants/post";
-import UploadContext from "../../context/UploadContext";
-import UserContext from "../../context/UserContext";
+import Avatar from "../../Avatar";
+import { MAX_POST_CAPTION } from "../../../constants/post";
+import UploadContext from "../../../context/UploadContext";
+import UserContext from "../../../context/UserContext";
+import Button from "./Button";
 
-export default function Details() {
+export default function () {
   const [photoCaption, setPhotoCaption] = useState("");
   const {
     state: { caption },
@@ -56,22 +57,8 @@ export default function Details() {
           <GoLocation className="absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
       </div>
-      <button className="flex border border-transparent border-t-gray-200 cursor-pointer">
-        <div className="relative w-[calc(100%-15px)] mx-auto flex">
-          <p className="w-full px-[10px] h-[40px] flex items-center">
-            Accessibility
-          </p>
-          <BsChevronDown className="absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none" />
-        </div>
-      </button>
-      <button className="flex border border-transparent border-t-gray-200 cursor-pointer">
-        <div className="relative w-[calc(100%-15px)] mx-auto flex">
-          <p className="w-full px-[10px] h-[40px] flex items-center">
-            Advanced Settings
-          </p>
-          <BsChevronDown className="absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none" />
-        </div>
-      </button>
+      <Button>Accessibility</Button>
+      <Button>Advanced Settings</Button>
     </section>
   );
 }

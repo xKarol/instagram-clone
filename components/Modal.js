@@ -18,10 +18,12 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
           onClick={handleClose}
         >
           {!closeHide && (
-            <CgClose
+            <button
               className="absolute top-[15px] right-[15px] text-white text-[30px] cursor-pointer"
               onClick={handleClose}
-            />
+            >
+              <CgClose />
+            </button>
           )}
           <main
             className="bg-white rounded-2xl z-10 overflow-hidden"
