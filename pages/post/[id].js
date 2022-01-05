@@ -63,13 +63,11 @@ export default function () {
               likes,
             }}
           >
-            <article className="flex h-[600px] bg-white border border-gray-200">
-              <section className="w-[480px] h-full">
-                <Photo />
-              </section>
-              <section className="flex flex-col w-[350px]">
+            <article className="flex md:h-[600px] flex-col md:flex-row bg-white border border-gray-200">
+              <Photo className="w-[80vw] md:w-[50vw] md:max-w-[550px] h-[600px] md:h-full" />
+              <section className="flex flex-col md:h-full w-full md:w-[350px] bg-white">
                 <PostHeader className={"px-[15px]"} />
-                <section className="px-[20px] flex-1 overflow-y-scroll scrollbar-hide">
+                <section className="px-[20px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
                   {photo?.caption && (
                     <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
                       <div className="space-x-[15px] flex">

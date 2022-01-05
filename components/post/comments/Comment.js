@@ -15,12 +15,12 @@ export default function Comment() {
             <Avatar src={comment?.avatar} />
           </a>
         </Link>
-        <span className="font-medium">
+        <span className="font-medium max-w-[80%]">
           <Link href={`/${comment?.username}`}>
             <a className="hover:underline">{comment?.username}</a>
           </Link>
           &nbsp;
-          <span className="font-normal">{comment?.comment}</span>
+          <span className="font-normal break-all">{comment?.comment}</span>
         </span>
       </div>
       <Like />

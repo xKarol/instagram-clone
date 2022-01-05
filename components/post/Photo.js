@@ -5,7 +5,7 @@ import UserContext from "../../context/UserContext";
 import { AiFillHeart } from "react-icons/ai";
 import { likePost } from "../../services/firebase";
 
-export default function Photo() {
+export default function Photo({ className }) {
   const { photo, liked, setLiked, setLikes, likes } = useContext(PhotoContext);
   const { user } = useContext(UserContext);
   const [heart, setHeart] = useState(false);
@@ -33,8 +33,14 @@ export default function Photo() {
     };
   }, [heart]);
 
+  const placeholderImage =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcsnt3PQAHAAKrcPYcMAAAAABJRU5ErkJggg==";
+
   return (
-    <div className="w-full relative h-full" onDoubleClick={handleLike}>
+    <div
+      className={`w-full relative h-full ${className}`}
+      onDoubleClick={handleLike}
+    >
       {heart && (
         <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <AiFillHeart
@@ -44,17 +50,18 @@ export default function Photo() {
           />
         </div>
       )}
-      <div className="w-full pb-[125%] relative">
-        <Image
-          src={photo?.image}
-          alt={`${photo?.user?.username}'s photo ${
-            photo?.caption && photo?.caption
-          }`}
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
-      </div>
+
+      <Image
+        src={photo?.image}
+        alt={`${photo?.user?.username}'s photo ${
+          photo?.caption && photo?.caption
+        }`}
+        layout="fill"
+        objectFit="cover"
+        priority
+        placeholder="blur"
+        blurDataURL={placeholderImage}
+      />
     </div>
   );
 }
