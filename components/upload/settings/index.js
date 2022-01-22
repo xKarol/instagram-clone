@@ -7,7 +7,7 @@ import UploadContext from "../../../context/UploadContext";
 import UserContext from "../../../context/UserContext";
 import Button from "./Button";
 
-export default function () {
+export default function Settings() {
   const [photoCaption, setPhotoCaption] = useState("");
   const {
     state: { caption },

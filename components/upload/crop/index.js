@@ -3,7 +3,7 @@ import { BiExpandAlt, BiZoomIn } from "react-icons/bi";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import Button from "./Button";
 
-export default function ({ src, disableBtns }) {
+export default function Crop({ src, disableBtns }) {
   //   TODO many images feature
   return (
     <div className="relative block h-full w-[400px] max-w-[400px]">

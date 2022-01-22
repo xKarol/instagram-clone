@@ -35,13 +35,13 @@ function Share() {
         });
         dispatch({ uploaded: true });
         const photoData = await getPhotoById(photoDoc.id);
-        setPhotos([photoData, ...photos]);
+        setPhotos((prevState) => [photoData, ...prevState]);
       } catch {
         setError(true);
       }
     };
     uploadFile();
-  }, []);
+  }, [setPhotos, files, dispatch, caption, user.username, previewFiles]);
 
   return (
     <div className="w-[400px] flex flex-col justify-center items-center space-y-[15px]">

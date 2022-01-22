@@ -18,7 +18,7 @@ import { NORMAL_COMMENT } from "../../constants/post";
 import Comments from "../../components/post/comments";
 import Avatar from "../../components/Avatar";
 
-export default function () {
+export default function Post() {
   const router = useRouter();
   const { id } = router.query;
   const { user } = useContext(UserContext);

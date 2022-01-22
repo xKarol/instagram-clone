@@ -1,7 +1,7 @@
 import { useState, useReducer } from "react";
 import Modal from "../modal";
 import UploadContext from "../../context/UploadContext";
-import Upload from "./Upload";
+import UploadPages from "./UploadPages";
 import { CROP_PAGE, CREATE_PAGE, SHARE_PAGE } from "../../constants/globals";
 
 const initialState = {
@@ -18,7 +18,7 @@ const reducer = (state, newState) => {
   return { ...state, ...newState };
 };
 
-export default function ({ show, setShow }) {
+export default function Upload({ show, setShow }) {
   const [showDiscardBox, setShowDiscardBox] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -49,7 +49,7 @@ export default function ({ show, setShow }) {
       <Modal
         show={show}
         setShow={setShow}
-        element={<Upload />}
+        element={<UploadPages />}
         onClose={blockClose}
       />
     </UploadContext.Provider>

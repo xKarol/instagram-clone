@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Avatar from "../Avatar";
 import Biography from "./Biography";
 import ChangeAvatar from "./ChangeAvatar";
-import ProfileHeader from "./Header";
+import Header from "./Header";
 import Statistics from "./Statistics";
 import ProfileContext from "../../context/ProfileContext";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -27,7 +27,7 @@ export default function ProfileData() {
             )}
           </div>
           <main className="flex flex-col space-y-[15px]">
-            <ProfileHeader />
+            <Header />
             <Statistics className={"hidden md:flex border-none"} />
             {width >= SCREEN_MEDIUM && (
               <Biography className={"hidden md:block"} />

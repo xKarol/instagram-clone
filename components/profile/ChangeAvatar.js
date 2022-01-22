@@ -15,6 +15,7 @@ export default function ChangeAvatar({ children }) {
   const fileRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
+  const [readerResult, setReaderResult] = useState("");
 
   const handleClick = () => {
     if (profileUser?.uid !== user?.uid) return;
@@ -22,14 +23,10 @@ export default function ChangeAvatar({ children }) {
   };
 
   useEffect(() => {
-    const reader = new FileReader();
-    const handleLoad = () => {
-      setLoading(true);
-    };
-
-    const handleEnd = async () => {
+    const uploadFile = async () => {
+      if (!readerResult) return;
       const { downloadURL, fileName } = await uploadAvatar(
-        reader.result,
+        readerResult,
         file.name
       );
       await updateDoc(doc(db, "users", user?.uid), {
@@ -37,19 +34,30 @@ export default function ChangeAvatar({ children }) {
         avatarFileName: fileName,
       });
       user?.avatarFileName &&
-        (await deleteAvatarFromStorage(user.avatarFileName));
+        (await deleteAvatarFromStorage(user?.avatarFileName));
       const userData = await getUserByUsername(user?.username);
 
       setUser(userData);
       setProfileUser(userData);
       setLoading(false);
     };
+    uploadFile();
+  }, [readerResult]);
 
-    const upload = () => {
-      if (!file) return;
-      reader.readAsDataURL(file);
+  useEffect(() => {
+    const reader = new FileReader();
+
+    const handleLoad = () => {
+      setLoading(true);
     };
-    upload();
+
+    const handleEnd = async () => {
+      if (!reader.result) return;
+      setReaderResult(reader.result);
+      setLoading(false);
+    };
+
+    if (file) reader.readAsDataURL(file);
 
     reader.addEventListener("loadstart", handleLoad);
     reader.addEventListener("loadend", handleEnd);

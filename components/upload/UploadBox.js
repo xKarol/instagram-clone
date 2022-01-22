@@ -36,31 +36,13 @@ export default function UploadBox() {
       reader.removeEventListener("load", handleLoad);
       reader.removeEventListener("progress", handleProgress);
     };
-  }, [files]);
+  }, [files, dispatch, previewFiles]);
 
   const handleUpload = (inputFiles) => {
     if (error?.file) return;
     const checkFilesData = checkFileExtension(inputFiles);
     dispatch({ files: checkFilesData });
     dispatch({ error: {} });
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    if (error?.file) return;
-    const filesData = e.dataTransfer.files;
-    const checkFilesData = checkFileExtension(filesData);
-    if (filesData.length != checkFilesData.length) {
-      const invalidFile = Object.values(filesData).filter(
-        (file) => !validFileExtensions.includes(file.name.split(".").pop())
-      )[0];
-      dispatch({ error: { file: invalidFile?.name } });
-      dispatch({ files: [] });
-    } else {
-      dispatch({ error: {} });
-      dispatch({ files: checkFilesData });
-    }
-    setIsDragging(false);
   };
 
   const handleDragOver = (e) => {
@@ -73,6 +55,24 @@ export default function UploadBox() {
   };
 
   useEffect(() => {
+    const handleDrop = (e) => {
+      e.preventDefault();
+      if (error?.file) return;
+      const filesData = e.dataTransfer.files;
+      const checkFilesData = checkFileExtension(filesData);
+      if (filesData.length != checkFilesData.length) {
+        const invalidFile = Object.values(filesData).filter(
+          (file) => !validFileExtensions.includes(file.name.split(".").pop())
+        )[0];
+        dispatch({ error: { file: invalidFile?.name } });
+        dispatch({ files: [] });
+      } else {
+        dispatch({ error: {} });
+        dispatch({ files: checkFilesData });
+      }
+      setIsDragging(false);
+    };
+
     document.addEventListener("dragover", (e) => handleDragOver(e));
     document.addEventListener("dragleave", handleDragLeave);
     document.addEventListener("drop", (e) => handleDrop(e));
@@ -81,7 +81,7 @@ export default function UploadBox() {
       document.removeEventListener("dragleave", handleDragLeave);
       document.removeEventListener("drop", (e) => handleDrop(e));
     };
-  }, []);
+  }, [error?.file, dispatch]);
 
   return (
     <section

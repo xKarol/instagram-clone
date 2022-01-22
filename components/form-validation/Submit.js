@@ -1,4 +1,5 @@
 import Loading from "../Loading";
+
 export default function Submit({ text, pending, disabled }) {
   return (
     <button

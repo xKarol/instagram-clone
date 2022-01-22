@@ -1,4 +1,5 @@
 import { BiChevronRight } from "react-icons/bi";
+
 export default function Arrow({ className, onClick }) {
   return (
     <div

@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import StoryProfile from "./StoryProfile";
 import UserContext from "../../context/UserContext";
+import useStories from "../../hooks/useStories";
 import Loading from "../Loading";
 import Skeleton from "../Skeleton";
 import Arrow from "./Arrow";
-import useStories from "../../hooks/useStories";
+import StoryProfile from "./StoryProfile";
 
 export default function Stories() {
   const [scrollPos, setScrollPos] = useState(0);
@@ -15,23 +15,22 @@ export default function Stories() {
   const storyBox = useRef(null);
   const visible = loggedIn && user?.followings?.length;
 
-  const checkScroll = () => {
-    if (!visible || loading) return;
-    setShowLeft(scrollPos > 0 ? true : false);
-    const scrollWidth = storyBox.current.clientWidth;
-    const scrollMaxWidth = storyBox.current.scrollWidth;
-
-    if (scrollMaxWidth > scrollWidth) {
-      setShowRight(true);
-      if (scrollMaxWidth - scrollPos === scrollWidth) {
-        setShowRight(false);
-      }
-    }
-  };
-
   useEffect(() => {
+    const checkScroll = () => {
+      if (!visible || loading) return;
+      setShowLeft(scrollPos > 0 ? true : false);
+      const scrollWidth = storyBox.current.clientWidth;
+      const scrollMaxWidth = storyBox.current.scrollWidth;
+
+      if (scrollMaxWidth > scrollWidth) {
+        setShowRight(true);
+        if (scrollMaxWidth - scrollPos === scrollWidth) {
+          setShowRight(false);
+        }
+      }
+    };
     checkScroll();
-  }, [scrollPos, loading]);
+  }, [scrollPos, loading, visible]);
 
   const handleScrollRight = () => {
     storyBox.current.scrollLeft += storyBox.current.clientWidth - 100;

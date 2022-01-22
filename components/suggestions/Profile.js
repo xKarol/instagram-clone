@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Avatar from "../Avatar";
 import UserContext from "../../context/UserContext";
 
-export default function MiniProfile() {
+export default function Profile() {
   const { loggedIn, user } = useContext(UserContext);
   return (
     <>
