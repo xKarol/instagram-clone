@@ -38,7 +38,7 @@ export default function Photo({ className }) {
 
   return (
     <div
-      className={`w-full relative h-full ${className}`}
+      className={`relative ${className}`}
       onDoubleClick={handleLike}
     >
       {heart && (
