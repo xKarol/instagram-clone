@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Header from "../components/Header";
-import Suggestions from "../components/Suggestions";
+import Suggestions from "../components/suggestions";
 import Stories from "../components/stories";
 import Posts from "../components/post";
 import Layout from "../components/Layout";

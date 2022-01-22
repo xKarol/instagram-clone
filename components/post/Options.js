@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useContext } from "react";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
-import Button from "../Modal/Button";
+import Button from "../modal/Button";
 import Loading from "../Loading";
 import { deletePost } from "../../services/firebase";
 import { deletePhotoFromStorage } from "../../services/storage";

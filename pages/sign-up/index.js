@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../components/Logo";

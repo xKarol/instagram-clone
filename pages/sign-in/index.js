@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import Logo from "../../components/Logo";
 import PhoneGallery from "../../components/PhoneGallery";
 import { signInWithEmailAndPassword } from "firebase/auth";

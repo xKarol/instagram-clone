@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import UploadContext from "../../context/UploadContext";
-import Button from "../Modal/Button";
+import Button from "../modal/Button";
 
 export default function DiscardBox() {
   const { dispatch, setShow, setShowDiscardBox } = useContext(UploadContext);
