@@ -28,7 +28,7 @@ export default function Options() {
   };
 
   return (
-    <section className="flex flex-col items-center w-[400px]">
+    <section className="flex flex-col items-center w-screen sm:w-[400px]">
       {!!isCreator && (
         <Button onClick={handleDelete} className={"text-red font-medium"}>
           {!pending ? "Delete" : <Loading />}

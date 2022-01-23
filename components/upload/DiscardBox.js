@@ -12,9 +12,9 @@ export default function DiscardBox() {
   };
 
   return (
-    <div className="flex flex-col items-center w-[400px] pt-[30px]">
+    <div className="flex flex-col items-center w-screen sm:w-[400px] max-w-[400px] pt-[30px]">
       <h1 className="font-medium text-[17px] mb-[5px]">Discard post?</h1>
-      <p className="text-[14px] text-gray-300 mb-[25px]">
+      <p className="text-[14px] text-gray-300 mb-[25px] text-center">
         If you leave, your edits won&apos;t be saved.
       </p>
       <Button onClick={handleClose} className={"text-red font-medium"}>

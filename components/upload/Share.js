@@ -11,7 +11,7 @@ import { uploadPhoto } from "../../services/storage";
 
 function Share() {
   const [error, setError] = useState(false);
-  const { user, setPhotos, photos } = useContext(UserContext);
+  const { user, setPhotos } = useContext(UserContext);
   const {
     state: { uploaded, caption, files, previewFiles },
     dispatch,
@@ -44,7 +44,7 @@ function Share() {
   }, [setPhotos, files, dispatch, caption, user.username, previewFiles]);
 
   return (
-    <div className="w-[400px] flex flex-col justify-center items-center space-y-[15px]">
+    <div className="w-screen h-full sm:w-[400px] max-w-[400px] flex flex-col justify-center items-center space-y-[15px]">
       {error ? (
         <Error
           caption={
@@ -66,7 +66,7 @@ function Share() {
             )}
           </div>
           {uploaded && (
-            <p className="text-gray-300 text-[18px]">
+            <p className="text-gray-300 text-[18px] text-center">
               Your post has been shared.
             </p>
           )}

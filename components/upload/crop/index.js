@@ -6,7 +6,7 @@ import Button from "./Button";
 export default function Crop({ src, disableBtns }) {
   //   TODO many images feature
   return (
-    <div className="relative block h-full w-[400px] max-w-[400px]">
+    <div className="relative block h-full w-screen sm:w-[400px] max-w-[400px]">
       {!!src.length && (
         <>
           <Image

@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { CgClose } from "react-icons/cg";
 
 export default function Modal({ show, setShow, element, closeHide, onClose }) {
@@ -7,6 +8,15 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
       onClose();
     }
   };
+
+  useLayoutEffect(() => {
+    if (show) {
+      document.body.style.overflow = `${show ? "hidden" : "visible"}`;
+    }
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, [show]);
 
   return (
     <>

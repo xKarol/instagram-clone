@@ -85,7 +85,7 @@ export default function UploadBox() {
 
   return (
     <section
-      className={`h-full w-[425px] mx-auto flex flex-col items-center justify-center gap-[15px] ${
+      className={`h-full w-screen sm:w-[400px] max-w-[400px] mx-auto flex flex-col items-center justify-center gap-[15px] ${
         isDragging && "bg-gray-100"
       }`}
     >
