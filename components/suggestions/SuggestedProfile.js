@@ -11,12 +11,12 @@ import Loading from "../Loading";
 import UserContext from "../../context/UserContext";
 
 export default function SuggestedProfile({ avatar, username, docId }) {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, loggedIn } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const following = isFollowing(docId, user?.followings);
 
   const handleFollow = async () => {
-    if (loading) return;
+    if (loading || !loggedIn) return;
     setLoading(true);
     !following
       ? await followUser(user.uid, docId)

@@ -17,13 +17,13 @@ import Skeleton from "../Skeleton";
 
 export default function Actions({ className }) {
   const { user: profileUser, loading } = useContext(ProfileContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, loggedIn } = useContext(UserContext);
   const [pending, setPending] = useState(false);
   const isFollowed = isFollowing(profileUser?.uid, user?.followings);
   const isFollowMe = isFollowing(user?.uid, profileUser?.followings);
 
   const handleFollow = async () => {
-    if (pending || loading) return;
+    if (pending || loading || !loggedIn) return;
     setPending(true);
     !isFollowed
       ? await followUser(user.uid, profileUser?.uid)

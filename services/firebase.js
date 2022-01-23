@@ -244,6 +244,7 @@ export const likeComment = async (postId, commentId, userId, liked) => {
 };
 
 export async function getUserPhotos(username) {
+  if (!username) return;
   const q = query(
     collection(db, "photos"),
     where("username", "==", username),
