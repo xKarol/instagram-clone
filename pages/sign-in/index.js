@@ -109,6 +109,9 @@ export default function Login() {
               </Link>
             </span>
           </Box>
+          <span className="text-red font-medium text-sm mt-5">
+            This is FAKE Instagram
+          </span>
           <AppLinks />
         </div>
       </section>

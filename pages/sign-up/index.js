@@ -117,20 +117,8 @@ export default function SignUp() {
               />
               <Error error={error} />
             </form>
-            <span className="text-[12px] text-gray-300 text-center my-[20px]">
-              By signing up, you agree to our{" "}
-              <a href="" className="font-medium">
-                Terms
-              </a>{" "}
-              . Learn how we collect, use and share your data in our{" "}
-              <a href="" className="font-medium">
-                Data Policy{" "}
-              </a>
-              and how we use cookies and similar technology in our{" "}
-              <a href="" className="font-medium">
-                Cookies Policy
-              </a>{" "}
-              .
+            <span className="text-red font-medium text-sm mt-5">
+              This is FAKE Instagram
             </span>
           </Box>
           <Box className="mt-[10px]">

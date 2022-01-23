@@ -11,7 +11,7 @@ export default function Comment() {
     <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
       <div className="space-x-[15px] flex">
         <Link href={`/${comment?.username}`}>
-          <a className="w-[30px] h-[30px] rounded-full">
+          <a className="w-[30px] h-[30px] shrink-0 rounded-full">
             <Avatar src={comment?.avatar} />
           </a>
         </Link>
