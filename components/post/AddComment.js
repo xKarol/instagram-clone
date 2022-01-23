@@ -43,7 +43,10 @@ export default function AddComment() {
 
   return (
     <section className="w-full px-[16px] py-[12px] flex items-center border border-transparent border-t-gray-200">
-      <button className="text-[22px] cursor-pointer mr-[15px]">
+      <button
+        aria-label="post emoticons"
+        className="text-[22px] cursor-pointer mr-[15px]"
+      >
         <BsEmojiSmile />
       </button>
       <form
@@ -65,6 +68,7 @@ export default function AddComment() {
           />
         </div>
         <button
+          aria-label="add comment"
           className="text-blue bg-transparent font-medium text-[14px] cursor-pointer disabled:cursor-default disabled:opacity-50"
           disabled={disabled}
         >

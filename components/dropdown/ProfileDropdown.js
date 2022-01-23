@@ -21,18 +21,28 @@ export default function ProfileDropdown() {
           Profile
         </a>
       </Link>
-      <button className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+      <button
+        aria-label="saved"
+        className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100"
+      >
         <BiBookmark />
         Saved
       </button>
-      <button className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+      <button
+        aria-label="settings"
+        className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100"
+      >
         <RiSettings3Line />
         Settings
       </button>
-      <button className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+      <button
+        aria-label="switch accounts"
+        className="w-full flex py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100"
+      >
         <BsArrowRepeat /> Switch Accounts
       </button>
       <button
+        aria-label="log out"
         onClick={logOut}
         className="w-full flex rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100"
       >

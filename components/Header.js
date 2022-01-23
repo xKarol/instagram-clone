@@ -40,21 +40,22 @@ export default function Header() {
             {loggedIn ? (
               <>
                 <Link href="/" passHref>
-                  <button>
+                  <button aria-label="home">
                     <MdHomeFilled />
                   </button>
                 </Link>
-                <button>
+                <button aria-label="message">
                   <FiSend />
                 </button>
-                <button onClick={() => setShow(true)}>
+                <button aria-label="upload" onClick={() => setShow(true)}>
                   <MdOutlineAddBox />
                 </button>
-                <button>
+                <button aria-label="explore">
                   <FaRegCompass />
                 </button>
                 <button
-                  id="dropdown"
+                  aria-label="notifications"
+                  data-id="dropdown"
                   onClick={() =>
                     handleShowDropdown(dropdown.NOTIFICATIONS_DROPDOWN)
                   }
@@ -62,8 +63,9 @@ export default function Header() {
                   <IoMdHeartEmpty className="pointer-events-none" />
                 </button>
                 <button
+                  aria-label="user profile"
                   className="w-[23px] h-[23px]"
-                  id="dropdown"
+                  data-id="dropdown"
                   onClick={() => handleShowDropdown(dropdown.PROFILE_DROPDOWN)}
                 >
                   <Avatar src={user?.avatar} className="pointer-events-none" />

@@ -29,6 +29,7 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
         >
           {!closeHide && (
             <button
+              aria-label="close modal"
               className="absolute top-[15px] right-[15px] text-white text-[30px] cursor-pointer"
               onClick={handleClose}
             >

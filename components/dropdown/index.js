@@ -17,7 +17,7 @@ export default function DropdownMenu({ setShow, show }) {
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (e.target.id !== "dropdown") {
+      if (e.target.dataset.id !== "dropdown") {
         if (show === null) return;
         setShow(null);
         return;

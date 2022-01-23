@@ -34,6 +34,7 @@ export default function Like() {
 
   return (
     <button
+      aria-label="like comment"
       onClick={handleLike}
       className="ml-auto cursor-pointer transition-opacity hover:opacity-50"
     >

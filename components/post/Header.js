@@ -22,6 +22,7 @@ export default function Header({ className }) {
         </a>
       </Link>
       <button
+        aria-label="post config"
         onClick={() => setShowModal(true)}
         className="ml-auto text-[25px] cursor-pointer"
       >

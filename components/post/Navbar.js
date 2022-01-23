@@ -24,10 +24,11 @@ export default function Navbar() {
     await likePost(photo?.photoId, user?.uid, liked);
     setPending(false);
   };
-  
+
   return (
     <nav className="w-full h-[50px] flex gap-[15px] text-[25px] items-center">
       <button
+        aria-label="like photo"
         onClick={handleLike}
         className={`cursor-pointer transition-opacity hover:opacity-50 ${
           !!liked && "text-red"
@@ -35,13 +36,22 @@ export default function Navbar() {
       >
         {liked ? <AiFillHeart /> : <AiOutlineHeart />}
       </button>
-      <button className="cursor-pointer transition-opacity hover:opacity-50">
+      <button
+        aria-label="comment photo"
+        className="cursor-pointer transition-opacity hover:opacity-50"
+      >
         <FaRegComment />
       </button>
-      <button className="cursor-pointer transition-opacity hover:opacity-50">
+      <button
+        aria-label="send message"
+        className="cursor-pointer transition-opacity hover:opacity-50"
+      >
         <FiSend />
       </button>
-      <button className="ml-auto cursor-pointer transition-opacity hover:opacity-50">
+      <button
+        aria-label="add bookmark"
+        className="ml-auto cursor-pointer transition-opacity hover:opacity-50"
+      >
         <RiBookmarkLine />
       </button>
     </nav>
