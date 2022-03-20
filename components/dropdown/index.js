@@ -9,12 +9,6 @@ export default function DropdownMenu({ setShow, show }) {
   const DropdownRef = useRef(null);
   const { width } = useWindowDimensions();
 
-  const handleResize = () => {
-    if (!selectTarget) return;
-    const rect = selectTarget.getBoundingClientRect();
-    DropdownRef.current.style.left = `${rect.left - 170}px`;
-  };
-
   useEffect(() => {
     const handleClick = (e) => {
       if (e.target.dataset.id !== "dropdown") {
@@ -28,10 +22,13 @@ export default function DropdownMenu({ setShow, show }) {
     return () => {
       document.removeEventListener("click", handleClick);
     };
-  }, [show]);
+  }, [show, setShow]);
 
   useLayoutEffect(() => {
-    handleResize();
+    if (!selectTarget) return;
+
+    const rect = selectTarget.getBoundingClientRect();
+    DropdownRef.current.style.left = `${rect.left - 170}px`;
   }, [selectTarget, width]);
 
   return (

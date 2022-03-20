@@ -13,7 +13,7 @@ export default function ChangeAvatar({ children }) {
   const { user: profileUser, setUser: setProfileUser } =
     useContext(ProfileContext);
   const fileRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const [pending, setPending] = useState(false);
   const [file, setFile] = useState(null);
   const [readerResult, setReaderResult] = useState("");
 
@@ -24,7 +24,8 @@ export default function ChangeAvatar({ children }) {
 
   useEffect(() => {
     const uploadFile = async () => {
-      if (!readerResult) return;
+      if (!readerResult || !file || pending) return;
+      setPending(true);
       const { downloadURL, fileName } = await uploadAvatar(
         readerResult,
         file.name
@@ -33,41 +34,47 @@ export default function ChangeAvatar({ children }) {
         avatar: downloadURL,
         avatarFileName: fileName,
       });
-      user?.avatarFileName &&
-        (await deleteAvatarFromStorage(user?.avatarFileName));
+      if (user?.avatarFileName) {
+        await deleteAvatarFromStorage(user?.avatarFileName);
+      }
       const userData = await getUserByUsername(user?.username);
-
+      setFile(null);
+      setPending(false);
+      setReaderResult("");
       setUser(userData);
       setProfileUser(userData);
-      setLoading(false);
     };
     uploadFile();
-  }, [readerResult]);
+  }, [
+    readerResult,
+    file,
+    setProfileUser,
+    user?.uid,
+    user?.username,
+    setUser,
+    user?.avatarFileName,
+    pending,
+  ]);
 
   useEffect(() => {
     const reader = new FileReader();
 
     const handleLoad = () => {
-      setLoading(true);
-    };
-
-    const handleEnd = async () => {
       if (!reader.result) return;
       setReaderResult(reader.result);
-      setLoading(false);
     };
 
-    if (file) reader.readAsDataURL(file);
+    if (file) {
+      setLoading(true);
+    }
 
-    reader.addEventListener("loadstart", handleLoad);
-    reader.addEventListener("loadend", handleEnd);
+    reader.addEventListener("load", handleLoad);
     return () => {
-      reader.removeEventListener("loadstart", handleLoad);
-      reader.removeEventListener("loadend", handleEnd);
+      reader.removeEventListener("load", handleLoad);
     };
   }, [file]);
 
-  const handleSelect = async (e) => {
+  const handleSelect = (e) => {
     const file = e.target.files[0];
     setFile(file);
   };
@@ -78,7 +85,7 @@ export default function ChangeAvatar({ children }) {
         className="w-full h-full cursor-pointer relative"
         onClick={handleClick}
       >
-        {loading && (
+        {pending && (
           <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <Loading />
           </div>
