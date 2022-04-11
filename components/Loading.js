@@ -1,3 +1,3 @@
-export default function Loading({className}) {
-  return <div className={`loading ${className}`} />;
+export default function Loading(props) {
+  return <div {...props} className={`loading ${props.className}`} />;
 }

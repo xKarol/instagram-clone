@@ -90,18 +90,21 @@ export default function SignUp() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                testId="register-email-input"
               />
               <InputField
                 type="text"
                 placeholder="Full Name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                testId="register-fullname-input"
               />
               <InputField
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                testId="register-username-input"
               />
               <InputField
                 type="password"
@@ -109,6 +112,7 @@ export default function SignUp() {
                 className="formButton w-full"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                testId="register-password-input"
               />
               <Submit
                 text={"Sign Up"}

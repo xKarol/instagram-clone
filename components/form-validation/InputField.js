@@ -1,12 +1,20 @@
 import { useRef } from "react";
 
-export default function InputField({ type, placeholder, value, onChange }) {
+export default function InputField({
+  type,
+  placeholder,
+  value,
+  onChange,
+  testId,
+}) {
   const passwordShowBtnRef = useRef(null);
   const inputRef = useRef(null);
 
   const togglePassword = () => {
     const type =
-      inputRef.current.getAttribute("type") === "password" ? type : "password";
+      inputRef.current.getAttribute("type") === "password"
+        ? "text"
+        : "password";
     passwordShowBtnRef.current.innerText =
       type === "password" ? "Show" : "Hide";
     inputRef.current.setAttribute("type", type);
@@ -21,6 +29,7 @@ export default function InputField({ type, placeholder, value, onChange }) {
         onChange={onChange}
         required
         ref={inputRef}
+        data-cy={testId}
       />
       <span className="select-none text-gray-300 absolute top-1/2 -translate-y-1/2 left-[8px] pointer-events-none transition-all peer-valid:top-[8px] peer-valid:text-[10px] truncate">
         {placeholder}
@@ -32,6 +41,7 @@ export default function InputField({ type, placeholder, value, onChange }) {
           }`}
           onClick={togglePassword}
           ref={passwordShowBtnRef}
+          data-cy="password-show"
         >
           Show
         </span>

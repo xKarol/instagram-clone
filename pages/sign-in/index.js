@@ -70,7 +70,7 @@ export default function Login() {
       </Head>
       <section className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
-        <div className="w-[350px] max-w-[350px] flex flex-col items-center">
+        <div className="w-[350px] max-w-[350px] flex flex-col items-center" data-cy="login-box">
           <Box>
             <Logo size={200} className="mb-[20px]" link={false} />
             <form
@@ -81,12 +81,14 @@ export default function Login() {
                 placeholder="Username or email"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
+                testId="login-username-input"
               />
               <InputField
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                testId="login-password-input"
               />
               <Submit
                 text={"Log In"}
