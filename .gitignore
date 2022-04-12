@@ -36,3 +36,4 @@ yarn-error.log*
 # other
 todo.md
 serviceAccount.json
+cypress.env.json

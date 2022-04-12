@@ -1,10 +1,11 @@
 /// <reference types="cypress" />
 
-const login = "testuser";
+const login = "testuser@gmail.com";
 const password = "testpass";
 
 describe("Login form", () => {
   before(() => {
+    cy.logout();
     cy.visit("/sign-in");
   });
 
@@ -20,10 +21,10 @@ describe("Login form", () => {
 
   it("Fill login form", () => {
     cy.selectElement("login-username-input")
-      .type("testuser")
+      .type(login)
       .should("have.value", login);
     cy.selectElement("login-password-input")
-      .type("testpass")
+      .type(password)
       .should("have.value", password);
   });
   it("Toggle password show button", () => {
@@ -47,8 +48,6 @@ describe("Login form", () => {
     cy.selectElement("submit-loading").should("not.exist");
     cy.selectElement("validation-submit").click();
     cy.selectElement("submit-loading").should("exist");
-    cy.location({ timeout: 10 * 1000 }).then((loc) => {
-      expect(loc).to.eq("/");
-    });
+    cy.location("pathname", { timeout: 15 * 1000 }).should("eq", "/");
   });
 });
