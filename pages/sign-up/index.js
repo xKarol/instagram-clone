@@ -73,7 +73,10 @@ export default function SignUp() {
         <title>Sign Up • Instagram</title>
       </Head>
       <section className="flex justify-center items-center p-[50px] gap-[25px]">
-        <div className="w-[350px] max-w-[350px] flex flex-col items-center">
+        <div
+          className="w-[350px] max-w-[350px] flex flex-col items-center"
+          data-cy="register-box"
+        >
           <Box>
             <Logo size={200} className="mb-[20px]" link={false} />
             <h1 className="font-medium text-gray-300 text-center mb-[15px]">

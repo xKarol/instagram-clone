@@ -46,3 +46,15 @@ attachCustomCommands({ Cypress, cy, firebase });
 Cypress.Commands.add("selectElement", (testId) =>
   cy.get(`[data-cy='${testId}']`)
 );
+
+Cypress.Commands.add("togglePassword", (element, show) => {
+  cy.selectElement("password-show")
+    .should("have.text", show ? "Show" : "Hide")
+    .click();
+
+  cy.selectElement(element).should(
+    "have.attr",
+    "type",
+    !show ? "password" : "text"
+  );
+})

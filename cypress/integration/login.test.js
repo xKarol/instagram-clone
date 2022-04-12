@@ -28,21 +28,12 @@ describe("Login form", () => {
       .should("have.value", password);
   });
   it("Toggle password show button", () => {
-    const togglePassword = (show = true) => {
-      cy.selectElement("password-show")
-        .should("have.text", show ? "Show" : "Hide")
-        .click();
+    const element = "login-password-input";
 
-      cy.selectElement("login-password-input").should(
-        "have.attr",
-        "type",
-        !show ? "password" : "text"
-      );
-    };
-    togglePassword(true);
-    togglePassword(false);
-    togglePassword(true);
-    togglePassword(false);
+    cy.togglePassword(element, true);
+    cy.togglePassword(element, false);
+    cy.togglePassword(element, true);
+    cy.togglePassword(element, false);
   });
   it("Submit login", () => {
     cy.selectElement("submit-loading").should("not.exist");
