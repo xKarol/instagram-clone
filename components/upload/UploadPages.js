@@ -15,7 +15,7 @@ import {
   SHARE_PAGE,
 } from "../../constants/globals";
 
-export default function Upload() {
+export default function Upload({ testid }) {
   const {
     state: { page, previewFiles },
     setShowDiscardBox,
@@ -28,7 +28,10 @@ export default function Upload() {
         <title>Create new post • Instagram</title>
         <meta name="description" content="Instagram Upload Photos" />
       </Head>
-      <article className="h-[400px] relative transition-all ease-in-out delay-300">
+      <article
+        className="h-[400px] relative transition-all ease-in-out delay-300"
+        data-cy={testid}
+      >
         <Header />
         <section className="flex h-[calc(100%-45px)] flex-col sm:flex-row">
           {page === MAIN_PAGE && <UploadBox />}

@@ -47,7 +47,11 @@ export default function Header() {
                 <button aria-label="message">
                   <FiSend />
                 </button>
-                <button aria-label="upload" onClick={() => setShow(true)}>
+                <button
+                  aria-label="upload"
+                  onClick={() => setShow(true)}
+                  data-cy="add-post-btn"
+                >
                   <MdOutlineAddBox />
                 </button>
                 <button aria-label="explore">
@@ -88,7 +92,7 @@ export default function Header() {
           </div>
         </nav>
       </header>
-      <Upload show={show} setShow={setShow} />
+      <Upload show={show} setShow={setShow} testid="add-post-modal" />
       <DropdownMenu setShow={setShowDropdown} show={showDropdown} />
     </>
   );

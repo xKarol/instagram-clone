@@ -41,12 +41,14 @@ export default function Header() {
           <button
             className="ml-[15px] text-[25px] cursor-pointer"
             onClick={handlePrevPage}
+            data-cy="photo-upload-prev"
           >
             <BsArrowLeft />
           </button>
           <button
             className="text-blue bg-transparent text-[14px] font-medium mr-[15px]"
             onClick={handleNextPage}
+            data-cy="photo-upload-next"
           >
             {page === CREATE_PAGE ? "Share" : "Next"}
           </button>

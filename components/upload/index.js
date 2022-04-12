@@ -18,7 +18,7 @@ const reducer = (state, newState) => {
   return { ...state, ...newState };
 };
 
-export default function Upload({ show, setShow }) {
+export default function Upload({ show, setShow, testid }) {
   const [showDiscardBox, setShowDiscardBox] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -49,7 +49,7 @@ export default function Upload({ show, setShow }) {
       <Modal
         show={show}
         setShow={setShow}
-        element={<UploadPages />}
+        element={<UploadPages testid={testid} />}
         onClose={blockClose}
       />
     </UploadContext.Provider>
