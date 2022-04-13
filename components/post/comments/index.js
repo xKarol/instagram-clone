@@ -5,7 +5,7 @@ import { MINI_COMMENT, NORMAL_COMMENT } from "../../../constants/post";
 
 export default function Comments({ comments, type = NORMAL_COMMENT }) {
   return (
-    <section>
+    <section data-cy="post-comments-list">
       {!!comments?.length &&
         (type === NORMAL_COMMENT
           ? comments.map((comment) => (

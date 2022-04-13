@@ -52,6 +52,7 @@ export default function AddComment() {
       <form
         className={`flex items-center flex-1 ${!!pending && "opacity-50"}`}
         onSubmit={(e) => addNewComment(e)}
+        data-cy="post-add-comment"
       >
         <div className="flex-1 text-[14px] relative">
           {!!pending && (

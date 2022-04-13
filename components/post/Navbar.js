@@ -30,6 +30,7 @@ export default function Navbar() {
       <button
         aria-label="like photo"
         onClick={handleLike}
+        data-cy="post-like"
         className={`cursor-pointer transition-opacity hover:opacity-50 ${
           !!liked && "text-red"
         }`}

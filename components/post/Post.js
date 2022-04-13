@@ -40,7 +40,10 @@ export default function Post({ data: photo }) {
         likes,
       }}
     >
-      <article className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm">
+      <article
+        className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm"
+        data-cy="post"
+      >
         <Header />
         <Photo className={"w-full pb-[125%]"} />
         <section className="px-[16px]">

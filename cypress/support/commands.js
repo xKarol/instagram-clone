@@ -43,8 +43,8 @@ firebase.initializeApp(fbConfig);
 
 attachCustomCommands({ Cypress, cy, firebase });
 
-Cypress.Commands.add("selectElement", (testId) =>
-  cy.get(`[data-cy='${testId}']`)
+Cypress.Commands.add("selectElement", (testId, options) =>
+  cy.get(`[data-cy='${testId}']`,  options)
 );
 
 Cypress.Commands.add("togglePassword", (element, show) => {
@@ -57,4 +57,4 @@ Cypress.Commands.add("togglePassword", (element, show) => {
     "type",
     !show ? "password" : "text"
   );
-})
+});
