@@ -12,18 +12,17 @@ export default function useProfilesSuggestions() {
     const getData = async () => {
       setLoading(true);
       const suggestions = await getProfilesSuggestion(db);
-
       setSuggestions(
         loggedIn
-          ? suggestions
-              .filter((suggestion) => suggestion.username !== user?.username)
-              .slice(0, 5)
+          ? suggestions.filter(
+              (suggestion) => suggestion.username !== user?.username
+            )
           : suggestions
       );
       setLoading(false);
     };
     getData();
-  }, [user.uid]);
+  }, [user.uid, loggedIn, user?.username]);
 
   return { setSuggestions, suggestions, loading };
 }

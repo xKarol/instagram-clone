@@ -10,7 +10,7 @@ export default function useRedirectLoggedUser(path = "/") {
     if (loggedIn) {
       router.push(path);
     }
-  }, [path, loggedIn]);
+  }, [path, loggedIn, router]);
 
   return loggedIn;
 }

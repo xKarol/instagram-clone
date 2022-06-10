@@ -9,13 +9,13 @@ export default function useStories(user) {
   useEffect(() => {
     const getData = async () => {
       if (!user.uid) return;
-      !stories?.length && setLoading(true);
+      setLoading(true);
       const storiesData = await getUserStories(db, user?.uid);
       setStories(storiesData);
       setLoading(false);
     };
     getData();
-  }, [user?.followings]);
+  }, [user.uid]);
 
   return { stories, loading };
 }

@@ -170,7 +170,7 @@ export const getProfilesSuggestion = async (db) => {
     collection(db, "users"),
     where("random", ">=", rand),
     orderBy("random"),
-    limit(6)
+    limit(5)
   );
   const profiles = await getDocs(q);
   return profiles.docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
