@@ -5,7 +5,7 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
   const handleClose = () => {
     setShow(false);
     if (onClose) {
-      onClose();
+      onClose?.();
     }
   };
 

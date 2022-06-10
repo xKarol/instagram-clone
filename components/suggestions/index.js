@@ -7,9 +7,11 @@ export default function Suggestions({ feedRef }) {
 
   useLayoutEffect(() => {
     const checkResize = () => {
-      sideBoxRef.current.style.left = `${
-        feedRef.current.offsetWidth + feedRef.current.offsetLeft + 10
-      }px`;
+      const feedEl = feedRef.current;
+      if (!feedEl) return;
+      const offsetWidth = feedEl.offsetWidth;
+      const offsetLeft = feedEl.offsetLeft;
+      sideBoxRef.current.style.left = `${offsetWidth + offsetLeft + 10}px`;
     };
     checkResize();
     window.addEventListener("resize", checkResize);
