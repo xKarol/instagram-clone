@@ -2,11 +2,13 @@ import { useRef } from "react";
 import Header from "../components/Header";
 import Suggestions from "../components/suggestions";
 import Stories from "../components/stories";
-import Posts from "../components/post";
 import Layout from "../components/Layout";
+import usePhotos from "../hooks/usePhotos";
+import PostsList from "../components/post/PostsList";
 
 export default function Home() {
   const feedRef = useRef(null);
+  const { photos } = usePhotos();
 
   return (
     <>
@@ -17,7 +19,7 @@ export default function Home() {
           ref={feedRef}
         >
           <Stories />
-          <Posts />
+          <PostsList photos={photos} />
         </div>
         <Suggestions feedRef={feedRef} />
       </Layout>
