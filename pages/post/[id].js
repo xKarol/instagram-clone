@@ -63,7 +63,7 @@ export default function Post() {
               likes,
             }}
           >
-            <article className="w-full md:w-[80vw] flex md:h-[600px] flex-col lg:flex-row bg-white border border-gray-200 overflow-hidden">
+            <article className="w-full md:w-[80vw] flex md:h-[600px] flex-col lg:flex-row bg-white border border-gray-200 lg:overflow-hidden">
               <Photo className="w-full min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
               <section className="md:flex-1 flex flex-col md:h-full w-full lg:w-[350px] bg-white">
                 <PostHeader className={"px-[15px]"} />

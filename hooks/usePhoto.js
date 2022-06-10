@@ -9,6 +9,7 @@ export default function usePhoto(id) {
 
   useEffect(() => {
     const getData = async () => {
+      if (!id) return;
       setLoading(true);
       const photo = await getPhotoById(id);
       setComments(photo?.comments);
@@ -17,7 +18,7 @@ export default function usePhoto(id) {
       setLoading(false);
     };
     getData();
-  }, []);
+  }, [id]);
 
   return { setPhoto, photo, loading, setLikes, likes, comments, setComments };
 }
