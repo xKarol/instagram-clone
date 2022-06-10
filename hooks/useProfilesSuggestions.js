@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { getProfilesSuggestion } from "../services/firebase";
 import UserContext from "../context/UserContext";
+import { db } from "../config/firebase.config";
 
 export default function useProfilesSuggestions() {
   const [suggestions, setSuggestions] = useState([]);
@@ -10,7 +11,7 @@ export default function useProfilesSuggestions() {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      const suggestions = await getProfilesSuggestion();
+      const suggestions = await getProfilesSuggestion(db);
 
       setSuggestions(
         loggedIn

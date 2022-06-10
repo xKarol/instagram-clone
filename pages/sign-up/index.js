@@ -20,6 +20,7 @@ import FacebookLogin from "../../components/form-validation/FacebookLogin";
 import Submit from "../../components/form-validation/Submit";
 import Separator from "../../components/form-validation/Separator";
 import Box from "../../components/form-validation/Box";
+import { db } from "../../config/firebase.config";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -44,11 +45,11 @@ export default function SignUp() {
     if (disabledBtn) return;
     try {
       setLoading(true);
-      const validUsername = await getUserByUsername(username, false);
+      const validUsername = await getUserByUsername(db, username, false);
       if (validUsername) {
         return setError("Username already in use.");
       }
-      await signUpUser(username, fullName, email, password);
+      await signUpUser(db, username, fullName, email, password);
       router.push("/");
     } catch (error) {
       const errorMessages = {

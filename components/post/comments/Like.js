@@ -4,6 +4,7 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import UserContext from "../../../context/UserContext";
 import PhotoContext from "../../../context/PhotoContext";
 import CommentContext from "../../../context/CommentContext";
+import { db } from "../../../config/firebase.config";
 
 export default function Like() {
   const comment = useContext(CommentContext);
@@ -28,7 +29,7 @@ export default function Like() {
       setLikes([...likes, { uid: user?.uid }]);
     }
     setLiked(!liked);
-    await likeComment(photo?.photoId, comment?.commentId, user?.uid, liked);
+    await likeComment(db, photo?.photoId, comment?.commentId, user?.uid, liked);
     setPending(false);
   };
 

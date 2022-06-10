@@ -4,6 +4,7 @@ import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import { AiFillHeart } from "react-icons/ai";
 import { likePost } from "../../services/firebase";
+import { db } from "../../config/firebase.config";
 
 export default function Photo({ className }) {
   const { photo, liked, setLiked, setLikes, likes } = useContext(PhotoContext);
@@ -21,7 +22,7 @@ export default function Photo({ className }) {
       setLikes([...likes, { uid: user?.uid }]);
     }
     setLiked(!liked);
-    await likePost(photo?.photoId, user?.uid, liked);
+    await likePost(db, photo?.photoId, user?.uid, liked);
     setPending(false);
   };
 
@@ -37,10 +38,7 @@ export default function Photo({ className }) {
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcsnt3PQAHAAKrcPYcMAAAAABJRU5ErkJggg==";
 
   return (
-    <div
-      className={`relative ${className}`}
-      onDoubleClick={handleLike}
-    >
+    <div className={`relative ${className}`} onDoubleClick={handleLike}>
       {heart && (
         <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <AiFillHeart

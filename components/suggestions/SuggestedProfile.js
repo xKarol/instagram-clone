@@ -9,6 +9,7 @@ import {
 } from "../../services/firebase";
 import Loading from "../Loading";
 import UserContext from "../../context/UserContext";
+import { db } from "../../config/firebase.config";
 
 export default function SuggestedProfile({ avatar, username, docId }) {
   const { user, setUser, loggedIn } = useContext(UserContext);
@@ -19,9 +20,9 @@ export default function SuggestedProfile({ avatar, username, docId }) {
     if (loading || !loggedIn) return;
     setLoading(true);
     !following
-      ? await followUser(user.uid, docId)
-      : await unfollowUser(user.uid, docId);
-    const userData = await getUserByUsername(user?.username);
+      ? await followUser(db, user.uid, docId)
+      : await unfollowUser(db, user.uid, docId);
+    const userData = await getUserByUsername(db, user?.username);
     setUser(userData);
     setLoading(false);
   };

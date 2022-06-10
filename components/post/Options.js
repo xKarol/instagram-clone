@@ -6,6 +6,7 @@ import Button from "../modal/Button";
 import Loading from "../Loading";
 import { deletePost } from "../../services/firebase";
 import { deletePhotoFromStorage } from "../../services/storage";
+import { db } from "../../config/firebase.config";
 
 export default function Options() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function Options() {
   const handleDelete = async () => {
     if (!photo.fileName || !isCreator || pending || !loggedIn) return;
     setPending(true);
-    await deletePost(photo.photoId);
+    await deletePost(db, photo.photoId);
     await deletePhotoFromStorage(user.username, photo.fileName);
     setPhotos(photos.filter((el) => el?.photoId !== photo?.photoId));
     setPending(false);

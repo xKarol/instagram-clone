@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { db } from "../config/firebase.config";
 import { getUserByUsername, getUserPhotos } from "../services/firebase";
 
 export default function usePhotos(profile) {
@@ -9,8 +10,8 @@ export default function usePhotos(profile) {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      const user = await getUserByUsername(profile);
-      const photos = await getUserPhotos(profile);
+      const user = await getUserByUsername(db, profile);
+      const photos = await getUserPhotos(db, profile);
       setUser(user);
       setPhotos(photos);
       setLoading(false);

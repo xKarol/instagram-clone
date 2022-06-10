@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { db } from "../config/firebase.config";
 import { getUserStories } from "../services/firebase";
 
 export default function useStories(user) {
@@ -9,7 +10,7 @@ export default function useStories(user) {
     const getData = async () => {
       if (!user.uid) return;
       !stories?.length && setLoading(true);
-      const storiesData = await getUserStories(user?.uid);
+      const storiesData = await getUserStories(db, user?.uid);
       setStories(storiesData);
       setLoading(false);
     };

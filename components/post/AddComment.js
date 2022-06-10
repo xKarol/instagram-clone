@@ -6,6 +6,7 @@ import PhotoContext from "../../context/PhotoContext";
 import Loading from "../Loading";
 import { trimSpace } from "../../services/utils";
 import { serverTimestamp } from "firebase/firestore";
+import { db } from "../../config/firebase.config";
 
 export default function AddComment() {
   const [comment, setComment] = useState("");
@@ -22,7 +23,7 @@ export default function AddComment() {
     e.preventDefault();
     if (disabled || pending || !loggedIn) return;
     setPending(true);
-    const res = await addComment(
+    const res = await addComment(db,
       trimSpace(comment),
       photo.photoId,
       user?.username

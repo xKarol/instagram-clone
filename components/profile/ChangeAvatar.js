@@ -37,7 +37,7 @@ export default function ChangeAvatar({ children }) {
       if (user?.avatarFileName) {
         await deleteAvatarFromStorage(user?.avatarFileName);
       }
-      const userData = await getUserByUsername(user?.username);
+      const userData = await getUserByUsername(db, user?.username);
       setFile(null);
       setPending(false);
       setReaderResult("");

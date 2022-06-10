@@ -1,4 +1,3 @@
-import { db } from "../config/firebase.config";
 import {
   addDoc,
   setDoc,
@@ -21,7 +20,7 @@ import {
 import { auth } from "../config/firebase.config";
 import { random } from "./utils";
 
-export async function signUpUser(username, fullname, email, password) {
+export const signUpUser = async (db, username, fullname, email, password) => {
   const auth = getAuth();
   const createUser = await createUserWithEmailAndPassword(
     auth,
@@ -35,71 +34,71 @@ export async function signUpUser(username, fullname, email, password) {
     random: random(1000000),
   });
   return { createUser, setUser };
-}
+};
 
-export async function logOut() {
+export const logOut = async () => {
   const res = await signOut(auth);
   return { res };
-}
+};
 
-export async function getUserMainData(username) {
+export const getUserMainData = async (db, username) => {
   if (!username) return;
   const q = query(collection(db, "users"), where("username", "==", username));
   const userDoc = await getDocs(q);
   const user = { ...userDoc?.docs[0]?.data(), uid: userDoc?.docs[0]?.id };
   return user;
-}
+};
 
-export async function getUserByUID(uid, extradata = true) {
+export const getUserByUID = async (db, uid, extradata = true) => {
   if (!uid) return;
   const userDoc = await getDoc(doc(db, "users", uid));
   const user = { ...userDoc.data(), uid: userDoc.id };
   if (extradata) {
-    const followings = await getUserFollowings(user?.uid);
-    const followers = await getUserFollowers(user?.uid);
+    const followings = await getUserFollowings(db, user?.uid);
+    const followers = await getUserFollowers(db, user?.uid);
     return { ...user, followers: followers, followings: followings };
   } else {
     return { ...user };
   }
-}
+};
 
-export async function getUserFollowers(uid) {
+export const getUserFollowers = async (db, uid) => {
   if (!uid) return;
   const userFollowersDoc = await getDocs(
     collection(db, "users", uid, "followers")
   );
   const followers = userFollowersDoc.docs.map((doc) => ({ ...doc.data() }));
   return followers;
-}
-export async function getUserFollowings(uid) {
+};
+export const getUserFollowings = async (db, uid) => {
   if (!uid) return;
   const userFollowingsDoc = await getDocs(
     collection(db, "users", uid, "followings")
   );
   const followings = userFollowingsDoc.docs.map((doc) => ({ ...doc.data() }));
   return followings;
-}
+};
 
-export async function getUserByUsername(username, extradata = true) {
-  const user = await getUserMainData(username);
+export const getUserByUsername = async (db, username, extradata = true) => {
+  const user = await getUserMainData(db, username);
   if (!user?.uid) return;
   if (extradata) {
-    const followings = await getUserFollowings(user?.uid);
-    const followers = await getUserFollowers(user?.uid);
+    const followings = await getUserFollowings(db, user?.uid);
+    const followers = await getUserFollowers(db, user?.uid);
     return { ...user, followers: followers, followings: followings };
   } else {
     return { ...user };
   }
-}
+};
 
-export async function getCommentLikes(postId, commentId) {
+export const getCommentLikes = async (db, postId, commentId) => {
   const commentsDocs = await getDocs(
     collection(db, "photos", postId, "comments", commentId, "likes")
   );
   return commentsDocs.docs.map((doc) => doc.data());
-}
+};
 
-export async function getPhotoComments(postId) {
+export const getPhotoComments = async (db, postId) => {
   const q = query(
     collection(db, "photos", postId, "comments"),
     orderBy("timestamp", "desc")
@@ -108,8 +107,8 @@ export async function getPhotoComments(postId) {
   const comments = await Promise.all(
     commentsDocs.docs.map(async (docData) => {
       const username = docData.data().username;
-      const userData = await getUserByUsername(username, false);
-      const commentLikes = await getCommentLikes(postId, docData.id);
+      const userData = await getUserByUsername(db, username, false);
+      const commentLikes = await getCommentLikes(db, postId, docData.id);
       return {
         username: userData.username,
         avatar: userData.avatar,
@@ -120,22 +119,22 @@ export async function getPhotoComments(postId) {
     })
   );
   return comments;
-}
+};
 
-export async function getPhotoLikes(postId) {
+export const getPhotoLikes = async (db, postId) => {
   const likesDocs = await getDocs(collection(db, "photos", postId, "likes"));
   return likesDocs.docs.map((doc) => doc.data());
-}
+};
 
-export async function getPhotos() {
+export const getPhotos = async (db) => {
   const q = query(collection(db, "photos"), orderBy("timestamp", "desc"));
   const photosDocs = await getDocs(q);
   const photos = await Promise.all(
     photosDocs.docs.map(async (docData) => {
       const username = docData.data().username;
-      const userData = await getUserByUsername(username, false);
-      const comments = await getPhotoComments(docData.id);
-      const likes = await getPhotoLikes(docData.id);
+      const userData = await getUserByUsername(db, username, false);
+      const comments = await getPhotoComments(db, docData.id);
+      const likes = await getPhotoLikes(db, docData.id);
       return {
         user: userData,
         ...docData.data(),
@@ -146,15 +145,15 @@ export async function getPhotos() {
     })
   );
   return photos;
-}
+};
 
-export async function getPhotoById(id) {
+export const getPhotoById = async (db, id) => {
   const photoDoc = await getDoc(doc(db, "photos", id));
   if (!photoDoc.exists()) return null;
   const username = photoDoc.data().username;
-  const userData = await getUserByUsername(username, false);
-  const comments = await getPhotoComments(photoDoc.id);
-  const likes = await getPhotoLikes(photoDoc.id);
+  const userData = await getUserByUsername(db, username, false);
+  const comments = await getPhotoComments(db, photoDoc.id);
+  const likes = await getPhotoLikes(db, photoDoc.id);
   const photoData = {
     user: userData,
     ...photoDoc.data(),
@@ -163,10 +162,9 @@ export async function getPhotoById(id) {
     likes: likes,
   };
   return photoData;
-}
+};
 
-export async function getProfilesSuggestion() {
-  //TODO poprawic pobieranie losowych uzytkownikow
+export const getProfilesSuggestion = async (db) => {
   const rand = random(1000000);
   const q = query(
     collection(db, "users"),
@@ -176,9 +174,9 @@ export async function getProfilesSuggestion() {
   );
   const profiles = await getDocs(q);
   return profiles.docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
-}
+};
 
-export const followUser = async (userDocId, docId) => {
+export const followUser = async (db, userDocId, docId) => {
   if (userDocId === docId) return;
   await setDoc(doc(db, "users", docId, "followers", userDocId), {
     uid: userDocId,
@@ -188,20 +186,20 @@ export const followUser = async (userDocId, docId) => {
   });
 };
 
-export const unfollowUser = async (userDocId, docId) => {
+export const unfollowUser = async (db, userDocId, docId) => {
   if (userDocId === docId) return;
   await deleteDoc(doc(db, "users", docId, "followers", userDocId));
   await deleteDoc(doc(db, "users", userDocId, "followings", docId));
 };
 
-export const getUserStories = async (docId) => {
+export const getUserStories = async (db, docId) => {
   const storiesDocs = await getDocs(
     collection(db, "users", docId, "followings")
   );
   const stories = await Promise.all(
     storiesDocs.docs.map(async (docData) => {
       const userId = docData.data().uid;
-      const userData = await getUserByUID(userId, false);
+      const userData = await getUserByUID(db, userId, false);
       return {
         username: userData?.username,
         avatar: userData?.avatar,
@@ -213,7 +211,7 @@ export const getUserStories = async (docId) => {
   return stories;
 };
 
-export const addComment = async (comment, postId, username) => {
+export const addComment = async (db, comment, postId, username) => {
   if (!comment.length) return;
   return await addDoc(collection(db, "photos", postId, "comments"), {
     comment: comment,
@@ -222,29 +220,30 @@ export const addComment = async (comment, postId, username) => {
   });
 };
 
-export const likePost = async (postId, userId, liked) => {
-  !liked
-    ? setDoc(doc(db, "photos", postId, "likes", userId), {
-        uid: userId,
-      })
-    : deleteDoc(doc(db, "photos", postId, "likes", userId));
+export const likePost = async (db, postId, userId, liked) => {
+  if (!liked) {
+    setDoc(doc(db, "photos", postId, "likes", userId), {
+      uid: userId,
+    });
+  } else {
+    deleteDoc(doc(db, "photos", postId, "likes", userId));
+  }
 };
 
-export const likeComment = async (postId, commentId, userId, liked) => {
-  !liked
-    ? setDoc(
-        doc(db, "photos", postId, "comments", commentId, "likes", userId),
-        {
-          uid: userId,
-        }
-      )
-    : deleteDoc(
-        doc(db, "photos", postId, "comments", commentId, "likes", userId)
-      );
+export const likeComment = async (db, postId, commentId, userId, liked) => {
+  if (!liked) {
+    setDoc(doc(db, "photos", postId, "comments", commentId, "likes", userId), {
+      uid: userId,
+    });
+  } else {
+    deleteDoc(
+      doc(db, "photos", postId, "comments", commentId, "likes", userId)
+    );
+  }
 };
 
-export async function getUserPhotos(username) {
-  if (!username) return;
+export const getUserPhotos = async (db, username) => {
+  if (!username.length) return;
   const q = query(
     collection(db, "photos"),
     where("username", "==", username),
@@ -253,8 +252,8 @@ export async function getUserPhotos(username) {
   const photosDocs = await getDocs(q);
   const photos = await Promise.all(
     photosDocs.docs.map(async (docData) => {
-      const comments = await getPhotoComments(docData.id);
-      const likes = await getPhotoLikes(docData.id);
+      const comments = await getPhotoComments(db, docData.id);
+      const likes = await getPhotoLikes(db, docData.id);
       return {
         ...docData.data(),
         photoId: docData.id,
@@ -264,8 +263,8 @@ export async function getUserPhotos(username) {
     })
   );
   return photos;
-}
+};
 
-export async function deletePost(postId) {
+export const deletePost = async (db, postId) => {
   return await deleteDoc(doc(db, "photos", postId));
-}
+};

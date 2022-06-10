@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { db } from "../config/firebase.config";
 import { getPhotoById } from "../services/firebase";
 
 export default function usePhoto(id) {
@@ -11,7 +12,7 @@ export default function usePhoto(id) {
     const getData = async () => {
       if (!id) return;
       setLoading(true);
-      const photo = await getPhotoById(id);
+      const photo = await getPhotoById(db, id);
       setComments(photo?.comments);
       setLikes(photo?.likes);
       setPhoto(photo);

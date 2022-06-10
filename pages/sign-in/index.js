@@ -4,7 +4,7 @@ import Link from "next/link";
 import Logo from "../../components/Logo";
 import PhoneGallery from "../../components/PhoneGallery";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../config/firebase.config";
+import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
 import { useRouter } from "next/router";
 import { isValidEmail } from "../../services/utils";
@@ -38,7 +38,7 @@ export default function Login() {
         await signInWithEmailAndPassword(auth, login, password);
       } else {
         //username login
-        const { email } = await getUserByUsername(login, false);
+        const { email } = await getUserByUsername(db, login, false);
         if (email) {
           await signInWithEmailAndPassword(auth, email, password);
         }

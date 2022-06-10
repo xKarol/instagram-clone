@@ -34,7 +34,7 @@ function Share() {
           timestamp: serverTimestamp(),
         });
         dispatch({ uploaded: true });
-        const photoData = await getPhotoById(photoDoc.id);
+        const photoData = await getPhotoById(db, photoDoc.id);
         setPhotos((prevState) => [photoData, ...prevState]);
       } catch {
         setError(true);

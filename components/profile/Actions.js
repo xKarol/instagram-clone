@@ -14,6 +14,7 @@ import {
   unfollowUser,
 } from "../../services/firebase";
 import Skeleton from "../Skeleton";
+import { db } from "../../config/firebase.config";
 
 export default function Actions({ className }) {
   const { user: profileUser, loading } = useContext(ProfileContext);
@@ -26,9 +27,9 @@ export default function Actions({ className }) {
     if (pending || loading || !loggedIn) return;
     setPending(true);
     !isFollowed
-      ? await followUser(user.uid, profileUser?.uid)
-      : await unfollowUser(user.uid, profileUser?.uid);
-    const userData = await getUserByUsername(user?.username);
+      ? await followUser(db, user.uid, profileUser?.uid)
+      : await unfollowUser(db, user.uid, profileUser?.uid);
+    const userData = await getUserByUsername(db, user?.username);
     setUser(userData);
     setPending(false);
   };

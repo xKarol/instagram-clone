@@ -6,6 +6,7 @@ import { RiBookmarkLine } from "react-icons/ri";
 import { likePost } from "../../services/firebase";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
+import { db } from "../../config/firebase.config";
 
 export default function Navbar() {
   const { photo, liked, setLiked, setLikes, likes } = useContext(PhotoContext);
@@ -21,7 +22,7 @@ export default function Navbar() {
       setLikes([...likes, { uid: user?.uid }]);
     }
     setLiked(!liked);
-    await likePost(photo?.photoId, user?.uid, liked);
+    await likePost(db, photo?.photoId, user?.uid, liked);
     setPending(false);
   };
 
