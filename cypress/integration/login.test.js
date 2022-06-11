@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-const login = "testuser@gmail.com";
-const password = "testpass";
-
 describe("Login form", () => {
   before(() => {
     cy.logout();
@@ -20,12 +17,16 @@ describe("Login form", () => {
   });
 
   it("Fill login form", () => {
-    cy.selectElement("login-username-input")
-      .type(login)
-      .should("have.value", login);
-    cy.selectElement("login-password-input")
-      .type(password)
-      .should("have.value", password);
+    cy.fixture("user-auth").then((data) => {
+      const { login, password } = data;
+
+      cy.selectElement("login-username-input")
+        .type(login)
+        .should("have.value", login);
+      cy.selectElement("login-password-input")
+        .type(password)
+        .should("have.value", password);
+    });
   });
   it("Toggle password show button", () => {
     const element = "login-password-input";

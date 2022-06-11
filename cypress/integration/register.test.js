@@ -1,12 +1,5 @@
 /// <reference types="cypress" />
 
-const userData = {
-  email: "testuser@gmail.com",
-  fullName: "Test User",
-  username: "testuser",
-  password: "testpass",
-};
-
 describe("Register form", () => {
   before(() => {
     cy.logout();
@@ -23,18 +16,22 @@ describe("Register form", () => {
   });
 
   it("Fill register form", () => {
-    cy.selectElement("register-email-input")
-      .type(userData.email)
-      .should("have.value", userData.email);
-    cy.selectElement("register-fullname-input")
-      .type(userData.fullName)
-      .should("have.value", userData.fullName);
-    cy.selectElement("register-username-input")
-      .type(userData.username)
-      .should("have.value", userData.username);
-    cy.selectElement("register-password-input")
-      .type(userData.password)
-      .should("have.value", userData.password);
+    cy.fixture("user-auth").then((data) => {
+      const { fullName, login: email, username, password } = data;
+
+      cy.selectElement("register-email-input")
+        .type(email)
+        .should("have.value", email);
+      cy.selectElement("register-fullname-input")
+        .type(fullName)
+        .should("have.value", fullName);
+      cy.selectElement("register-username-input")
+        .type(username)
+        .should("have.value", username);
+      cy.selectElement("register-password-input")
+        .type(password)
+        .should("have.value", password);
+    });
   });
 
   it("Toggle password show button", () => {
