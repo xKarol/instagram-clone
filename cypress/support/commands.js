@@ -44,7 +44,7 @@ firebase.initializeApp(fbConfig);
 attachCustomCommands({ Cypress, cy, firebase });
 
 Cypress.Commands.add("selectElement", (testId, options) =>
-  cy.get(`[data-cy='${testId}']`,  options)
+  cy.get(`[data-cy='${testId}']`, options)
 );
 
 Cypress.Commands.add("togglePassword", (element, show) => {
@@ -57,4 +57,11 @@ Cypress.Commands.add("togglePassword", (element, show) => {
     "type",
     !show ? "password" : "text"
   );
+});
+
+Cypress.Commands.add("checkProtectedRoute", (path, pathShouldEq = "/") => {
+  cy.visit(path);
+  cy.selectElement("pending-logo").should("exist");
+  cy.location("pathname", { timeout: 20 * 1000 }).should("eq", pathShouldEq);
+  cy.selectElement("pending-logo").should("not.exist");
 });
