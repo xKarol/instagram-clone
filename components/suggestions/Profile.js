@@ -10,8 +10,8 @@ export default function Profile() {
       {loggedIn && (
         <article className="h-[100px] flex items-center gap-[20px] text-[14px]">
           <Link href={`/${user?.username}`}>
-            <a className="h-[55px] w-[55px]">
-              <Avatar src={user?.avatar} />
+            <a>
+              <Avatar src={user.avatar} size={55} />
             </a>
           </Link>
           <div className="flex flex-col leading-[20px]">

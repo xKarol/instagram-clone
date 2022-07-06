@@ -66,7 +66,8 @@ const HeaderContainer = ({ ...props }) => {
             >
               <Avatar
                 src={user.avatar}
-                className="pointer-events-none w-[23px] h-[23px]"
+                className="pointer-events-none"
+                size={23}
               />
             </HeaderNavLink>
           </HeaderNavList>
