@@ -16,6 +16,7 @@
       #dbdbdb 40%,
       #dbdbdb 100%
     );
+    flex-shrink: 0;
     background-repeat: no-repeat;
     background-size: 450px 400px;
     animation: shimmer 1s linear infinite;
@@ -48,6 +49,7 @@
     border-top-color: rgb(0, 0, 0);
     animation: spin 1s infinite linear;
     pointer-events: none;
+    flex-shrink: 0;
   }
   .scaleAnim {
     animation: scaleAnim 0.2s ease-in-out;
