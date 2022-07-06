@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import Layout from "../../components/Layout";
-import Header from "../../components/Header";
+import HeaderContainer from "../../containers/header";
 import Photo from "../../components/post/Photo";
 import PostHeader from "../../components/post/Header";
 import Navbar from "../../components/post/Navbar";
@@ -49,7 +49,7 @@ export default function Post() {
         </title>
       </Head>
       <Layout className="flex justify-center">
-        <Header />
+        <HeaderContainer />
         {photo && (
           <PhotoContext.Provider
             value={{

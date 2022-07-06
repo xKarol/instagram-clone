@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Layout from "../Layout";
-import Header from "../Header";
+import HeaderContainer from "../../containers/header";
 import Statistics from "./Statistics";
 import ProfileData from "./ProfileData";
 import Nav from "./Nav";
@@ -26,7 +26,7 @@ export default function Profile({ profile }) {
         value={{ setUser, user, setPhotos, photos, loading }}
       >
         <Layout>
-          <Header />
+          <HeaderContainer />
           <div className="flex flex-col">
             <ProfileData user={user} photos={photos} />
             <Statistics className={"md:hidden"} />

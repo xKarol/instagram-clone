@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import HeaderContainer from "../containers/header";
 import NotFound from "../components/NotFound";
 import Head from "next/head";
 
@@ -8,7 +8,7 @@ export default function NotFoundPage() {
       <Head>
         <title>Page Not Found • Instagram</title>
       </Head>
-      <Header />
+      <HeaderContainer />
       <NotFound />
     </>
   );

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useContext } from "react";
 import UploadContext from "../../context/UploadContext";
-import Header from "./Header";
+import HeaderContainer from "../../containers/header";
 import Crop from "./crop";
 import Details from "./settings";
 import UploadBox from "./UploadBox";
@@ -32,7 +32,7 @@ export default function Upload({ testid }) {
         className="h-[400px] relative transition-all ease-in-out delay-300"
         data-cy={testid}
       >
-        <Header />
+        <HeaderContainer />
         <section className="flex h-[calc(100%-45px)] flex-col sm:flex-row">
           {page === MAIN_PAGE && <UploadBox />}
           {page === CROP_PAGE && <Crop src={previewFiles} />}

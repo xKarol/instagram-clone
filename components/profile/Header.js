@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import ProfileContext from "../../context/ProfileContext";
 import Actions from "./Actions";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { SCREEN_MEDIUM } from "../../constants/screens";
 import Skeleton from "../Skeleton";
+import { useViewport } from "../../context/ViewportContext";
 
 export default function Header() {
   const { user: profileUser, loading } = useContext(ProfileContext);
-  const { width } = useWindowDimensions();
+  const { width } = useViewport();
 
   return (
     <>

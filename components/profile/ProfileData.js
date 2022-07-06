@@ -2,16 +2,16 @@ import { useContext } from "react";
 import Avatar from "../Avatar";
 import Biography from "./Biography";
 import ChangeAvatar from "./ChangeAvatar";
-import Header from "./Header";
+import HeaderContainer from "../../containers/header";
 import Statistics from "./Statistics";
 import ProfileContext from "../../context/ProfileContext";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { SCREEN_MEDIUM } from "../../constants/screens";
 import Skeleton from "../Skeleton";
+import { useViewport } from "../../context/ViewportContext";
 
 export default function ProfileData() {
   const { user, loading } = useContext(ProfileContext);
-  const { width } = useWindowDimensions();
+  const { width } = useViewport();
 
   return (
     <div className="flex mb-[15px] md:mb-[50px]">
@@ -27,7 +27,7 @@ export default function ProfileData() {
             )}
           </div>
           <main className="flex flex-col space-y-[15px]">
-            <Header />
+            <HeaderContainer />
             <Statistics className={"hidden md:flex border-none"} />
             {width >= SCREEN_MEDIUM && (
               <Biography className={"hidden md:block"} />

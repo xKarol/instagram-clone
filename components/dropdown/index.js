@@ -1,13 +1,13 @@
 import { useEffect, useLayoutEffect, useState, useRef } from "react";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ProfileDropdown from "./ProfileDropdown";
 import NotificationDropdown from "./NotificationDropdown";
 import * as dropdown from "../../constants/dropdown";
+import { useViewport } from "../../context/ViewportContext";
 
 export default function DropdownMenu({ setShow, show }) {
   const [selectTarget, setTarget] = useState(null);
   const DropdownRef = useRef(null);
-  const { width } = useWindowDimensions();
+  const { width } = useViewport();
 
   useEffect(() => {
     const handleClick = (e) => {

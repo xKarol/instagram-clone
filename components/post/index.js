@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState, useContext } from "react";
-import Header from "./Header";
+import HeaderContainer from "../../containers/header";
 import Photo from "./Photo";
 import Navbar from "./Navbar";
 import Likes from "./Likes";
@@ -44,7 +44,7 @@ export default function Post({ data: photo }) {
         className="flex flex-col bg-white border border-gray-200 mt-[20px] rounded-sm"
         data-cy="post"
       >
-        <Header />
+        <HeaderContainer />
         <Photo className={"w-full pb-[125%]"} />
         <section className="px-[16px]">
           <Navbar />
