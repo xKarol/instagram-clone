@@ -24,5 +24,5 @@ export default function useStories(userId) {
     getData();
   }, [userId, stories]);
 
-  return { stories, loading };
+  return { stories, loading, error };
 }
