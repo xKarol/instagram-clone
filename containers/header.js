@@ -18,15 +18,12 @@ import Upload from "../components/upload";
 import DropdownMenu from "../components/dropdown";
 import HeaderAuth from "../components/header/HeaderAuth";
 import HeaderAuthButton from "../components/header/HeaderAuthButton";
+import ProfileDropdown from "../components/dropdown/ProfileDropdown";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
   const { loggedIn, user } = useContext(UserContext);
-
-  const handleShowDropdown = (type) => {
-    setShowDropdown(showDropdown === null ? type : null);
-  };
 
   return (
     <>
@@ -51,24 +48,22 @@ const HeaderContainer = ({ ...props }) => {
             <HeaderNavLink href="/" aria-label="explore">
               <FaRegCompass />
             </HeaderNavLink>
-            <HeaderNavLink
-              aria-label="notifications"
-              data-id="dropdown"
-              onClick={() => handleShowDropdown(NOTIFICATIONS_DROPDOWN)}
-            >
+            <HeaderNavLink aria-label="notifications" data-id="dropdown">
               <IoMdHeartEmpty />
             </HeaderNavLink>
             <HeaderNavLink
               aria-label="user profile"
               className="w-[23px] h-[23px]"
               data-id="dropdown"
-              onClick={() => handleShowDropdown(PROFILE_DROPDOWN)}
+              onClick={() => setShowDropdown(!showDropdown)}
             >
-              <Avatar
-                src={user.avatar}
-                className="pointer-events-none"
-                size={23}
-              />
+              <DropdownMenu items={<ProfileDropdown />} show={showDropdown}>
+                <Avatar
+                  src={user.avatar}
+                  className="pointer-events-none"
+                  size={23}
+                />
+              </DropdownMenu>
             </HeaderNavLink>
           </HeaderNavList>
         ) : (
@@ -81,7 +76,6 @@ const HeaderContainer = ({ ...props }) => {
         )}
       </Container>
       <Upload show={show} setShow={setShow} testid="add-post-modal" />
-      <DropdownMenu setShow={setShowDropdown} show={showDropdown} />
     </>
   );
 };

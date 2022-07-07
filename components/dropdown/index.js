@@ -1,47 +1,32 @@
-import { useEffect, useLayoutEffect, useState, useRef } from "react";
-import ProfileDropdown from "./ProfileDropdown";
-import NotificationDropdown from "./NotificationDropdown";
-import * as dropdown from "../../constants/dropdown";
-import { useViewport } from "../../context/ViewportContext";
-
-export default function DropdownMenu({ setShow, show }) {
-  const [selectTarget, setTarget] = useState(null);
-  const DropdownRef = useRef(null);
-  const { width } = useViewport();
-
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (e.target.dataset.id !== "dropdown") {
-        if (show === null) return;
-        setShow(null);
-        return;
-      }
-      setTarget(e.target);
-    };
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, [show, setShow]);
-
-  useLayoutEffect(() => {
-    if (!selectTarget) return;
-
-    const rect = selectTarget.getBoundingClientRect();
-    DropdownRef.current.style.left = `${rect.left - 170}px`;
-  }, [selectTarget, width]);
-
+export default function DropdownMenu({
+  children,
+  className,
+  items,
+  setShow,
+  show,
+  showIndicator = true,
+  ...props
+}) {
   return (
-    <>
-      <div
-        className={`fixed min-w-[220px] rounded-md top-[55px] z-50 shadow-[0_0_10px_2px_rgba(0,0,0,0.1)] ${
-          show === null && "hidden"
-        }`}
-        ref={DropdownRef}
-      >
-        {show === dropdown.PROFILE_DROPDOWN && <ProfileDropdown />}
-        {show === dropdown.NOTIFICATIONS_DROPDOWN && <NotificationDropdown />}
-      </div>
-    </>
+    <div className="relative flex">
+      {children}
+      {!!show && (
+        <>
+          {!!showIndicator && (
+            <div
+              className="shadow-[0_0_5px_1px_rgba(0,0,0,0.05)] absolute right-[3px] 
+              top-[32px] bg-white w-[15px] h-[15px] rotate-45"
+            />
+          )}
+          <div
+            className={`bg-white absolute right-[-28px] rounded-md top-[38px] z-50 
+            shadow-[0_0_10px_2px_rgba(0,0,0,0.05)] ${className}`}
+            {...props}
+          >
+            <div className="bg-white w-full h-full rounded-md">{items}</div>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
