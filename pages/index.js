@@ -14,14 +14,11 @@ export default function Home() {
     <>
       <HeaderContainer />
       <Layout>
-        <div
-          className="max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]"
-          ref={feedRef}
-        >
+        <div className="relative max-w-none flex flex-col 1000px:pr-[20px] mx-auto 1000px:mx-0 sm:w-full sm:max-w-[665px]">
           <StoriesContainer />
           <PostsList photos={photos} />
+          <Suggestions />
         </div>
-        <Suggestions feedRef={feedRef} />
       </Layout>
     </>
   );

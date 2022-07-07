@@ -1,30 +1,9 @@
-import { useLayoutEffect, useRef } from "react";
 import Profile from "./Profile";
 import SuggestionsList from "./SuggestionsList";
 
-export default function Suggestions({ feedRef }) {
-  const sideBoxRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const checkResize = () => {
-      const feedEl = feedRef.current;
-      if (!feedEl) return;
-      const offsetWidth = feedEl.offsetWidth;
-      const offsetLeft = feedEl.offsetLeft;
-      sideBoxRef.current.style.left = `${offsetWidth + offsetLeft + 10}px`;
-    };
-    checkResize();
-    window.addEventListener("resize", checkResize);
-    return () => {
-      window.removeEventListener("resize", checkResize);
-    };
-  }, [feedRef]);
-
+export default function Suggestions() {
   return (
-    <aside
-      className="fixed w-[300px] right-0 top-[90px] left-[700px] z-10 hidden 1000px:block"
-      ref={sideBoxRef}
-    >
+    <aside className="absolute w-[300px] left-[calc(100%_+_10px)] top-0 hidden 1000px:block">
       <Profile />
       <SuggestionsList />
     </aside>
