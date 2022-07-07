@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Avatar from "../Avatar";
 import Biography from "./Biography";
 import ChangeAvatar from "./ChangeAvatar";
-import HeaderContainer from "../../containers/header";
+import Header from "./Header";
 import Statistics from "./Statistics";
 import ProfileContext from "../../context/ProfileContext";
 import { SCREEN_MEDIUM } from "../../constants/screens";
@@ -27,7 +27,7 @@ export default function ProfileData() {
             )}
           </div>
           <main className="flex flex-col space-y-[15px]">
-            <HeaderContainer />
+            <Header />
             <Statistics className={"hidden md:flex border-none"} />
             {width >= SCREEN_MEDIUM && (
               <Biography className={"hidden md:block"} />
