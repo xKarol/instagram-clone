@@ -12,7 +12,7 @@ export default function ProfileDropdown() {
   return (
     <>
       <Link href={`/${user?.username}`}>
-        <a className="w-[220px] text-[14px] flex rounded-t-md py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
+        <a className="w-[220px] flex rounded-t-md py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
           <CgProfile />
           Profile
         </a>

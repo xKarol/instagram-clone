@@ -22,7 +22,6 @@ import ProfileDropdown from "../components/dropdown/ProfileDropdown";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const { loggedIn, user } = useContext(UserContext);
 
   return (
@@ -55,9 +54,8 @@ const HeaderContainer = ({ ...props }) => {
               aria-label="user profile"
               className="w-[23px] h-[23px]"
               data-id="dropdown"
-              onClick={() => setShowDropdown(!showDropdown)}
             >
-              <DropdownMenu items={<ProfileDropdown />} show={showDropdown}>
+              <DropdownMenu items={<ProfileDropdown />}>
                 <Avatar
                   src={user.avatar}
                   className="pointer-events-none"
