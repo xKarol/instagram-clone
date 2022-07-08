@@ -46,7 +46,7 @@ const StoriesContainer = ({ ...props }) => {
 
   return (
     <Container {...props}>
-      {!!loading && <Loading className={"mb-[10px]"} />}
+      {loading && <Loading className={"mb-[10px]"} />}
       {showLeft && (
         <StoriesArrow
           className="left-[15px] rotate-180"
@@ -63,19 +63,21 @@ const StoriesContainer = ({ ...props }) => {
         onScroll={(e) => setScrollPos(e.target.scrollLeft)}
         ref={storyBox}
       >
-        {!!loading &&
-          new Array(12).map((_, index) => (
-            <Skeleton key={index} className="rounded-full w-[50px] h-[50px]" />
-          ))}
-        {!!stories.length &&
-          stories.map(({ uid, username, avatar }) => (
-            <StoryProfile
-              key={uid}
-              username={username}
-              avatar={avatar}
-              active
-            />
-          ))}
+        {loading
+          ? [...new Array(12)].map((_, index) => (
+              <Skeleton
+                key={index}
+                className="rounded-full w-[50px] h-[50px]"
+              />
+            ))
+          : stories.map(({ uid, username, avatar }) => (
+              <StoryProfile
+                key={uid}
+                username={username}
+                avatar={avatar}
+                active
+              />
+            ))}
       </StoriesList>
     </Container>
   );
