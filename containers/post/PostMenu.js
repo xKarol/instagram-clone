@@ -2,25 +2,33 @@ import { useRouter } from "next/router";
 import { useState, useContext } from "react";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
-import Button from "../modal/Button";
-import Loading from "../Loading";
+import Button from "../../components/modal/Button";
+import Loading from "../../components/Loading";
 import { deletePost } from "../../services/firebase";
 import { deletePhotoFromStorage } from "../../services/storage";
 import { db } from "../../config/firebase.config";
 
-export default function Options() {
+const PostMenuContainer = () => {
   const router = useRouter();
   const [pending, setPending] = useState(false);
-  const { photo, setShowModal } = useContext(PhotoContext);
-  const { user, photos, setPhotos, loggedIn } = useContext(UserContext);
-  const isCreator = photo?.user?.uid === user.uid;
+  const {
+    photo: { photoId, fileName, user: photoUser },
+    setShowModal,
+  } = useContext(PhotoContext);
+  const {
+    user: { username, uid: userId },
+    photos,
+    setPhotos,
+    loggedIn,
+  } = useContext(UserContext);
+  const isAuthorized = photoUser.uid === userId;
 
   const handleDelete = async () => {
-    if (!photo.fileName || !isCreator || pending || !loggedIn) return;
+    if (!fileName || !isAuthorized || pending || !loggedIn) return;
     setPending(true);
-    await deletePost(db, photo.photoId);
-    await deletePhotoFromStorage(user.username, photo.fileName);
-    setPhotos(photos.filter((el) => el?.photoId !== photo?.photoId));
+    await deletePost(db, photoId);
+    await deletePhotoFromStorage(username, fileName);
+    setPhotos(photos.filter((el) => el.photoId !== photoId));
     setPending(false);
     setShowModal(false);
     if (router.asPath !== "/") {
@@ -30,7 +38,7 @@ export default function Options() {
 
   return (
     <section className="flex flex-col items-center w-screen sm:w-[400px]">
-      {!!isCreator && (
+      {!!isAuthorized && (
         <Button onClick={handleDelete} className={"text-red font-medium"}>
           {!pending ? "Delete" : <Loading />}
         </Button>
@@ -40,4 +48,6 @@ export default function Options() {
       <Button onClick={() => setShowModal(false)}>Cancel</Button>
     </section>
   );
-}
+};
+
+export default PostMenuContainer;
