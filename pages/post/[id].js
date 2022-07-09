@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout";
 import HeaderContainer from "../../containers/header";
 import Photo from "../../components/post/Photo";
 import PostHeader from "../../components/post/Header";

@@ -4,7 +4,7 @@ import { validFileExtensions } from "../../constants/arrays";
 import { checkFileExtension } from "../../services/utils";
 import { CROP_PAGE } from "../../constants/globals";
 import Error from "./Error";
-import ProgressBar from "../ProgressBar";
+import ProgressBar from "../progress-bar";
 import UploadContext from "../../context/UploadContext";
 
 export default function UploadBox() {

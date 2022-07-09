@@ -1,5 +1,5 @@
 import Suggestions from "../components/suggestions";
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 import usePhotos from "../hooks/usePhotos";
 import HeaderContainer from "../containers/header";
 import StoriesContainer from "../containers/stories";

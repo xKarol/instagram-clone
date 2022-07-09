@@ -4,8 +4,8 @@ import StoriesArrow from "../components/stories/StoriesArrow";
 import StoryProfile from "../components/stories/StoriesProfile";
 import UserContext from "../context/UserContext";
 import useStories from "../hooks/useStories";
-import Loading from "../components/Loading";
-import Skeleton from "../components/Skeleton";
+import Loading from "../components/loading";
+import Skeleton from "../components/skeleton";
 import StoriesList from "../components/stories/StoriesList";
 
 const StoriesContainer = ({ ...props }) => {

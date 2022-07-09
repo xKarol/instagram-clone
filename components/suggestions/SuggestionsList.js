@@ -1,6 +1,6 @@
 import SuggestedProfile from "./SuggestedProfile";
 import useProfilesSuggestions from "../../hooks/useProfilesSuggestions";
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 
 export default function SuggestionsList() {
   const { suggestions, loading } = useProfilesSuggestions();

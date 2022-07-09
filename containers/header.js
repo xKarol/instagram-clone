@@ -6,7 +6,7 @@ import { MdHomeFilled, MdOutlineAddBox } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { FaRegCompass } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
-import Logo from "../components/Logo";
+import Logo from "../components/logo";
 import Avatar from "../components/Avatar";
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";

@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import Button from "../../components/modal/Button";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loading";
 import { deletePost } from "../../services/firebase";
 import { deletePhotoFromStorage } from "../../services/storage";
 import { db } from "../../config/firebase.config";

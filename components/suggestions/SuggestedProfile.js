@@ -7,7 +7,7 @@ import {
   unfollowUser,
   getUserByUsername,
 } from "../../services/firebase";
-import Loading from "../Loading";
+import Loading from "../loading";
 import UserContext from "../../context/UserContext";
 import { db } from "../../config/firebase.config";
 

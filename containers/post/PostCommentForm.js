@@ -9,7 +9,7 @@ import { db } from "../../config/firebase.config";
 import { trimSpace } from "../../services/utils";
 import PhotoContext from "../../context/PhotoContext";
 import { serverTimestamp } from "firebase/firestore";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loading";
 
 const PostCommentFormContainer = () => {
   const [comment, setComment] = useState("");
