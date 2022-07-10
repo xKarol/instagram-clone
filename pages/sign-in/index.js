@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "../../components/Logo";
-import PhoneGallery from "../../components/PhoneGallery";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
@@ -11,13 +10,15 @@ import { isValidEmail } from "../../services/utils";
 import { getUserByUsername } from "../../services/firebase";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
-import Error from "../../components/form-validation/Error";
-import Submit from "../../components/form-validation/Submit";
-import InputField from "../../components/form-validation/InputField";
-import FacebookLogin from "../../components/form-validation/FacebookLogin";
-import Separator from "../../components/form-validation/Separator";
-import Box from "../../components/form-validation/Box";
-import AppLinks from "../../components/form-validation/AppLinks";
+import Error from "../../components/user-validation/Error";
+import Submit from "../../components/user-validation/Submit";
+import InputField from "../../components/user-validation/InputField";
+import FacebookLogin from "../../components/user-validation/FacebookLogin";
+import Separator from "../../components/user-validation/Separator";
+import Box from "../../components/user-validation/Box";
+import AppLinks from "../../components/user-validation/AppLinks";
+import PhoneGallery from "../../components/user-validation/PhoneGallery";
+import Container from "../../components/user-validation/Container";
 
 export default function Login() {
   const [error, setError] = useState("");
@@ -51,11 +52,7 @@ export default function Login() {
         "auth/invalid-email": "Invalid Email.",
         "auth/wrong-password": "Invalid Password.",
       };
-      setError(
-        errorMessages[error.code]
-          ? errorMessages[error.code]
-          : "A problem occured."
-      );
+      setError(errorMessages[error.code] ?? "A problem occured.");
     } finally {
       setLoading(false);
     }
@@ -70,7 +67,7 @@ export default function Login() {
       </Head>
       <section className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
-        <div className="w-[350px] max-w-[350px] flex flex-col items-center" data-cy="login-box">
+        <Container data-cy="login-box">
           <Box>
             <Logo size={200} className="mb-[20px]" link={false} />
             <form
@@ -81,14 +78,14 @@ export default function Login() {
                 placeholder="Username or email"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
-                testId="login-username-input"
+                data-cy="login-username-input"
               />
               <InputField
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                testId="login-password-input"
+                data-cy="login-password-input"
               />
               <Submit
                 text={"Log In"}
@@ -115,7 +112,7 @@ export default function Login() {
             This is FAKE Instagram
           </span>
           <AppLinks />
-        </div>
+        </Container>
       </section>
     </>
   );

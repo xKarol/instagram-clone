@@ -14,13 +14,14 @@ import { signUpUser, getUserByUsername } from "../../services/firebase";
 import { useRouter } from "next/router";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
-import InputField from "../../components/form-validation/InputField";
-import Error from "../../components/form-validation/Error";
-import FacebookLogin from "../../components/form-validation/FacebookLogin";
-import Submit from "../../components/form-validation/Submit";
-import Separator from "../../components/form-validation/Separator";
-import Box from "../../components/form-validation/Box";
+import InputField from "../../components/user-validation/InputField";
+import Error from "../../components/user-validation/Error";
+import FacebookLogin from "../../components/user-validation/FacebookLogin";
+import Submit from "../../components/user-validation/Submit";
+import Separator from "../../components/user-validation/Separator";
+import Box from "../../components/user-validation/Box";
 import { db } from "../../config/firebase.config";
+import Container from "../../components/user-validation/Container";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -73,11 +74,8 @@ export default function SignUp() {
       <Head>
         <title>Sign Up • Instagram</title>
       </Head>
-      <section className="flex justify-center items-center p-[50px] gap-[25px]">
-        <div
-          className="w-[350px] max-w-[350px] flex flex-col items-center"
-          data-cy="register-box"
-        >
+      <section className="flex justify-center items-center p-[50px]">
+        <Container data-cy="register-box">
           <Box>
             <Logo size={200} className="mb-[20px]" link={false} />
             <h1 className="font-medium text-gray-300 text-center mb-[15px]">
@@ -94,21 +92,21 @@ export default function SignUp() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                testId="register-email-input"
+                data-cy="register-email-input"
               />
               <InputField
                 type="text"
                 placeholder="Full Name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                testId="register-fullname-input"
+                data-cy="register-fullname-input"
               />
               <InputField
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                testId="register-username-input"
+                data-cy="register-username-input"
               />
               <InputField
                 type="password"
@@ -116,7 +114,7 @@ export default function SignUp() {
                 className="formButton w-full"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                testId="register-password-input"
+                data-cy="register-password-input"
               />
               <Submit
                 text={"Sign Up"}
@@ -152,7 +150,7 @@ export default function SignUp() {
               width={130}
             />
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

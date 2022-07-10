@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Phone from "../assets/images/login-phone.png";
+import Phone from "../../assets/images/login-phone.png";
 
 export default function PhoneGallery() {
   return (
