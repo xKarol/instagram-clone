@@ -2,18 +2,15 @@ import { useContext, useLayoutEffect, useState } from "react";
 import { default as Container } from "../../components/post/PostContainer";
 import Link from "next/link";
 import PostBody from "../../components/post/PostBody";
-import PostText from "../../components/post/PostText";
 import PhotoContext from "../../context/PhotoContext";
 import PostCommentFormContainer from "./PostCommentForm";
 import PostActionsContainer from "./PostActions";
 import PostCommentContainer from "./PostComment";
-import Modal from "../../components/modal";
 import PostCaptionContainer from "./PostCaption";
 import PostImageContainer from "./PostImage";
 import UserContext from "../../context/UserContext";
 import { likePost } from "../../services/firebase";
 import { db } from "../../config/firebase.config";
-import PostMenuContainer from "./PostMenu";
 import PostHeaderContainer from "./PostHeader";
 import PostDateContainer from "./PostDate";
 import PostLikesContainer from "./PostLikes";
@@ -25,7 +22,7 @@ const PostContainer = ({ data: photo, ...props }) => {
   const [liked, setLiked] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(false);
-  const { photoId, timestamp } = photo;
+  const { photoId } = photo;
   const {
     user: { uid: userId },
     loggedIn,
@@ -95,12 +92,6 @@ const PostContainer = ({ data: photo, ...props }) => {
         </div>
         <PostCommentFormContainer />
       </Container>
-      <Modal
-        show={showModal}
-        setShow={setShowModal}
-        closeHide
-        element={<PostMenuContainer />}
-      />
     </PhotoContext.Provider>
   );
 };
