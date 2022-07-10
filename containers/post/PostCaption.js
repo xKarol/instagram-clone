@@ -4,8 +4,8 @@ import PhotoContext from "../../context/PhotoContext";
 import { truncate } from "../../services/utils";
 import { MAX_CAPTION } from "../../constants/post";
 
-const PostCaptionContainer = () => {
-  const [showMore, setShowMore] = useState(false);
+const PostCaptionContainer = ({ show = false }) => {
+  const [showMore, setShowMore] = useState(show);
   const {
     photo: {
       caption,

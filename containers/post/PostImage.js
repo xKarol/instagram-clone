@@ -3,7 +3,7 @@ import { AiFillHeart } from "react-icons/ai";
 import PostImage from "../../components/post/PostImage";
 import PhotoContext from "../../context/PhotoContext";
 
-const PostImageContainer = () => {
+const PostImageContainer = (props) => {
   const {
     photo: { user, image: src },
     caption,
@@ -28,6 +28,7 @@ const PostImageContainer = () => {
       src={src}
       alt={`${user.username}'s photo ${caption?.length && caption}`}
       onDoubleClick={handleDoubleClick}
+      {...props}
     >
       {heart && (
         <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

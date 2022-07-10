@@ -1,14 +1,8 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import { default as Container } from "../../components/post/PostContainer";
-import PostHeader from "../../components/post/PostHeader";
-import PostIcon from "../../components/post/PostIcon";
-import Avatar from "../../components/Avatar";
 import Link from "next/link";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostBody from "../../components/post/PostBody";
 import PostText from "../../components/post/PostText";
-import PostDate from "../../components/post/PostDate";
-import PostUsername from "../../components/post/PostUsername";
 import PhotoContext from "../../context/PhotoContext";
 import PostCommentFormContainer from "./PostCommentForm";
 import PostActionsContainer from "./PostActions";
@@ -20,6 +14,9 @@ import UserContext from "../../context/UserContext";
 import { likePost } from "../../services/firebase";
 import { db } from "../../config/firebase.config";
 import PostMenuContainer from "./PostMenu";
+import PostHeaderContainer from "./PostHeader";
+import PostDateContainer from "./PostDate";
+import PostLikesContainer from "./PostLikes";
 
 const PostContainer = ({ data: photo, ...props }) => {
   const [showModal, setShowModal] = useState(false);
@@ -28,8 +25,7 @@ const PostContainer = ({ data: photo, ...props }) => {
   const [liked, setLiked] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(false);
-  const { photoId, user, timestamp } = photo;
-  const { username } = user;
+  const { photoId, timestamp } = photo;
   const {
     user: { uid: userId },
     loggedIn,
@@ -75,32 +71,12 @@ const PostContainer = ({ data: photo, ...props }) => {
       }}
     >
       <Container {...props} data-cy="post">
-        <PostHeader>
-          <Link href={`/${username}`}>
-            <a className={"mr-[15px]"}>
-              <Avatar src={user.avatar} size={30} />
-            </a>
-          </Link>
-          <PostUsername>{username}</PostUsername>
-          <PostIcon
-            aria-label="post config"
-            onClick={() => setShowModal(true)}
-            className="ml-auto text-[25px]"
-          >
-            <HiOutlineDotsHorizontal />
-          </PostIcon>
-        </PostHeader>
-
+        <PostHeaderContainer />
         <PostImageContainer />
         <div className="px-[16px]">
           <PostActionsContainer />
-
           <PostBody>
-            <PostText data-cy="post-likes-amount">
-              {likes.length}
-              &nbsp;
-              {likes.length === 1 ? "like" : "likes"}
-            </PostText>
+            <PostLikesContainer />
             <PostCaptionContainer />
             {!!comments.length && (
               <Link href={`post/${photoId}`}>
@@ -114,7 +90,7 @@ const PostContainer = ({ data: photo, ...props }) => {
                 <PostCommentContainer key={props.commentId} {...props} />
               ))}
             </ul>
-            <PostDate>{timestamp?.toDate()}</PostDate>
+            <PostDateContainer />
           </PostBody>
         </div>
         <PostCommentFormContainer />

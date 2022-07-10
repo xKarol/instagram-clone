@@ -1,4 +1,5 @@
 import { useContext, useLayoutEffect, useState } from "react";
+import Avatar from "../../components/Avatar";
 import PostComment from "../../components/post/comment/PostComment";
 import PostCommentLike from "../../components/post/comment/PostCommentLike";
 import PostUsername from "../../components/post/PostUsername";
@@ -6,12 +7,16 @@ import { db } from "../../config/firebase.config";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import { likeComment } from "../../services/firebase";
+import Link from "next/link";
 
 const PostCommentContainer = ({
   username,
   comment,
   likes: commentLikes,
   commentId,
+  avatar,
+  showAvatar = false,
+  className,
 }) => {
   const [pending, setPending] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -44,7 +49,14 @@ const PostCommentContainer = ({
   };
 
   return (
-    <PostComment>
+    <PostComment className={`flex ${className}`}>
+      {showAvatar && (
+        <Link href={`/${username}`}>
+          <a>
+            <Avatar src={avatar} size={30} className="mr-[15px]" />
+          </a>
+        </Link>
+      )}
       <PostUsername>{username}</PostUsername>
       &nbsp;
       <p className="text-[14px]">{comment}</p>

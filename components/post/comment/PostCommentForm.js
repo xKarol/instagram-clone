@@ -6,7 +6,7 @@ const PostCommentForm = ({
 }) => {
   return (
     <form
-      className={`w-full flex items-center flex-1 px-[16px] py-[12px] 
+      className={`flex items-center px-[16px] py-[12px] 
       border border-transparent border-t-gray-200 ${!!pending && "opacity-50"}`}
       {...props}
     >

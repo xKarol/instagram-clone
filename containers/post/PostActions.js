@@ -7,11 +7,11 @@ import PostActions from "../../components/post/PostActions";
 import PostIcon from "../../components/post/PostIcon";
 import PhotoContext from "../../context/PhotoContext";
 
-const PostActionsContainer = () => {
+const PostActionsContainer = (props) => {
   const { liked, handleLike } = useContext(PhotoContext);
 
   return (
-    <PostActions>
+    <PostActions {...props}>
       <PostIcon
         aria-label="like photo"
         onClick={handleLike}

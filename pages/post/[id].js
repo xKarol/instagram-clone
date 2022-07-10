@@ -4,19 +4,19 @@ import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import Layout from "../../components/layout";
 import HeaderContainer from "../../containers/header";
-import Photo from "../../components/post/Photo";
-import PostHeader from "../../components/post/Header";
-import Navbar from "../../components/post/Navbar";
-import Likes from "../../components/post/Likes";
-import Date from "../../components/post/Date";
-import AddComment from "../../components/post/AddComment";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import NotFoundPage from "../../pages/404";
 import usePhoto from "../../hooks/usePhoto";
-import { NORMAL_COMMENT } from "../../constants/post";
-import Comments from "../../components/post/comments";
 import Avatar from "../../components/Avatar";
+import PostImageContainer from "../../containers/post/PostImage";
+import PostHeaderContainer from "../../containers/post/PostHeader";
+import PostCaptionContainer from "../../containers/post/PostCaption";
+import PostCommentContainer from "../../containers/post/PostComment";
+import PostActionsContainer from "../../containers/post/PostActions";
+import PostCommentFormContainer from "../../containers/post/PostCommentForm";
+import PostDateContainer from "../../containers/post/PostDate";
+import PostLikesContainer from "../../containers/post/PostLikes";
 
 export default function Post() {
   const router = useRouter();
@@ -64,38 +64,43 @@ export default function Post() {
             }}
           >
             <article className="w-full md:w-[80vw] flex md:h-[600px] flex-col lg:flex-row bg-white border border-gray-200 lg:overflow-hidden">
-              <Photo className="w-full min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
+              <PostImageContainer className="w-full min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
               <section className="md:flex-1 flex flex-col md:h-full w-full lg:w-[350px] bg-white">
-                <PostHeader className={"px-[15px]"} />
+                <PostHeaderContainer className={"px-[15px]"} />
                 <section className="px-[20px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
-                  {photo?.caption && (
+                  {!!photo.caption.length && (
                     <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
                       <div className="space-x-[15px] flex">
                         <Link href={`/${photo?.user?.username}`}>
-                          <a className="w-[30px] h-[30px] shrink-0 rounded-full">
-                            <Avatar src={photo?.user?.avatar} />
+                          <a>
+                            <Avatar src={photo?.user?.avatar} size={30} />
                           </a>
                         </Link>
-                        <span className="font-medium">
-                          <Link href={`/${photo?.user?.username}`}>
-                            <a className="hover:underline">
-                              {photo?.user?.username}
-                            </a>
-                          </Link>
-                          &nbsp;
-                          <span className="font-normal">{photo?.caption}</span>
-                        </span>
+                        <PostCaptionContainer show={true} />
                       </div>
                     </div>
                   )}
-                  <Comments comments={comments} type={NORMAL_COMMENT} />
+                  <ul>
+                    {comments &&
+                      comments.map((comment) => {
+                        console.log(comment);
+                        return (
+                          <PostCommentContainer
+                            key={comment.commentId}
+                            {...comment}
+                            showAvatar={true}
+                            className="mb-[10px]"
+                          />
+                        );
+                      })}
+                  </ul>
                 </section>
                 <div className="px-[20px]">
-                  <Navbar />
-                  <Likes />
-                  <Date timestamp={photo?.timestamp} />
+                  <PostActionsContainer />
+                  <PostLikesContainer />
+                  <PostDateContainer />
                 </div>
-                <AddComment />
+                <PostCommentFormContainer />
               </section>
             </article>
           </PhotoContext.Provider>
