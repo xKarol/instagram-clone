@@ -46,7 +46,7 @@ const SidebarSuggestedProfileContainer = ({
 
   return (
     <SidebarSuggestionItem className="flex items-center text-[14px] gap-[15px] py-[5px]">
-      {skeleton ? (
+      {!skeleton ? (
         <>
           <Link href={`/${username}`}>
             <a>
