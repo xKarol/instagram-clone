@@ -64,7 +64,7 @@ export default function Post() {
             }}
           >
             <article className="w-full md:w-[80vw] flex md:h-[600px] flex-col lg:flex-row bg-white border border-gray-200 lg:overflow-hidden">
-              <PostImageContainer className="w-full min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
+              <PostImageContainer className="w-full !pb-0 min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
               <section className="md:flex-1 flex flex-col md:h-full w-full lg:w-[350px] bg-white">
                 <PostHeaderContainer className={"px-[15px]"} />
                 <section className="px-[20px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
