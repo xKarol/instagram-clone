@@ -1,9 +1,9 @@
-import Suggestions from "../components/suggestions";
 import Layout from "../components/layout";
 import usePhotos from "../hooks/usePhotos";
 import HeaderContainer from "../containers/header";
 import StoriesContainer from "../containers/stories";
 import PostContainer from "../containers/post";
+import SidebarContainer from "../containers/sidebar";
 
 export default function Home() {
   const { photos } = usePhotos();
@@ -17,7 +17,7 @@ export default function Home() {
           {photos.map((photo) => (
             <PostContainer key={photo.photoId} data={photo} />
           ))}
-          <Suggestions />
+          <SidebarContainer />
         </div>
       </Layout>
     </>

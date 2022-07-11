@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { useState, useContext } from "react";
-import Avatar from "../Avatar";
-import { isFollowing } from "../../services/utils";
+import Avatar from "../../Avatar";
+import { isFollowing } from "../../../services/utils";
 import {
   followUser,
   unfollowUser,
   getUserByUsername,
-} from "../../services/firebase";
-import Loading from "../loading";
-import UserContext from "../../context/UserContext";
-import { db } from "../../config/firebase.config";
+} from "../../../services/firebase";
+import Loading from "../../Loading";
+import UserContext from "../../../context/UserContext";
+import { db } from "../../../config/firebase.config";
 
 export default function SuggestedProfile({ avatar, username, docId }) {
   const { user, setUser, loggedIn } = useContext(UserContext);
