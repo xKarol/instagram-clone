@@ -22,7 +22,11 @@ const SidebarUserProfileContainer = () => {
           </a>
         </Link>
         <SidebarUserProfileData>
-          <SidebarText>{username}</SidebarText>
+          <Link href={`/${username}`}>
+            <a>
+              <SidebarText>{username}</SidebarText>
+            </a>
+          </Link>
           <SidebarText className="text-gray-300 font-normal">
             {fullName}
           </SidebarText>
