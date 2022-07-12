@@ -6,23 +6,30 @@ import { db } from "../config/firebase.config";
 export default function useProfilesSuggestions() {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { user, loggedIn } = useContext(UserContext);
+  const [error, setError] = useState(false);
+  const {
+    user: { username },
+    loggedIn,
+  } = useContext(UserContext);
 
   useEffect(() => {
     const getData = async () => {
-      setLoading(true);
-      const suggestions = await getProfilesSuggestion(db);
-      setSuggestions(
-        loggedIn
-          ? suggestions.filter(
-              (suggestion) => suggestion.username !== user?.username
-            )
-          : suggestions
-      );
-      setLoading(false);
+      try {
+        setError(false);
+        setLoading(true);
+        const suggestions = await getProfilesSuggestion(db);
+        const data = loggedIn
+          ? suggestions.filter((suggestion) => suggestion.username !== username)
+          : suggestions;
+        setSuggestions(data);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
     getData();
-  }, [user.uid, loggedIn, user?.username]);
+  }, [loggedIn, username]);
 
-  return { setSuggestions, suggestions, loading };
+  return { setSuggestions, suggestions, loading, error };
 }

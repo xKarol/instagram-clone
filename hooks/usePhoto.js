@@ -3,7 +3,8 @@ import { db } from "../config/firebase.config";
 import { getPhotoById } from "../services/firebase";
 
 export default function usePhoto(id) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [photo, setPhoto] = useState(false);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -11,15 +12,30 @@ export default function usePhoto(id) {
   useEffect(() => {
     const getData = async () => {
       if (!id) return;
-      setLoading(true);
-      const photo = await getPhotoById(db, id);
-      setComments(photo?.comments);
-      setLikes(photo?.likes);
-      setPhoto(photo);
-      setLoading(false);
+      try {
+        setError(false);
+        setLoading(true);
+        const photo = await getPhotoById(db, id);
+        setComments(photo?.comments);
+        setLikes(photo?.likes);
+        setPhoto(photo);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
     getData();
   }, [id]);
 
-  return { setPhoto, photo, loading, setLikes, likes, comments, setComments };
+  return {
+    setPhoto,
+    photo,
+    loading,
+    error,
+    setLikes,
+    likes,
+    comments,
+    setComments,
+  };
 }
