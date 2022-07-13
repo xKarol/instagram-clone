@@ -5,7 +5,7 @@ import { db } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
 import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
-import { trimSpace } from "../../services/utils";
+import { trimSpace } from "../../utils";
 import { getPhotoById, uploadPhoto } from "../../services";
 
 function Share() {

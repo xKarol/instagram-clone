@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import PostUsername from "../../components/post/PostUsername";
 import PhotoContext from "../../context/PhotoContext";
-import { truncate } from "../../services/utils";
+import { truncate } from "../../utils";
 import { MAX_CAPTION } from "../../constants/post";
 
 const PostCaptionContainer = ({ show = false }) => {

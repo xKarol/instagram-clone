@@ -6,7 +6,7 @@ import {
   where,
   orderBy,
 } from "firebase/firestore";
-import { random } from "./utils";
+import { random } from "../utils";
 
 export const getProfilesSuggestion = async (db) => {
   const rand = random(1000000);

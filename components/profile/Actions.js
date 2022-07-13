@@ -6,7 +6,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { BiChevronDown } from "react-icons/bi";
 import { FaUserCheck } from "react-icons/fa";
 import Button from "./Button";
-import { isFollowing } from "../../services/utils";
+import { isFollowing } from "../../utils";
 import Loading from "../loading";
 import { getUserByUsername, followUser, unfollowUser } from "../../services";
 import Skeleton from "../skeleton";

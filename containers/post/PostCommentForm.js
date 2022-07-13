@@ -6,7 +6,7 @@ import PostCommentEmote from "../../components/post/comment/PostCommentEmote";
 import UserContext from "../../context/UserContext";
 import { addComment } from "../../services";
 import { db } from "../../config/firebase.config";
-import { trimSpace } from "../../services/utils";
+import { trimSpace } from "../../utils";
 import PhotoContext from "../../context/PhotoContext";
 import { serverTimestamp } from "firebase/firestore";
 import Loading from "../../components/loading";

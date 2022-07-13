@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useContext } from "react";
 import Avatar from "../../avatar";
-import { isFollowing } from "../../../services/utils";
+import { isFollowing } from "../../../utils";
 import { followUser, unfollowUser, getUserByUsername } from "../../../services";
 import Loading from "../../loading";
 import UserContext from "../../../context/UserContext";

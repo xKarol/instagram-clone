@@ -3,7 +3,7 @@ import SidebarSuggestionItem from "../../components/sidebar/suggestions/SidebarS
 import Link from "next/link";
 import SidebarButton from "../../components/sidebar/SidebarButton";
 import Loading from "../../components/loading";
-import { isFollowing } from "../../services/utils";
+import { isFollowing } from "../../utils";
 import UserContext from "../../context/UserContext";
 import { useContext, useState } from "react";
 import { followUser, getUserByUsername, unfollowUser } from "../../services";
