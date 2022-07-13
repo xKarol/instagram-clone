@@ -7,7 +7,7 @@ import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
 import { useRouter } from "next/router";
 import { isValidEmail } from "../../services/utils";
-import { getUserByUsername } from "../../services/firebase";
+import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
 import Error from "../../components/user-validation/Error";

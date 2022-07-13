@@ -1,12 +1,14 @@
 import { useContext, useRef, useState, useEffect } from "react";
-import { uploadAvatar } from "../../services/storage";
 import Loading from "../Loading";
 import { db } from "../../config/firebase.config";
 import { updateDoc, doc } from "firebase/firestore";
 import UserContext from "../../context/UserContext";
 import ProfileContext from "../../context/ProfileContext";
-import { getUserByUsername } from "../../services/firebase";
-import { deleteAvatarFromStorage } from "../../services/storage";
+import {
+  uploadAvatar,
+  deleteAvatarFromStorage,
+  getUserByUsername,
+} from "../../services";
 
 export default function ChangeAvatar({ children }) {
   const { setUser, user } = useContext(UserContext);

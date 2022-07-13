@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../config/firebase.config";
-import { getUserStories } from "../services/firebase";
+import { getUserStories } from "../services";
 
 export default function useStories(userId) {
   const [loading, setLoading] = useState(false);

@@ -10,7 +10,7 @@ import {
   MAX_USERNAME,
   MAX_FULL_NAME,
 } from "../../constants/validation";
-import { signUpUser, getUserByUsername } from "../../services/firebase";
+import { signUpUser, getUserByUsername } from "../../services";
 import { useRouter } from "next/router";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";

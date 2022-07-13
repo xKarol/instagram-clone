@@ -6,7 +6,7 @@ import PostUsername from "../../components/post/PostUsername";
 import { db } from "../../config/firebase.config";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
-import { likeComment } from "../../services/firebase";
+import { likeComment } from "../../services";
 import Link from "next/link";
 
 const PostCommentContainer = ({

@@ -6,11 +6,7 @@ import Loading from "../../components/loading";
 import { isFollowing } from "../../services/utils";
 import UserContext from "../../context/UserContext";
 import { useContext, useState } from "react";
-import {
-  followUser,
-  getUserByUsername,
-  unfollowUser,
-} from "../../services/firebase";
+import { followUser, getUserByUsername, unfollowUser } from "../../services";
 import { db } from "../../config/firebase.config";
 import Skeleton from "../../components/skeleton";
 

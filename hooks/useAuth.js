@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db, auth } from "../config/firebase.config";
 import { onAuthStateChanged } from "firebase/auth";
-import { getUserByUID } from "../services/firebase";
+import { getUserByUID } from "../services";
 
 export default function useAuthListener() {
   const [user, setUser] = useState({});

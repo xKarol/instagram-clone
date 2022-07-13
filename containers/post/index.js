@@ -9,7 +9,7 @@ import PostCommentContainer from "./PostComment";
 import PostCaptionContainer from "./PostCaption";
 import PostImageContainer from "./PostImage";
 import UserContext from "../../context/UserContext";
-import { likePost } from "../../services/firebase";
+import { likePost } from "../../services";
 import { db } from "../../config/firebase.config";
 import PostHeaderContainer from "./PostHeader";
 import PostDateContainer from "./PostDate";

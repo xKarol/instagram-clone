@@ -4,7 +4,7 @@ import PostCommentInput from "../../components/post/comment/PostCommentInput";
 import PostCommentButton from "../../components/post/comment/PostCommentButton";
 import PostCommentEmote from "../../components/post/comment/PostCommentEmote";
 import UserContext from "../../context/UserContext";
-import { addComment } from "../../services/firebase";
+import { addComment } from "../../services";
 import { db } from "../../config/firebase.config";
 import { trimSpace } from "../../services/utils";
 import PhotoContext from "../../context/PhotoContext";

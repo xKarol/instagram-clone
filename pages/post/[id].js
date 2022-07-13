@@ -82,17 +82,14 @@ export default function Post() {
                   )}
                   <ul>
                     {comments &&
-                      comments.map((comment) => {
-                        console.log(comment);
-                        return (
-                          <PostCommentContainer
-                            key={comment.commentId}
-                            {...comment}
-                            showAvatar={true}
-                            className="mb-[10px]"
-                          />
-                        );
-                      })}
+                      comments.map((comment) => (
+                        <PostCommentContainer
+                          key={comment.commentId}
+                          {...comment}
+                          showAvatar={true}
+                          className="mb-[10px]"
+                        />
+                      ))}
                   </ul>
                 </section>
                 <div className="px-[20px]">

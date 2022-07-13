@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase.config";
-import { getPhotoById } from "../services/firebase";
+import { getPhotoById } from "../services";
 
 export default function usePhoto(id) {
   const [loading, setLoading] = useState(false);

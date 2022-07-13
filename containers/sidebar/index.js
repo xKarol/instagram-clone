@@ -9,7 +9,7 @@ import useProfilesSuggestions from "../../hooks/useProfilesSuggestions";
 
 const SidebarContainer = ({ ...props }) => {
   const { suggestions, loading } = useProfilesSuggestions();
-  console.log(suggestions);
+
   return (
     <Container {...props}>
       <SidebarUserProfileContainer />

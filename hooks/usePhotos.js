@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { getPhotos } from "../services/firebase";
+import { getPhotos } from "../services";
 import UserContext from "../context/UserContext";
 import { db } from "../config/firebase.config";
 

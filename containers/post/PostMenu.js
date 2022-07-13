@@ -4,8 +4,8 @@ import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import Button from "../../components/modal/Button";
 import Loading from "../../components/loading";
-import { deletePost } from "../../services/firebase";
-import { deletePhotoFromStorage } from "../../services/storage";
+import { deletePost } from "../../services";
+import { deletePhotoFromStorage } from "../../services";
 import { db } from "../../config/firebase.config";
 
 const PostMenuContainer = () => {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { getProfilesSuggestion } from "../services/firebase";
+import { getProfilesSuggestion } from "../services";
 import UserContext from "../context/UserContext";
 import { db } from "../config/firebase.config";
 

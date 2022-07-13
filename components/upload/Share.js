@@ -6,8 +6,7 @@ import UserContext from "../../context/UserContext";
 import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
 import { trimSpace } from "../../services/utils";
-import { getPhotoById } from "../../services/firebase";
-import { uploadPhoto } from "../../services/storage";
+import { getPhotoById, uploadPhoto } from "../../services";
 
 function Share() {
   const [error, setError] = useState(false);
