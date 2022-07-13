@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Avatar from "../../components/Avatar";
+import Avatar from "../../components/avatar";
 import { default as Container } from "../../components/sidebar/profile/SidebarUserProfileContainer";
 import SidebarUserProfileData from "../../components/sidebar/profile/SidebarUserProfileData";
 import SidebarButton from "../../components/sidebar/SidebarButton";

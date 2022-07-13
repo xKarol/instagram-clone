@@ -4,7 +4,7 @@ import PostIcon from "../../components/post/PostIcon";
 import PostUsername from "../../components/post/PostUsername";
 import PhotoContext from "../../context/PhotoContext";
 import Link from "next/link";
-import Avatar from "../../components/Avatar";
+import Avatar from "../../components/avatar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostMenuContainer from "./PostMenu";
 import Modal from "../../components/modal";

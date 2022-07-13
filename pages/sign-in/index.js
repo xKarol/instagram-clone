@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import Link from "next/link";
-import Logo from "../../components/Logo";
+import Logo from "../../components/logo";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";

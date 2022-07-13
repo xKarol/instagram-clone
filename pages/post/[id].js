@@ -8,7 +8,7 @@ import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import NotFoundPage from "../../pages/404";
 import usePhoto from "../../hooks/usePhoto";
-import Avatar from "../../components/Avatar";
+import Avatar from "../../components/avatar";
 import PostImageContainer from "../../containers/post/PostImage";
 import PostHeaderContainer from "../../containers/post/PostHeader";
 import PostCaptionContainer from "../../containers/post/PostCaption";

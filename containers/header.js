@@ -7,13 +7,9 @@ import { FiSend } from "react-icons/fi";
 import { FaRegCompass } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import Logo from "../components/logo";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/avatar";
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
-import {
-  NOTIFICATIONS_DROPDOWN,
-  PROFILE_DROPDOWN,
-} from "../constants/dropdown";
 import Upload from "../components/upload";
 import DropdownMenu from "../components/dropdown";
 import HeaderAuth from "../components/header/HeaderAuth";

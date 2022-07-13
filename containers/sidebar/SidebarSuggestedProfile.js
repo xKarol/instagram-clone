@@ -1,4 +1,4 @@
-import Avatar from "../../components/Avatar";
+import Avatar from "../../components/avatar";
 import SidebarSuggestionItem from "../../components/sidebar/suggestions/SidebarSuggestionItem";
 import Link from "next/link";
 import SidebarButton from "../../components/sidebar/SidebarButton";

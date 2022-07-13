@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../avatar";
 import Biography from "./Biography";
 import ChangeAvatar from "./ChangeAvatar";
 import Header from "./Header";
 import Statistics from "./Statistics";
 import ProfileContext from "../../context/ProfileContext";
 import { SCREEN_MEDIUM } from "../../constants/screens";
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 import { useViewport } from "../../context/ViewportContext";
 
 export default function ProfileData() {

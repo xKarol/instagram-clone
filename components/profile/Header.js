@@ -2,7 +2,7 @@ import { useContext } from "react";
 import ProfileContext from "../../context/ProfileContext";
 import Actions from "./Actions";
 import { SCREEN_MEDIUM } from "../../constants/screens";
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 import { useViewport } from "../../context/ViewportContext";
 
 export default function Header() {

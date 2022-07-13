@@ -7,9 +7,9 @@ import { BiChevronDown } from "react-icons/bi";
 import { FaUserCheck } from "react-icons/fa";
 import Button from "./Button";
 import { isFollowing } from "../../services/utils";
-import Loading from "../Loading";
+import Loading from "../loading";
 import { getUserByUsername, followUser, unfollowUser } from "../../services";
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 import { db } from "../../config/firebase.config";
 
 export default function Actions({ className }) {

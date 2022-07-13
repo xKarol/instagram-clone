@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
-import Avatar from "../../Avatar";
+import Avatar from "../../avatar";
 import { MAX_POST_CAPTION } from "../../../constants/post";
 import UploadContext from "../../../context/UploadContext";
 import UserContext from "../../../context/UserContext";

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
-import Logo from "../../components/Logo";
+import Logo from "../../components/logo";
 import {
   MIN_PASSWORD,
   MAX_USERNAME,

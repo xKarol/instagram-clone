@@ -1,4 +1,4 @@
-import Loading from "../Loading";
+import Loading from "../loading";
 
 export default function Submit({ text, pending, disabled }) {
   return (

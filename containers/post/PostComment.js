@@ -1,5 +1,5 @@
 import { useContext, useLayoutEffect, useState } from "react";
-import Avatar from "../../components/Avatar";
+import Avatar from "../../components/avatar";
 import PostComment from "../../components/post/comment/PostComment";
 import PostCommentLike from "../../components/post/comment/PostCommentLike";
 import PostUsername from "../../components/post/PostUsername";

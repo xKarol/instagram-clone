@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useState, useContext } from "react";
-import Avatar from "../../Avatar";
+import Avatar from "../../avatar";
 import { isFollowing } from "../../../services/utils";
 import { followUser, unfollowUser, getUserByUsername } from "../../../services";
-import Loading from "../../Loading";
+import Loading from "../../loading";
 import UserContext from "../../../context/UserContext";
 import { db } from "../../../config/firebase.config";
 
