@@ -19,11 +19,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
-    "cypress": "^9.5.3",
-    "cypress-firebase": "^2.2.1",
+    "cypress": "^10.3.0",
+    "cypress-firebase": "^2.2.2",
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.7",
-    "firebase-admin": "^10.0.2",
+    "firebase-admin": "^11.0.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.5"
   }
