@@ -44,7 +44,7 @@ const StoriesContainer = ({ ...props }) => {
     element.scrollLeft += clientWidth - 100;
   };
 
-  return (
+  return visible ? (
     <Container {...props}>
       {loading && <Loading className={"mb-[10px]"} />}
       {showLeft && (
@@ -80,7 +80,7 @@ const StoriesContainer = ({ ...props }) => {
             ))}
       </StoriesList>
     </Container>
-  );
+  ) : null;
 };
 
 export default StoriesContainer;

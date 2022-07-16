@@ -14,7 +14,9 @@ export default function useStories(userId) {
         setLoading(true);
         setError(false);
         const storiesData = await getUserStories(db, userId);
-        setStories(storiesData);
+        if (storiesData.length) {
+          setStories(storiesData);
+        }
       } catch {
         setError(true);
       } finally {
