@@ -5,6 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
+import { random } from "../utils";
 
 export const signUpUser = async (db, username, fullname, email, password) => {
   const auth = getAuth();

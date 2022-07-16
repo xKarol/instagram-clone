@@ -44,9 +44,7 @@ export default function Login() {
           await signInWithEmailAndPassword(auth, email, password);
         }
       }
-      router.push("/");
     } catch (error) {
-      console.log(error.message);
       const errorMessages = {
         "auth/user-not-found": "User not found.",
         "auth/invalid-email": "Invalid Email.",
@@ -55,6 +53,7 @@ export default function Login() {
       setError(errorMessages[error.code] ?? "A problem occured.");
     } finally {
       setLoading(false);
+      router.push("/");
     }
   };
 
