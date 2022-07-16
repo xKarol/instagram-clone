@@ -31,12 +31,12 @@ import "firebase/compat/firestore";
 import { attachCustomCommands } from "cypress-firebase";
 
 const fbConfig = {
-  apiKey: "AIzaSyC3m0k4sl_vsv3vFYuRpGJ6x2ymTBk1xOM",
-  authDomain: "instagram-clone-66f75.firebaseapp.com",
-  projectId: "instagram-clone-66f75",
-  storageBucket: "instagram-clone-66f75.appspot.com",
-  messagingSenderId: "476809028326",
-  appId: "1:476809028326:web:452dce6987a81328b1d127",
+  apiKey: Cypress.env("apiKey"),
+  authDomain: Cypress.env("authDomain"),
+  projectId: Cypress.env("projectId"),
+  storageBucket: Cypress.env("storageBucket"),
+  messagingSenderId: Cypress.env("messagingSenderId"),
+  appId: Cypress.env("appId"),
 };
 
 firebase.initializeApp(fbConfig);
