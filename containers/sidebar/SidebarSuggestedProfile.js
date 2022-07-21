@@ -1,7 +1,6 @@
 import Avatar from "../../components/avatar";
-import SidebarSuggestionItem from "../../components/sidebar/suggestions/SidebarSuggestionItem";
 import Link from "next/link";
-import SidebarButton from "../../components/sidebar/SidebarButton";
+import { SidebarButton, SidebarSuggestionItem } from "../../components/sidebar";
 import Loading from "../../components/loading";
 import { isFollowing } from "../../utils";
 import UserContext from "../../context/UserContext";

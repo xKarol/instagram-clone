@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import PostUsername from "../../components/post/PostUsername";
+import { PostUsername } from "../../components/post";
 import PhotoContext from "../../context/PhotoContext";
 import { truncate } from "../../utils";
 import { MAX_CAPTION } from "../../constants/post";

@@ -1,7 +1,6 @@
 import { useContext, useLayoutEffect, useState } from "react";
-import { default as Container } from "../../components/post/PostContainer";
 import Link from "next/link";
-import PostBody from "../../components/post/PostBody";
+import { PostContainer as Container, PostBody } from "../../components/post";
 import PhotoContext from "../../context/PhotoContext";
 import PostCommentFormContainer from "./PostCommentForm";
 import PostActionsContainer from "./PostActions";

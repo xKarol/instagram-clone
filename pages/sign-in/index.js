@@ -10,15 +10,17 @@ import { isValidEmail } from "../../utils";
 import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
-import Error from "../../components/user-validation/Error";
-import Submit from "../../components/user-validation/Submit";
-import InputField from "../../components/user-validation/InputField";
-import FacebookLogin from "../../components/user-validation/FacebookLogin";
-import Separator from "../../components/user-validation/Separator";
-import Box from "../../components/user-validation/Box";
-import AppLinks from "../../components/user-validation/AppLinks";
-import PhoneGallery from "../../components/user-validation/PhoneGallery";
-import Container from "../../components/user-validation/Container";
+import {
+  Container,
+  Error,
+  Submit,
+  InputField,
+  FacebookLogin,
+  Separator,
+  Box,
+  AppLinks,
+  PhoneGallery,
+} from "../../components/user-validation";
 
 export default function Login() {
   const [error, setError] = useState("");

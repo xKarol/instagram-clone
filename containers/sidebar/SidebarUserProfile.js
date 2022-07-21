@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import Avatar from "../../components/avatar";
-import { default as Container } from "../../components/sidebar/profile/SidebarUserProfileContainer";
-import SidebarUserProfileData from "../../components/sidebar/profile/SidebarUserProfileData";
-import SidebarButton from "../../components/sidebar/SidebarButton";
-import SidebarText from "../../components/sidebar/SidebarText";
-import UserContext from "../../context/UserContext";
 import Link from "next/link";
+import Avatar from "../../components/avatar";
+import {
+  SidebarButton,
+  SidebarText,
+  SidebarUserProfileContainer as Container,
+  SidebarUserProfileData,
+} from "../../components/sidebar";
+import UserContext from "../../context/UserContext";
 
 const SidebarUserProfileContainer = () => {
   const {

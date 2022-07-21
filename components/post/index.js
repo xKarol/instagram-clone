@@ -1,0 +1,10 @@
+export { default as PostActions } from "./PostActions";
+export { default as PostBody } from "./PostBody";
+export { default as PostContainer } from "./PostContainer";
+export { default as PostDate } from "./PostDate";
+export { default as PostHeader } from "./PostHeader";
+export { default as PostIcon } from "./PostIcon";
+export { default as PostImage } from "./PostImage";
+export { default as PostText } from "./PostText";
+export { default as PostUsername } from "./PostUsername";
+export * from "./comment";

@@ -14,14 +14,16 @@ import { signUpUser, getUserByUsername } from "../../services";
 import { useRouter } from "next/router";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
-import InputField from "../../components/user-validation/InputField";
-import Error from "../../components/user-validation/Error";
-import FacebookLogin from "../../components/user-validation/FacebookLogin";
-import Submit from "../../components/user-validation/Submit";
-import Separator from "../../components/user-validation/Separator";
-import Box from "../../components/user-validation/Box";
+import {
+  Container,
+  InputField,
+  Error,
+  FacebookLogin,
+  Submit,
+  Separator,
+  Box,
+} from "../../components/user-validation";
 import { db } from "../../config/firebase.config";
-import Container from "../../components/user-validation/Container";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);

@@ -1,7 +1,5 @@
 import { useContext } from "react";
-import PostHeader from "../../components/post/PostHeader";
-import PostIcon from "../../components/post/PostIcon";
-import PostUsername from "../../components/post/PostUsername";
+import { PostHeader, PostIcon, PostUsername } from "../../components/post";
 import PhotoContext from "../../context/PhotoContext";
 import Link from "next/link";
 import Avatar from "../../components/avatar";

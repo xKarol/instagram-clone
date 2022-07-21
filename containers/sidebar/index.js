@@ -1,9 +1,11 @@
 import SidebarUserProfileContainer from "./SidebarUserProfile";
-import { default as Container } from "../../components/sidebar/SidebarContainer";
-import SidebarButton from "../../components/sidebar/SidebarButton";
-import SidebarHeading from "../../components/sidebar/SidebarHeading";
-import SidebarSuggestionsContainer from "../../components/sidebar/suggestions/SidebarSuggestionsContainer";
-import SidebarSuggestionsHeader from "../../components/sidebar/suggestions/SidebarSuggestionsHeader";
+import {
+  SidebarContainer as Container,
+  SidebarButton,
+  SidebarHeading,
+  SidebarSuggestionsContainer,
+  SidebarSuggestionsHeader,
+} from "../../components/sidebar";
 import SidebarSuggestedProfileContainer from "./SidebarSuggestedProfile";
 import useProfilesSuggestions from "../../hooks/useProfilesSuggestions";
 

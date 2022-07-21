@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import PostDate from "../../components/post/PostDate";
+import {PostDate} from "../../components/post";
 import PhotoContext from "../../context/PhotoContext";
 
 const PostDateContainer = () => {

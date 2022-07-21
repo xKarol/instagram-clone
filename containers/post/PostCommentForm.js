@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
-import PostCommentForm from "../../components/post/comment/PostCommentForm";
-import PostCommentInput from "../../components/post/comment/PostCommentInput";
-import PostCommentButton from "../../components/post/comment/PostCommentButton";
-import PostCommentEmote from "../../components/post/comment/PostCommentEmote";
+import {
+  PostCommentForm,
+  PostCommentInput,
+  PostCommentButton,
+  PostCommentEmote,
+} from "../../components/post";
 import UserContext from "../../context/UserContext";
 import { addComment } from "../../services";
 import { db } from "../../config/firebase.config";

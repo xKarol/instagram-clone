@@ -1,12 +1,14 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { default as Container } from "../components/stories/StoriesContainer";
-import StoriesArrow from "../components/stories/StoriesArrow";
-import StoryProfile from "../components/stories/StoriesProfile";
 import UserContext from "../context/UserContext";
 import useStories from "../hooks/useStories";
 import Loading from "../components/loading";
 import Skeleton from "../components/skeleton";
-import StoriesList from "../components/stories/StoriesList";
+import {
+  StoriesContainer as Container,
+  StoriesList,
+  StoriesArrow,
+  StoriesProfile,
+} from "../components/stories";
 
 const StoriesContainer = ({ ...props }) => {
   const [scrollPos, setScrollPos] = useState(0);
@@ -71,7 +73,7 @@ const StoriesContainer = ({ ...props }) => {
               />
             ))
           : stories.map(({ uid, username, avatar }) => (
-              <StoryProfile
+              <StoriesProfile
                 key={uid}
                 username={username}
                 avatar={avatar}

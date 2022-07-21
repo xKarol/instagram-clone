@@ -1,8 +1,10 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import Avatar from "../../components/avatar";
-import PostComment from "../../components/post/comment/PostComment";
-import PostCommentLike from "../../components/post/comment/PostCommentLike";
-import PostUsername from "../../components/post/PostUsername";
+import {
+  PostComment,
+  PostCommentLike,
+  PostUsername,
+} from "../../components/post";
 import { db } from "../../config/firebase.config";
 import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";

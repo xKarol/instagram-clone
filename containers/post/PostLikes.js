@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import PostText from "../../components/post/PostText";
+import { PostText } from "../../components/post";
 import PhotoContext from "../../context/PhotoContext";
 
 const PostLikesContainer = () => {

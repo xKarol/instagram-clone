@@ -3,8 +3,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { RiBookmarkLine } from "react-icons/ri";
-import PostActions from "../../components/post/PostActions";
-import PostIcon from "../../components/post/PostIcon";
+import { PostActions, PostIcon } from "../../components/post";
 import PhotoContext from "../../context/PhotoContext";
 
 const PostActionsContainer = (props) => {
