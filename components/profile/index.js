@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../Layout";
+import Layout from "../layout";
 import Statistics from "./Statistics";
 import ProfileData from "./ProfileData";
 import Nav from "./Nav";
