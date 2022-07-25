@@ -1,6 +1,6 @@
 import usePhotos from "../../hooks/usePhotos";
 import Loading from "../../components/loading";
-import PostContainer from "../../containers/post";
+import { PostItemContainer } from "./";
 
 const PostListContainer = (props) => {
   const { photos, loading } = usePhotos();
@@ -11,7 +11,7 @@ const PostListContainer = (props) => {
       ) : (
         <ul className="mt-[20px]" {...props}>
           {photos.map((photo) => (
-            <PostContainer key={photo.photoId} data={photo} />
+            <PostItemContainer key={photo.photoId} data={photo} />
           ))}
         </ul>
       )}

@@ -9,14 +9,16 @@ import UserContext from "../../context/UserContext";
 import NotFoundPage from "../../pages/404";
 import usePhoto from "../../hooks/usePhoto";
 import Avatar from "../../components/avatar";
-import PostImageContainer from "../../containers/post/PostImage";
-import PostHeaderContainer from "../../containers/post/PostHeader";
-import PostCaptionContainer from "../../containers/post/PostCaption";
-import PostCommentContainer from "../../containers/post/PostComment";
-import PostActionsContainer from "../../containers/post/PostActions";
-import PostCommentFormContainer from "../../containers/post/PostCommentForm";
-import PostDateContainer from "../../containers/post/PostDate";
-import PostLikesContainer from "../../containers/post/PostLikes";
+import {
+  PostImageContainer,
+  PostHeaderContainer,
+  PostCaptionContainer,
+  PostCommentContainer,
+  PostActionsContainer,
+  PostCommentFormContainer,
+  PostDateContainer,
+  PostLikesContainer,
+} from "../../containers/post";
 
 export default function Post() {
   const router = useRouter();
