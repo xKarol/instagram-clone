@@ -1,14 +1,14 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import UserContext from "../context/UserContext";
-import useStories from "../hooks/useStories";
-import Loading from "../components/loading";
-import Skeleton from "../components/skeleton";
+import UserContext from "../../context/UserContext";
+import useStories from "../../hooks/useStories";
+import Loading from "../../components/loading";
+import Skeleton from "../../components/skeleton";
 import {
   StoriesContainer as Container,
   StoriesList,
   StoriesArrow,
   StoriesProfile,
-} from "../components/stories";
+} from "../../components/stories";
 
 const StoriesContainer = ({ ...props }) => {
   const [scrollPos, setScrollPos] = useState(0);

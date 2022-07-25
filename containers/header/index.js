@@ -1,14 +1,14 @@
+import { useContext, useState } from "react";
+import UserContext from "../../context/UserContext";
 import { MdHomeFilled, MdOutlineAddBox } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { FaRegCompass } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
-import Logo from "../components/logo";
-import Avatar from "../components/avatar";
-import { useContext, useState } from "react";
-import UserContext from "../context/UserContext";
-import Upload from "../components/upload";
-import DropdownMenu from "../components/dropdown";
-import ProfileDropdown from "../components/dropdown/ProfileDropdown";
+import Logo from "../../components/logo";
+import Avatar from "../../components/avatar";
+import Upload from "../../components/upload";
+import DropdownMenu from "../../components/dropdown";
+import ProfileDropdown from "../../components/dropdown/ProfileDropdown";
 import {
   HeaderContainer as Container,
   HeaderAuth,
@@ -16,7 +16,7 @@ import {
   HeaderNavLink,
   HeaderNavList,
   HeaderSearchBar,
-} from "../components/header";
+} from "../../components/header";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
