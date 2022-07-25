@@ -1,7 +1,7 @@
 import Layout from "../components/layout";
 import HeaderContainer from "../containers/header";
 import StoriesContainer from "../containers/stories";
-import SidebarContainer from "../containers/sidebar";
+import { SidebarContainer } from "../containers/sidebar";
 import { PostListContainer } from "../containers/post";
 
 export default function Home() {
