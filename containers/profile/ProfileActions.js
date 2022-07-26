@@ -8,7 +8,6 @@ import { FaUserCheck } from "react-icons/fa";
 import { isFollowing } from "../../utils";
 import Loading from "../../components/loading";
 import { getUserByUsername, followUser, unfollowUser } from "../../services";
-import Skeleton from "../../components/skeleton";
 import { db } from "../../config/firebase.config";
 import { ProfileButton } from "../../components/profile";
 
@@ -30,16 +29,9 @@ const ProfileActionsContainer = () => {
     setPending(false);
   };
 
-  console.log(loading);
-
   return (
     <div className={`flex space-x-[10px] items-center`}>
-      {loading ? (
-        <>
-          <Skeleton className={"w-[80px] h-[20px] rounded-md"} />
-          <Skeleton className={"w-[30px] h-[20px] rounded-md"} />
-        </>
-      ) : (
+      {!loading && (
         <>
           {user?.username === profileUser?.username ? (
             <>

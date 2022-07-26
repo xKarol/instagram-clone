@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import Avatar from "../../components/avatar";
+import Skeleton from "../../components/skeleton";
+import ProfileContext from "../../context/ProfileContext";
 import { ProfileHeader, ProfileBiography } from "../../components/profile";
 import {
   ProfileAvatarChangeContainer,
@@ -5,10 +9,6 @@ import {
   ProfileActionsContainer,
   ProfileNameContainer,
 } from "./";
-import Avatar from "../../components/avatar";
-import Skeleton from "../../components/skeleton";
-import { useContext } from "react";
-import ProfileContext from "../../context/ProfileContext";
 
 const ProfileHeaderContainer = ({ viewport }) => {
   const { user: profileUser, loading } = useContext(ProfileContext);
