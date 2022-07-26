@@ -12,7 +12,7 @@ import UserContext from "../../context/UserContext";
 const SidebarUserProfileContainer = () => {
   const {
     loggedIn,
-    user: { username, fullName },
+    user: { username, fullName, avatar },
   } = useContext(UserContext);
 
   return (
@@ -20,7 +20,7 @@ const SidebarUserProfileContainer = () => {
       <Container>
         <Link href={`/${username}`}>
           <a>
-            <Avatar size={55} />
+            <Avatar src={avatar} size={55} />
           </a>
         </Link>
         <SidebarUserProfileData>
