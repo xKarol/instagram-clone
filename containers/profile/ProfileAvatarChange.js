@@ -1,16 +1,16 @@
 import { useContext, useRef, useState, useEffect } from "react";
-import Loading from "../loading";
 import { db } from "../../config/firebase.config";
 import { updateDoc, doc } from "firebase/firestore";
 import UserContext from "../../context/UserContext";
 import ProfileContext from "../../context/ProfileContext";
+import Loading from "../../components/loading";
 import {
   uploadAvatar,
   deleteAvatarFromStorage,
   getUserByUsername,
 } from "../../services";
 
-export default function ChangeAvatar({ children }) {
+const ProfileAvatarChangeContainer = ({ children, className }) => {
   const { setUser, user } = useContext(UserContext);
   const { user: profileUser, setUser: setProfileUser } =
     useContext(ProfileContext);
@@ -84,7 +84,7 @@ export default function ChangeAvatar({ children }) {
   return (
     <>
       <div
-        className="w-full h-full cursor-pointer relative"
+        className={`cursor-pointer relative ${className}`}
         onClick={handleClick}
       >
         {pending && (
@@ -102,4 +102,6 @@ export default function ChangeAvatar({ children }) {
       />
     </>
   );
-}
+};
+
+export default ProfileAvatarChangeContainer;

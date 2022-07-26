@@ -1,33 +1,45 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Profile from "../../components/profile";
 import ProfileContext from "../../context/ProfileContext";
 import NotFoundPage from "../404";
 import HeaderContainer from "../../containers/header";
 import Layout from "../../components/layout";
 import useProfile from "../../hooks/useProfile";
+import {
+  ProfileNavContainer,
+  ProfilePostsListContainer,
+  ProfileHeaderContainer,
+} from "../../containers/profile";
+import { useViewport } from "../../context/ViewportContext";
+import { SCREEN_MEDIUM } from "../../constants/screens";
 
 export default function ProfilePage() {
   const router = useRouter();
   const { profile } = router.query;
   const { user: profileUser, loading, ...data } = useProfile(profile);
-  const { username, fullName } = profileUser;
+  const { width } = useViewport();
+  const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
+  const notFound = !loading && !profileUser;
 
-  if (!profileUser) return <NotFoundPage />;
+  if (notFound) return <NotFoundPage />;
   return (
     <>
       <Head>
         <title>
           {`${
-            loading ? `@${profile}` : `${fullName} (@${username})`
+            loading
+              ? `@${profile}`
+              : `${profileUser.fullName} (@${profileUser.username})`
           } • Instagram`}
         </title>
       </Head>
 
       <HeaderContainer />
-      <ProfileContext.Provider value={{ ...data, user: profileUser }}>
+      <ProfileContext.Provider value={{ ...data, loading, user: profileUser }}>
         <Layout>
-          <Profile />
+          <ProfileHeaderContainer viewport={device} />
+          <ProfileNavContainer />
+          <ProfilePostsListContainer />
         </Layout>
       </ProfileContext.Provider>
     </>

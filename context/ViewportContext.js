@@ -18,6 +18,7 @@ export default function ViewportProvider({ children }) {
       setWidth(window.innerWidth);
       setHeight(window.innerHeight);
     };
+    handleWindowResize();
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);

@@ -5,14 +5,14 @@ import { RiSettings3Line } from "react-icons/ri";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { BiChevronDown } from "react-icons/bi";
 import { FaUserCheck } from "react-icons/fa";
-import Button from "./Button";
 import { isFollowing } from "../../utils";
-import Loading from "../loading";
+import Loading from "../../components/loading";
 import { getUserByUsername, followUser, unfollowUser } from "../../services";
-import Skeleton from "../skeleton";
+import Skeleton from "../../components/skeleton";
 import { db } from "../../config/firebase.config";
+import { ProfileButton } from "../../components/profile";
 
-export default function Actions({ className }) {
+const ProfileActionsContainer = () => {
   const { user: profileUser, loading } = useContext(ProfileContext);
   const { user, setUser, loggedIn } = useContext(UserContext);
   const [pending, setPending] = useState(false);
@@ -30,8 +30,10 @@ export default function Actions({ className }) {
     setPending(false);
   };
 
+  console.log(loading);
+
   return (
-    <div className={`flex space-x-[10px] items-center ${className}`}>
+    <div className={`flex space-x-[10px] items-center`}>
       {loading ? (
         <>
           <Skeleton className={"w-[80px] h-[20px] rounded-md"} />
@@ -41,12 +43,14 @@ export default function Actions({ className }) {
         <>
           {user?.username === profileUser?.username ? (
             <>
-              <Button className={"bg-transparent"}>Edit Profile</Button>
+              <ProfileButton className={"bg-transparent"}>
+                Edit Profile
+              </ProfileButton>
               <RiSettings3Line className="text-[25px] cursor-pointer" />{" "}
             </>
           ) : isFollowMe ? (
             <>
-              <Button
+              <ProfileButton
                 className={
                   "border-none bg-blue text-white px-[20px] min-w-[100px]"
                 }
@@ -57,15 +61,15 @@ export default function Actions({ className }) {
                 ) : (
                   <Loading className={"w-[15px] h-[15px]"} />
                 )}
-              </Button>
-              <Button className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
+              </ProfileButton>
+              <ProfileButton className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
                 <BiChevronDown />
-              </Button>
+              </ProfileButton>
             </>
           ) : isFollowed ? (
             <>
-              <Button className={"px-[20px]"}>Message</Button>
-              <Button
+              <ProfileButton className={"px-[20px]"}>Message</ProfileButton>
+              <ProfileButton
                 className="px-[30px] cursor-pointer"
                 onClick={handleFollow}
               >
@@ -74,14 +78,14 @@ export default function Actions({ className }) {
                 ) : (
                   <Loading className={"w-[15px] h-[15px]"} />
                 )}
-              </Button>
-              <Button className="text-[25px] px-[5px] cursor-pointer">
+              </ProfileButton>
+              <ProfileButton className="text-[25px] px-[5px] cursor-pointer">
                 <BiChevronDown />
-              </Button>
+              </ProfileButton>
             </>
           ) : !isFollowed ? (
             <>
-              <Button
+              <ProfileButton
                 className={
                   "border-none bg-blue text-white px-[20px] min-w-[75px]"
                 }
@@ -92,10 +96,10 @@ export default function Actions({ className }) {
                 ) : (
                   <Loading className={"w-[15px] h-[15px]"} />
                 )}
-              </Button>
-              <Button className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
+              </ProfileButton>
+              <ProfileButton className="px-[5px] text-[25px] border-none bg-blue cursor-pointer text-white">
                 <BiChevronDown />
-              </Button>
+              </ProfileButton>
             </>
           ) : null}
           {user?.username !== profileUser?.username && (
@@ -105,4 +109,6 @@ export default function Actions({ className }) {
       )}
     </div>
   );
-}
+};
+
+export default ProfileActionsContainer;

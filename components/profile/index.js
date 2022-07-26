@@ -1,19 +1,9 @@
-import Statistics from "./Statistics";
-import ProfileData from "./ProfileData";
-import Nav from "./Nav";
-import Photos from "./Photos";
-import { useContext } from "react";
-import ProfileContext from "../../context/ProfileContext";
-
-export default function Profile() {
-  const { user, photos } = useContext(ProfileContext);
-  console.log(user, photos);
-  return (
-    <>
-      <ProfileData user={user} photos={photos} />
-      <Statistics className={"md:hidden"} />
-      <Nav />
-      <Photos />
-    </>
-  );
-}
+export { default as ProfileBiography } from "./ProfileBiography";
+export { default as ProfileButton } from "./ProfileButton";
+export { default as ProfileHeader } from "./ProfileHeader";
+export { default as ProfileNav } from "./ProfileNav";
+export { default as ProfileNavButton } from "./ProfileNavButton";
+export { default as ProfilePost } from "./ProfilePost";
+export { default as ProfilePostsList } from "./ProfilePostsList";
+export { default as ProfileStatistics } from "./ProfileStatistics";
+export { default as ProfileStatisticText } from "./ProfileStatisticText";
