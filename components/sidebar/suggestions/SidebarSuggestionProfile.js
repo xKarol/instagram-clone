@@ -1,27 +1,22 @@
 import Link from "next/link";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Avatar from "../../avatar";
 import { isFollowing } from "../../../utils";
-import { followUser, unfollowUser, getUserByUsername } from "../../../services";
 import Loading from "../../loading";
 import UserContext from "../../../context/UserContext";
-import { db } from "../../../config/firebase.config";
+import useFollow from "../../../hooks/useFollow";
 
 export default function SuggestedProfile({ avatar, username, docId }) {
-  const { user, setUser, loggedIn } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
-  const following = isFollowing(docId, user?.followings);
+  const { user, setUser } = useContext(UserContext);
+  const { uid: userId } = user;
+  const following = isFollowing(docId, user.followings);
 
-  const handleFollow = async () => {
-    if (loading || !loggedIn) return;
-    setLoading(true);
-    !following
-      ? await followUser(db, user.uid, docId)
-      : await unfollowUser(db, user.uid, docId);
-    const userData = await getUserByUsername(db, user?.username);
-    setUser(userData);
-    setLoading(false);
-  };
+  const { handleFollow, pending } = useFollow({
+    isFollowed: following,
+    userId,
+    followId: docId,
+    setUser,
+  });
 
   return (
     <li className="flex items-center text-[14px] gap-[15px] py-[5px]">
@@ -42,7 +37,7 @@ export default function SuggestedProfile({ avatar, username, docId }) {
         } font-medium text-[12px]`}
         onClick={handleFollow}
       >
-        {!loading ? (
+        {!pending ? (
           <>{following ? "Following" : "Follow"}</>
         ) : (
           <Loading className="mr-[15px] w-[15px] h-[15px] border-[2px]" />

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import ProfileContext from "../../context/ProfileContext";
 import { RiSettings3Line } from "react-icons/ri";
@@ -7,33 +7,29 @@ import { BiChevronDown } from "react-icons/bi";
 import { FaUserCheck } from "react-icons/fa";
 import { isFollowing } from "../../utils";
 import Loading from "../../components/loading";
-import { getUserByUsername, followUser, unfollowUser } from "../../services";
-import { db } from "../../config/firebase.config";
 import { ProfileButton } from "../../components/profile";
+import useFollow from "../../hooks/useFollow";
 
 const ProfileActionsContainer = () => {
   const { user: profileUser, loading } = useContext(ProfileContext);
-  const { user, setUser, loggedIn } = useContext(UserContext);
-  const [pending, setPending] = useState(false);
-  const isFollowed = isFollowing(profileUser?.uid, user?.followings);
-  const isFollowMe = isFollowing(user?.uid, profileUser?.followings);
+  const { user, setUser } = useContext(UserContext);
+  const { uid: profileId, username: profileName } = profileUser;
+  const { uid: userId, username } = user;
 
-  const handleFollow = async () => {
-    if (pending || loading || !loggedIn) return;
-    setPending(true);
-    !isFollowed
-      ? await followUser(db, user.uid, profileUser?.uid)
-      : await unfollowUser(db, user.uid, profileUser?.uid);
-    const userData = await getUserByUsername(db, user?.username);
-    setUser(userData);
-    setPending(false);
-  };
+  const isFollowed = isFollowing(profileId, user.followings);
+  const isFollowMe = isFollowing(userId, profileUser.followings);
+  const { handleFollow, pending } = useFollow({
+    isFollowed,
+    userId,
+    followId: profileId,
+    setUser,
+  });
 
   return (
     <div className={`flex space-x-[10px] items-center`}>
       {!loading && (
         <>
-          {user?.username === profileUser?.username ? (
+          {username === profileName ? (
             <>
               <ProfileButton className={"bg-transparent"}>
                 Edit Profile
@@ -94,7 +90,7 @@ const ProfileActionsContainer = () => {
               </ProfileButton>
             </>
           ) : null}
-          {user?.username !== profileUser?.username && (
+          {username !== profileName && (
             <HiOutlineDotsHorizontal className="text-[25px] cursor-pointer" />
           )}
         </>
