@@ -8,8 +8,10 @@ import {
   setDoc,
   deleteDoc,
   orderBy,
+  updateDoc,
 } from "firebase/firestore";
 import { getPhotoComments, getPhotoLikes } from "./post";
+import { deleteAvatarFromStorage, uploadAvatar } from "./storage";
 
 export const getUserMainData = async (db, username) => {
   if (!username) return;
@@ -99,4 +101,25 @@ export const getUserPhotos = async (db, username) => {
     })
   );
   return photos;
+};
+
+export const updateUserAvatar = async ({
+  db,
+  fileName,
+  oldAvatarName,
+  userId,
+  file,
+}) => {
+  const { downloadURL, fileName: uploadedFileName } = await uploadAvatar(
+    file,
+    fileName
+  );
+  await updateDoc(doc(db, "users", userId), {
+    avatar: downloadURL,
+    avatarFileName: uploadedFileName,
+  });
+  if (oldAvatarName) {
+    await deleteAvatarFromStorage(oldAvatarName);
+  }
+  return downloadURL;
 };

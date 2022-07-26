@@ -4,6 +4,7 @@ import {
   ref,
   uploadString,
   deleteObject,
+  uploadBytes,
 } from "firebase/storage";
 
 export const uploadPhoto = async (username, file, fileName) => {
@@ -17,7 +18,7 @@ export const uploadPhoto = async (username, file, fileName) => {
 export const uploadAvatar = async (file, fileName) => {
   const name = Date.now() + "_" + fileName;
   const imageRef = ref(storage, `avatars/${name}`);
-  await uploadString(imageRef, file, "data_url");
+  await uploadBytes(imageRef, file);
   const downloadURL = await getDownloadURL(imageRef);
   return { downloadURL, fileName: name };
 };
