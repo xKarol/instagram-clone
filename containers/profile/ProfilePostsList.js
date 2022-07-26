@@ -1,16 +1,20 @@
 import { useContext } from "react";
 import ProfileContext from "../../context/ProfileContext";
 import { ProfilePostsList, ProfilePost } from "../../components/profile";
+import Loading from "../../components/loading";
 
 const ProfilePostsListContainer = () => {
-  const { photos } = useContext(ProfileContext);
+  const { photos, loading } = useContext(ProfileContext);
 
   return (
-    <ProfilePostsList>
-      {photos.map((photo) => (
-        <ProfilePost key={photo.photoId} data={photo} />
-      ))}
-    </ProfilePostsList>
+    <>
+      {!!loading && <Loading className="mt-10 mx-auto" />}
+      <ProfilePostsList>
+        {photos.map((photo) => (
+          <ProfilePost key={photo.photoId} data={photo} />
+        ))}
+      </ProfilePostsList>
+    </>
   );
 };
 
