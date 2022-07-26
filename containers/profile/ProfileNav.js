@@ -4,11 +4,10 @@ import { MdGridOn } from "react-icons/md";
 import { ProfileNav, ProfileNavButton } from "../../components/profile";
 
 const ProfileNavContainer = () => {
+  const activeElement = 0;
   return (
-    <ProfileNav>
-      <ProfileNavButton icon={<MdGridOn />} active>
-        Posts
-      </ProfileNavButton>
+    <ProfileNav active={activeElement}>
+      <ProfileNavButton icon={<MdGridOn />}>Posts</ProfileNavButton>
       <ProfileNavButton icon={<FiBookmark />}>Saved</ProfileNavButton>
       <ProfileNavButton icon={<CgProfile />}>Tagged</ProfileNavButton>
     </ProfileNav>

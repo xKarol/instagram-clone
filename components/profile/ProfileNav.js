@@ -1,4 +1,6 @@
-const ProfileNav = ({ children, className, ...props }) => {
+import { Children, cloneElement } from "react";
+
+const ProfileNav = ({ children, className, active, ...props }) => {
   return (
     <nav
       className={`w-full border border-transparent border-y-gray-200 
@@ -6,7 +8,9 @@ const ProfileNav = ({ children, className, ...props }) => {
       text-gray-300 ${className}`}
       {...props}
     >
-      {children}
+      {Children.map(children, (child, index) =>
+        cloneElement(child, { active: index === active })
+      )}
     </nav>
   );
 };
