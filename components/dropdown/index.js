@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 export default function DropdownMenu({
   children,
   className,
@@ -9,8 +11,11 @@ export default function DropdownMenu({
     <button className="relative flex group">
       {children}
       <div
-        className={`text-[14px] bg-white absolute right-[-28px] rounded-md top-[38px] z-50 
-            shadow-[0_0_10px_2px_rgba(0,0,0,0.05)] ${className} hidden group-focus-within:block`}
+        className={clsx(
+          "text-[14px] bg-white absolute right-[-28px] rounded-md top-[38px] z-50 shadow-[0_0_10px_2px_rgba(0,0,0,0.05)]",
+          className,
+          "hidden group-focus-within:block"
+        )}
         {...props}
       >
         {!!showIndicator && (

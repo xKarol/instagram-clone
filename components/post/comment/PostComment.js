@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const PostComment = ({ children, className, ...props }) => {
   return (
-    <li className={`w-full flex items-center ${className}`} {...props}>
+    <li className={clsx("w-full flex items-center", className)} {...props}>
       {children}
     </li>
   );

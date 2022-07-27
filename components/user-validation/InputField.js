@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import clsx from "clsx";
 
 export default function InputField({
   className,
@@ -22,7 +23,10 @@ export default function InputField({
 
   return (
     <div
-      className={`bg-gray-100 border border-gray-200 rounded-sm text-[12px] w-full relative ${className}`}
+      className={clsx(
+        "bg-gray-100 border border-gray-200 rounded-sm text-[12px] w-full relative",
+        className
+      )}
     >
       <input
         type={type ?? "text"}
@@ -37,8 +41,10 @@ export default function InputField({
       </span>
       {type === "password" && (
         <button
-          className={`absolute top-1/2 right-[10px] -translate-y-1/2 text-[14px] 
-          font-[600] cursor-pointer ${!value && "hidden"}`}
+          className={clsx(
+            "absolute top-1/2 right-[10px] -translate-y-1/2 text-[14px] font-[600] cursor-pointer",
+            !value && "hidden"
+          )}
           type="button"
           onClick={togglePassword}
           ref={passwordShowBtnRef}

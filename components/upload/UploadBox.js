@@ -6,6 +6,7 @@ import { CROP_PAGE } from "../../constants/globals";
 import Error from "./Error";
 import ProgressBar from "../progress-bar";
 import UploadContext from "../../context/UploadContext";
+import clsx from "clsx";
 
 export default function UploadBox() {
   const {
@@ -85,9 +86,10 @@ export default function UploadBox() {
 
   return (
     <section
-      className={`h-full w-screen sm:w-[400px] max-w-[400px] mx-auto flex flex-col items-center justify-center gap-[15px] ${
+      className={clsx(
+        "h-full w-screen sm:w-[400px] max-w-[400px] mx-auto flex flex-col items-center justify-center gap-[15px]",
         isDragging && "bg-gray-100"
-      }`}
+      )}
     >
       {progress !== 0 && (
         <ProgressBar
@@ -107,9 +109,10 @@ export default function UploadBox() {
       ) : (
         <>
           <FaPhotoVideo
-            className={`pointer-events-none text-[100px] ${
+            className={clsx(
+              "pointer-events-none text-[100px]",
               isDragging && "text-blue"
-            }`}
+            )}
           />
           <span className="text-[20px] text-center pointer-events-none">
             Drag photos and videos here
@@ -117,9 +120,10 @@ export default function UploadBox() {
         </>
       )}
       <button
-        className={`bg-blue text-white px-[10px] py-[5px] rounded-[5px] font-medium text-[14px] ${
+        className={clsx(
+          "bg-blue text-white px-[10px] py-[5px] rounded-[5px] font-medium text-[14px]",
           isDragging && "pointer-events-none"
-        }`}
+        )}
         onClick={() => fileRef.current.click()}
       >
         {error?.file ? "Select other files" : "Select from computer"}

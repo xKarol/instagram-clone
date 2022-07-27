@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 const PostCommentForm = ({
   pending = false,
   children,
@@ -6,8 +8,10 @@ const PostCommentForm = ({
 }) => {
   return (
     <form
-      className={`flex items-center px-[16px] py-[12px] 
-      border border-transparent border-t-gray-200 ${!!pending && "opacity-50"}`}
+      className={clsx(
+        "flex items-center px-[16px] py-[12px] border border-transparent border-t-gray-200",
+        pending && "opacity-50"
+      )}
       {...props}
     >
       {children}

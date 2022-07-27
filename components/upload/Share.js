@@ -7,6 +7,7 @@ import UploadContext from "../../context/UploadContext";
 import Error from "./Error";
 import { trimSpace } from "../../utils";
 import { getPhotoById, uploadPhoto } from "../../services";
+import clsx from "clsx";
 
 function Share() {
   const [error, setError] = useState(false);
@@ -55,9 +56,10 @@ function Share() {
       ) : (
         <>
           <div
-            className={`${
-              !uploaded && "animate-spin"
-            } flex items-center justify-center w-[100px] h-[100px] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] rounded-full relative`}
+            className={clsx(
+              !uploaded && "animate-spin",
+              "flex items-center justify-center w-[100px] h-[100px] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] rounded-full relative"
+            )}
           >
             <div className="bg-white w-[92px] h-[92px] rounded-full " />
             {uploaded && (

@@ -1,3 +1,5 @@
-export default function Loading(props) {
-  return <div {...props} className={`loading ${props.className}`} />;
+import clsx from "clsx";
+
+export default function Loading({ className, ...props }) {
+  return <div className={clsx("loading", className)} {...props} />;
 }

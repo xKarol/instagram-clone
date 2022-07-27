@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
+import clsx from "clsx";
 
 export default function Button({ children }) {
   const [active, setActive] = useState(false);
@@ -12,7 +13,12 @@ export default function Button({ children }) {
         <p className="w-full px-[10px] h-[40px] flex items-center">
           {children}
         </p>
-        <BsChevronDown className={`absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none transition-transform ${active && "rotate-180"}`} />
+        <BsChevronDown
+          className={clsx(
+            "absolute text-[16px] right-[5px] top-1/2 -translate-y-1/2 pointer-events-none transition-transform",
+            active && "rotate-180"
+          )}
+        />
       </div>
     </button>
   );

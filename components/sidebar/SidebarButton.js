@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const SidebarButton = ({ children, className, ...props }) => {
   return (
-    <button className={`font-medium text-[12px] ${className}`} {...props}>
+    <button className={clsx("font-medium text-[12px]", className)} {...props}>
       {children}
     </button>
   );

@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const PostIcon = ({ children, className, ...props }) => {
   return (
-    <button className={`cursor-pointer ${className}`} {...props}>
+    <button className={clsx("cursor-pointer", className)} {...props}>
       {children}
     </button>
   );

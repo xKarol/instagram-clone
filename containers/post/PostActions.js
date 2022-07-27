@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import clsx from "clsx";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
@@ -15,9 +16,10 @@ const PostActionsContainer = (props) => {
         aria-label="like photo"
         onClick={handleLike}
         data-cy="post-like"
-        className={`transition-opacity hover:opacity-50 ${
-          !!liked && "text-red"
-        }`}
+        className={clsx(
+          "transition-opacity hover:opacity-50",
+          liked && "text-red"
+        )}
       >
         {liked ? <AiFillHeart /> : <AiOutlineHeart />}
       </PostIcon>

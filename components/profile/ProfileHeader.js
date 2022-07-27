@@ -1,6 +1,11 @@
+import clsx from "clsx";
+
 const ProfileHeader = ({ children, className, ...props }) => {
   return (
-    <header className={`flex mb-[15px] md:mb-[50px] ${className}`} {...props}>
+    <header
+      className={clsx("flex mb-[15px] md:mb-[50px]", className)}
+      {...props}
+    >
       {children}
     </header>
   );

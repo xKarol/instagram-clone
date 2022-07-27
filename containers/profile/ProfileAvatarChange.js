@@ -5,6 +5,7 @@ import ProfileContext from "../../context/ProfileContext";
 import Loading from "../../components/loading";
 import { getUserByUsername, updateUserAvatar } from "../../services";
 import { useDropzone } from "react-dropzone";
+import clsx from "clsx";
 
 const ProfileAvatarChangeContainer = ({ children, className }) => {
   const {
@@ -52,7 +53,7 @@ const ProfileAvatarChangeContainer = ({ children, className }) => {
   return (
     <>
       <div
-        className={`cursor-pointer relative rounded-full ${className}`}
+        className={clsx("cursor-pointer relative rounded-full", className)}
         {...getRootProps()}
       >
         <input {...getInputProps({ multiple: false })} />

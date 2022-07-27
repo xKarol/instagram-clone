@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const PostBody = ({ children, className, ...props }) => {
   return (
-    <section className={`w-full flex flex-col ${className}`} {...props}>
+    <section className={clsx("w-full flex flex-col", className)} {...props}>
       {children}
     </section>
   );

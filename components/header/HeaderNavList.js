@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const HeaderNavList = ({ children, className, ...props }) => {
   return (
-    <nav className={`flex items-center ${className}`} {...props}>
+    <nav className={clsx("flex items-center", className)} {...props}>
       <ul className="flex">{children}</ul>
     </nav>
   );

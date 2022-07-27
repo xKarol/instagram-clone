@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const SidebarText = ({ children, className, ...props }) => {
   return (
-    <p className={`font-medium ${className}`} {...props}>
+    <p className={clsx("font-medium", className)} {...props}>
       {children}
     </p>
   );

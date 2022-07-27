@@ -1,6 +1,8 @@
+import clsx from "clsx";
+
 const HeaderAuth = ({ children, className, ...props }) => {
   return (
-    <section className={`flex items-center first-line:${className}`} {...props}>
+    <section className={clsx("flex items-center", className)} {...props}>
       {children}
     </section>
   );

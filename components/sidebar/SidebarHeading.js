@@ -1,7 +1,9 @@
+import clsx from "clsx";
+
 const SidebarHeading = ({ children, className, ...props }) => {
   return (
     <h1
-      className={`font-medium text-gray-300 text-[14px] ${className}`}
+      className={clsx("font-medium text-gray-300 text-[14px]", className)}
       {...props}
     >
       {children}

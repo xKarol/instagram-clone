@@ -10,6 +10,7 @@ import PhotoContext from "../../context/PhotoContext";
 import UserContext from "../../context/UserContext";
 import { likeComment } from "../../services";
 import Link from "next/link";
+import clsx from "clsx";
 
 const PostCommentContainer = ({
   username,
@@ -51,7 +52,7 @@ const PostCommentContainer = ({
   };
 
   return (
-    <PostComment className={`flex ${className}`}>
+    <PostComment className={clsx("flex", className)}>
       {showAvatar && (
         <Link href={`/${username}`}>
           <a>

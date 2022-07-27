@@ -1,4 +1,5 @@
 import Link from "next/link";
+import clsx from "clsx";
 
 const HeaderAuth = ({
   children,
@@ -9,7 +10,7 @@ const HeaderAuth = ({
 }) => {
   return (
     <button
-      className={`mr-[10px] sm:mr-[20px] last-of-type:mr-0 ${className}`}
+      className={clsx("mr-[10px] sm:mr-[20px] last-of-type:mr-0", className)}
       {...props}
     >
       <Link href={href}>
