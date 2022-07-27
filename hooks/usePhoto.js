@@ -3,7 +3,7 @@ import { db } from "../config/firebase.config";
 import { getPhotoById } from "../services";
 
 export default function usePhoto(id) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [photo, setPhoto] = useState(false);
   const [comments, setComments] = useState([]);

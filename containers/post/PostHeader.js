@@ -8,17 +8,22 @@ import PostMenuContainer from "./PostMenu";
 import Modal from "../../components/modal";
 
 const PostHeaderContainer = (props) => {
-  const { photo: user, setShowModal, showModal } = useContext(PhotoContext);
+  const {
+    photo: { user },
+    setShowModal,
+    showModal,
+  } = useContext(PhotoContext);
+  const { username, avatar } = user;
 
   return (
     <>
       <PostHeader {...props}>
-        <Link href={`/${user.username}`}>
+        <Link href={`/${username}`}>
           <a className={"mr-[15px]"}>
-            <Avatar src={user.avatar} size={30} />
+            <Avatar src={avatar} size={30} />
           </a>
         </Link>
-        <PostUsername>{user.username}</PostUsername>
+        <PostUsername>{username}</PostUsername>
         <PostIcon
           aria-label="post config"
           onClick={() => setShowModal(true)}
