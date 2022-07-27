@@ -68,7 +68,7 @@ const PostContainer = ({ data: photo, ...props }) => {
         showModal,
       }}
     >
-      <Container {...props} data-cy="post">
+      <Container {...props} className="mb-[20px]" data-cy="post">
         <PostHeaderContainer />
         <PostImageContainer />
         <div className="px-[16px]">

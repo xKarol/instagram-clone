@@ -9,7 +9,7 @@ const PostListContainer = (props) => {
       {loading ? (
         <Loading className="mt-[50px]" />
       ) : (
-        <ul className="mt-[20px]" {...props}>
+        <ul {...props}>
           {photos.map((photo) => (
             <PostItemContainer key={photo.photoId} data={photo} />
           ))}

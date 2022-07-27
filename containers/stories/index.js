@@ -47,7 +47,7 @@ const StoriesContainer = ({ ...props }) => {
   };
 
   return visible ? (
-    <Container {...props}>
+    <Container className="mb-[20px]" {...props}>
       {loading && <Loading className={"mb-[10px]"} />}
       {showLeft && (
         <StoriesArrow
