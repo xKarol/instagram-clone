@@ -5,7 +5,7 @@ import { db } from "../config/firebase.config";
 
 export default function useProfilesSuggestions() {
   const [suggestions, setSuggestions] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const {
     user: { username },
@@ -31,5 +31,5 @@ export default function useProfilesSuggestions() {
     getData();
   }, [loggedIn, username]);
 
-  return { setSuggestions, suggestions, loading, error };
+  return { suggestions, loading, error };
 }

@@ -7,13 +7,10 @@ import {
 } from "../../components/sidebar";
 import {
   SidebarUserProfileContainer,
-  SidebarSuggestedProfileContainer,
+  SidebarSuggestionsListContainer,
 } from "./";
-import useProfilesSuggestions from "../../hooks/useProfilesSuggestions";
 
 const SidebarContainer = ({ ...props }) => {
-  const { suggestions, loading } = useProfilesSuggestions();
-
   return (
     <Container {...props}>
       <SidebarUserProfileContainer />
@@ -22,15 +19,7 @@ const SidebarContainer = ({ ...props }) => {
           <SidebarHeading>Suggestions For You</SidebarHeading>
           <SidebarButton>See All</SidebarButton>
         </SidebarSuggestionsHeader>
-        <ul>
-          {suggestions.map((suggestion) => (
-            <SidebarSuggestedProfileContainer
-              skeleton={loading}
-              key={suggestion.docId}
-              {...suggestion}
-            />
-          ))}
-        </ul>
+        <SidebarSuggestionsListContainer />
       </SidebarSuggestionsContainer>
     </Container>
   );
