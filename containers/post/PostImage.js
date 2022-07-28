@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { PostImage } from "../../components/post";
-import PhotoContext from "../../context/PhotoContext";
+import { usePostContext } from "../../context/PostContext";
 
 const PostImageContainer = (props) => {
   const {
@@ -9,7 +9,7 @@ const PostImageContainer = (props) => {
     caption,
     liked,
     handleLike,
-  } = useContext(PhotoContext);
+  } = usePostContext();
   const [heart, setHeart] = useState(false);
 
   useEffect(() => {

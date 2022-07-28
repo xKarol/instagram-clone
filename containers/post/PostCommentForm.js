@@ -9,7 +9,7 @@ import UserContext from "../../context/UserContext";
 import { addComment } from "../../services";
 import { db } from "../../config/firebase.config";
 import { trimSpace } from "../../utils";
-import PhotoContext from "../../context/PhotoContext";
+import { usePostContext } from "../../context/PostContext";
 import { serverTimestamp } from "firebase/firestore";
 import Loading from "../../components/loading";
 
@@ -21,7 +21,7 @@ const PostCommentFormContainer = () => {
   const {
     photo: { photoId },
     setComments,
-  } = useContext(PhotoContext);
+  } = usePostContext();
   const disabled = !comment.length || !loggedIn;
 
   const handleSubmit = async (e) => {

@@ -6,7 +6,7 @@ import {
   PostUsername,
 } from "../../components/post";
 import { db } from "../../config/firebase.config";
-import PhotoContext from "../../context/PhotoContext";
+import { usePostContext } from "../../context/PostContext";
 import UserContext from "../../context/UserContext";
 import { likeComment } from "../../services";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const PostCommentContainer = ({
   } = useContext(UserContext);
   const {
     photo: { photoId },
-  } = useContext(PhotoContext);
+  } = usePostContext();
 
   useLayoutEffect(() => {
     setLiked(

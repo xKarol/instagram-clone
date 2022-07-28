@@ -1,14 +1,13 @@
-import { useContext } from "react";
+import { usePostContext } from "../../context/PostContext";
 import clsx from "clsx";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { RiBookmarkLine } from "react-icons/ri";
 import { PostActions, PostIcon } from "../../components/post";
-import PhotoContext from "../../context/PhotoContext";
 
 const PostActionsContainer = (props) => {
-  const { liked, handleLike } = useContext(PhotoContext);
+  const { liked, handleLike } = usePostContext();
 
   return (
     <PostActions {...props}>

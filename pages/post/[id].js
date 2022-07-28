@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState, useContext } from "react";
 import Layout from "../../components/layout";
 import HeaderContainer from "../../containers/header";
-import PhotoContext from "../../context/PhotoContext";
-import UserContext from "../../context/UserContext";
+import PostProvider from "../../context/PostContext";
 import NotFoundPage from "../../pages/404";
 import usePhoto from "../../hooks/usePhoto";
 import Avatar from "../../components/avatar";
@@ -23,19 +21,7 @@ import {
 export default function Post() {
   const router = useRouter();
   const { id } = router.query;
-  const { user } = useContext(UserContext);
-  const [liked, setLiked] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const { photo, loading, likes, comments, setLikes, setComments } =
-    usePhoto(id);
-
-  useEffect(() => {
-    setLiked(
-      photo?.likes?.findIndex((like) => like?.uid === user?.uid) === -1
-        ? false
-        : true
-    );
-  }, [photo?.likes, user?.uid]);
+  const { photo, loading, comments } = usePhoto(id);
 
   if (!photo && !loading) return <NotFoundPage />;
   return (
@@ -52,24 +38,13 @@ export default function Post() {
       </Head>
       <Layout className="flex justify-center">
         <HeaderContainer />
-        {photo && (
-          <PhotoContext.Provider
-            value={{
-              showModal,
-              setShowModal,
-              photo,
-              liked,
-              setLiked,
-              setComments,
-              setLikes,
-              likes,
-            }}
-          >
+        {!loading && (
+          <PostProvider photo={photo}>
             <article className="w-full md:w-[80vw] flex md:h-[600px] flex-col lg:flex-row bg-white border border-gray-200 lg:overflow-hidden">
               <PostImageContainer className="w-full !pb-0 min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
               <section className="md:flex-1 flex flex-col md:h-full w-full lg:w-[350px] bg-white">
                 <PostHeaderContainer className={"px-[15px]"} />
-                <section className="px-[20px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
+                <div className="px-[20px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
                   {!!photo.caption.length && (
                     <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
                       <div className="space-x-[15px] flex">
@@ -93,7 +68,7 @@ export default function Post() {
                         />
                       ))}
                   </ul>
-                </section>
+                </div>
                 <div className="px-[20px]">
                   <PostActionsContainer />
                   <PostLikesContainer />
@@ -102,7 +77,7 @@ export default function Post() {
                 <PostCommentFormContainer />
               </section>
             </article>
-          </PhotoContext.Provider>
+          </PostProvider>
         )}
       </Layout>
     </>

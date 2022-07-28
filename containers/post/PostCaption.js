@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { usePostContext } from "../../context/PostContext";
 import { PostUsername } from "../../components/post";
-import PhotoContext from "../../context/PhotoContext";
 import { truncate } from "../../utils";
 import { MAX_CAPTION } from "../../constants/post";
 
@@ -11,7 +11,7 @@ const PostCaptionContainer = ({ show = false }) => {
       caption,
       user: { username },
     },
-  } = useContext(PhotoContext);
+  } = usePostContext();
 
   return (
     <div className="w-full text-[14px] flex leading-[15px]">

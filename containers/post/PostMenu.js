@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useContext } from "react";
-import PhotoContext from "../../context/PhotoContext";
+import { usePostContext } from "../../context/PostContext";
 import UserContext from "../../context/UserContext";
 import Button from "../../components/modal/Button";
 import Loading from "../../components/loading";
@@ -14,7 +14,7 @@ const PostMenuContainer = () => {
   const {
     photo: { photoId, fileName, user: photoUser },
     setShowModal,
-  } = useContext(PhotoContext);
+  } = usePostContext();
   const {
     user: { username, uid: userId },
     photos,

@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { PostHeader, PostIcon, PostUsername } from "../../components/post";
-import PhotoContext from "../../context/PhotoContext";
+import { usePostContext } from "../../context/PostContext";
 import Link from "next/link";
 import Avatar from "../../components/avatar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -12,7 +11,7 @@ const PostHeaderContainer = (props) => {
     photo: { user },
     setShowModal,
     showModal,
-  } = useContext(PhotoContext);
+  } = usePostContext();
   const { username, avatar } = user;
 
   return (

@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { usePostContext } from "../../context/PostContext";
 import { PostText } from "../../components/post";
-import PhotoContext from "../../context/PhotoContext";
 
 const PostLikesContainer = () => {
   const {
     photo: { likes },
-  } = useContext(PhotoContext);
+  } = usePostContext();
 
   return (
     <PostText data-cy="post-likes-amount">
