@@ -1,4 +1,10 @@
-import { createContext, useContext, useLayoutEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { db } from "../config/firebase.config";
 import { likePost } from "../services";
 import UserContext from "./UserContext";
@@ -12,7 +18,6 @@ const PostProvider = ({ children, photo }) => {
   const [likes, setLikes] = useState(photo.likes ?? []);
   const [liked, setLiked] = useState(false);
   const [pending, setPending] = useState(false);
-  const [error, setError] = useState(false);
   const { photoId } = photo;
   const {
     user: { uid: userId },
@@ -24,23 +29,20 @@ const PostProvider = ({ children, photo }) => {
     );
   }, [likes, userId]);
 
-  const handleLike = async () => {
-    if (pending) return;
+  const handleLike = useCallback(async () => {
+    if (pending || !userId) return;
     try {
       setPending(true);
-      setError(false);
       if (liked) {
         setLikes(likes.filter((like) => like.uid !== userId));
       } else {
         setLikes([...likes, { uid: userId }]);
       }
       await likePost(db, photoId, userId, liked);
-    } catch {
-      setError(true);
     } finally {
       setPending(false);
     }
-  };
+  }, [liked, likes, pending, photoId, userId]);
 
   return (
     <PostContext.Provider

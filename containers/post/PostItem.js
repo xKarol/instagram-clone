@@ -7,7 +7,7 @@ import {
   PostLikesContainer,
   PostCommentFormContainer,
   PostActionsContainer,
-  PostCommentContainer,
+  PostCommentsListContainer,
   PostCaptionContainer,
   PostImageContainer,
 } from "./";
@@ -32,11 +32,7 @@ const PostItemContainer = ({ data: photo, ...props }) => {
                 </a>
               </Link>
             )}
-            <ul>
-              {comments.map((props) => (
-                <PostCommentContainer key={props.commentId} {...props} />
-              ))}
-            </ul>
+            <PostCommentsListContainer />
             <PostDateContainer />
           </PostBody>
         </div>

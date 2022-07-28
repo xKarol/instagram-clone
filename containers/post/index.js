@@ -1,8 +1,10 @@
 export { default as PostActionsContainer } from "./PostActions";
 export { default as PostCaptionContainer } from "./PostCaption";
 export { default as PostCommentContainer } from "./PostComment";
+export { default as PostCommentsListContainer } from "./PostCommentsList";
 export { default as PostCommentFormContainer } from "./PostCommentForm";
 export { default as PostItemContainer } from "./PostItem";
+export { default as PostContainer } from "./PostContainer";
 export { default as PostDateContainer } from "./PostDate";
 export { default as PostHeaderContainer } from "./PostHeader";
 export { default as PostImageContainer } from "./PostImage";

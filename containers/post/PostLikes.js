@@ -2,9 +2,7 @@ import { usePostContext } from "../../context/PostContext";
 import { PostText } from "../../components/post";
 
 const PostLikesContainer = () => {
-  const {
-    photo: { likes },
-  } = usePostContext();
+  const { likes } = usePostContext();
 
   return (
     <PostText data-cy="post-likes-amount">

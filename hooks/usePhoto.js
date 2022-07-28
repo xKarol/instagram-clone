@@ -6,8 +6,6 @@ export default function usePhoto(id) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [photo, setPhoto] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [likes, setLikes] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -16,8 +14,6 @@ export default function usePhoto(id) {
         setError(false);
         setLoading(true);
         const photo = await getPhotoById(db, id);
-        setComments(photo?.comments);
-        setLikes(photo?.likes);
         setPhoto(photo);
       } catch {
         setError(true);
@@ -29,13 +25,8 @@ export default function usePhoto(id) {
   }, [id]);
 
   return {
-    setPhoto,
     photo,
     loading,
     error,
-    setLikes,
-    likes,
-    comments,
-    setComments,
   };
 }
