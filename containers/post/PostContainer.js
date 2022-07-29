@@ -37,7 +37,10 @@ const PostContainer = ({ ...props }) => {
                 </div>
               </div>
             )}
-            <PostCommentsListContainer showAvatar={true} />
+            <PostCommentsListContainer
+              showAvatar={true}
+              className="leading-10"
+            />
           </div>
           <div className="px-[20px]">
             <PostActionsContainer />

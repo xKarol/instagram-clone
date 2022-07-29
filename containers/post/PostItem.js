@@ -32,7 +32,7 @@ const PostItemContainer = ({ data: photo, ...props }) => {
                 </a>
               </Link>
             )}
-            <PostCommentsListContainer />
+            <PostCommentsListContainer className="leading-tight" />
             <PostDateContainer />
           </PostBody>
         </div>

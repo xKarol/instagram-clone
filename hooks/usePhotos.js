@@ -14,7 +14,7 @@ export default function usePhotos() {
     try {
       setError(false);
       setLoading(true);
-      const { photos, lastId: last } = await getPhotos(db, 1, lastId.current);
+      const { photos, lastId: last } = await getPhotos(db, 5, lastId.current);
       setPhotos((prev) => [...prev, ...photos]);
       lastId.current = last;
       if (!last) {

@@ -1,16 +1,16 @@
+import clsx from "clsx";
 import { usePostContext } from "../../context/PostContext";
 import { PostCommentContainer } from "./";
 
-const PostCommentsList = ({ showAvatar = false, ...props }) => {
+const PostCommentsList = ({ showAvatar = false, className, ...props }) => {
   const { comments } = usePostContext();
   return (
-    <ul {...props}>
+    <ul className={clsx(className)} {...props}>
       {comments.map((comment) => (
         <PostCommentContainer
           key={comment.commentId}
           {...comment}
           showAvatar={showAvatar}
-          className="mb-[10px]"
         />
       ))}
     </ul>
