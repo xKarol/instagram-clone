@@ -9,8 +9,48 @@ import {
   query,
   orderBy,
   serverTimestamp,
+  startAfter,
+  limit,
 } from "firebase/firestore";
 import { getUserByUsername } from "./user";
+
+export const getPhotos = async (db, max = 15, startId) => {
+  let q;
+  if (!startId) {
+    q = query(
+      collection(db, "photos"),
+      orderBy("timestamp", "desc"),
+      limit(max)
+    );
+  } else {
+    q = query(
+      collection(db, "photos"),
+      orderBy("timestamp", "desc"),
+      startAfter(startId),
+      limit(max)
+    );
+  }
+
+  const photosDocs = await getDocs(q);
+  const lastVisible = photosDocs.docs[photosDocs.docs.length - 1];
+
+  const photos = await Promise.all(
+    photosDocs.docs.map(async (docData) => {
+      const username = docData.data().username;
+      const userData = await getUserByUsername(db, username, false);
+      const comments = await getPhotoComments(db, docData.id);
+      const likes = await getPhotoLikes(db, docData.id);
+      return {
+        user: userData,
+        ...docData.data(),
+        photoId: docData.id,
+        comments: comments,
+        likes: likes,
+      };
+    })
+  );
+  return { photos, lastId: lastVisible };
+};
 
 export const getCommentLikes = async (db, postId, commentId) => {
   const commentsDocs = await getDocs(
@@ -45,27 +85,6 @@ export const getPhotoComments = async (db, postId) => {
 export const getPhotoLikes = async (db, postId) => {
   const likesDocs = await getDocs(collection(db, "photos", postId, "likes"));
   return likesDocs.docs.map((doc) => doc.data());
-};
-
-export const getPhotos = async (db) => {
-  const q = query(collection(db, "photos"), orderBy("timestamp", "desc"));
-  const photosDocs = await getDocs(q);
-  const photos = await Promise.all(
-    photosDocs.docs.map(async (docData) => {
-      const username = docData.data().username;
-      const userData = await getUserByUsername(db, username, false);
-      const comments = await getPhotoComments(db, docData.id);
-      const likes = await getPhotoLikes(db, docData.id);
-      return {
-        user: userData,
-        ...docData.data(),
-        photoId: docData.id,
-        comments: comments,
-        likes: likes,
-      };
-    })
-  );
-  return photos;
 };
 
 export const getPhotoById = async (db, id) => {
