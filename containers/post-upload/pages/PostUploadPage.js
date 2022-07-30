@@ -4,9 +4,8 @@ import { useDropzone } from "react-dropzone";
 import { FaPhotoVideo } from "react-icons/fa";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
 import { CROP_PAGE } from "../../../constants/globals";
-import Error from "../../../components/upload/Error";
 import { hasExtension } from "../../../utils";
-import { PostUploadPageBox } from "../../../components/upload";
+import { PostUploadPageBox, PostUploadError } from "../../../components/upload";
 
 const PostUploadPageContainer = () => {
   const [error, setError] = useState(false);
@@ -48,14 +47,11 @@ const PostUploadPageContainer = () => {
       className={clsx("space-y-[15px]", isDragActive && "bg-gray-100")}
     >
       {error ? (
-        <Error
-          caption={<p className="text-[20px]">This file is not supported</p>}
-          info={
-            <p className="text-[13px] text-gray-300">
-              <b>{files.name}</b> could not be uploaded.
-            </p>
-          }
-        />
+        <PostUploadError captionText="This file is not supported">
+          <p className="text-[13px] text-gray-300">
+            <b>{files.name}</b> could not be uploaded.
+          </p>
+        </PostUploadError>
       ) : (
         <>
           <FaPhotoVideo

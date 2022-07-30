@@ -4,10 +4,10 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
 import { usePostUploadContext } from "../../context/PostUploadContext";
-import Error from "./Error";
 import { trimSpace } from "../../utils";
 import { getPhotoById, uploadPhoto } from "../../services";
 import clsx from "clsx";
+import { PostUploadError } from "./";
 
 function Share() {
   const [error, setError] = useState(false);
@@ -45,12 +45,11 @@ function Share() {
   return (
     <div className="w-screen h-full sm:w-[400px] max-w-[400px] flex flex-col justify-center items-center space-y-[15px]">
       {error ? (
-        <Error
-          caption={
-            <p className="text-[20px] text-gray-300 text-center">
-              Your post could not be shared. Please try again.
-            </p>
-          }
+        <PostUploadError
+          captionText="Your post could not be shared. Please try again."
+          elementsProps={{
+            caption: { className: "text-[20px] text-gray-300" },
+          }}
         />
       ) : (
         <>
