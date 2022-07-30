@@ -1,18 +1,18 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { validFileExtensions } from "../../constants/arrays";
 import { checkFileExtension } from "../../utils";
 import { CROP_PAGE } from "../../constants/globals";
 import Error from "./Error";
 import ProgressBar from "../progress-bar";
-import UploadContext from "../../context/UploadContext";
+import { usePostUploadContext } from "../../context/PostUploadContext";
 import clsx from "clsx";
 
 export default function UploadBox() {
   const {
     state: { error, files, previewFiles },
     dispatch,
-  } = useContext(UploadContext);
+  } = usePostUploadContext();
 
   const fileRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);

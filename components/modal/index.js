@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useLayoutEffect } from "react";
 import { CgClose } from "react-icons/cg";
 
@@ -22,9 +23,11 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
     <>
       {show && (
         <section
-          className={`fixed ${
-            !show ? "hidden" : null
-          } left-0 top-0 h-screen w-screen bg-black/75 z-50 flex items-center justify-center`}
+          className={clsx(
+            "fixed",
+            !show && "hidden",
+            "left-0 top-0 h-screen w-screen bg-black/75 z-50 flex items-center justify-center"
+          )}
           onClick={handleClose}
         >
           {!closeHide && (

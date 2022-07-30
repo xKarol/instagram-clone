@@ -6,7 +6,6 @@ import { FaRegCompass } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import Logo from "../../components/logo";
 import Avatar from "../../components/avatar";
-import Upload from "../../components/upload";
 import DropdownMenu from "../../components/dropdown";
 import ProfileDropdown from "../../components/dropdown/ProfileDropdown";
 import {
@@ -17,6 +16,7 @@ import {
   HeaderNavList,
   HeaderSearchBar,
 } from "../../components/header";
+import { PostUploadContainer } from "../post-upload";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
@@ -71,7 +71,7 @@ const HeaderContainer = ({ ...props }) => {
           </HeaderAuth>
         )}
       </Container>
-      <Upload show={show} setShow={setShow} testid="add-post-modal" />
+      <PostUploadContainer show={show} setShow={setShow} />
     </>
   );
 };

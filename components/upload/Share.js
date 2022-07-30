@@ -3,7 +3,7 @@ import { IoMdCheckmark } from "react-icons/io";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
 import UserContext from "../../context/UserContext";
-import UploadContext from "../../context/UploadContext";
+import { usePostUploadContext } from "../../context/PostUploadContext";
 import Error from "./Error";
 import { trimSpace } from "../../utils";
 import { getPhotoById, uploadPhoto } from "../../services";
@@ -15,7 +15,7 @@ function Share() {
   const {
     state: { uploaded, caption, files, previewFiles },
     dispatch,
-  } = useContext(UploadContext);
+  } = usePostUploadContext();
 
   useEffect(() => {
     const uploadFile = async () => {

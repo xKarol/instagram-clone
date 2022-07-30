@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import Avatar from "../../avatar";
 import { MAX_POST_CAPTION } from "../../../constants/post";
-import UploadContext from "../../../context/UploadContext";
+import { usePostUploadContext } from "../../../context/PostUploadContext";
 import UserContext from "../../../context/UserContext";
 import Button from "./Button";
 
@@ -12,7 +12,7 @@ export default function Settings() {
   const {
     state: { caption },
     dispatch,
-  } = useContext(UploadContext);
+  } = usePostUploadContext();
   const { user } = useContext(UserContext);
 
   const handleCaption = (e) => {

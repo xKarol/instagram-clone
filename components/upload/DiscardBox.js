@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import UploadContext from "../../context/UploadContext";
+import { usePostUploadContext } from "../../context/PostUploadContext";
 import Button from "../modal/Button";
 
 export default function DiscardBox() {
-  const { dispatch, setShow, setShowDiscardBox } = useContext(UploadContext);
+  const { dispatch, setShow, setShowDiscardBox } = usePostUploadContext();
 
   const handleClose = () => {
     setShow(false);

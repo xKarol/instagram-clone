@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { useContext } from "react";
-import UploadContext from "../../context/UploadContext";
+import { usePostUploadContext } from "../../context/PostUploadContext";
 import Header from "./Header";
 import Crop from "./crop";
 import Details from "./settings";
@@ -15,12 +14,12 @@ import {
   SHARE_PAGE,
 } from "../../constants/globals";
 
-export default function Upload({ testid }) {
+export default function UploadPages() {
   const {
     state: { page, previewFiles },
     setShowDiscardBox,
     showDiscardBox,
-  } = useContext(UploadContext);
+  } = usePostUploadContext();
 
   return (
     <>
@@ -30,7 +29,7 @@ export default function Upload({ testid }) {
       </Head>
       <article
         className="h-[400px] relative transition-all ease-in-out delay-300"
-        data-cy={testid}
+        data-cy="add-post-modal"
       >
         <Header />
         <section className="flex h-[calc(100%-45px)] flex-col sm:flex-row">
