@@ -6,6 +6,7 @@ import { usePostUploadContext } from "../../../context/PostUploadContext";
 import { CROP_PAGE } from "../../../constants/globals";
 import Error from "../../../components/upload/Error";
 import { hasExtension } from "../../../utils";
+import { PostUploadPageBox } from "../../../components/upload";
 
 const PostUploadPageContainer = () => {
   const [error, setError] = useState(false);
@@ -18,6 +19,8 @@ const PostUploadPageContainer = () => {
     (acceptedFiles) => {
       const file = acceptedFiles[0];
       dispatch({ files: file });
+      const previewSrc = URL.createObjectURL(file);
+      dispatch({ previewSrc: previewSrc });
       if (!hasExtension(file.type, ["image/jpeg", "image/png"])) {
         return setError(true);
       }
@@ -40,12 +43,9 @@ const PostUploadPageContainer = () => {
   const handleClick = () => getInputProps().ref.current.click();
 
   return (
-    <div
+    <PostUploadPageBox
       {...getRootProps()}
-      className={clsx(
-        "h-full w-screen sm:w-[400px] max-w-[400px] mx-auto flex flex-col items-center justify-center gap-[15px]",
-        isDragActive && "bg-gray-100"
-      )}
+      className={clsx("space-y-[15px]", isDragActive && "bg-gray-100")}
     >
       {error ? (
         <Error
@@ -79,7 +79,7 @@ const PostUploadPageContainer = () => {
         {error ? "Select other files" : "Select from computer"}
       </button>
       <input {...getInputProps({ multiple: false })} />
-    </div>
+    </PostUploadPageBox>
   );
 };
 
