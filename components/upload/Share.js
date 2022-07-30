@@ -13,18 +13,17 @@ function Share() {
   const [error, setError] = useState(false);
   const { user, setPhotos } = useContext(UserContext);
   const {
-    state: { uploaded, caption, files, previewFiles },
+    state: { uploaded, caption, files },
     dispatch,
   } = usePostUploadContext();
 
   useEffect(() => {
     const uploadFile = async () => {
-      if (!files.length) return;
       try {
         const { downloadURL, fileName } = await uploadPhoto(
           user.username,
-          previewFiles[0],
-          files[0].name
+          files,
+          files.name
         );
         const photoDoc = await addDoc(collection(db, "photos"), {
           image: downloadURL,
@@ -41,7 +40,7 @@ function Share() {
       }
     };
     uploadFile();
-  }, [setPhotos, files, dispatch, caption, user.username, previewFiles]);
+  }, [setPhotos, files, dispatch, caption, user.username]);
 
   return (
     <div className="w-screen h-full sm:w-[400px] max-w-[400px] flex flex-col justify-center items-center space-y-[15px]">

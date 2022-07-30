@@ -1,6 +1,5 @@
 import Crop from "../../components/upload/crop";
 import Details from "../../components/upload/settings";
-import UploadBox from "../../components/upload/UploadBox";
 import Share from "../../components/upload/Share";
 import {
   MAIN_PAGE,
@@ -9,18 +8,19 @@ import {
   SHARE_PAGE,
 } from "../../constants/globals";
 import { usePostUploadContext } from "../../context/PostUploadContext";
+import { PostUploadPageContainer } from "./pages";
 
 const PostUploadBodyContainer = () => {
   const {
-    state: { page: currentPage, previewFiles },
+    state: { page: currentPage },
   } = usePostUploadContext();
 
   const pages = {
-    [MAIN_PAGE]: <UploadBox />,
-    [CROP_PAGE]: <Crop src={previewFiles} />,
+    [MAIN_PAGE]: <PostUploadPageContainer />,
+    [CROP_PAGE]: <Crop />,
     [CREATE_PAGE]: (
       <>
-        <Crop src={previewFiles} disableBtns />
+        <Crop disableBtns />
         <Details />
       </>
     ),

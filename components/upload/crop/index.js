@@ -1,20 +1,20 @@
 import Image from "next/image";
 import { BiExpandAlt, BiZoomIn } from "react-icons/bi";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
+import { usePostUploadContext } from "../../../context/PostUploadContext";
 import Button from "./Button";
 
-export default function Crop({ src, disableBtns }) {
-  //   TODO many images feature
+export default function Crop({ disableBtns }) {
+  const {
+    state: { files },
+  } = usePostUploadContext();
+  const src = URL.createObjectURL(files);
+
   return (
     <div className="relative block h-full w-screen sm:w-[400px] max-w-[400px]">
       {!!src.length && (
         <>
-          <Image
-            src={src[0]}
-            layout="fill"
-            objectFit="cover"
-            alt="upload image"
-          />
+          <Image src={src} layout="fill" objectFit="cover" alt="upload image" />
           {!disableBtns && (
             <>
               <Button

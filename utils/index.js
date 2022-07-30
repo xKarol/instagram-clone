@@ -6,6 +6,10 @@ export const checkFileExtension = (files) => {
   );
 };
 
+export const hasExtension = (type, extsArr) => {
+  return extsArr.includes(type);
+};
+
 export const random = (max) => {
   return Number((Math.random() * max).toFixed(0));
 };
