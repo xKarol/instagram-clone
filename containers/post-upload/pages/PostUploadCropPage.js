@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { BiExpandAlt, BiZoomIn } from "react-icons/bi";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
-import { PostUploadCropButton } from "../../../components/upload";
+import {
+  PostUploadCropButton,
+  PostUploadPageBox,
+} from "../../../components/upload";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
 
 const PostUploadCropPageContainer = ({ disableBtns = false }) => {
@@ -10,7 +13,7 @@ const PostUploadCropPageContainer = ({ disableBtns = false }) => {
   } = usePostUploadContext();
 
   return (
-    <div className="relative block h-full w-screen sm:w-[400px] max-w-[400px]">
+    <PostUploadPageBox className="relative">
       {!!previewSrc.length && (
         <>
           <Image src={previewSrc} layout="fill" objectFit="cover" alt="" />
@@ -29,7 +32,7 @@ const PostUploadCropPageContainer = ({ disableBtns = false }) => {
           )}
         </>
       )}
-    </div>
+    </PostUploadPageBox>
   );
 };
 

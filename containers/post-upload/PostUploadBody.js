@@ -1,4 +1,3 @@
-import Details from "../../components/upload/settings";
 import Share from "../../components/upload/Share";
 import {
   MAIN_PAGE,
@@ -7,7 +6,11 @@ import {
   SHARE_PAGE,
 } from "../../constants/globals";
 import { usePostUploadContext } from "../../context/PostUploadContext";
-import { PostUploadPageContainer, PostUploadCropPageContainer } from "./pages";
+import {
+  PostUploadPageContainer,
+  PostUploadCropPageContainer,
+  PostUploadDetailsPageContainer,
+} from "./pages";
 
 const PostUploadBodyContainer = () => {
   const {
@@ -17,12 +20,7 @@ const PostUploadBodyContainer = () => {
   const pages = {
     [MAIN_PAGE]: <PostUploadPageContainer />,
     [CROP_PAGE]: <PostUploadCropPageContainer />,
-    [CREATE_PAGE]: (
-      <>
-        <PostUploadCropPageContainer />
-        <Details />
-      </>
-    ),
+    [CREATE_PAGE]: <PostUploadDetailsPageContainer />,
     [SHARE_PAGE]: <Share />,
   };
 
