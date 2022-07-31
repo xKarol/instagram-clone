@@ -1,4 +1,3 @@
-import Share from "../../components/upload/Share";
 import {
   MAIN_PAGE,
   CROP_PAGE,
@@ -10,6 +9,7 @@ import {
   PostUploadPageContainer,
   PostUploadCropPageContainer,
   PostUploadDetailsPageContainer,
+  PostUploadSharePageContainer,
 } from "./pages";
 
 const PostUploadBodyContainer = () => {
@@ -21,7 +21,7 @@ const PostUploadBodyContainer = () => {
     [MAIN_PAGE]: <PostUploadPageContainer />,
     [CROP_PAGE]: <PostUploadCropPageContainer />,
     [CREATE_PAGE]: <PostUploadDetailsPageContainer />,
-    [SHARE_PAGE]: <Share />,
+    [SHARE_PAGE]: <PostUploadSharePageContainer />,
   };
 
   return (

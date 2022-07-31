@@ -28,7 +28,9 @@ const PostUploadProvider = ({ children, setShow, show }) => {
       setShow(true);
       setShowDiscardBox(true);
     } else {
-      state?.uploaded && dispatch({ reset: true });
+      if (state.uploaded) {
+        dispatch({ reset: true });
+      }
     }
   };
 

@@ -5,6 +5,7 @@ import UserContext from "../../../context/UserContext";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { MAX_POST_CAPTION } from "../../../constants/post";
+import { removeDoubleSpace } from "../../../utils";
 import Avatar from "../../../components/avatar";
 import {
   PostUploadAccordion,

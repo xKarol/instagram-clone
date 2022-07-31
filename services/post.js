@@ -12,6 +12,7 @@ import {
   startAfter,
   limit,
 } from "firebase/firestore";
+import { uploadPhoto } from "./storage";
 import { getUserByUsername } from "./user";
 
 export const getPhotos = async (db, max = 15, startId) => {
@@ -137,4 +138,19 @@ export const likeComment = async (db, postId, commentId, userId, liked) => {
 
 export const deletePost = async (db, postId) => {
   return await deleteDoc(doc(db, "photos", postId));
+};
+
+export const uploadNewPost = async ({ db, username, file, caption }) => {
+  const { downloadURL, fileName } = await uploadPhoto(
+    username,
+    file,
+    file.name
+  );
+  return await addDoc(collection(db, "photos"), {
+    image: downloadURL,
+    fileName,
+    username,
+    caption,
+    timestamp: serverTimestamp(),
+  });
 };
