@@ -4,7 +4,7 @@ import { MdOutlinePhotoLibrary } from "react-icons/md";
 import {
   PostUploadCropButton,
   PostUploadPageBox,
-} from "../../../components/upload";
+} from "../../../components/post-upload";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
 
 const PostUploadCropPageContainer = ({ disableBtns = false }) => {

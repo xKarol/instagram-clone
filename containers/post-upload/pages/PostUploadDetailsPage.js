@@ -10,7 +10,7 @@ import Avatar from "../../../components/avatar";
 import {
   PostUploadAccordion,
   PostUploadPageBox,
-} from "../../../components/upload";
+} from "../../../components/post-upload";
 
 const PostUploadDetailsPageContainer = () => {
   const [photoCaption, setPhotoCaption] = useState("");

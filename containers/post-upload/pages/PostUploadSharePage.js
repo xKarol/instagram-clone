@@ -11,7 +11,7 @@ import { uploadNewPost } from "../../../services";
 import {
   PostUploadPageBox,
   PostUploadSpinner,
-} from "../../../components/upload";
+} from "../../../components/post-upload";
 
 const PostUploadSharePageContainer = () => {
   const [error, setError] = useState(false);

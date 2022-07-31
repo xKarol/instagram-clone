@@ -6,7 +6,7 @@ import {
   SHARE_PAGE,
   CROP_PAGE,
 } from "../../constants/globals";
-import { PostUploadHeader } from "../../components/upload";
+import { PostUploadHeader } from "../../components/post-upload";
 
 const PostUploadHeaderContainer = () => {
   const {

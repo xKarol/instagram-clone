@@ -5,7 +5,10 @@ import { FaPhotoVideo } from "react-icons/fa";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
 import { CROP_PAGE } from "../../../constants/globals";
 import { hasExtension } from "../../../utils";
-import { PostUploadPageBox, PostUploadError } from "../../../components/upload";
+import {
+  PostUploadPageBox,
+  PostUploadError,
+} from "../../../components/post-upload";
 
 const PostUploadPageContainer = () => {
   const [error, setError] = useState(false);
