@@ -15,7 +15,7 @@ const PostCaptionContainer = ({ show = false }) => {
 
   return (
     <div className="w-full text-[14px] flex leading-[15px]">
-      <h3 className="font-medium">
+      <h3 className="font-medium break-all">
         <PostUsername>{username}</PostUsername>
         {caption && (
           <>
