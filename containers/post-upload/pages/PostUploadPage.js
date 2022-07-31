@@ -20,20 +20,30 @@ const PostUploadPageContainer = () => {
   const onDrop = useCallback(
     (acceptedFiles) => {
       const file = acceptedFiles[0];
+      if (!file) return setError(true);
       dispatch({ files: file });
       const previewSrc = URL.createObjectURL(file);
       dispatch({ previewSrc: previewSrc });
       if (!hasExtension(file.type, ["image/jpeg", "image/png"])) {
         return setError(true);
       }
-
       dispatch({ page: CROP_PAGE });
+    },
+    [dispatch]
+  );
+
+  const onDropRejected = useCallback(
+    (rejectedFiles) => {
+      const file = rejectedFiles[0].file;
+      dispatch({ files: file });
+      setError(true);
     },
     [dispatch]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
+    onDropRejected,
     accept: {
       "image/jpeg": [],
       "image/png": [],
@@ -52,7 +62,7 @@ const PostUploadPageContainer = () => {
       {error ? (
         <PostUploadError captionText="This file is not supported">
           <p className="text-[13px] text-gray-300">
-            <b>{files.name}</b> could not be uploaded.
+            <b>{files.name ?? "File"}</b> could not be uploaded.
           </p>
         </PostUploadError>
       ) : (
