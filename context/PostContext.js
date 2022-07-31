@@ -7,7 +7,7 @@ import {
 } from "react";
 import { db } from "../config/firebase.config";
 import { likePost } from "../services";
-import UserContext from "./UserContext";
+import { useUserContext } from "./UserContext";
 
 export const PostContext = createContext(null);
 export const usePostContext = () => useContext(PostContext);
@@ -21,7 +21,7 @@ const PostProvider = ({ children, photo }) => {
   const { photoId } = photo;
   const {
     user: { uid: userId },
-  } = useContext(UserContext);
+  } = useUserContext();
 
   useLayoutEffect(() => {
     setLiked(

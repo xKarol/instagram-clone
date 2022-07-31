@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
-import UserContext from "../../../context/UserContext";
+import { useUserContext } from "../../../context/UserContext";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { MAX_POST_CAPTION } from "../../../constants/post";
@@ -18,10 +18,9 @@ const PostUploadDetailsPageContainer = () => {
     state: { previewSrc },
     dispatch,
   } = usePostUploadContext();
-
   const {
     user: { avatar: userAvatar, username },
-  } = useContext(UserContext);
+  } = useUserContext();
 
   const handleChangeCaption = (e) => {
     const text = e.target.value;

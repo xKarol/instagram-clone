@@ -3,8 +3,8 @@ import Link from "next/link";
 import { SidebarButton, SidebarSuggestionItem } from "../../components/sidebar";
 import Loading from "../../components/loading";
 import { isFollowing } from "../../utils";
-import UserContext from "../../context/UserContext";
-import { useContext, useState } from "react";
+import { useUserContext } from "../../context/UserContext";
+import { useState } from "react";
 import { followUser, getUserByUsername, unfollowUser } from "../../services";
 import { db } from "../../config/firebase.config";
 
@@ -13,7 +13,7 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
     user: { uid: userId, ...user },
     setUser,
     loggedIn,
-  } = useContext(UserContext);
+  } = useUserContext();
   const [loading, setLoading] = useState(false);
   const following = isFollowing(docId, user.followings);
 

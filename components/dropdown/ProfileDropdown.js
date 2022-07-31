@@ -1,14 +1,14 @@
-import { useContext } from "react";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { BiBookmark } from "react-icons/bi";
 import { RiSettings3Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
 import { logOut } from "../../services";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 export default function ProfileDropdown() {
-  const { user } = useContext(UserContext);
+  const { user } = useUserContext();
+
   return (
     <>
       <Link href={`/${user?.username}`}>

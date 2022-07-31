@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import UserContext from "../context/UserContext";
+import { useUserContext } from "../context/UserContext";
 
 export default function useRedirectLoggedUser(path = "/") {
   const router = useRouter();
-  const { loggedIn } = useContext(UserContext);
+  const { loggedIn } = useUserContext();
 
   useEffect(() => {
     if (loggedIn) {

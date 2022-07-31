@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
-import UserContext from "../../../context/UserContext";
+import { useUserContext } from "../../../context/UserContext";
 import { db } from "../../../config/firebase.config";
 import { IoMdCheckmark } from "react-icons/io";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
@@ -18,7 +18,7 @@ const PostUploadSharePageContainer = () => {
   const {
     user: { username },
     setPhotos,
-  } = useContext(UserContext);
+  } = useUserContext();
   const {
     state: { uploaded, caption, files },
     dispatch,

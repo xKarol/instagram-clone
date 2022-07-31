@@ -1,6 +1,6 @@
 import { useContext, useState, useCallback } from "react";
 import { db } from "../../config/firebase.config";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import ProfileContext from "../../context/ProfileContext";
 import Loading from "../../components/loading";
 import { getUserByUsername, updateUserAvatar } from "../../services";
@@ -11,7 +11,7 @@ const ProfileAvatarChangeContainer = ({ children, className }) => {
   const {
     setUser,
     user: { uid: userId, username, ...user },
-  } = useContext(UserContext);
+  } = useUserContext();
   const { user: profileUser, setUser: setProfileUser } =
     useContext(ProfileContext);
   const [pending, setPending] = useState(false);

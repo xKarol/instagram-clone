@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Avatar from "../../components/avatar";
 import {
   PostComment,
@@ -7,7 +7,7 @@ import {
 } from "../../components/post";
 import { db } from "../../config/firebase.config";
 import { usePostContext } from "../../context/PostContext";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import { likeComment } from "../../services";
 import Link from "next/link";
 import clsx from "clsx";
@@ -27,7 +27,7 @@ const PostCommentContainer = ({
   const {
     user: { uid: userId },
     loggedIn,
-  } = useContext(UserContext);
+  } = useUserContext();
   const {
     photo: { photoId },
   } = usePostContext();

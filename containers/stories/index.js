@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect, useRef } from "react";
-import UserContext from "../../context/UserContext";
+import { useState, useEffect, useRef } from "react";
+import { useUserContext } from "../../context/UserContext";
 import useStories from "../../hooks/useStories";
 import Loading from "../../components/loading";
 import Skeleton from "../../components/skeleton";
@@ -14,7 +14,7 @@ const StoriesContainer = ({ ...props }) => {
   const [scrollPos, setScrollPos] = useState(0);
   const [showRight, setShowRight] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
-  const { user, loggedIn } = useContext(UserContext);
+  const { user, loggedIn } = useUserContext();
   const { stories, loading } = useStories(user.uid);
   const storyBox = useRef(null);
   const visible = loggedIn && user?.followings?.length;

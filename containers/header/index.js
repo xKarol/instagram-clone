@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import UserContext from "../../context/UserContext";
+import { useState } from "react";
+import { useUserContext } from "../../context/UserContext";
 import { MdHomeFilled, MdOutlineAddBox } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { FaRegCompass } from "react-icons/fa";
@@ -20,7 +20,7 @@ import { PostUploadContainer } from "../post-upload";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  const { loggedIn, user } = useContext(UserContext);
+  const { loggedIn, user } = useUserContext();
 
   return (
     <>

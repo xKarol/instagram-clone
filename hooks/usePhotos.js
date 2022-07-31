@@ -1,6 +1,6 @@
-import { useState, useContext, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { getPhotos } from "../services";
-import UserContext from "../context/UserContext";
+import { useUserContext } from "../context/UserContext";
 import { db } from "../config/firebase.config";
 
 export default function usePhotos() {
@@ -8,7 +8,7 @@ export default function usePhotos() {
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const lastId = useRef(undefined);
-  const { setPhotos, photos } = useContext(UserContext);
+  const { setPhotos, photos } = useUserContext();
 
   const getData = useCallback(async () => {
     try {

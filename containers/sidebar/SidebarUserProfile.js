@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import Link from "next/link";
 import Avatar from "../../components/avatar";
 import {
@@ -7,13 +6,13 @@ import {
   SidebarUserProfileContainer as Container,
   SidebarUserProfileData,
 } from "../../components/sidebar";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 const SidebarUserProfileContainer = () => {
   const {
     loggedIn,
     user: { username, fullName, avatar },
-  } = useContext(UserContext);
+  } = useUserContext();
 
   return (
     !!loggedIn && (

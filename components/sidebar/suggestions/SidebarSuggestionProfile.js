@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { useContext } from "react";
 import Avatar from "../../avatar";
 import { isFollowing } from "../../../utils";
 import Loading from "../../loading";
-import UserContext from "../../../context/UserContext";
+import { useUserContext } from "../../../context/UserContext";
 import useFollow from "../../../hooks/useFollow";
 
 export default function SuggestedProfile({ avatar, username, docId }) {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUserContext();
   const { uid: userId } = user;
   const following = isFollowing(docId, user.followings);
 

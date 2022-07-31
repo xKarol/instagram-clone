@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   PostCommentForm,
   PostCommentInput,
   PostCommentButton,
   PostCommentEmote,
 } from "../../components/post";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import { addComment } from "../../services";
 import { db } from "../../config/firebase.config";
 import { trimSpace } from "../../utils";
@@ -17,7 +17,7 @@ const PostCommentFormContainer = () => {
   const [comment, setComment] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(false);
-  const { user, loggedIn } = useContext(UserContext);
+  const { user, loggedIn } = useUserContext();
   const {
     photo: { photoId },
     setComments,

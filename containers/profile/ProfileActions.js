@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import ProfileContext from "../../context/ProfileContext";
 import { RiSettings3Line } from "react-icons/ri";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -12,7 +12,7 @@ import useFollow from "../../hooks/useFollow";
 
 const ProfileActionsContainer = () => {
   const { user: profileUser, loading } = useContext(ProfileContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUserContext();
   const { uid: profileId, username: profileName } = profileUser;
   const { uid: userId, username } = user;
 

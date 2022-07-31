@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { usePostContext } from "../../context/PostContext";
-import UserContext from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import Button from "../../components/modal/Button";
 import Loading from "../../components/loading";
 import { deletePost } from "../../services";
@@ -20,7 +20,7 @@ const PostMenuContainer = () => {
     photos,
     setPhotos,
     loggedIn,
-  } = useContext(UserContext);
+  } = useUserContext();
   const isAuthorized = photoUser.uid === userId;
 
   const handleDelete = async () => {
