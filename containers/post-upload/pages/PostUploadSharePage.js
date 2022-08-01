@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { useUserContext } from "../../../context/UserContext";
-import { db } from "../../../config/firebase.config";
-import { IoMdCheckmark } from "react-icons/io";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
+import { db } from "../../../config/firebase.config";
 import { trimSpace } from "../../../utils";
-import { getPhotoById } from "../../../services";
-import { PostUploadError } from "./";
-import { uploadNewPost } from "../../../services";
+import { uploadNewPost, getPhotoById } from "../../../services";
+import { PostUploadError } from "../../../components/post-upload";
 import {
   PostUploadPageBox,
   PostUploadSpinner,
