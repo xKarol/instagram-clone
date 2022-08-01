@@ -6,12 +6,12 @@ import { BsArrowRepeat } from "react-icons/bs";
 import { logOut } from "../../services";
 import { useUserContext } from "../../context/UserContext";
 
-export default function ProfileDropdown() {
+const HeaderProfileDropdownContainer = () => {
   const { user } = useUserContext();
 
   return (
     <>
-      <Link href={`/${user?.username}`}>
+      <Link href={`/${user.username}`}>
         <a className="w-[220px] flex rounded-t-md py-[8px] px-[15px] items-center gap-[10px] cursor-pointer hover:bg-gray-100">
           <CgProfile />
           Profile
@@ -39,11 +39,13 @@ export default function ProfileDropdown() {
       </button>
       <button
         aria-label="log out"
-        onClick={logOut}
+        onClick={async () => await logOut()}
         className="w-full flex rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100"
       >
         Log Out
       </button>
     </>
   );
-}
+};
+
+export default HeaderProfileDropdownContainer;

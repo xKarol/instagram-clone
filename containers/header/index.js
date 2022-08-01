@@ -7,7 +7,6 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import Logo from "../../components/logo";
 import Avatar from "../../components/avatar";
 import DropdownMenu from "../../components/dropdown";
-import ProfileDropdown from "../../components/dropdown/ProfileDropdown";
 import {
   HeaderContainer as Container,
   HeaderAuth,
@@ -17,6 +16,7 @@ import {
   HeaderSearchBar,
 } from "../../components/header";
 import { PostUploadContainer } from "../post-upload";
+import HeaderProfileDropdownContainer from "./HeaderProfileDropdown";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
@@ -53,7 +53,7 @@ const HeaderContainer = ({ ...props }) => {
               className="w-[23px] h-[23px]"
               data-id="dropdown"
             >
-              <DropdownMenu items={<ProfileDropdown />}>
+              <DropdownMenu items={<HeaderProfileDropdownContainer />}>
                 <Avatar
                   src={user.avatar}
                   className="pointer-events-none"
