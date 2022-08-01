@@ -5,17 +5,33 @@ export const PostUploadContext = createContext(null);
 export const usePostUploadContext = () => useContext(PostUploadContext);
 
 const initialState = {
-  uploaded: false,
-  page: 0,
   caption: "",
-  error: {},
-  files: [],
-  previewFiles: [],
+  error: false,
+  page: 0,
+  file: {},
+  previewSrc: "",
+  uploaded: false,
 };
 
-const reducer = (state, newState) => {
-  if (newState.reset) return initialState;
-  return { ...state, ...newState };
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_CAPTION":
+      return { ...state, caption: action.payload };
+    case "SET_FILE":
+      return { ...state, file: action.payload };
+    case "SET_PREVIEW_SRC":
+      return { ...state, previewSrc: action.payload };
+    case "SET_UPLOADED":
+      return { ...state, uploaded: action.payload };
+    case "SET_PAGE":
+      return { ...state, page: action.payload };
+    case "SET_ERROR":
+      return { ...state, error: action.payload };
+    case "RESET":
+      return initialState;
+    default:
+      throw new Error();
+  }
 };
 
 const PostUploadProvider = ({ children, setShow, show }) => {
@@ -29,7 +45,7 @@ const PostUploadProvider = ({ children, setShow, show }) => {
       setShowDiscardBox(true);
     } else {
       if (state.uploaded) {
-        dispatch({ reset: true });
+        dispatch({ type: "RESET" });
       }
     }
   };

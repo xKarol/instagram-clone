@@ -29,7 +29,7 @@ const PostUploadDetailsPageContainer = () => {
   };
 
   const handleBlur = () => {
-    dispatch({ caption: photoCaption });
+    dispatch({ type: "SET_CAPTION", payload: photoCaption });
   };
 
   return (

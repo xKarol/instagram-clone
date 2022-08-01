@@ -18,7 +18,7 @@ const PostUploadSharePageContainer = () => {
     setPhotos,
   } = useUserContext();
   const {
-    state: { uploaded, caption, files },
+    state: { uploaded, caption, file },
     dispatch,
   } = usePostUploadContext();
 
@@ -28,18 +28,18 @@ const PostUploadSharePageContainer = () => {
         const photoDoc = await uploadNewPost({
           db,
           username,
-          file: files,
+          file: file,
           caption: trimSpace(caption),
         });
         const photoData = await getPhotoById(db, photoDoc.id);
-        dispatch({ uploaded: true });
+        dispatch({ type: "SET_UPLOADED", payload: true });
         setPhotos((prevState) => [photoData, ...prevState]);
       } catch {
         setError(true);
       }
     };
     uploadFile();
-  }, [setPhotos, files, dispatch, caption, username]);
+  }, [setPhotos, file, dispatch, caption, username]);
 
   return (
     <PostUploadPageBox className="space-y-[15px]">

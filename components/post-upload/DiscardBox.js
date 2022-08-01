@@ -7,7 +7,7 @@ export default function DiscardBox() {
   const handleClose = () => {
     setShow(false);
     setShowDiscardBox(false);
-    dispatch({ reset: true });
+    dispatch({ type: "RESET" });
   };
 
   return (

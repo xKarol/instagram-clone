@@ -11,23 +11,23 @@ import {
 } from "../../../components/post-upload";
 
 const PostUploadPageContainer = () => {
-  const [error, setError] = useState(false);
   const {
     dispatch,
-    state: { files },
+    state: { file, error },
   } = usePostUploadContext();
 
   const onDrop = useCallback(
     (acceptedFiles) => {
       const file = acceptedFiles[0];
-      if (!file) return setError(true);
-      dispatch({ files: file });
+      if (!file) return dispatch({ type: "SET_ERROR", payload: true });
+      dispatch({ type: "SET_ERROR", payload: false });
+      dispatch({ type: "SET_FILE", payload: file });
       const previewSrc = URL.createObjectURL(file);
-      dispatch({ previewSrc: previewSrc });
+      dispatch({ type: "SET_PREVIEW_SRC", payload: previewSrc });
       if (!hasExtension(file.type, ["image/jpeg", "image/png"])) {
-        return setError(true);
+        return dispatch({ type: "SET_ERROR", payload: true });
       }
-      dispatch({ page: CROP_PAGE });
+      dispatch({ type: "SET_PAGE", payload: CROP_PAGE });
     },
     [dispatch]
   );
@@ -35,8 +35,8 @@ const PostUploadPageContainer = () => {
   const onDropRejected = useCallback(
     (rejectedFiles) => {
       const file = rejectedFiles[0].file;
-      dispatch({ files: file });
-      setError(true);
+      dispatch({ type: "SET_FILE", payload: file });
+      dispatch({ type: "SET_ERROR", payload: true });
     },
     [dispatch]
   );
@@ -62,7 +62,7 @@ const PostUploadPageContainer = () => {
       {error ? (
         <PostUploadError captionText="This file is not supported">
           <p className="text-[13px] text-gray-300">
-            <b>{files.name ?? "File"}</b> could not be uploaded.
+            <b>{file.name ?? "File"}</b> could not be uploaded.
           </p>
         </PostUploadError>
       ) : (

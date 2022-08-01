@@ -18,18 +18,18 @@ const PostUploadHeaderContainer = () => {
   const showButtons = page != MAIN_PAGE && page !== SHARE_PAGE;
 
   const handleNextPage = () => {
-    page < SHARE_PAGE && dispatch({ page: page + 1 });
+    page < SHARE_PAGE && dispatch({ type: "SET_PAGE", payload: page + 1 });
   };
 
   const handlePrevPage = () => {
     if (page === CROP_PAGE) {
       return setShowDiscardBox(true);
     }
-    page > MAIN_PAGE && dispatch({ page: page - 1 });
+    page > MAIN_PAGE && dispatch({ type: "SET_PAGE", payload: page - 1 });
   };
 
   const getCenterText = () => {
-    if (error.file) return "File couldn't be uploaded";
+    if (error) return "File couldn't be uploaded";
     if (!uploaded) return menuTitles[page];
     return "Post shared";
   };
