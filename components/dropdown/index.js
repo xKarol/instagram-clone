@@ -8,7 +8,7 @@ export default function DropdownMenu({
   ...props
 }) {
   return (
-    <button className="relative flex group">
+    <div className="relative flex group" role="button" tabIndex="0">
       {children}
       <div
         className={clsx(
@@ -27,6 +27,6 @@ export default function DropdownMenu({
 
         <div className="bg-white w-full h-full rounded-md">{items}</div>
       </div>
-    </button>
+    </div>
   );
 }
