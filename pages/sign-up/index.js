@@ -53,6 +53,7 @@ export default function SignUp() {
         return setError("Username already in use.");
       }
       await signUpUser(db, username, fullName, email, password);
+      router.push("/");
     } catch (error) {
       const errorMessages = {
         "auth/invalid-email": "Invalid Email.",
@@ -65,7 +66,6 @@ export default function SignUp() {
       );
     } finally {
       setLoading(false);
-      router.push("/");
     }
   };
 
