@@ -21,7 +21,7 @@ const PostMenuContainer = () => {
     setPhotos,
     loggedIn,
   } = useUserContext();
-  const isAuthorized = photoUser.uid === userId;
+  const isAuthorized = photoUser?.uid === userId;
 
   const handleDelete = async () => {
     if (!fileName || !isAuthorized || pending || !loggedIn) return;

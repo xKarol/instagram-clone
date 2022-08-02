@@ -21,6 +21,7 @@ export default function ProfilePage() {
   const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
   const notFound = !loading && !profileUser;
 
+  console.log({ ...data, loading, user: profileUser });
   if (notFound) return <NotFoundPage />;
   return (
     <>

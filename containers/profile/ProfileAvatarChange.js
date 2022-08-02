@@ -16,7 +16,7 @@ const ProfileAvatarChangeContainer = ({ children, className }) => {
     useContext(ProfileContext);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(false);
-  const isAuthorized = userId === profileUser.uid;
+  const isAuthorized = userId === profileUser?.uid;
 
   const onDrop = useCallback(
     async (acceptedFiles) => {
