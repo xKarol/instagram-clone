@@ -23,6 +23,8 @@ import {
   Box,
 } from "../../components/user-validation";
 import { db } from "../../config/firebase.config";
+import { getAuthErrorMessage } from "../../utils";
+import isEmail from "validator/lib/isEmail";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -44,12 +46,12 @@ export default function SignUp() {
     if (disabledBtn) return;
     try {
       setLoading(true);
+      if (!isEmail(email)) {
+        return setError("Email is invalid.");
+      }
       const usernameInUse = await getUserByUsername(db, username, false);
       if (usernameInUse) {
         return setError("Username already in use.");
-      }
-      if (isEmail(login)) {
-        return setError("Email is invalid.");
       }
       await signUpUser(db, username, fullName, email, password);
     } catch (error) {
