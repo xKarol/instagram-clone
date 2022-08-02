@@ -28,9 +28,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const disabledBtn = !login || !(password.length >= MIN_PASSWORD);
   const loggedIn = useRedirectLoggedUser("/");
-  const router = useRouter();
+  const disabledBtn = !login.length || !(password.length >= MIN_PASSWORD);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -47,7 +46,6 @@ export default function Login() {
           await signInWithEmailAndPassword(auth, email, password);
         }
       }
-      router.push("/");
     } catch (error) {
       setError(getAuthErrorMessage(error.code));
     } finally {
@@ -55,7 +53,7 @@ export default function Login() {
     }
   };
 
-  if (loggedIn) return <LoginPending />; // waiting for redirect
+  if (loggedIn) return <LoginPending />;
 
   return (
     <>

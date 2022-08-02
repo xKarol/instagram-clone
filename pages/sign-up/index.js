@@ -11,7 +11,6 @@ import {
   MAX_FULL_NAME,
 } from "../../constants/validation";
 import { signUpUser, getUserByUsername } from "../../services";
-import { useRouter } from "next/router";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
 import {
@@ -33,13 +32,10 @@ export default function SignUp() {
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const loggedIn = useRedirectLoggedUser("/");
-  const router = useRouter();
 
   const disabledBtn =
-    !email ||
-    !username ||
+    !email.length ||
     !(username.length < MAX_USERNAME) ||
-    !fullName ||
     !(fullName.length < MAX_FULL_NAME) ||
     !(password.length >= MIN_PASSWORD);
 
@@ -48,12 +44,14 @@ export default function SignUp() {
     if (disabledBtn) return;
     try {
       setLoading(true);
-      const validUsername = await getUserByUsername(db, username, false);
-      if (validUsername) {
+      const usernameInUse = await getUserByUsername(db, username, false);
+      if (usernameInUse) {
         return setError("Username already in use.");
       }
+      if (isEmail(login)) {
+        return setError("Email is invalid.");
+      }
       await signUpUser(db, username, fullName, email, password);
-      router.push("/");
     } catch (error) {
       setError(getAuthErrorMessage(error.code));
     } finally {
@@ -61,8 +59,7 @@ export default function SignUp() {
     }
   };
 
-  if (loggedIn) return <LoginPending />; // waiting for redirect
-
+  if (loggedIn) return <LoginPending />;
   return (
     <>
       <Head>
