@@ -15,9 +15,9 @@ const StoriesContainer = ({ ...props }) => {
   const [showRight, setShowRight] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const { user, loggedIn } = useUserContext();
-  const { stories, loading } = useStories(user.uid);
+  const { stories, loading, error } = useStories(user.uid, user?.followings);
   const storyBox = useRef(null);
-  const visible = loggedIn && user?.followings?.length;
+  const visible = loggedIn && !error && user?.followings?.length;
 
   useEffect(() => {
     const checkScroll = () => {

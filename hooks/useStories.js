@@ -2,21 +2,21 @@ import { useState, useEffect } from "react";
 import { db } from "../config/firebase.config";
 import { getUserStories } from "../services";
 
-export default function useStories(userId) {
-  const [loading, setLoading] = useState(false);
+export default function useStories(userId, reload) {
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [stories, setStories] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      if (!userId || stories.length) return;
+      if (!userId) return;
       try {
-        setLoading(true);
+        if (!stories.length) {
+          setLoading(true);
+        }
         setError(false);
         const storiesData = await getUserStories(db, userId);
-        if (storiesData.length) {
-          setStories(storiesData);
-        }
+        setStories(storiesData);
       } catch {
         setError(true);
       } finally {
@@ -24,7 +24,7 @@ export default function useStories(userId) {
       }
     };
     getData();
-  }, [userId, stories]);
+  }, [userId, reload, stories.length]);
 
   return { stories, loading, error };
 }
