@@ -1,7 +1,7 @@
 import { usePostUploadContext } from "../../context/PostUploadContext";
-import Button from "../modal/Button";
+import Button from "../../components/modal/Button";
 
-export default function DiscardBox() {
+const PostUploadDiscardBox = () => {
   const { dispatch, setShow, setShowDiscardBox } = usePostUploadContext();
 
   const handleClose = () => {
@@ -22,4 +22,6 @@ export default function DiscardBox() {
       <Button onClick={() => setShowDiscardBox(false)}>Cancel</Button>
     </div>
   );
-}
+};
+
+export default PostUploadDiscardBox;

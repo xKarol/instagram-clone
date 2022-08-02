@@ -1,8 +1,11 @@
 import Head from "next/head";
-import DiscardBox from "../../components/post-upload/DiscardBox";
 import Modal from "../../components/modal";
 import PostUploadBox from "../../components/post-upload/PostUploadBox";
-import { PostUploadHeaderContainer, PostUploadBodyContainer } from "./";
+import {
+  PostUploadHeaderContainer,
+  PostUploadBodyContainer,
+  PostUploadDiscardBoxContainer,
+} from "./";
 import { usePostUploadContext } from "../../context/PostUploadContext";
 
 const PostUploadBoxContainer = () => {
@@ -20,7 +23,7 @@ const PostUploadBoxContainer = () => {
       <Modal
         show={showDiscardBox}
         setShow={setShowDiscardBox}
-        element={<DiscardBox />}
+        element={<PostUploadDiscardBoxContainer />}
         closeHide
       />
     </>
