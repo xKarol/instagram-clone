@@ -21,6 +21,7 @@ import {
   PhoneGallery,
 } from "../../components/user-validation";
 import isEmail from "validator/lib/isEmail";
+import { getAuthErrorMessage } from "../../utils";
 
 export default function Login() {
   const [error, setError] = useState("");
@@ -48,12 +49,7 @@ export default function Login() {
       }
       router.push("/");
     } catch (error) {
-      const errorMessages = {
-        "auth/user-not-found": "User not found.",
-        "auth/invalid-email": "Invalid Email.",
-        "auth/wrong-password": "Invalid Password.",
-      };
-      setError(errorMessages[error.code] ?? "A problem occured.");
+      setError(getAuthErrorMessage(error.code));
     } finally {
       setLoading(false);
     }

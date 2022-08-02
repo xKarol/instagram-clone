@@ -55,15 +55,7 @@ export default function SignUp() {
       await signUpUser(db, username, fullName, email, password);
       router.push("/");
     } catch (error) {
-      const errorMessages = {
-        "auth/invalid-email": "Invalid Email.",
-        "auth/email-already-in-use": "Email already in use.",
-      };
-      setError(
-        errorMessages[error.code]
-          ? errorMessages[error.code]
-          : "A problem occured."
-      );
+      setError(getAuthErrorMessage(error.code));
     } finally {
       setLoading(false);
     }
