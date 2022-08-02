@@ -5,7 +5,6 @@ import {
   trimSpace,
   truncate,
   isFollowing,
-  isValidEmail,
 } from "../";
 
 describe("Utils tests", () => {
@@ -64,25 +63,6 @@ describe("Utils tests", () => {
 
     it("should not trim the space", () => {
       expect(trimSpace("test")).toBe("test");
-    });
-  });
-
-  describe("isValidEmail", () => {
-    it("function should return true", () => {
-      expect(isValidEmail("validemail@gmail.com")).toBe(true);
-    });
-
-    it("function should return false", () => {
-      const invalidEmails = [
-        "invalidemail",
-        "invalidemail@",
-        "invalidemail@test",
-        "invalidemail@test.",
-      ];
-
-      invalidEmails.forEach((invalidEmail) => {
-        expect(isValidEmail(invalidEmail)).toBe(false);
-      });
     });
   });
 

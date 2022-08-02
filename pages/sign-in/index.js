@@ -6,7 +6,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
 import { useRouter } from "next/router";
-import { isValidEmail } from "../../utils";
 import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
@@ -21,6 +20,7 @@ import {
   AppLinks,
   PhoneGallery,
 } from "../../components/user-validation";
+import isEmail from "validator/lib/isEmail";
 
 export default function Login() {
   const [error, setError] = useState("");
@@ -36,7 +36,7 @@ export default function Login() {
     if (disabledBtn) return;
     try {
       setLoading(true);
-      if (isValidEmail(login)) {
+      if (isEmail(login)) {
         //email login
         await signInWithEmailAndPassword(auth, login, password);
       } else {
