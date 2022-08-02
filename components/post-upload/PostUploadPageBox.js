@@ -1,6 +1,7 @@
+import { forwardRef } from "react";
 import clsx from "clsx";
 
-const PostUploadBox = ({ children, className, ...props }) => {
+const PostUploadBox = forwardRef(({ children, className, ...props }, ref) => {
   return (
     <div
       className={clsx(
@@ -8,10 +9,12 @@ const PostUploadBox = ({ children, className, ...props }) => {
         className
       )}
       {...props}
+      ref={ref}
     >
       {children}
     </div>
   );
-};
+});
+PostUploadBox.displayName = "PostUploadBox";
 
 export default PostUploadBox;
