@@ -1,6 +1,6 @@
 import Head from "next/head";
 import "../styles/globals.css";
-import LoginPending from "../components/LoginPending";
+import LoadingScreen from "../components/loading-screen";
 import NextNprogress from "nextjs-progressbar";
 import ViewportProvider from "../context/ViewportContext";
 import UserProvider, { UserContext } from "../context/UserContext";
@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }) {
           <NextNprogress options={{ showSpinner: false }} />
           <UserContext.Consumer>
             {({ pending }) =>
-              pending ? <LoginPending /> : <Component {...pageProps} />
+              pending ? <LoadingScreen /> : <Component {...pageProps} />
             }
           </UserContext.Consumer>
         </UserProvider>

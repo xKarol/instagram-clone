@@ -7,7 +7,7 @@ import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
 import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
-import LoginPending from "../../components/LoginPending";
+import LoadingScreen from "../../components/loading-screen";
 import {
   Container,
   Error,
@@ -52,7 +52,7 @@ const SignInPage = () => {
     }
   };
 
-  if (loggedIn) return <LoginPending />;
+  if (loggedIn) return <LoadingScreen />;
 
   return (
     <>

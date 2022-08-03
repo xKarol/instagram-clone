@@ -1,6 +1,6 @@
 import { BsInstagram } from "react-icons/bs";
 
-const LoginPending = () => {
+const LoadingScreen = () => {
   return (
     <div className="bg-white w-screen h-screen flex items-center justify-center text-[50px] text-gray-200">
       <BsInstagram data-cy="pending-logo" />
@@ -8,4 +8,4 @@ const LoginPending = () => {
   );
 };
 
-export default LoginPending;
+export default LoadingScreen;

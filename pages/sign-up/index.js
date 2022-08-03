@@ -12,7 +12,7 @@ import {
 } from "../../constants/validation";
 import { signUpUser, getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
-import LoginPending from "../../components/LoginPending";
+import LoadingScreen from "../../components/loading-screen";
 import {
   Container,
   InputField,
@@ -61,7 +61,7 @@ const SignUpPage = () => {
     }
   };
 
-  if (loggedIn) return <LoginPending />;
+  if (loggedIn) return <LoadingScreen />;
   return (
     <>
       <Head>

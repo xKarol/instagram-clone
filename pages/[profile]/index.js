@@ -12,7 +12,7 @@ import {
 } from "../../containers/profile";
 import { useViewport } from "../../context/ViewportContext";
 import { SCREEN_MEDIUM } from "../../constants/screens";
-import LoginPending from "../../components/LoginPending";
+import LoadingScreen from "../../components/loading-screen";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const ProfilePage = () => {
   const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
   const notFound = !loading && !profileUser;
 
-  if (loading) return <LoginPending />;
+  if (loading) return <LoadingScreen />;
   if (notFound) return <NotFoundPage />;
   return (
     <>
