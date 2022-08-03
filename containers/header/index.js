@@ -25,7 +25,7 @@ const HeaderContainer = ({ ...props }) => {
   return (
     <>
       <Container {...props}>
-        <Logo size={100} />
+        <Logo size={100} href="/" />
         <HeaderSearchBar />
         {loggedIn ? (
           <HeaderNavList>

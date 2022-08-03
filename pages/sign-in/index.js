@@ -63,7 +63,7 @@ const SignInPage = () => {
         <PhoneGallery />
         <Container data-cy="login-box">
           <Box>
-            <Logo size={200} className="mb-[20px]" link={false} />
+            <Logo size={200} className="mb-[20px]" />
             <form
               className="w-full flex flex-col gap-[5px]"
               onSubmit={(e) => handleLogin(e)}

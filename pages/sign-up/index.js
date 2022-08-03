@@ -70,7 +70,7 @@ const SignUpPage = () => {
       <section className="flex justify-center items-center p-[50px]">
         <Container data-cy="register-box">
           <Box>
-            <Logo size={200} className="mb-[20px]" link={false} />
+            <Logo size={200} className="mb-[20px]" />
             <h1 className="font-medium text-gray-300 text-center mb-[15px]">
               Sign up to see photos and videos from your friends.
             </h1>
