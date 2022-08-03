@@ -4,7 +4,7 @@ import StoriesContainer from "../containers/stories";
 import { SidebarContainer } from "../containers/sidebar";
 import { PostListContainer } from "../containers/post";
 
-export default function Home() {
+const HomePage = () => {
   return (
     <>
       <HeaderContainer />
@@ -17,4 +17,6 @@ export default function Home() {
       </Layout>
     </>
   );
-}
+};
+
+export default HomePage;

@@ -1,7 +1,7 @@
 import { AiFillFacebook } from "react-icons/ai";
 import clsx from "clsx";
 
-export default function FacebookLogin({ className }) {
+const FacebookLogin = ({ className }) => {
   return (
     <button
       aria-label="log in with facebook"
@@ -14,4 +14,6 @@ export default function FacebookLogin({ className }) {
       Log in with Facebook
     </button>
   );
-}
+};
+
+export default FacebookLogin;

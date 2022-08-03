@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useUserContext } from "../context/UserContext";
 
-export default function useRedirectLoggedUser(path = "/") {
+const useRedirectLoggedUser = (path = "/") => {
   const router = useRouter();
   const { loggedIn } = useUserContext();
 
@@ -13,4 +13,6 @@ export default function useRedirectLoggedUser(path = "/") {
   }, [path, loggedIn, router]);
 
   return loggedIn;
-}
+};
+
+export default useRedirectLoggedUser;

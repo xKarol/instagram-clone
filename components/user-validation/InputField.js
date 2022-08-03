@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import clsx from "clsx";
 
-export default function InputField({
+const InputField =({
   className,
   value,
   type,
   placeholder,
   ...props
-}) {
+}) => {
   const passwordShowBtnRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -56,3 +56,5 @@ export default function InputField({
     </div>
   );
 }
+
+export default InputField;

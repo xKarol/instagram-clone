@@ -2,7 +2,7 @@ import HeaderContainer from "../containers/header";
 import NotFound from "../components/not-found";
 import Head from "next/head";
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <>
       <Head>
@@ -12,4 +12,6 @@ export default function NotFoundPage() {
       <NotFound />
     </>
   );
-}
+};
+
+export default NotFoundPage;

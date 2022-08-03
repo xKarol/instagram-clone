@@ -3,7 +3,7 @@ import { db, auth } from "../config/firebase.config";
 import { onAuthStateChanged } from "firebase/auth";
 import { getUserByUID } from "../services";
 
-export default function useAuthListener() {
+const useAuthListener = () => {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [pending, setPending] = useState(true);
@@ -31,3 +31,5 @@ export default function useAuthListener() {
 
   return { setUser, user, pending, loggedIn };
 }
+
+export default useAuthListener;

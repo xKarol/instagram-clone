@@ -2,7 +2,7 @@ import Image from "next/image";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
 
-export default function AppLinks() {
+const AppLinks = () => {
   return (
     <>
       <span className="text-[14px] my-[15px]">Get the app.</span>
@@ -25,3 +25,5 @@ export default function AppLinks() {
     </>
   );
 }
+
+export default AppLinks;

@@ -1,5 +1,7 @@
 import clsx from "clsx";
 
-export default function Skeleton({ className }) {
+const Skeleton = ({ className }) => {
   return <div className={clsx("skeleton", className)} />;
-}
+};
+
+export default Skeleton;

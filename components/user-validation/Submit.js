@@ -1,6 +1,6 @@
 import Loading from "../loading";
 
-export default function Submit({ text, pending, disabled }) {
+const Submit = ({ text, pending, disabled }) => {
   return (
     <button
       aria-label="submit"
@@ -20,4 +20,6 @@ export default function Submit({ text, pending, disabled }) {
       )}
     </button>
   );
-}
+};
+
+export default Submit;

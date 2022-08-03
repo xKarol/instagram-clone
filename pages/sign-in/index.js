@@ -5,7 +5,6 @@ import Logo from "../../components/logo";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../config/firebase.config";
 import { MIN_PASSWORD } from "../../constants/validation";
-import { useRouter } from "next/router";
 import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import LoginPending from "../../components/LoginPending";
@@ -23,7 +22,7 @@ import {
 import isEmail from "validator/lib/isEmail";
 import { getAuthErrorMessage } from "../../utils";
 
-export default function Login() {
+const SignInPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState("");
@@ -111,4 +110,6 @@ export default function Login() {
       </section>
     </>
   );
-}
+};
+
+export default SignInPage;

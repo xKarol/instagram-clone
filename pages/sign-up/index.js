@@ -26,7 +26,7 @@ import { db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
 import isEmail from "validator/lib/isEmail";
 
-export default function SignUp() {
+const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -147,4 +147,6 @@ export default function SignUp() {
       </section>
     </>
   );
-}
+};
+
+export default SignUpPage;

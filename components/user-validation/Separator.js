@@ -1,4 +1,4 @@
-export default function Separator() {
+const Separator = () => {
   return (
     <div className="flex w-full items-center my-[20px]">
       <div className="flex-1 h-[1px] bg-gray-200"></div>
@@ -8,4 +8,6 @@ export default function Separator() {
       <div className="flex-1 h-[1px] bg-gray-200"></div>
     </div>
   );
-}
+};
+
+export default Separator;

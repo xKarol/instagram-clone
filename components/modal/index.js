@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { useLayoutEffect } from "react";
 import { CgClose } from "react-icons/cg";
 
-export default function Modal({ show, setShow, element, closeHide, onClose }) {
+const Modal = ({ show, setShow, element, closeHide, onClose }) => {
   const handleClose = () => {
     setShow(false);
     if (onClose) {
@@ -49,4 +49,6 @@ export default function Modal({ show, setShow, element, closeHide, onClose }) {
       )}
     </>
   );
-}
+};
+
+export default Modal;

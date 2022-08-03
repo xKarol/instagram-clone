@@ -3,7 +3,7 @@ import Link from "next/link";
 import InstagramLogo from "../../assets/svg/instagram-logo.svg";
 import clsx from "clsx";
 
-export default function Logo({ size = 200, className, link = true }) {
+const Logo = ({ size = 200, className, link = true }) => {
   return (
     <Link href={`${link ? "/" : ""}`}>
       <a
@@ -23,4 +23,6 @@ export default function Logo({ size = 200, className, link = true }) {
       </a>
     </Link>
   );
-}
+};
+
+export default Logo;

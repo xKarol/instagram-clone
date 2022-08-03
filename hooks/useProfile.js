@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "../config/firebase.config";
 import { getUserByUsername, getUserPhotos } from "../services";
 
-export default function useProfile(profile) {
+const useProfile = (profile) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [user, setUser] = useState({});
@@ -28,3 +28,5 @@ export default function useProfile(profile) {
 
   return { setUser, user, setPhotos, photos, loading, error };
 }
+
+export default useProfile;

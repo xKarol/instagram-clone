@@ -9,7 +9,7 @@ export const useViewport = () => {
   return useContext(ViewportContext);
 };
 
-export default function ViewportProvider({ children }) {
+const ViewportProvider = ({ children }) => {
   const [width, setWidth] = useState(undefined);
   const [height, setHeight] = useState(undefined);
 
@@ -28,4 +28,6 @@ export default function ViewportProvider({ children }) {
       {children}
     </ViewportContext.Provider>
   );
-}
+};
+
+export default ViewportProvider;

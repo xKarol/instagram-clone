@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import DefaultAvatar from "../../assets/images/default-avatar.jpg";
 
-export default function Avatar({ src, size, alt, className, ...props }) {
+const Avatar = ({ src, size, alt, className, ...props }) => {
   return (
     <figure
       className={clsx(
@@ -20,4 +20,6 @@ export default function Avatar({ src, size, alt, className, ...props }) {
       />
     </figure>
   );
-}
+};
+
+export default Avatar;

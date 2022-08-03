@@ -1,4 +1,4 @@
-export default function Error({ error }) {
+const Error = ({ error }) => {
   return (
     error && (
       <span
@@ -9,4 +9,6 @@ export default function Error({ error }) {
       </span>
     )
   );
-}
+};
+
+export default Error;

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export default function Layout({ children, className }) {
+const Layout = ({ children, className }) => {
   return (
     <main
       className={clsx("max-w-[975px] mx-auto mt-[90px] pb-[50px]", className)}
@@ -8,4 +8,6 @@ export default function Layout({ children, className }) {
       {children}
     </main>
   );
-}
+};
+
+export default Layout;

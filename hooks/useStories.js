@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "../config/firebase.config";
 import { getUserStories } from "../services";
 
-export default function useStories(userId, reload) {
+const useStories = (userId, reload) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [stories, setStories] = useState([]);
@@ -27,4 +27,6 @@ export default function useStories(userId, reload) {
   }, [userId, reload, stories.length]);
 
   return { stories, loading, error };
-}
+};
+
+export default useStories;

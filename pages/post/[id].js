@@ -6,7 +6,7 @@ import NotFoundPage from "../../pages/404";
 import usePhoto from "../../hooks/usePhoto";
 import { PostContainer } from "../../containers/post";
 
-export default function Post() {
+const PostPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const { photo, loading } = usePhoto(id);
@@ -30,4 +30,6 @@ export default function Post() {
       </Layout>
     </>
   );
-}
+};
+
+export default PostPage;

@@ -1,12 +1,12 @@
 import clsx from "clsx";
 
-export default function DropdownMenu({
+const DropdownMenu = ({
   children,
   className,
   items,
   showIndicator = true,
   ...props
-}) {
+}) => {
   return (
     <div className="relative flex group" role="button" tabIndex="0">
       {children}
@@ -29,4 +29,6 @@ export default function DropdownMenu({
       </div>
     </div>
   );
-}
+};
+
+export default DropdownMenu;

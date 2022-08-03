@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export default function Button({ children, onClick, className }) {
+const Button = ({ children, onClick, className }) => {
   return (
     <button
       aria-label="modal button"
@@ -13,4 +13,6 @@ export default function Button({ children, onClick, className }) {
       {children}
     </button>
   );
-}
+};
+
+export default Button;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../config/firebase.config";
 import { getPhotoById } from "../services";
 
-export default function usePhoto(id) {
+const usePhoto = (id) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [photo, setPhoto] = useState(false);
@@ -30,3 +30,6 @@ export default function usePhoto(id) {
     error,
   };
 }
+
+export default usePhoto;
+

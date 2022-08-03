@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export default function Box({ children, className }) {
+const Box = ({ children, className }) => {
   return (
     <ul
       className={clsx(
@@ -11,4 +11,6 @@ export default function Box({ children, className }) {
       {children}
     </ul>
   );
-}
+};
+
+export default Box;

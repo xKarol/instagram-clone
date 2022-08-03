@@ -2,7 +2,7 @@ import Link from "next/link";
 import NotFoundContainer from "./NotFoundContainer";
 import NotFoundHeading from "./NotFoundHeading";
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <NotFoundContainer>
       <NotFoundHeading>Sorry, this page isn&apos;t available.</NotFoundHeading>
@@ -15,4 +15,6 @@ export default function NotFound() {
       </p>
     </NotFoundContainer>
   );
-}
+};
+
+export default NotFound;

@@ -3,7 +3,7 @@ import { getPhotos } from "../services";
 import { useUserContext } from "../context/UserContext";
 import { db } from "../config/firebase.config";
 
-export default function usePhotos() {
+const usePhotos = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -28,4 +28,6 @@ export default function usePhotos() {
   }, [setPhotos]);
 
   return { getData, photos, loading, error, hasMore };
-}
+};
+
+export default usePhotos;

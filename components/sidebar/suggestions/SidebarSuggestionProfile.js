@@ -5,7 +5,7 @@ import Loading from "../../loading";
 import { useUserContext } from "../../../context/UserContext";
 import useFollow from "../../../hooks/useFollow";
 
-export default function SuggestedProfile({ avatar, username, docId }) {
+const SuggestedProfile = ({ avatar, username, docId }) => {
   const { user, setUser } = useUserContext();
   const { uid: userId } = user;
   const following = isFollowing(docId, user.followings);
@@ -44,4 +44,6 @@ export default function SuggestedProfile({ avatar, username, docId }) {
       </button>
     </li>
   );
-}
+};
+
+export default SuggestedProfile;

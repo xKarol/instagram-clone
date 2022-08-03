@@ -13,7 +13,7 @@ import {
 import { useViewport } from "../../context/ViewportContext";
 import { SCREEN_MEDIUM } from "../../constants/screens";
 
-export default function ProfilePage() {
+const ProfilePage = () => {
   const router = useRouter();
   const { profile } = router.query;
   const { user: profileUser, loading, ...data } = useProfile(profile);
@@ -21,7 +21,6 @@ export default function ProfilePage() {
   const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
   const notFound = !loading && !profileUser;
 
-  console.log({ ...data, loading, user: profileUser });
   if (notFound) return <NotFoundPage />;
   return (
     <>
@@ -45,4 +44,6 @@ export default function ProfilePage() {
       </ProfileContext.Provider>
     </>
   );
-}
+};
+
+export default ProfilePage;
