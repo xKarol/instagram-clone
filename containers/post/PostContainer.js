@@ -30,7 +30,11 @@ const PostContainer = ({ ...props }) => {
                 <div className="space-x-[15px] flex">
                   <Link href={`/${username}`}>
                     <a>
-                      <Avatar src={avatar} size={30} />
+                      <Avatar
+                        src={avatar}
+                        size={30}
+                        alt={`${username}'s avatar`}
+                      />
                     </a>
                   </Link>
                   <PostCaptionContainer show={true} />

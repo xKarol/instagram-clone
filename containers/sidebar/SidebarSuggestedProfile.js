@@ -37,7 +37,7 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
     <SidebarSuggestionItem className="flex items-center text-[14px] gap-[15px] py-[5px]">
       <Link href={`/${username}`}>
         <a>
-          <Avatar src={avatar} size={30} />
+          <Avatar src={avatar} size={30} alt={`${username}'s avatar`} />
         </a>
       </Link>
       <div className="flex flex-col leading-[20px] font-medium">

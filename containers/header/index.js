@@ -20,7 +20,10 @@ import HeaderProfileDropdownContainer from "./HeaderProfileDropdown";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  const { loggedIn, user } = useUserContext();
+  const {
+    loggedIn,
+    user: { username, avatar },
+  } = useUserContext();
 
   return (
     <>
@@ -55,9 +58,10 @@ const HeaderContainer = ({ ...props }) => {
             >
               <DropdownMenu items={<HeaderProfileDropdownContainer />}>
                 <Avatar
-                  src={user.avatar}
+                  src={avatar}
                   className="pointer-events-none"
                   size={23}
+                  alt={`${username}'s avatar`}
                 />
               </DropdownMenu>
             </HeaderNavLink>

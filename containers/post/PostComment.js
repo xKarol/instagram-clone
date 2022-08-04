@@ -56,7 +56,12 @@ const PostCommentContainer = ({
       {showAvatar && (
         <Link href={`/${username}`}>
           <a>
-            <Avatar src={avatar} size={30} className="mr-[15px]" />
+            <Avatar
+              src={avatar}
+              size={30}
+              className="mr-[15px]"
+              alt={`${username}'s avatar`}
+            />
           </a>
         </Link>
       )}

@@ -19,7 +19,7 @@ const SidebarUserProfileContainer = () => {
       <Container>
         <Link href={`/${username}`}>
           <a>
-            <Avatar src={avatar} size={55} />
+            <Avatar src={avatar} size={55} alt={`${username}'s avatar`} />
           </a>
         </Link>
         <SidebarUserProfileData>

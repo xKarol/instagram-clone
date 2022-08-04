@@ -11,14 +11,21 @@ import {
 } from "./";
 
 const ProfileHeaderContainer = ({ viewport }) => {
-  const { user: profileUser, loading } = useContext(ProfileContext);
+  const {
+    user: { username: profileUsername, avatar: profileAvatar },
+    loading,
+  } = useContext(ProfileContext);
   const biography = "No bio yet";
 
   return viewport === "desktop" ? (
     <ProfileHeader>
       <ProfileAvatarChangeContainer className="mx-[100px]">
         {!loading ? (
-          <Avatar src={profileUser.avatar} size={150} />
+          <Avatar
+            src={profileAvatar}
+            size={150}
+            alt={`${profileUsername}'s avatar`}
+          />
         ) : (
           <Skeleton className={"w-[150px] h-[150px] rounded-full"} />
         )}
@@ -39,7 +46,11 @@ const ProfileHeaderContainer = ({ viewport }) => {
           <div className="flex">
             <ProfileAvatarChangeContainer className="mx-[25px]">
               {!loading ? (
-                <Avatar src={profileUser.avatar} size={80} />
+                <Avatar
+                  src={profileAvatar}
+                  size={80}
+                  alt={`${profileUsername}'s avatar`}
+                />
               ) : (
                 <Skeleton className={"w-[80px] h-[80px] rounded-full"} />
               )}

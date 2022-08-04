@@ -40,7 +40,7 @@ const PostUploadDetailsPageContainer = () => {
 
       <section className="flex flex-col border border-transparent border-l-gray-200 h-full min-w-[350px] overflow-y-scroll">
         <header className="p-[15px] flex space-x-[10px] items-center">
-          <Avatar src={userAvatar} size={30} />
+          <Avatar src={userAvatar} size={30} alt={`${username}'s avatar`} />
           <span className="font-medium">{username}</span>
         </header>
         <textarea
