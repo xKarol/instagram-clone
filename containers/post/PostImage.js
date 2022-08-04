@@ -5,7 +5,10 @@ import { usePostContext } from "../../context/PostContext";
 
 const PostImageContainer = (props) => {
   const {
-    photo: { user, image: src },
+    photo: {
+      user: { username },
+      image: src,
+    },
     caption,
     liked,
     handleLike,
@@ -26,7 +29,7 @@ const PostImageContainer = (props) => {
   return (
     <PostImage
       src={src}
-      alt={`${user.username}'s photo ${caption?.length && caption}`}
+      alt={`${username}'s photo ${caption ?? ""}`}
       onDoubleClick={handleDoubleClick}
       {...props}
     >
