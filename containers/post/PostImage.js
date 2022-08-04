@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { PostImage } from "../../components/post";
 import { usePostContext } from "../../context/PostContext";
+import { useUserContext } from "../../context/UserContext";
 
 const PostImageContainer = (props) => {
   const {
@@ -13,6 +14,9 @@ const PostImageContainer = (props) => {
     liked,
     handleLike,
   } = usePostContext();
+  const {
+    user: { uid: userId },
+  } = useUserContext();
   const [heart, setHeart] = useState(false);
 
   useEffect(() => {
@@ -22,6 +26,7 @@ const PostImageContainer = (props) => {
   }, [heart]);
 
   const handleDoubleClick = async () => {
+    if (!userId) return;
     setHeart(true);
     await handleLike();
   };
