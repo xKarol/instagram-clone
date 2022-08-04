@@ -1,5 +1,8 @@
 import clsx from "clsx";
-import Moment from "react-moment";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 const PostDate = ({ children, className, ...props }) => {
   return (
@@ -10,7 +13,7 @@ const PostDate = ({ children, className, ...props }) => {
       )}
       {...props}
     >
-      <Moment fromNow>{children}</Moment>
+      {dayjs(children).fromNow()}
     </p>
   );
 };
