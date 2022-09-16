@@ -29,6 +29,7 @@ import "firebase/compat/auth";
 import "firebase/compat/database";
 import "firebase/compat/firestore";
 import { attachCustomCommands } from "cypress-firebase";
+import '@testing-library/cypress/add-commands'
 
 const fbConfig = {
   apiKey: Cypress.env("apiKey"),
