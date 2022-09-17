@@ -7,11 +7,11 @@ describe("Post", () => {
   });
 
   it("User can like post", () => {
-    cy.selectElement("post-likes-amount", { timeout: 15 * 1000 }).then(
+    cy.findAllByTestId("post-likes-amount", { timeout: 15 * 1000 }).then(
       ($el) => {
         const amount = $el[0].innerText;
 
-        cy.selectElement("post")
+        cy.findAllByTestId("post")
           .first()
           .find("[data-testid='post-like']")
           .click()
@@ -28,14 +28,14 @@ describe("Post", () => {
   const comment = "test" + Date.now();
 
   it("User can write comment", () => {
-    cy.selectElement("post")
+    cy.findAllByTestId("post")
       .first()
       .find("[data-testid='post-add-comment']")
       .within(() => cy.findByRole("button", { name: /Post/i }).as("addButton"));
 
     cy.get("@addButton").should("be.disabled");
 
-    cy.selectElement("post")
+    cy.findAllByTestId("post")
       .first()
       .find("[data-testid='post-add-comment'] input")
       .as("commentInput")
@@ -48,7 +48,7 @@ describe("Post", () => {
   });
 
   it("Written comment exist", () => {
-    cy.selectElement("post-comments-list")
+    cy.findAllByTestId("post-comments-list")
       .first()
       .should("include.text", comment);
   });

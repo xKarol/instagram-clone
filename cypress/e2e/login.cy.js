@@ -7,9 +7,9 @@ describe("Login form", () => {
   });
 
   it("Check UI", () => {
-    cy.selectElement("validation-error").should("not.exist");
-    cy.selectElement("submit-loading").should("not.exist");
-    cy.selectElement("login-box")
+    cy.findByTestId("validation-error").should("not.exist");
+    cy.findByTestId("submit-loading").should("not.exist");
+    cy.findByTestId("login-box")
       .should("include.text", "Forgot password?")
       .and("include.text", "Don't have an account?")
       .and("include.text", "Log in with Facebook")
@@ -20,10 +20,10 @@ describe("Login form", () => {
     cy.fixture("user-auth").then((data) => {
       const { login, password } = data;
 
-      cy.selectElement("login-username-input")
+      cy.findByTestId("login-username-input")
         .type(login)
         .should("have.value", login);
-      cy.selectElement("login-password-input")
+      cy.findByTestId("login-password-input")
         .type(password)
         .should("have.value", password);
     });
@@ -37,9 +37,9 @@ describe("Login form", () => {
     cy.togglePassword(element, false);
   });
   it("Submit login", () => {
-    cy.selectElement("submit-loading").should("not.exist");
-    cy.selectElement("validation-submit").click();
-    cy.selectElement("submit-loading").should("exist");
+    cy.findByTestId("submit-loading").should("not.exist");
+    cy.findByTestId("validation-submit").click();
+    cy.findByTestId("submit-loading").should("exist");
     cy.location("pathname", { timeout: 15 * 1000 }).should("eq", "/");
   });
 });

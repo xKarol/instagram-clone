@@ -7,9 +7,9 @@ describe("Register form", () => {
   });
 
   it("Check UI", () => {
-    cy.selectElement("validation-error").should("not.exist");
-    cy.selectElement("submit-loading").should("not.exist");
-    cy.selectElement("register-box")
+    cy.findByTestId("validation-error").should("not.exist");
+    cy.findByTestId("submit-loading").should("not.exist");
+    cy.findByTestId("register-box")
       .and("include.text", "Have an account?")
       .and("include.text", "Log In")
       .and("include.text", "Log in with Facebook");
@@ -19,16 +19,16 @@ describe("Register form", () => {
     cy.fixture("user-auth").then((data) => {
       const { fullName, login: email, username, password } = data;
 
-      cy.selectElement("register-email-input")
+      cy.findByTestId("register-email-input")
         .type(email)
         .should("have.value", email);
-      cy.selectElement("register-fullname-input")
+      cy.findByTestId("register-fullname-input")
         .type(fullName)
         .should("have.value", fullName);
-      cy.selectElement("register-username-input")
+      cy.findByTestId("register-username-input")
         .type(username)
         .should("have.value", username);
-      cy.selectElement("register-password-input")
+      cy.findByTestId("register-password-input")
         .type(password)
         .should("have.value", password);
     });
@@ -43,9 +43,9 @@ describe("Register form", () => {
     cy.togglePassword(element, false);
   });
   it("Submit register", () => {
-    cy.selectElement("submit-loading").should("not.exist");
-    cy.selectElement("validation-submit").click();
-    cy.selectElement("submit-loading").should("exist");
+    cy.findByTestId("submit-loading").should("not.exist");
+    cy.findByTestId("validation-submit").click();
+    cy.findByTestId("submit-loading").should("exist");
     cy.login();
     cy.location("pathname", { timeout: 15 * 1000 }).should("eq", "/");
   });
