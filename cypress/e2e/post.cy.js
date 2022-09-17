@@ -6,23 +6,26 @@ describe("Post", () => {
     cy.visit("/");
   });
 
-  it("User can like post", () => {
-    cy.findAllByTestId("post-likes-amount", { timeout: 15 * 1000 }).then(
-      ($el) => {
-        const amount = $el[0].innerText;
+  it("Post should be visible", () => {
+    cy.findAllByTestId("post").first().should("be.visible");
+  });
 
-        cy.findAllByTestId("post")
-          .first()
-          .find("[data-testid='post-like']")
-          .click()
-          .should("have.class", "text-red")
-          .click()
-          .should("not.have.class", "text-red")
-          .then(() => {
-            expect(amount).to.eq($el[0].innerText);
-          });
-      }
-    );
+  it("User can like post", () => {
+    cy.findAllByTestId("post")
+      .first()
+      .within(() => {
+        cy.findByTestId("post-likes-amount").then(($element) => {
+          const initialAmount = $element.text();
+          cy.findByTestId("post-like")
+            .click()
+            .should("have.class", "text-red")
+            .click()
+            .should("not.have.class", "text-red")
+            .then(() => {
+              expect(initialAmount).to.eq($element.text());
+            });
+        });
+      });
   });
 
   const comment = "test" + Date.now();
@@ -30,17 +33,23 @@ describe("Post", () => {
   it("User can write comment", () => {
     cy.findAllByTestId("post")
       .first()
-      .find("[data-testid='post-add-comment']")
-      .within(() => cy.findByRole("button", { name: /Post/i }).as("addButton"));
+      .within(() => {
+        cy.findByTestId("post-add-comment").within(() => {
+          cy.findByRole("button", { name: /Post/i }).as("addButton");
+        });
+      })
+      .as("post");
 
+    cy.get("@addButton").should("not.have.value");
     cy.get("@addButton").should("be.disabled");
 
-    cy.findAllByTestId("post")
-      .first()
-      .find("[data-testid='post-add-comment'] input")
-      .as("commentInput")
-      .type(comment)
-      .should("have.value", comment);
+    cy.get("@post").within(() => {
+      cy.findByTestId("post-add-comment")
+        .find("input")
+        .as("commentInput")
+        .type(comment)
+        .should("have.value", comment);
+    });
 
     cy.get("@addButton").should("not.be.disabled");
     cy.get("@addButton").click();
