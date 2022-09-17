@@ -61,7 +61,7 @@ const SignInPage = () => {
       </Head>
       <section className="flex justify-center items-center p-[50px] gap-[25px]">
         <PhoneGallery />
-        <Container data-cy="login-box">
+        <Container data-testid="login-box">
           <Box>
             <Logo size={200} className="mb-[20px]" />
             <form
@@ -72,14 +72,14 @@ const SignInPage = () => {
                 placeholder="Username or email"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
-                data-cy="login-username-input"
+                data-testid="login-username-input"
               />
               <InputField
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                data-cy="login-password-input"
+                data-testid="login-password-input"
               />
               <Submit
                 text={"Log In"}

@@ -17,7 +17,7 @@ const PostItemContainer = ({ data: photo, ...props }) => {
 
   return (
     <PostProvider photo={photo}>
-      <PostContainer {...props} className="mb-[20px]" data-cy="post">
+      <PostContainer {...props} className="mb-[20px]" data-testid="post">
         <PostHeaderContainer />
         <PostImageContainer />
         <div className="px-[16px]">

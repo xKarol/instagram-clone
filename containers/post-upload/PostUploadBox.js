@@ -16,7 +16,7 @@ const PostUploadBoxContainer = () => {
       <Head>
         <title>Create new post • Instagram</title>
       </Head>
-      <PostUploadBox data-cy="add-post-modal">
+      <PostUploadBox data-testid="add-post-modal">
         <PostUploadHeaderContainer />
         <PostUploadBodyContainer />
       </PostUploadBox>

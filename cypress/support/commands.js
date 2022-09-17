@@ -29,7 +29,7 @@ import "firebase/compat/auth";
 import "firebase/compat/database";
 import "firebase/compat/firestore";
 import { attachCustomCommands } from "cypress-firebase";
-import '@testing-library/cypress/add-commands'
+import "@testing-library/cypress/add-commands";
 
 const fbConfig = {
   apiKey: Cypress.env("apiKey"),
@@ -45,7 +45,7 @@ firebase.initializeApp(fbConfig);
 attachCustomCommands({ Cypress, cy, firebase });
 
 Cypress.Commands.add("selectElement", (testId, options) =>
-  cy.get(`[data-cy='${testId}']`, options)
+  cy.get(`[data-testid='${testId}']`, options)
 );
 
 Cypress.Commands.add("togglePassword", (element, show) => {

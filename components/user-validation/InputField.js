@@ -1,13 +1,7 @@
 import { useRef } from "react";
 import clsx from "clsx";
 
-const InputField =({
-  className,
-  value,
-  type,
-  placeholder,
-  ...props
-}) => {
+const InputField = ({ className, value, type, placeholder, ...props }) => {
   const passwordShowBtnRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -48,13 +42,13 @@ const InputField =({
           type="button"
           onClick={togglePassword}
           ref={passwordShowBtnRef}
-          data-cy="password-show"
+          data-testid="password-show"
         >
           Show
         </button>
       )}
     </div>
   );
-}
+};
 
 export default InputField;

@@ -13,7 +13,7 @@ describe("Post", () => {
 
         cy.selectElement("post")
           .first()
-          .find("[data-cy='post-like']")
+          .find("[data-testid='post-like']")
           .click()
           .should("have.class", "text-red")
           .click()
@@ -30,14 +30,14 @@ describe("Post", () => {
   it("User can write comment", () => {
     cy.selectElement("post")
       .first()
-      .find("[data-cy='post-add-comment']")
+      .find("[data-testid='post-add-comment']")
       .within(() => cy.findByRole("button", { name: /Post/i }).as("addButton"));
 
     cy.get("@addButton").should("be.disabled");
 
     cy.selectElement("post")
       .first()
-      .find("[data-cy='post-add-comment'] input")
+      .find("[data-testid='post-add-comment'] input")
       .as("commentInput")
       .type(comment)
       .should("have.value", comment);

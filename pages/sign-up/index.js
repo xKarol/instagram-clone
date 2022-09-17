@@ -68,7 +68,7 @@ const SignUpPage = () => {
         <title>Sign Up • Instagram</title>
       </Head>
       <section className="flex justify-center items-center p-[50px]">
-        <Container data-cy="register-box">
+        <Container data-testid="register-box">
           <Box>
             <Logo size={200} className="mb-[20px]" />
             <h1 className="font-medium text-gray-300 text-center mb-[15px]">
@@ -85,21 +85,21 @@ const SignUpPage = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                data-cy="register-email-input"
+                data-testid="register-email-input"
               />
               <InputField
                 type="text"
                 placeholder="Full Name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                data-cy="register-fullname-input"
+                data-testid="register-fullname-input"
               />
               <InputField
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                data-cy="register-username-input"
+                data-testid="register-username-input"
               />
               <InputField
                 type="password"
@@ -107,7 +107,7 @@ const SignUpPage = () => {
                 className="formButton w-full"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                data-cy="register-password-input"
+                data-testid="register-password-input"
               />
               <Submit
                 text={"Sign Up"}

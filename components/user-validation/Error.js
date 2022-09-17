@@ -3,7 +3,7 @@ const Error = ({ error }) => {
     error && (
       <span
         className="text-red text-[14px] text-center"
-        data-cy="validation-error"
+        data-testid="validation-error"
       >
         {error}
       </span>

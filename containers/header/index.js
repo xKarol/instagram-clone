@@ -41,7 +41,7 @@ const HeaderContainer = ({ ...props }) => {
             <HeaderNavLink
               aria-label="upload"
               onClick={() => setShow(true)}
-              data-cy="add-post-btn"
+              data-testid="add-post-btn"
             >
               <MdOutlineAddBox />
             </HeaderNavLink>

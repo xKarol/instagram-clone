@@ -50,13 +50,13 @@ const PostUploadDetailsPageContainer = () => {
           value={photoCaption}
           onChange={(e) => handleChangeCaption(e)}
           onBlur={handleBlur}
-          data-cy="photo-upload-caption"
+          data-testid="photo-upload-caption"
         />
         <div className="flex items-center justify-between px-[15px] my-[10px] text-gray-300">
           <BsEmojiSmile className="text-[18px] cursor-pointer" />
           <span
             className="text-[12px] cursor-default transition-colors hover:text-black"
-            data-cy="photo-upload-caption-length"
+            data-testid="photo-upload-caption-length"
           >
             {photoCaption.length}/{MAX_POST_CAPTION}
           </span>

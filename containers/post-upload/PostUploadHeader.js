@@ -56,10 +56,13 @@ const PostUploadHeaderContainer = () => {
   return (
     <PostUploadHeader
       leftElement={
-        <LeftElement onClick={handlePrevPage} data-cy="photo-upload-prev" />
+        <LeftElement onClick={handlePrevPage} data-testid="photo-upload-prev" />
       }
       rightElement={
-        <RightElement onClick={handleNextPage} data-cy="photo-upload-next" />
+        <RightElement
+          onClick={handleNextPage}
+          data-testid="photo-upload-next"
+        />
       }
     >
       {getCenterText()}

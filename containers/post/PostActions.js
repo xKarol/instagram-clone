@@ -14,7 +14,7 @@ const PostActionsContainer = (props) => {
       <PostIcon
         aria-label="like photo"
         onClick={handleLike}
-        data-cy="post-like"
+        data-testid="post-like"
         className={clsx(
           "transition-opacity hover:opacity-50",
           liked && "text-red"

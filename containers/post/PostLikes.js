@@ -5,7 +5,7 @@ const PostLikesContainer = () => {
   const { likes } = usePostContext();
 
   return (
-    <PostText data-cy="post-likes-amount">
+    <PostText data-testid="post-likes-amount">
       {likes.length}
       &nbsp;
       {likes.length === 1 ? "like" : "likes"}

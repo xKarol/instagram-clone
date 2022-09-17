@@ -60,7 +60,7 @@ const PostCommentFormContainer = () => {
     <PostCommentForm
       onSubmit={handleSubmit}
       pending={pending}
-      data-cy="post-add-comment"
+      data-testid="post-add-comment"
     >
       <PostCommentEmote className="mr-[15px]" type="button" />
       <PostCommentInput
