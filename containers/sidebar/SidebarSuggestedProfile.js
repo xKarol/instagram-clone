@@ -34,7 +34,10 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
   };
 
   return (
-    <SidebarSuggestionItem className="flex items-center text-[14px] gap-[15px] py-[5px]">
+    <SidebarSuggestionItem
+      className="flex items-center text-[14px] gap-[15px] py-[5px]"
+      data-testid="sidebar-suggested-profile"
+    >
       <Link href={`/${username}`}>
         <a>
           <Avatar src={avatar} size={30} alt={`${username}'s avatar`} />
@@ -42,7 +45,12 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
       </Link>
       <div className="flex flex-col leading-[20px] font-medium">
         <Link href={`/${username}`}>
-          <a className="cursor-pointer hover:underline">{username}</a>
+          <a
+            className="cursor-pointer hover:underline"
+            data-testid="sidebar-suggested-profile-username"
+          >
+            {username}
+          </a>
         </Link>
         <span className="text-gray-300 text-[12px] font-normal">Popular</span>
       </div>

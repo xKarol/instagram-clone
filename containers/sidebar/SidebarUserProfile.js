@@ -16,23 +16,31 @@ const SidebarUserProfileContainer = () => {
 
   return (
     !!loggedIn && (
-      <Container>
+      <Container data-testid="sidebar-profile">
         <Link href={`/${username}`}>
           <a>
-            <Avatar src={avatar} size={55} alt={`${username}'s avatar`} />
+            <Avatar
+              src={avatar}
+              size={55}
+              alt={`${username}'s avatar`}
+              data-testid="sidebar-profile-avatar"
+            />
           </a>
         </Link>
         <SidebarUserProfileData>
           <Link href={`/${username}`}>
-            <a>
+            <a data-testid="sidebar-profile-username">
               <SidebarText>{username}</SidebarText>
             </a>
           </Link>
-          <SidebarText className="text-gray-300 font-normal">
+          <SidebarText
+            className="text-gray-300 font-normal"
+            data-testid="sidebar-profile-fullname"
+          >
             {fullName}
           </SidebarText>
         </SidebarUserProfileData>
-        <SidebarButton className={"ml-auto text-blue"}>Switch</SidebarButton>
+        <SidebarButton className="ml-auto text-blue">Switch</SidebarButton>
       </Container>
     )
   );
