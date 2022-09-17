@@ -30,8 +30,8 @@ describe("Post", () => {
   it("User can write comment", () => {
     cy.selectElement("post")
       .first()
-      .find("[data-cy='post-add-comment'] button")
-      .as("addButton");
+      .find("[data-cy='post-add-comment']")
+      .within(() => cy.findByRole("button", { name: /Post/i }).as("addButton"));
 
     cy.get("@addButton").should("be.disabled");
 
