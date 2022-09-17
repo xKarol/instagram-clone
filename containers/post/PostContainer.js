@@ -24,7 +24,7 @@ const PostContainer = ({ ...props }) => {
         <PostImageContainer className="w-full !pb-0 min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
         <section className="md:flex-1 flex flex-col md:h-full w-full lg:w-[350px] bg-white">
           <PostHeaderContainer className={"px-[15px]"} />
-          <div className="px-[20px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
+          <div className="px-[15px] flex-1 max-h-[200px] md:max-h-[100%] overflow-y-scroll scrollbar-hide">
             {!!caption.length && (
               <div className="w-full text-[14px] flex leading-[15px] mb-[4px] justify-between py-[3px]">
                 <div className="space-x-[15px] flex">
