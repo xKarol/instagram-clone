@@ -3,7 +3,7 @@ import Link from "next/link";
 import InstagramLogo from "../../assets/svg/instagram-logo.svg";
 import clsx from "clsx";
 
-const Logo = ({ size = 200, className, href = "" }) => {
+const Logo = ({ size = 200, className, href = "", ...props }) => {
   return (
     <Link href={`${href.length ? "/" : href}`}>
       <a
@@ -12,7 +12,8 @@ const Logo = ({ size = 200, className, href = "" }) => {
           className,
           !href.length && "outline-none cursor-default"
         )}
-        style={{ minWidth: `${size}px` }}
+        {...props}
+        style={{ ...props.style, minWidth: `${size}px` }}
       >
         <Image
           src={InstagramLogo}
