@@ -25,6 +25,7 @@ import {
 import { db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
 import isEmail from "validator/lib/isEmail";
+import { ROUTE_SIGN_IN } from "../../constants/routes";
 
 const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
@@ -123,7 +124,7 @@ const SignUpPage = () => {
           <Box className="mt-[10px]">
             <span className="text-[14px] text-center">
               Have an account?{" "}
-              <Link href="/sign-in">
+              <Link href={ROUTE_SIGN_IN}>
                 <a className="text-blue font-medium">Log In</a>
               </Link>
             </span>

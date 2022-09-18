@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTE_HOME } from "../../constants/routes";
 import NotFoundContainer from "./NotFoundContainer";
 import NotFoundHeading from "./NotFoundHeading";
 
@@ -9,7 +10,7 @@ const NotFound = () => {
       <p>
         The link you followed may be broken, or the page may have been removed.
         &nbsp;
-        <Link href="/">
+        <Link href={ROUTE_HOME}>
           <a className="text-blue">Go back to Instagram.</a>
         </Link>
       </p>

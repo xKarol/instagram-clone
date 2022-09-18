@@ -5,6 +5,7 @@ import { MdHomeFilled, MdOutlineAddBox } from "react-icons/md";
 import Avatar from "../../components/avatar";
 import DropdownMenu from "../../components/dropdown";
 import { HeaderNavLink, HeaderNavList } from "../../components/header";
+import { ROUTE_HOME } from "../../constants/routes";
 import { useUserContext } from "../../context/UserContext";
 import HeaderProfileDropdownContainer from "./HeaderProfileDropdown";
 
@@ -15,7 +16,7 @@ const HeaderNavbarContainer = ({ setShow }) => {
 
   return (
     <HeaderNavList>
-      <HeaderNavLink href="/" aria-label="home">
+      <HeaderNavLink href={ROUTE_HOME} aria-label="home">
         <MdHomeFilled />
       </HeaderNavLink>
       <HeaderNavLink aria-label="message">

@@ -21,6 +21,7 @@ import {
 } from "../../components/user-validation";
 import isEmail from "validator/lib/isEmail";
 import { getAuthErrorMessage } from "../../utils";
+import { ROUTE_SIGN_UP } from "../../constants/routes";
 
 const SignInPage = () => {
   const [error, setError] = useState("");
@@ -97,7 +98,7 @@ const SignInPage = () => {
           <Box className="mt-[10px]">
             <span className="text-[14px] text-center">
               Don&apos;t have an account?&nbsp;
-              <Link href="/sign-up">
+              <Link href={ROUTE_SIGN_UP}>
                 <a className="text-blue font-medium">Sign Up</a>
               </Link>
             </span>

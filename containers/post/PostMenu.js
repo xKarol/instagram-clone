@@ -7,6 +7,7 @@ import Loading from "../../components/loading";
 import { deletePost } from "../../services";
 import { deletePhotoFromStorage } from "../../services";
 import { db } from "../../config/firebase.config";
+import { ROUTE_HOME } from "../../constants/routes";
 
 const PostMenuContainer = () => {
   const router = useRouter();
@@ -31,8 +32,8 @@ const PostMenuContainer = () => {
     setPhotos(photos.filter((el) => el.photoId !== photoId));
     setPending(false);
     setShowModal(false);
-    if (router.asPath !== "/") {
-      router.push("/");
+    if (router.asPath !== ROUTE_HOME) {
+      router.push(ROUTE_HOME);
     }
   };
 

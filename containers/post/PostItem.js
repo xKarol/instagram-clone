@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PostContainer, PostBody } from "../../components/post";
+import { ROUTE_POST } from "../../constants/routes";
 import PostProvider from "../../context/PostContext";
 import {
   PostHeaderContainer,
@@ -26,7 +27,7 @@ const PostItemContainer = ({ data: photo, ...props }) => {
             <PostLikesContainer />
             <PostCaptionContainer />
             {!!comments.length && (
-              <Link href={`post/${photoId}`}>
+              <Link href={`${ROUTE_POST}/${photoId}`}>
                 <a className="text-[14px] text-gray-300">
                   View all {comments.length} comments
                 </a>
