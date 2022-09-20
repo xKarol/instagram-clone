@@ -1,23 +1,16 @@
 import clsx from "clsx";
-import { useLayoutEffect } from "react";
 import { CgClose } from "react-icons/cg";
+import useHideScrollbar from "../../hooks/useHideScrollbar";
 
 const Modal = ({ show, setShow, element, closeHide, onClose }) => {
+  useHideScrollbar(show);
+
   const handleClose = () => {
     setShow(false);
     if (onClose) {
       onClose?.();
     }
   };
-
-  useLayoutEffect(() => {
-    if (show) {
-      document.body.style.overflow = `${show ? "hidden" : "visible"}`;
-    }
-    return () => {
-      document.body.style.overflow = "visible";
-    };
-  }, [show]);
 
   return (
     <>
