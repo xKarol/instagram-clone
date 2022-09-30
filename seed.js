@@ -1,5 +1,5 @@
-import { db } from "./config/firebase.config.js";
-import { signUpUser } from "./services/auth.js";
+import { db } from "./config/firebase.config";
+import { signUpUser, getAllUsers, uploadNewPost } from "./services";
 import { faker } from "@faker-js/faker";
 
 const seedInit = async (callback, amount = 10) => {
@@ -20,7 +20,19 @@ const seedUser = async () => {
   );
 };
 
-const seedPost = async () => {};
+const seedPost = async () => {
+  const users = await getAllUsers(db);
+  const randUserIndex = Math.floor(Math.random() * users.length);
+  const randUser = users[randUserIndex];
+  await seedInit(() => {
+    uploadNewPost({
+      db,
+      username: randUser.username,
+      file: { filename: faker.lorem.word() }, //TODO change this key as photoURL
+      caption: faker.lorem.text(),
+    });
+  });
+};
 
 export const seed = async (type = "ALL") => {
   if (type === "USER") await seedUser();

@@ -13,6 +13,12 @@ import {
 import { getPhotoComments, getPhotoLikes } from "./post";
 import { deleteAvatarFromStorage, uploadAvatar } from "./storage";
 
+export const getAllUsers = async (db) => {
+  const usersDoc = await getDocs(collection(db, "users"));
+  const users = usersDoc.docs.map((doc) => ({ ...doc.data(), uid: doc.id }));
+  return users;
+};
+
 export const getUserMainData = async (db, username) => {
   if (!username) return;
   const q = query(collection(db, "users"), where("username", "==", username));
