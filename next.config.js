@@ -5,6 +5,7 @@ module.exports = {
       "firebasestorage.googleapis.com",
       "randomuser.me",
       "cloudflare-ipfs.com",
+      "loremflickr.com",
     ],
   },
   env: {
