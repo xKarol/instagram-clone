@@ -23,6 +23,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@testing-library/cypress": "^8.0.3",
     "@testing-library/jest-dom": "^5.16.4",
