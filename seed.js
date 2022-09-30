@@ -2,8 +2,13 @@ import { db } from "./config/firebase.config.js";
 import { signUpUser } from "./services/auth.js";
 import { faker } from "@faker-js/faker";
 
+const seedInit = async (callback, amount = 10) => {
+  const data = new Array(amount).fill(callback());
+  for (const element of data) await element;
+};
+
 const seedUser = async () => {
-  const users = new Array(10).fill(
+  await seedInit(() =>
     signUpUser({
       db,
       avatar: faker.image.avatar(),
@@ -13,15 +18,13 @@ const seedUser = async () => {
       password: faker.internet.password(),
     })
   );
-
-  for (const element of users) await element;
 };
 
 const seedPost = async () => {};
 
 export const seed = async (type = "ALL") => {
   if (type === "USER") await seedUser();
-  if (type === "POST") await seedUser();
+  if (type === "POST") await seedPost();
   if (type === "ALL") {
     await seedUser();
     await seedPost();
