@@ -54,7 +54,8 @@ const SignUpPage = () => {
       if (usernameInUse) {
         return setError("Username already in use.");
       }
-      await signUpUser(db, username, fullName, email, password);
+      
+      await signUpUser({ db, username, fullName, email, password });
     } catch (error) {
       setError(getAuthErrorMessage(error.code));
     } finally {

@@ -7,7 +7,14 @@ import {
 import { auth } from "../config/firebase.config";
 import { random } from "../utils";
 
-export const signUpUser = async (db, username, fullname, email, password) => {
+export const signUpUser = async ({
+  db,
+  avatar,
+  username,
+  fullName,
+  email,
+  password,
+}) => {
   const auth = getAuth();
   const createUser = await createUserWithEmailAndPassword(
     auth,
@@ -15,9 +22,10 @@ export const signUpUser = async (db, username, fullname, email, password) => {
     password
   );
   const setUser = await setDoc(doc(db, "users", createUser.user.uid), {
-    username: username,
-    fullName: fullname,
-    email: email,
+    username,
+    fullName,
+    email,
+    avatar,
     random: random(1000000),
   });
   return { createUser, setUser };

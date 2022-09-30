@@ -4,13 +4,14 @@ import { faker } from "@faker-js/faker";
 
 const seedUser = async () => {
   const users = new Array(10).fill(
-    signUpUser(
+    signUpUser({
       db,
-      faker.internet.userName(),
-      faker.name.fullName(),
-      faker.internet.email(),
-      faker.internet.password()
-    )
+      avatar: faker.image.avatar(),
+      username: faker.internet.userName(),
+      fullName: faker.name.fullName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+    })
   );
 
   for (const element of users) await element;

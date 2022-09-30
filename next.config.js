@@ -1,7 +1,11 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["firebasestorage.googleapis.com", "randomuser.me"],
+    domains: [
+      "firebasestorage.googleapis.com",
+      "randomuser.me",
+      "cloudflare-ipfs.com",
+    ],
   },
   env: {
     FIREBASE_API: process.env.FIREBASE_API,
