@@ -4,7 +4,7 @@ import { useUserContext } from "../../../context/UserContext";
 import { usePostUploadContext } from "../../../context/PostUploadContext";
 import { db } from "../../../config/firebase.config";
 import { trimSpace } from "../../../utils";
-import { uploadNewPost, getPhotoById } from "../../../services";
+import { createPost, getPhotoById, uploadPhoto } from "../../../services";
 import { PostUploadError } from "../../../components/post-upload";
 import {
   PostUploadPageBox,
@@ -25,10 +25,11 @@ const PostUploadSharePageContainer = () => {
   useEffect(() => {
     const uploadFile = async () => {
       try {
-        const photoDoc = await uploadNewPost({
+        const { downloadURL } = await uploadPhoto(username, file);
+        const photoDoc = await createPost({
           db,
           username,
-          file: file,
+          imageURL: downloadURL,
           caption: trimSpace(caption),
         });
         const photoData = await getPhotoById(db, photoDoc.id);

@@ -140,15 +140,9 @@ export const deletePost = async (db, postId) => {
   return await deleteDoc(doc(db, "photos", postId));
 };
 
-export const uploadNewPost = async ({ db, username, file, caption }) => {
-  const { downloadURL, fileName } = await uploadPhoto(
-    username,
-    file,
-    file.name
-  );
+export const createPost = async ({ db, username, imageURL, caption }) => {
   return await addDoc(collection(db, "photos"), {
-    image: downloadURL,
-    fileName,
+    image: imageURL,
     username,
     caption,
     timestamp: serverTimestamp(),
