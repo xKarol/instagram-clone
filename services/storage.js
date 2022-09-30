@@ -10,7 +10,8 @@ export const uploadPhoto = async (username, file) => {
   const name = Date.now() + "_" + file.filename;
   const imageRef = ref(storage, `images/${username}/${name}`);
   await uploadBytes(imageRef, file);
-  return await getDownloadURL(imageRef);
+  const downloadURL = await getDownloadURL(imageRef);
+  return { downloadURL };
 };
 
 export const uploadAvatar = async (file, fileName) => {
