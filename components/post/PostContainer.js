@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 const PostContainer = ({ children, className, ...props }) => {
   return (
-    <li
+    <article
       className={clsx(
         "flex flex-col bg-white border border-gray-200 rounded-sm",
         className
@@ -10,7 +10,7 @@ const PostContainer = ({ children, className, ...props }) => {
       {...props}
     >
       {children}
-    </li>
+    </article>
   );
 };
 

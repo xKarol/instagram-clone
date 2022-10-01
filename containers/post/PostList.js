@@ -14,7 +14,7 @@ const PostListContainer = (props) => {
   return (
     <InfiniteScroll
       {...props}
-      element="ul"
+      element="section"
       loadMore={loadMore}
       hasMore={hasMore}
       loader={<Loading className="mt-[50px]" key={0} />}
