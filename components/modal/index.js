@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { CgClose } from "react-icons/cg";
-import useHideScrollbar from "../../hooks/useHideScrollbar";
+import { useLockBodyScroll } from "react-use";
 
 const Modal = ({ show, setShow, element, closeHide, onClose }) => {
-  useHideScrollbar(show);
+  useLockBodyScroll(show);
 
   const handleClose = () => {
     setShow(false);
