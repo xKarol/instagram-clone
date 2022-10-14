@@ -15,9 +15,9 @@ const useAuthListener = () => {
         if (!userData) {
           // TODO delete user
         } else {
+          setUser(userData);
           setLoggedIn(true);
           setPending(false);
-          setUser(userData);
         }
       } else {
         setLoggedIn(false);
@@ -30,6 +30,6 @@ const useAuthListener = () => {
   }, []);
 
   return { setUser, user, pending, loggedIn };
-}
+};
 
 export default useAuthListener;

@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { random } from "../utils";
 
-export const getProfilesSuggestion = async (db) => {
+export const getProfilesSuggestion = async (db, username) => {
   const rand = random(1000000);
   const q = query(
     collection(db, "users"),
@@ -17,5 +17,9 @@ export const getProfilesSuggestion = async (db) => {
     limit(5)
   );
   const profiles = await getDocs(q);
-  return profiles.docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  const data = profiles.docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  const response = data.filter(
+    (suggestion) => suggestion.username !== username
+  );
+  return response;
 };

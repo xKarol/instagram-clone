@@ -5,8 +5,9 @@ import {
 import useProfilesSuggestions from "../../hooks/useProfilesSuggestions";
 
 const SidebarSuggestionsListContainer = () => {
-  const { suggestions, loading } = useProfilesSuggestions();
+  const { data, loading, error } = useProfilesSuggestions();
 
+  if (error) return null;
   return (
     <ul>
       {loading
@@ -15,7 +16,7 @@ const SidebarSuggestionsListContainer = () => {
             .map((_, index) => (
               <SidebarSuggestedProfileSkeletonContainer key={index} />
             ))
-        : suggestions.map((suggestion) => (
+        : data.map((suggestion) => (
             <SidebarSuggestedProfileContainer
               skeleton={loading}
               key={suggestion.docId}

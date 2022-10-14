@@ -9,24 +9,24 @@ import { PostContainer } from "../../containers/post";
 const PostPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { photo, loading } = usePhoto(id);
+  const { data, loading } = usePhoto(id);
 
-  if (!photo && !loading) return <NotFoundPage />;
+  if (!data && !loading) return <NotFoundPage />;
   return (
     <>
       <Head>
         <title>
           {!loading &&
             `${
-              photo?.caption?.length
-                ? `${photo?.user?.fullName} on Instagram: “${photo?.caption}“`
-                : `Instagram photo by ${photo?.user?.fullName}`
+              data?.caption?.length
+                ? `${data?.user?.fullName} on Instagram: “${data?.caption}“`
+                : `Instagram photo by ${data?.user?.fullName}`
             }`}
         </title>
       </Head>
       <Layout className="flex justify-center">
         <HeaderContainer />
-        {!loading && <PostContainer photo={photo} />}
+        {!loading && <PostContainer photo={data} />}
       </Layout>
     </>
   );

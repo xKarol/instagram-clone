@@ -17,10 +17,10 @@ import LoadingScreen from "../../components/loading-screen";
 const ProfilePage = () => {
   const router = useRouter();
   const { profile } = router.query;
-  const { user: profileUser, loading, ...data } = useProfile(profile);
+  const { data, loading, error } = useProfile(profile);
   const { width } = useViewport();
   const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
-  const notFound = !loading && !profileUser;
+  const notFound = (!loading && !data) || error;
 
   if (loading) return <LoadingScreen />;
   if (notFound) return <NotFoundPage />;
@@ -31,13 +31,13 @@ const ProfilePage = () => {
           {`${
             loading
               ? `@${profile}`
-              : `${profileUser.fullName} (@${profileUser.username})`
+              : `${data.user.fullName} (@${data.user.username})`
           } • Instagram`}
         </title>
       </Head>
 
       <HeaderContainer />
-      <ProfileContext.Provider value={{ ...data, loading, user: profileUser }}>
+      <ProfileContext.Provider value={{ ...data, loading }}>
         <Layout>
           <ProfileHeaderContainer viewport={device} />
           <ProfileNavContainer />

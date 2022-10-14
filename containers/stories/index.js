@@ -15,7 +15,8 @@ const StoriesContainer = ({ ...props }) => {
   const [showRight, setShowRight] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const { user, loggedIn } = useUserContext();
-  const { stories, loading, error } = useStories(user.uid, user?.followings);
+
+  const { data, loading, error } = useStories(user.uid);
   const storyBox = useRef(null);
   const visible = loggedIn && !error && user?.followings?.length;
 
@@ -46,7 +47,8 @@ const StoriesContainer = ({ ...props }) => {
     element.scrollLeft += clientWidth - 100;
   };
 
-  return visible ? (
+  if (!visible) return null;
+  return (
     <Container className="mb-[20px]" {...props}>
       {loading && <Loading className={"mb-[10px]"} />}
       {showLeft && (
@@ -72,7 +74,7 @@ const StoriesContainer = ({ ...props }) => {
                 className="rounded-full w-[50px] h-[50px]"
               />
             ))
-          : stories.map(({ uid, username, avatar }) => (
+          : data.map(({ uid, username, avatar }) => (
               <StoriesProfile
                 key={uid}
                 username={username}
@@ -82,7 +84,7 @@ const StoriesContainer = ({ ...props }) => {
             ))}
       </StoriesList>
     </Container>
-  ) : null;
+  );
 };
 
 export default StoriesContainer;
