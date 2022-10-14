@@ -39,7 +39,7 @@ const PostImageContainer = (props) => {
       {...props}
     >
       {heart && (
-        <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-max h-max">
           <AiFillHeart
             className={`${
               liked && "scaleAnim"
