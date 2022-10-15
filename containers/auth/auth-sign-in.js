@@ -8,7 +8,7 @@ import {
   Container,
   InputField,
   Error,
-  Submit,
+  SubmitButton,
   Box,
   FacebookLoginProvider,
 } from "../../components/auth";
@@ -86,7 +86,9 @@ const AuthSignInContainer = () => {
               data-testid="login-password-input"
               {...register("password")}
             />
-            <Submit text={"Log In"} disabled={isDisabled} pending={loading} />
+            <SubmitButton disabled={isDisabled} isLoading={loading}>
+              Log In
+            </SubmitButton>
           </form>
           <Divider>Or</Divider>
           <FacebookLoginProvider variant="outlined" />

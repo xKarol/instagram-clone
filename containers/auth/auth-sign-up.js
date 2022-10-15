@@ -8,7 +8,7 @@ import {
   Container,
   InputField,
   Error,
-  Submit,
+  SubmitButton,
   Box,
   FacebookLoginProvider,
 } from "../../components/auth";
@@ -95,7 +95,9 @@ const AuthSignUpContainer = () => {
               data-testid="register-password-input"
               {...register("password")}
             />
-            <Submit text={"Sign Up"} disabled={isDisabled} pending={loading} />
+            <SubmitButton disabled={isDisabled} isLoading={loading}>
+              Sign Up
+            </SubmitButton>
             <Error error={error} />
           </form>
           <span className="text-red font-medium text-sm mt-5">
