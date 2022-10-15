@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoadingScreen from "../../components/loading-screen";
 import Image from "next/image";
 import Link from "next/link";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../components/logo";
-import {
-  MIN_PASSWORD,
-  MAX_USERNAME,
-  MAX_FULL_NAME,
-} from "../../constants/validation";
 import { signUpUser, getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import {
@@ -23,41 +18,36 @@ import {
 } from "../../components/auth";
 import { db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
-import isEmail from "validator/lib/isEmail";
 import { ROUTE_SIGN_IN } from "../../constants/routes";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInSchema } from "../../schemas";
 
 const AuthSignUpContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
   const loggedIn = useRedirectLoggedUser("/");
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, watch } = useForm({
+    resolver: yupResolver(signInSchema),
+  });
+  const watchAll = watch();
 
-  //   const disabledBtn =
-  //     !email.length ||
-  //     !(username.length < MAX_USERNAME) ||
-  //     !(fullName.length < MAX_FULL_NAME) ||
-  //     !(password.length >= MIN_PASSWORD);
-
-  const disabledBtn = false;
+  useEffect(() => {
+    const isValidForm = () => {
+      signInSchema.isValid(watchAll).then((valid) => setIsDisabled(!valid));
+    };
+    isValidForm();
+  }, [watchAll]);
 
   const onSubmit = async (data) => {
-    // if (disabledBtn) return;
-    const { email, fullName, username, password } = data;
     try {
+      const { email, fullName, username, password } = data;
       setLoading(true);
-      if (!isEmail(email)) {
-        return setError("Email is invalid.");
-      }
       const usernameInUse = await getUserByUsername(db, username, false);
       if (usernameInUse) {
         return setError("Username already in use.");
       }
-
       await signUpUser({ db, username, fullName, email, password });
     } catch (error) {
       setError(getAuthErrorMessage(error.code));
@@ -106,7 +96,7 @@ const AuthSignUpContainer = () => {
               data-testid="register-password-input"
               {...register("password")}
             />
-            <Submit text={"Sign Up"} disabled={disabledBtn} pending={loading} />
+            <Submit text={"Sign Up"} disabled={isDisabled} pending={loading} />
             <Error error={error} />
           </form>
           <span className="text-red font-medium text-sm mt-5">

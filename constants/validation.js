@@ -1,5 +1,4 @@
-//sign in, sing up
-export const MAX_USERNAME = 30;
-export const MAX_FULL_NAME = 30;
-export const MAX_PASSWORD = 40;
-export const MIN_PASSWORD = 6;
+export const MAX_USERNAME_LENGTH = 30;
+export const MAX_FULL_NAME_LENGTH = 30;
+export const MAX_PASSWORD_LENGTH = 40;
+export const MIN_PASSWORD_LENGTH = 6;
