@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingScreen from "../../components/loading-screen";
-import Image from "next/image";
 import Link from "next/link";
-import AppStore from "../../assets/images/appstore.png";
-import GooglePlay from "../../assets/images/googleplay.png";
 import Logo from "../../components/logo";
 import { signUpUser, getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
@@ -22,6 +19,7 @@ import { ROUTE_SIGN_IN } from "../../constants/routes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "../../schemas";
+import AuthAppsContainer from "./auth-apps";
 
 const AuthSignUpContainer = () => {
   const [loading, setLoading] = useState(false);
@@ -111,21 +109,7 @@ const AuthSignUpContainer = () => {
             </Link>
           </span>
         </Box>
-        <span className="text-[14px] my-[15px]">Get the app.</span>
-        <div className="flex gap-[5px]">
-          <Image
-            src={AppStore}
-            alt="Download on the App Store"
-            height={40}
-            width={130}
-          />
-          <Image
-            src={GooglePlay}
-            alt="Download on the Google Play"
-            height={40}
-            width={130}
-          />
-        </div>
+        <AuthAppsContainer />
       </Container>
     </section>
   );

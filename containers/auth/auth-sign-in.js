@@ -18,7 +18,8 @@ import { db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
 import isEmail from "validator/lib/isEmail";
 import { ROUTE_SIGN_UP } from "../../constants/routes";
-import { AppLinks, PhoneGallery } from "../../components/auth";
+import { PhoneGallery } from "../../components/auth";
+import AuthAppsContainer from "./auth-apps";
 
 const AuthSignInContainer = () => {
   const [error, setError] = useState("");
@@ -94,7 +95,7 @@ const AuthSignInContainer = () => {
         <span className="text-red font-medium text-sm mt-5">
           This is FAKE Instagram
         </span>
-        <AppLinks />
+        <AuthAppsContainer />
       </Container>
     </section>
   );

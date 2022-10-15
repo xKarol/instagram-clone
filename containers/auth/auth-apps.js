@@ -1,8 +1,9 @@
 import Image from "next/image";
+import React from "react";
 import AppStore from "../../assets/images/appstore.png";
 import GooglePlay from "../../assets/images/googleplay.png";
 
-const AppLinks = () => {
+const AuthAppsContainer = () => {
   return (
     <>
       <span className="text-[14px] my-[15px]">Get the app.</span>
@@ -24,6 +25,6 @@ const AppLinks = () => {
       </div>
     </>
   );
-}
+};
 
-export default AppLinks;
+export default AuthAppsContainer;

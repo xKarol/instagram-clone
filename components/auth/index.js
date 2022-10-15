@@ -1,4 +1,3 @@
-export { default as AppLinks } from "./AppLinks";
 export { default as Box } from "./Box";
 export { default as Container } from "./Container";
 export { default as Error } from "./Error";
