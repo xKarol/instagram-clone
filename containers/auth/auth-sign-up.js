@@ -18,7 +18,7 @@ import { getAuthErrorMessage } from "../../utils";
 import { ROUTE_SIGN_IN } from "../../constants/routes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInSchema } from "../../schemas";
+import { signUpSchema } from "../../schemas";
 import AuthAppsContainer from "./auth-apps";
 
 const AuthSignUpContainer = () => {
@@ -27,19 +27,20 @@ const AuthSignUpContainer = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const loggedIn = useRedirectLoggedUser("/");
   const { register, handleSubmit, watch } = useForm({
-    resolver: yupResolver(signInSchema),
+    resolver: yupResolver(signUpSchema),
   });
   const watchAll = watch();
 
   useEffect(() => {
     const isValidForm = () => {
-      signInSchema.isValid(watchAll).then((valid) => setIsDisabled(!valid));
+      signUpSchema.isValid(watchAll).then((valid) => setIsDisabled(!valid));
     };
     isValidForm();
   }, [watchAll]);
 
   const onSubmit = async (data) => {
     try {
+      if (isDisabled) return;
       const { email, fullName, username, password } = data;
       setLoading(true);
       const usernameInUse = await getUserByUsername(db, username, false);
