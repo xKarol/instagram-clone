@@ -4,16 +4,17 @@ import { useUserContext } from "../context/UserContext";
 import { db } from "../config/firebase.config";
 
 const usePhotos = () => {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const lastId = useRef(undefined);
+  const isPending = useRef(false);
   const { setPhotos, photos } = useUserContext();
 
   const getData = useCallback(async () => {
     try {
+      if (isPending.current) return;
+      isPending.current = true;
       setError(false);
-      setLoading(true);
       const { photos, lastId: last } = await getPhotos(db, 5, lastId.current);
       setPhotos((prev) => [...prev, ...photos]);
       lastId.current = last;
@@ -23,11 +24,11 @@ const usePhotos = () => {
     } catch {
       setError(true);
     } finally {
-      setLoading(false);
+      isPending.current = false;
     }
   }, [setPhotos]);
 
-  return { getData, photos, loading, error, hasMore };
+  return { getData, photos, loading: isPending.current, error, hasMore };
 };
 
 export default usePhotos;
