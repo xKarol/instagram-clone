@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoadingScreen from "../../components/loading-screen";
 import Link from "next/link";
 import Logo from "../../components/logo";
-import { MIN_PASSWORD } from "../../constants/validation";
 import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import {
@@ -14,38 +13,52 @@ import {
   Separator,
   Box,
 } from "../../components/auth";
-import { db } from "../../config/firebase.config";
+import { auth, db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
 import isEmail from "validator/lib/isEmail";
 import { ROUTE_SIGN_UP } from "../../constants/routes";
 import { PhoneGallery } from "../../components/auth";
 import AuthAppsContainer from "./auth-apps";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInSchema } from "../../schemas";
+import { useForm } from "react-hook-form";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 
 const AuthSignInContainer = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
   const loggedIn = useRedirectLoggedUser("/");
-  const disabledBtn = !login.length || !(password.length >= MIN_PASSWORD);
+  const { register, handleSubmit, watch } = useForm({
+    resolver: yupResolver(signInSchema),
+  });
+  const watchAll = watch();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    if (disabledBtn) return;
+  useEffect(() => {
+    const isValidForm = () => {
+      signInSchema.isValid(watchAll).then((valid) => setIsDisabled(!valid));
+    };
+    isValidForm();
+  }, [watchAll]);
+
+  const onSubmit = async (data) => {
     try {
+      if (isDisabled) return;
+      const { login, password } = data;
       setLoading(true);
       if (isEmail(login)) {
-        //email login
-        await signInWithEmailAndPassword(auth, login, password);
-      } else {
-        //username login
-        const { email } = await getUserByUsername(db, login, false);
-        if (email) {
-          await signInWithEmailAndPassword(auth, email, password);
-        }
+        return await signInWithEmailAndPassword(auth, login, password); //email login
       }
+      const { email } = (await getUserByUsername(db, login, false)) ?? {};
+      if (!email) throw "Invalid username or email.";
+      await signInWithEmailAndPassword(auth, email, password); //username login
     } catch (error) {
-      setError(getAuthErrorMessage(error.code));
+      const message =
+        error instanceof FirebaseError
+          ? getAuthErrorMessage(error.code)
+          : error;
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -60,22 +73,20 @@ const AuthSignInContainer = () => {
           <Logo size={200} className="mb-[20px]" />
           <form
             className="w-full flex flex-col gap-[5px]"
-            onSubmit={(e) => handleLogin(e)}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <InputField
               placeholder="Username or email"
-              value={login}
-              onChange={(e) => setLogin(e.target.value)}
               data-testid="login-username-input"
+              {...register("login")}
             />
             <InputField
               type="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               data-testid="login-password-input"
+              {...register("password")}
             />
-            <Submit text={"Log In"} disabled={disabledBtn} pending={loading} />
+            <Submit text={"Log In"} disabled={isDisabled} pending={loading} />
           </form>
           <Separator />
           <FacebookLogin className="text-[#385185] mb-[10px]" />
