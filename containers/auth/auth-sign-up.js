@@ -9,7 +9,6 @@ import {
   InputField,
   Error,
   Submit,
-  Separator,
   Box,
   FacebookLoginProvider,
 } from "../../components/auth";
@@ -20,6 +19,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../../schemas";
 import AuthAppsContainer from "./auth-apps";
+import { Divider } from "../../components/divider";
 
 const AuthSignUpContainer = () => {
   const [loading, setLoading] = useState(false);
@@ -65,7 +65,7 @@ const AuthSignUpContainer = () => {
             Sign up to see photos and videos from your friends.
           </h1>
           <FacebookLoginProvider variant="filled" />
-          <Separator />
+          <Divider>Or</Divider>
           <form
             className="w-full flex flex-col gap-[5px]"
             onSubmit={handleSubmit(onSubmit)}

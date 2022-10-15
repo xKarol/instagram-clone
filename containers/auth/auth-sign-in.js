@@ -9,7 +9,6 @@ import {
   InputField,
   Error,
   Submit,
-  Separator,
   Box,
   FacebookLoginProvider,
 } from "../../components/auth";
@@ -24,6 +23,7 @@ import { signInSchema } from "../../schemas";
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+import { Divider } from "../../components/divider";
 
 const AuthSignInContainer = () => {
   const [error, setError] = useState("");
@@ -88,7 +88,7 @@ const AuthSignInContainer = () => {
             />
             <Submit text={"Log In"} disabled={isDisabled} pending={loading} />
           </form>
-          <Separator />
+          <Divider>Or</Divider>
           <FacebookLoginProvider variant="outlined" />
           <Error error={error} />
           <a href="" className="text-[12px] text-[#385185] mt-[10px]">
