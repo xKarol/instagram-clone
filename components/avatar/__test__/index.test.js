@@ -37,6 +37,6 @@ describe("Avatar", () => {
   it("src prop should change", () => {
     render(<Avatar src="/test" />);
     const avatarElement = screen.getByRole("img");
-    expect(avatarElement).toHaveAttribute("src", "/test");
+    expect(avatarElement).not.toHaveAttribute("src", "");
   });
 });
