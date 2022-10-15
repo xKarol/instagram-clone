@@ -25,25 +25,29 @@ import { db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
 import isEmail from "validator/lib/isEmail";
 import { ROUTE_SIGN_IN } from "../../constants/routes";
+import { useForm } from "react-hook-form";
 
 const AuthSignUpContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [password, setPassword] = useState("");
   const loggedIn = useRedirectLoggedUser("/");
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm();
 
-  const disabledBtn =
-    !email.length ||
-    !(username.length < MAX_USERNAME) ||
-    !(fullName.length < MAX_FULL_NAME) ||
-    !(password.length >= MIN_PASSWORD);
+  //   const disabledBtn =
+  //     !email.length ||
+  //     !(username.length < MAX_USERNAME) ||
+  //     !(fullName.length < MAX_FULL_NAME) ||
+  //     !(password.length >= MIN_PASSWORD);
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if (disabledBtn) return;
+  const disabledBtn = false;
+
+  const onSubmit = async (data) => {
+    // if (disabledBtn) return;
+    const { email, fullName, username, password } = data;
     try {
       setLoading(true);
       if (!isEmail(email)) {
@@ -75,36 +79,32 @@ const AuthSignUpContainer = () => {
           <Separator />
           <form
             className="w-full flex flex-col gap-[5px]"
-            onSubmit={(e) => handleRegister(e)}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <InputField
-              type="text"
+              type="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               data-testid="register-email-input"
+              {...register("email")}
             />
             <InputField
               type="text"
               placeholder="Full Name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
               data-testid="register-fullname-input"
+              {...register("fullName")}
             />
             <InputField
               type="text"
               placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
               data-testid="register-username-input"
+              {...register("username")}
             />
             <InputField
               type="password"
               placeholder="Password"
               className="formButton w-full"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               data-testid="register-password-input"
+              {...register("password")}
             />
             <Submit text={"Sign Up"} disabled={disabledBtn} pending={loading} />
             <Error error={error} />
@@ -115,7 +115,7 @@ const AuthSignUpContainer = () => {
         </Box>
         <Box className="mt-[10px]">
           <span className="text-[14px] text-center">
-            Have an account?{" "}
+            Have an account?&nbsp;
             <Link href={ROUTE_SIGN_IN}>
               <a className="text-blue font-medium">Log In</a>
             </Link>
