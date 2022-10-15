@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { LoadingButton } from "../loading-button";
 
-const SubmitButton = ({
+const AuthSubmitButton = ({
   isDisabled,
   isLoading,
   children,
@@ -25,4 +25,4 @@ const SubmitButton = ({
   );
 };
 
-export default SubmitButton;
+export default AuthSubmitButton;

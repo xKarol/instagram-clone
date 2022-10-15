@@ -1,10 +1,11 @@
 import { AiFillFacebook } from "react-icons/ai";
 import clsx from "clsx";
 
-const FacebookLoginProvider = ({ className, variant }) => {
+const AuthFacebookLoginProvider = ({ className, variant, ...rest }) => {
   return (
     <button
       aria-label="log in with facebook"
+      {...rest}
       className={clsx(
         "flex items-center justify-center font-medium text-[14px] py-[5px] rounded-sm cursor-pointer",
         className,
@@ -18,4 +19,4 @@ const FacebookLoginProvider = ({ className, variant }) => {
   );
 };
 
-export default FacebookLoginProvider;
+export default AuthFacebookLoginProvider;

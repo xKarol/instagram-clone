@@ -5,18 +5,18 @@ import Logo from "../../components/logo";
 import { getUserByUsername } from "../../services";
 import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
 import {
-  Container,
-  InputField,
-  Error,
-  SubmitButton,
-  Box,
-  FacebookLoginProvider,
+  AuthContainer,
+  AuthInputField,
+  AuthError,
+  AuthSubmitButton,
+  AuthBox,
+  AuthFacebookLoginProvider,
+  AuthPhoneGallery,
 } from "../../components/auth";
 import { auth, db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
 import isEmail from "validator/lib/isEmail";
 import { ROUTE_SIGN_UP } from "../../constants/routes";
-import { PhoneGallery } from "../../components/auth";
 import AuthAppsContainer from "./auth-apps";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "../../schemas";
@@ -67,49 +67,49 @@ const AuthSignInContainer = () => {
   if (loggedIn) return <LoadingScreen />;
   return (
     <section className="flex justify-center items-center p-[50px] gap-[25px]">
-      <PhoneGallery />
-      <Container data-testid="login-box">
-        <Box>
+      <AuthPhoneGallery />
+      <AuthContainer data-testid="login-box">
+        <AuthBox>
           <Logo size={200} className="mb-[20px]" />
           <form
             className="w-full flex flex-col gap-[5px]"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <InputField
+            <AuthInputField
               placeholder="Username or email"
               data-testid="login-username-input"
               {...register("login")}
             />
-            <InputField
+            <AuthInputField
               type="password"
               placeholder="Password"
               data-testid="login-password-input"
               {...register("password")}
             />
-            <SubmitButton disabled={isDisabled} isLoading={loading}>
+            <AuthSubmitButton disabled={isDisabled} isLoading={loading}>
               Log In
-            </SubmitButton>
+            </AuthSubmitButton>
           </form>
           <Divider>Or</Divider>
-          <FacebookLoginProvider variant="outlined" />
-          <Error error={error} />
+          <AuthFacebookLoginProvider variant="outlined" />
+          <AuthError>{error}</AuthError>
           <a href="" className="text-[12px] text-[#385185] mt-[10px]">
             Forgot password?
           </a>
-        </Box>
-        <Box className="mt-[10px]">
+        </AuthBox>
+        <AuthBox className="mt-[10px]">
           <span className="text-[14px] text-center">
             Don&apos;t have an account?&nbsp;
             <Link href={ROUTE_SIGN_UP}>
               <a className="text-blue font-medium">Sign Up</a>
             </Link>
           </span>
-        </Box>
+        </AuthBox>
         <span className="text-red font-medium text-sm mt-5">
           This is FAKE Instagram
         </span>
         <AuthAppsContainer />
-      </Container>
+      </AuthContainer>
     </section>
   );
 };

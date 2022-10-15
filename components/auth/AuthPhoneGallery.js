@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Phone from "../../assets/images/login-phone.png";
 
-const PhoneGallery = () => {
+const AuthPhoneGallery = ({ className, ...rest }) => {
   return (
-    <div className="hidden md:block">
+    <div {...rest} className={clsx("hidden md:block", className)}>
       <Image src={Phone} alt="instagram phone photo" objectFit="contain" />
     </div>
   );
-}
+};
 
-export default PhoneGallery;
+export default AuthPhoneGallery;

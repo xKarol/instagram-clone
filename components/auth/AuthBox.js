@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const Box = ({ children, className }) => {
+const AuthBox = ({ children, className }) => {
   return (
     <section
       className={clsx(
@@ -13,4 +13,4 @@ const Box = ({ children, className }) => {
   );
 };
 
-export default Box;
+export default AuthBox;

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const Container = ({ children, className, ...props }) => {
+const AuthContainer = ({ children, className, ...props }) => {
   return (
     <div
       className={clsx(
@@ -14,4 +14,4 @@ const Container = ({ children, className, ...props }) => {
   );
 };
 
-export default Container;
+export default AuthContainer;

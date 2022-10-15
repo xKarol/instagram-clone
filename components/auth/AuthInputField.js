@@ -1,7 +1,7 @@
 import { forwardRef, useRef } from "react";
 import clsx from "clsx";
 
-const InputField = forwardRef(
+const AuthInputField = forwardRef(
   ({ className, value, type, placeholder, ...props }, ref) => {
     const passwordShowBtnRef = useRef(null);
     const inputRef = useRef(null);
@@ -53,6 +53,6 @@ const InputField = forwardRef(
     );
   }
 );
-InputField.displayName = "InputField";
+AuthInputField.displayName = "AuthInputField";
 
-export default InputField;
+export default AuthInputField;
