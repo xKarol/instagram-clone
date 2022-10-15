@@ -8,10 +8,10 @@ import {
   Container,
   InputField,
   Error,
-  FacebookLogin,
   Submit,
   Separator,
   Box,
+  FacebookLoginProvider,
 } from "../../components/auth";
 import { auth, db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
@@ -89,7 +89,7 @@ const AuthSignInContainer = () => {
             <Submit text={"Log In"} disabled={isDisabled} pending={loading} />
           </form>
           <Separator />
-          <FacebookLogin className="text-[#385185] mb-[10px]" />
+          <FacebookLoginProvider variant="outlined" />
           <Error error={error} />
           <a href="" className="text-[12px] text-[#385185] mt-[10px]">
             Forgot password?

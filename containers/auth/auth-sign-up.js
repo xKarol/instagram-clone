@@ -8,10 +8,10 @@ import {
   Container,
   InputField,
   Error,
-  FacebookLogin,
   Submit,
   Separator,
   Box,
+  FacebookLoginProvider,
 } from "../../components/auth";
 import { db } from "../../config/firebase.config";
 import { getAuthErrorMessage } from "../../utils";
@@ -64,7 +64,7 @@ const AuthSignUpContainer = () => {
           <h1 className="font-medium text-gray-300 text-center mb-[15px]">
             Sign up to see photos and videos from your friends.
           </h1>
-          <FacebookLogin className="w-full bg-blue text-white" />
+          <FacebookLoginProvider variant="filled" />
           <Separator />
           <form
             className="w-full flex flex-col gap-[5px]"
