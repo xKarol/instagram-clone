@@ -1,7 +1,7 @@
 import { BsEmojiSmile } from "react-icons/bs";
 import clsx from "clsx";
 
-const PostCommentEmote = ({ children, className, ...props }) => {
+const PostCommentEmote = ({ className, ...props }) => {
   return (
     <button
       className={clsx("text-[22px] cursor-pointer", className)}

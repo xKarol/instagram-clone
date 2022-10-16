@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import InstagramLogo from "../../assets/svg/instagram-logo.svg";
 import clsx from "clsx";
+import InstagramLogo from "../../assets/svg/instagram-logo.svg";
 import { ROUTE_HOME } from "../../constants/routes";
 
 const Logo = ({ size = 200, className, href = "", ...props }) => {

@@ -1,6 +1,6 @@
+import Head from "next/head";
 import HeaderContainer from "../containers/header";
 import NotFound from "../components/not-found";
-import Head from "next/head";
 
 const NotFoundPage = () => {
   return (

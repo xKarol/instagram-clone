@@ -1,7 +1,7 @@
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import clsx from "clsx";
 
-const PostCommentLike = ({ liked = false, children, className, ...props }) => {
+const PostCommentLike = ({ liked = false, className, ...props }) => {
   return (
     <button
       className={clsx(

@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 const AuthError = ({ children, className, ...rest }) => {
   return (
     children && (

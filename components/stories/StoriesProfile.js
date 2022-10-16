@@ -1,5 +1,5 @@
-import Avatar from "../avatar";
 import clsx from "clsx";
+import Avatar from "../avatar";
 
 function StoriesProfile({ active, username, avatar }) {
   return (

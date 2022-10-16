@@ -10,7 +10,8 @@ const PostCommentForm = ({
     <form
       className={clsx(
         "flex items-center px-[16px] py-[12px] border border-transparent border-t-gray-200",
-        pending && "opacity-50"
+        pending && "opacity-50",
+        className
       )}
       {...props}
     >
