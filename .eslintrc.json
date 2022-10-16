@@ -9,6 +9,9 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:testing-library/react",
     "plugin:prettier/recommended"
   ],
   "rules": {
