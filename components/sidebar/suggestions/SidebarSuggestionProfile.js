@@ -21,7 +21,11 @@ const SuggestedProfile = ({ avatar, username, docId }) => {
     <li className="flex items-center text-[14px] gap-[15px] py-[5px]">
       <Link href={`/${username}`}>
         <a className="w-[30px] h-[30px]">
-          <Avatar src={avatar} className="cursor-pointer" alt={`${username}'s avatar`} />
+          <Avatar
+            src={avatar}
+            className="cursor-pointer"
+            alt={`${username}'s avatar`}
+          />
         </a>
       </Link>
       <div className="flex flex-col leading-[20px] font-medium">

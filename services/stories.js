@@ -1,7 +1,4 @@
-import {
-  getDocs,
-  collection,
-} from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 import { getUserByUID } from "./user";
 
 export const getUserStories = async (db, docId) => {

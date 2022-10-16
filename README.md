@@ -15,20 +15,24 @@ A Instagram app made with Next JS.
 </ol>
 
 ## About the Project
+
 This project is a clone of Instagram web app. It contains such functionalities as: adding new posts, deleting posts, liking posts, adding comments, following users and others.
 
 ## Built With
-* <a href="https://nextjs.org/">Next JS</a>
-* <a href="https://firebase.google.com/">Firebase</a>
-* <a href="https://tailwindcss.com/">Tailwind CSS</a>
-* <a href="https://day.js.org/">Day.js</a>
-* <a href="https://react-icons.github.io/react-icons/">React Icons</a>
 
-## Links 
+- <a href="https://nextjs.org/">Next JS</a>
+- <a href="https://firebase.google.com/">Firebase</a>
+- <a href="https://tailwindcss.com/">Tailwind CSS</a>
+- <a href="https://day.js.org/">Day.js</a>
+- <a href="https://react-icons.github.io/react-icons/">React Icons</a>
+
+## Links
+
 - Project URL: https://insta-clone-rouge-three.vercel.app/
 - Original URL: https://www.instagram.com/
 
 ## Installation
+
 1. Make sure you have installed Node. You can download it from [here](https://nodejs.org/en/).
 2. Open console ([Help](#usage))
 3. Change directory
@@ -67,28 +71,31 @@ FIREBASE_MESSAGING_SENDER_ID=YOUR_KEY_HERE
 FIREBASE_APP_ID=YOUR_KEY_HERE
 ```
 
-11.   Create new firebase project [here](https://console.firebase.google.com/)
-12.   Select web app and get your keys from firebase config
-13.   Paste your keys into .env.local file
+11. Create new firebase project [here](https://console.firebase.google.com/)
+12. Select web app and get your keys from firebase config
+13. Paste your keys into .env.local file
 
 ## Usage
+
 1. Open console
 
 ```
 1. Press Win + R
 2. Type "cmd"
 ```
+
 2. Change directory
 
-```cd desktop/instagram-clone```
+`cd desktop/instagram-clone`
 
 3. Run project
 
-```npm run dev```
+`npm run dev`
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Screens
+
 <details open="open">
   <summary><h4 style="display: inline-block">Mobile</h2></summary>
   
@@ -101,7 +108,6 @@ FIREBASE_APP_ID=YOUR_KEY_HERE
 ![Screenshot_20220127-133705_Chrome](https://user-images.githubusercontent.com/83913433/151362577-7b25baa1-1e9b-46f6-b727-cb66ed5329a3.jpg)
 <br />
 ![Screenshot_20220127-133713_Chrome](https://user-images.githubusercontent.com/83913433/151362579-83cc19b4-eae3-4d12-9fcd-e3632ac0a603.jpg)
-
 
 </details>
 
