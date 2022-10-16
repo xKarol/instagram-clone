@@ -8,8 +8,9 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "test": "jest --watch",
-    "format": "prettier --check --config .prettierrc --ignore-path .gitignore .",
-    "format:fix": "prettier --write --config .prettierrc --ignore-path .gitignore .",
+    "prettier": "prettier --check --config .prettierrc --ignore-path .gitignore .",
+    "prettier:fix": "prettier --write --config .prettierrc --ignore-path .gitignore .",
+    "format": "npm run prettier:fix && npm run lint:fix",
     "prepare": "husky install"
   },
   "dependencies": {
