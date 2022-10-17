@@ -1,5 +1,5 @@
-import { usePostUploadContext } from "../../context/post-upload-context";
-import Button from "../../components/modal/button";
+import Button from "../../../components/modal/button";
+import { usePostUploadContext } from "../context";
 
 const PostUploadDiscardBox = () => {
   const { dispatch, setShow, setShowDiscardBox } = usePostUploadContext();

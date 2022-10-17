@@ -1,13 +1,11 @@
 import PostUploadBoxContainer from "./post-upload-box";
-import Modal from "../../components/modal";
-import PostUploadProvider, {
-  PostUploadContext,
-} from "../../context/post-upload-context";
+import Modal from "../../../components/modal";
+import { PostUploadContextProvider, PostUploadContext } from "../context";
 
 const PostUploadContainer = ({ setShow, show }) => {
   return (
     <>
-      <PostUploadProvider show={show} setShow={setShow}>
+      <PostUploadContextProvider show={show} setShow={setShow}>
         <PostUploadContext.Consumer>
           {({ blockClose }) => (
             <Modal
@@ -18,7 +16,7 @@ const PostUploadContainer = ({ setShow, show }) => {
             />
           )}
         </PostUploadContext.Consumer>
-      </PostUploadProvider>
+      </PostUploadContextProvider>
     </>
   );
 };

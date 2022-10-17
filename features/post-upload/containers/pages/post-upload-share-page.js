@@ -1,15 +1,15 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import { db } from "../../../../config/firebase.config";
+import { useUserContext } from "../../../../context/user-context";
+import { createPost, getPhotoById, uploadPhoto } from "../../../../services";
+import { trimSpace } from "../../../../utils";
 import {
   PostUploadError,
   PostUploadPageBox,
   PostUploadSpinner,
-} from "../../../components/post-upload";
-import { db } from "../../../config/firebase.config";
-import { usePostUploadContext } from "../../../context/post-upload-context";
-import { useUserContext } from "../../../context/user-context";
-import { createPost, getPhotoById, uploadPhoto } from "../../../services";
-import { trimSpace } from "../../../utils";
+} from "../../components";
+import { usePostUploadContext } from "../../context";
 
 const PostUploadSharePageContainer = () => {
   const [error, setError] = useState(false);

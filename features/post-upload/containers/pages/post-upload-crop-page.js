@@ -1,11 +1,8 @@
 import Image from "next/image";
 import { BiExpandAlt, BiZoomIn } from "react-icons/bi";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
-import { usePostUploadContext } from "../../../context/post-upload-context";
-import {
-  PostUploadCropButton,
-  PostUploadPageBox,
-} from "../../../components/post-upload";
+import { PostUploadCropButton, PostUploadPageBox } from "../../components";
+import { usePostUploadContext } from "../../context";
 
 const PostUploadCropPageContainer = ({ disableBtns = false }) => {
   const {

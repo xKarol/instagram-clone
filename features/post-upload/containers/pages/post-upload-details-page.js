@@ -2,15 +2,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
-import Avatar from "../../../components/avatar";
-import {
-  PostUploadAccordion,
-  PostUploadPageBox,
-} from "../../../components/post-upload";
-import { MAX_POST_CAPTION } from "../../../constants/post";
-import { usePostUploadContext } from "../../../context/post-upload-context";
-import { useUserContext } from "../../../context/user-context";
-import { removeDoubleSpace } from "../../../utils";
+import Avatar from "../../../../components/avatar";
+import { MAX_POST_CAPTION } from "../../../../constants/post";
+import { useUserContext } from "../../../../context/user-context";
+import { removeDoubleSpace } from "../../../../utils";
+import { PostUploadAccordion, PostUploadPageBox } from "../../components";
+import { usePostUploadContext } from "../../context";
 
 const PostUploadDetailsPageContainer = () => {
   const [photoCaption, setPhotoCaption] = useState("");

@@ -1,12 +1,9 @@
 import { BsArrowLeft } from "react-icons/bs";
-import { usePostUploadContext } from "../../context/post-upload-context";
-import {
-  CREATE_PAGE,
-  MAIN_PAGE,
-  SHARE_PAGE,
-  CROP_PAGE,
-} from "../../constants/globals";
-import { PostUploadHeader } from "../../components/post-upload";
+import { CREATE_PAGE, CROP_PAGE, MAIN_PAGE, SHARE_PAGE } from "../constants";
+import { PostUploadHeader } from "../components";
+import { usePostUploadContext } from "../context";
+
+const menuTitles = ["Create new post", "Crop", "Create new post", "Sharing"];
 
 const PostUploadHeaderContainer = () => {
   const {
@@ -14,7 +11,6 @@ const PostUploadHeaderContainer = () => {
     dispatch,
     setShowDiscardBox,
   } = usePostUploadContext();
-  const menuTitles = ["Create new post", "Crop", "Create new post", "Sharing"];
   const showButtons = page != MAIN_PAGE && page !== SHARE_PAGE;
 
   const handleNextPage = () => {

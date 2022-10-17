@@ -13,7 +13,7 @@ import {
   ROUTE_SIGN_UP,
 } from "../../../constants/routes";
 import { useUserContext } from "../../../context/user-context";
-import { PostUploadContainer } from "../../../containers/post-upload";
+import { PostUploadContainer } from "../../post-upload/containers";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);

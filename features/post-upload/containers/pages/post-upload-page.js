@@ -1,14 +1,11 @@
-import { useCallback } from "react";
 import clsx from "clsx";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { FaPhotoVideo } from "react-icons/fa";
-import { usePostUploadContext } from "../../../context/post-upload-context";
-import { CROP_PAGE } from "../../../constants/globals";
-import { hasExtension } from "../../../utils";
-import {
-  PostUploadPageBox,
-  PostUploadError,
-} from "../../../components/post-upload";
+import { CROP_PAGE } from "../../constants";
+import { hasExtension } from "../../../../utils";
+import { PostUploadError, PostUploadPageBox } from "../../components";
+import { usePostUploadContext } from "../../context";
 
 const PostUploadPageContainer = () => {
   const {

@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import { CREATE_PAGE, CROP_PAGE, SHARE_PAGE } from "../constants/globals";
+import { CREATE_PAGE, CROP_PAGE, SHARE_PAGE } from "../constants";
 
 export const PostUploadContext = createContext(null);
 export const usePostUploadContext = () => useContext(PostUploadContext);
