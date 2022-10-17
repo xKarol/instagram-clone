@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import ProfileContext from "../../context/profile-context";
-import { ProfilePostsList, ProfilePost } from "../../components/profile";
-import Loading from "../../components/loading";
+import Loading from "../../../components/loading";
+import { useProfileContext } from "../context";
+import { ProfilePost, ProfilePostsList } from "../components";
 
 const ProfilePostsListContainer = () => {
-  const { photos, loading } = useContext(ProfileContext);
+  const { photos, loading } = useProfileContext();
 
   return (
     <>

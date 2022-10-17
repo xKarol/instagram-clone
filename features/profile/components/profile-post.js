@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaComment } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
-import { ROUTE_POST } from "../../constants/routes";
+import { ROUTE_POST } from "../../../constants/routes";
 
 const ProfilePost = ({ data: photo, ...props }) => {
   const { photoId, comments, likes, image } = photo;

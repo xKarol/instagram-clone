@@ -1,12 +1,8 @@
-import { useContext } from "react";
-import ProfileContext from "../../context/profile-context";
-import {
-  ProfileStatistics,
-  ProfileStatisticText,
-} from "../../components/profile";
+import { ProfileStatistics, ProfileStatisticText } from "../components";
+import { useProfileContext } from "../context";
 
 const ProfileStatisticsContainer = ({ ...props }) => {
-  const { user, photos } = useContext(ProfileContext);
+  const { user, photos } = useProfileContext();
 
   return (
     <ProfileStatistics {...props}>

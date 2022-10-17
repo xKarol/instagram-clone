@@ -1,17 +1,16 @@
-import { useContext } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { FaUserCheck } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { RiSettings3Line } from "react-icons/ri";
-import Loading from "../../components/loading";
-import { ProfileButton } from "../../components/profile";
-import ProfileContext from "../../context/profile-context";
-import { useUserContext } from "../../context/user-context";
-import useFollow from "../../hooks/use-follow";
-import { isFollowing } from "../../utils";
+import Loading from "../../../components/loading";
+import { useUserContext } from "../../../context/user-context";
+import useFollow from "../../../hooks/use-follow";
+import { isFollowing } from "../../../utils";
+import { ProfileButton } from "../components";
+import { useProfileContext } from "../context";
 
 const ProfileActionsContainer = () => {
-  const { user: profileUser, loading } = useContext(ProfileContext);
+  const { user: profileUser, loading } = useProfileContext();
   const { user, setUser } = useUserContext();
   const {
     uid: profileId,

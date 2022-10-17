@@ -1,19 +1,18 @@
 import clsx from "clsx";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import Loading from "../../components/loading";
-import { db } from "../../config/firebase.config";
-import ProfileContext from "../../context/profile-context";
-import { useUserContext } from "../../context/user-context";
-import { getUserByUsername, updateUserAvatar } from "../../services";
+import Loading from "../../../components/loading";
+import { db } from "../../../config/firebase.config";
+import { useUserContext } from "../../../context/user-context";
+import { getUserByUsername, updateUserAvatar } from "../../../services";
+import { useProfileContext } from "../context";
 
 const ProfileAvatarChangeContainer = ({ children, className }) => {
   const {
     setUser,
     user: { uid: userId, username, ...user },
   } = useUserContext();
-  const { user: profileUser, setUser: setProfileUser } =
-    useContext(ProfileContext);
+  const { user: profileUser, setUser: setProfileUser } = useProfileContext();
   const [pending, setPending] = useState(false);
   const [, setError] = useState(false);
   const isAuthorized = userId === profileUser?.uid;

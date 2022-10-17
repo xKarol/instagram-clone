@@ -1,20 +1,19 @@
-import { useContext } from "react";
-import Avatar from "../../components/avatar";
-import Skeleton from "../../components/skeleton";
-import ProfileContext from "../../context/profile-context";
-import { ProfileHeader, ProfileBiography } from "../../components/profile";
+import Avatar from "../../../components/avatar";
+import Skeleton from "../../../components/skeleton";
+import { ProfileBiography, ProfileHeader } from "../components";
+import { useProfileContext } from "../context";
 import {
-  ProfileAvatarChangeContainer,
-  ProfileStatisticsContainer,
   ProfileActionsContainer,
+  ProfileAvatarChangeContainer,
   ProfileNameContainer,
+  ProfileStatisticsContainer,
 } from ".";
 
 const ProfileHeaderContainer = ({ viewport }) => {
   const {
     user: { username: profileUsername, avatar: profileAvatar },
     loading,
-  } = useContext(ProfileContext);
+  } = useProfileContext();
   const biography = "No bio yet";
 
   return viewport === "desktop" ? (

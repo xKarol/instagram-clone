@@ -1,7 +1,7 @@
 import { CgProfile } from "react-icons/cg";
 import { FiBookmark } from "react-icons/fi";
 import { MdGridOn } from "react-icons/md";
-import { ProfileNav, ProfileNavButton } from "../../components/profile";
+import { ProfileNav, ProfileNavButton } from "../components";
 
 const ProfileNavContainer = () => {
   const activeElement = 0;
