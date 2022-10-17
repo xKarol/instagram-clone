@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import AppStore from "../../assets/images/appstore.png";
-import GooglePlay from "../../assets/images/googleplay.png";
+import AppStore from "../../../assets/images/appstore.png";
+import GooglePlay from "../../../assets/images/googleplay.png";
 
 const AuthAppsContainer = () => {
   return (

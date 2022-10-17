@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Image from "next/image";
-import Phone from "../../assets/images/login-phone.png";
+import Phone from "../../../assets/images/login-phone.png";
 
 const AuthPhoneGallery = ({ className, ...rest }) => {
   return (

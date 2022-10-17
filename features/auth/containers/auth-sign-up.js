@@ -10,16 +10,16 @@ import {
   AuthFacebookLoginProvider,
   AuthInputField,
   AuthSubmitButton,
-} from "../../components/auth";
-import { Divider } from "../../components/divider";
-import LoadingScreen from "../../components/loading-screen";
-import Logo from "../../components/logo";
-import { db } from "../../config/firebase.config";
-import { ROUTE_SIGN_IN } from "../../constants/routes";
-import useRedirectLoggedUser from "../../hooks/use-redirect-logged-user";
-import { signUpSchema } from "../../schemas";
-import { getUserByUsername, signUpUser } from "../../services";
-import { getAuthErrorMessage } from "../../utils";
+} from "../components";
+import { Divider } from "../../../components/divider";
+import LoadingScreen from "../../../components/loading-screen";
+import Logo from "../../../components/logo";
+import { db } from "../../../config/firebase.config";
+import { ROUTE_SIGN_IN } from "../../../constants/routes";
+import useRedirectLoggedUser from "../../../hooks/use-redirect-logged-user";
+import { signUpSchema } from "../schemas";
+import { getUserByUsername, signUpUser } from "../../../services";
+import { getAuthErrorMessage } from "../../../utils";
 
 const AuthSignUpContainer = () => {
   const [loading, setLoading] = useState(false);

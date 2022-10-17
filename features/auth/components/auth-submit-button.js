@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { LoadingButton } from "../loading-button";
+import { LoadingButton } from "../../../components/loading-button";
 
 const AuthSubmitButton = ({
   isDisabled,

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { AuthSignInContainer } from "../../containers/auth";
+import { AuthSignInContainer } from "../../features/auth/containers";
 
 const SignInPage = () => {
   return (

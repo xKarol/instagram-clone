@@ -14,16 +14,16 @@ import {
   AuthInputField,
   AuthPhoneGallery,
   AuthSubmitButton,
-} from "../../components/auth";
-import { Divider } from "../../components/divider";
-import LoadingScreen from "../../components/loading-screen";
-import Logo from "../../components/logo";
-import { auth, db } from "../../config/firebase.config";
-import { ROUTE_SIGN_UP } from "../../constants/routes";
-import useRedirectLoggedUser from "../../hooks/use-redirect-logged-user";
-import { signInSchema } from "../../schemas";
-import { getUserByUsername } from "../../services";
-import { getAuthErrorMessage } from "../../utils";
+} from "../components";
+import { Divider } from "../../../components/divider";
+import LoadingScreen from "../../../components/loading-screen";
+import Logo from "../../../components/logo";
+import { auth, db } from "../../../config/firebase.config";
+import { ROUTE_SIGN_UP } from "../../../constants/routes";
+import useRedirectLoggedUser from "../../../hooks/use-redirect-logged-user";
+import { signInSchema } from "../schemas";
+import { getUserByUsername } from "../../../services";
+import { getAuthErrorMessage } from "../../../utils";
 
 const AuthSignInContainer = () => {
   const [error, setError] = useState("");

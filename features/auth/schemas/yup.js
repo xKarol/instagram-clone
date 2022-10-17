@@ -3,7 +3,7 @@ import {
   MIN_PASSWORD_LENGTH,
   MAX_PASSWORD_LENGTH,
   MAX_FULL_NAME_LENGTH,
-} from "../constants/validation";
+} from "../../../constants/validation";
 
 const email = yup.string().email().required();
 
