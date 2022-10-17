@@ -1,18 +1,18 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import ProfileContext from "../../context/profile-context";
-import NotFoundPage from "../404";
-import HeaderContainer from "../../containers/header";
 import Layout from "../../components/layout";
-import useProfile from "../../hooks/use-profile";
+import LoadingScreen from "../../components/loading-screen";
+import { SCREEN_MEDIUM } from "../../constants/screens";
+import { HeaderContainer } from "../../features/header/containers";
 import {
+  ProfileHeaderContainer,
   ProfileNavContainer,
   ProfilePostsListContainer,
-  ProfileHeaderContainer,
 } from "../../containers/profile";
+import ProfileContext from "../../context/profile-context";
 import { useViewport } from "../../context/viewport-context";
-import { SCREEN_MEDIUM } from "../../constants/screens";
-import LoadingScreen from "../../components/loading-screen";
+import useProfile from "../../hooks/use-profile";
+import NotFoundPage from "../404";
 
 const ProfilePage = () => {
   const router = useRouter();

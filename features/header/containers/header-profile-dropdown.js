@@ -3,8 +3,8 @@ import { CgProfile } from "react-icons/cg";
 import { BiBookmark } from "react-icons/bi";
 import { RiSettings3Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
-import { logOut } from "../../services";
-import { useUserContext } from "../../context/user-context";
+import { logOut } from "../../../services";
+import { useUserContext } from "../../../context/user-context";
 
 const HeaderProfileDropdownContainer = () => {
   const { user } = useUserContext();

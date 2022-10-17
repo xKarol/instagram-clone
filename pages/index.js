@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import HeaderContainer from "../containers/header";
+import { HeaderContainer } from "../features/header/containers";
 import StoriesContainer from "../containers/stories";
 import { SidebarContainer } from "../containers/sidebar";
 import { PostListContainer } from "../containers/post";

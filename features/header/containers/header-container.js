@@ -5,15 +5,15 @@ import {
   HeaderAuthButton,
   HeaderContainer as Container,
   HeaderSearchBar,
-} from "../../components/header";
-import Logo from "../../components/logo";
+} from "../components";
+import Logo from "../../../components/logo";
 import {
   ROUTE_HOME,
   ROUTE_SIGN_IN,
   ROUTE_SIGN_UP,
-} from "../../constants/routes";
-import { useUserContext } from "../../context/user-context";
-import { PostUploadContainer } from "../post-upload";
+} from "../../../constants/routes";
+import { useUserContext } from "../../../context/user-context";
+import { PostUploadContainer } from "../../../containers/post-upload";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);

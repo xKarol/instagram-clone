@@ -3,11 +3,11 @@ import { FiSend } from "react-icons/fi";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { MdHomeFilled, MdOutlineAddBox } from "react-icons/md";
 import HeaderProfileDropdownContainer from "./header-profile-dropdown";
-import Avatar from "../../components/avatar";
-import DropdownMenu from "../../components/dropdown";
-import { HeaderNavLink, HeaderNavList } from "../../components/header";
-import { ROUTE_HOME } from "../../constants/routes";
-import { useUserContext } from "../../context/user-context";
+import Avatar from "../../../components/avatar";
+import DropdownMenu from "../../../components/dropdown";
+import { HeaderNavLink, HeaderNavList } from "../components";
+import { ROUTE_HOME } from "../../../constants/routes";
+import { useUserContext } from "../../../context/user-context";
 
 const HeaderNavbarContainer = ({ setShow }) => {
   const {
