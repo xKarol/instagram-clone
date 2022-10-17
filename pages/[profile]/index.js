@@ -1,16 +1,16 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import ProfileContext from "../../context/ProfileContext";
+import ProfileContext from "../../context/profile-context";
 import NotFoundPage from "../404";
 import HeaderContainer from "../../containers/header";
 import Layout from "../../components/layout";
-import useProfile from "../../hooks/useProfile";
+import useProfile from "../../hooks/use-profile";
 import {
   ProfileNavContainer,
   ProfilePostsListContainer,
   ProfileHeaderContainer,
 } from "../../containers/profile";
-import { useViewport } from "../../context/ViewportContext";
+import { useViewport } from "../../context/viewport-context";
 import { SCREEN_MEDIUM } from "../../constants/screens";
 import LoadingScreen from "../../components/loading-screen";
 

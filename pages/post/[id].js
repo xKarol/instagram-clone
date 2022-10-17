@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import HeaderContainer from "../../containers/header";
 import NotFoundPage from "../../pages/404";
-import usePhoto from "../../hooks/usePhoto";
+import usePhoto from "../../hooks/use-photo";
 import { PostContainer } from "../../containers/post";
 
 const PostPage = () => {
