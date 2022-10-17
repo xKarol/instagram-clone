@@ -1,9 +1,9 @@
-import { useState, useRef, useCallback } from "react";
-import { getPhotos } from "../services";
-import { useUserContext } from "../context/user-context";
-import { db } from "../config/firebase.config";
+import { useCallback, useRef, useState } from "react";
+import { db } from "../../../config/firebase.config";
+import { useUserContext } from "../../../context/user-context";
+import { getPhotos } from "../../../services";
 
-const usePhotos = () => {
+const usePosts = () => {
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const lastId = useRef();
@@ -35,4 +35,4 @@ const usePhotos = () => {
   return { getData, photos, loading: isPending.current, error, hasMore };
 };
 
-export default usePhotos;
+export default usePosts;

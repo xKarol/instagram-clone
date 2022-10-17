@@ -1,10 +1,10 @@
 import InfiniteScroll from "react-infinite-scroller";
 import Loading from "../../../components/loading";
-import usePhotos from "../../../hooks/use-photos";
+import { usePosts } from "../hooks";
 import { PostItemContainer } from ".";
 
 const PostListContainer = (props) => {
-  const { getData, photos, hasMore } = usePhotos();
+  const { getData, photos, hasMore } = usePosts();
 
   return (
     <InfiniteScroll
