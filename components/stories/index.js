@@ -1,4 +1,4 @@
-export { default as StoriesArrow } from "./StoriesArrow";
-export { default as StoriesContainer } from "./StoriesContainer";
-export { default as StoriesList } from "./StoriesList";
-export { default as StoriesProfile } from "./StoriesProfile";
+export { default as StoriesArrow } from "./stories-arrow";
+export { default as StoriesContainer } from "./stories-container";
+export { default as StoriesList } from "./stories-list";
+export { default as StoriesProfile } from "./stories-profile";

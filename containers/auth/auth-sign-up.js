@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import LoadingScreen from "../../components/loading-screen";
-import Link from "next/link";
-import Logo from "../../components/logo";
-import { signUpUser, getUserByUsername } from "../../services";
-import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
-import {
-  AuthContainer,
-  AuthInputField,
-  AuthError,
-  AuthSubmitButton,
-  AuthBox,
-  AuthFacebookLoginProvider,
-} from "../../components/auth";
-import { db } from "../../config/firebase.config";
-import { getAuthErrorMessage } from "../../utils";
-import { ROUTE_SIGN_IN } from "../../constants/routes";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signUpSchema } from "../../schemas";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import AuthAppsContainer from "./auth-apps";
+import {
+  AuthBox,
+  AuthContainer,
+  AuthError,
+  AuthFacebookLoginProvider,
+  AuthInputField,
+  AuthSubmitButton,
+} from "../../components/auth";
 import { Divider } from "../../components/divider";
+import LoadingScreen from "../../components/loading-screen";
+import Logo from "../../components/logo";
+import { db } from "../../config/firebase.config";
+import { ROUTE_SIGN_IN } from "../../constants/routes";
+import useRedirectLoggedUser from "../../hooks/use-redirect-logged-user";
+import { signUpSchema } from "../../schemas";
+import { getUserByUsername, signUpUser } from "../../services";
+import { getAuthErrorMessage } from "../../utils";
 
 const AuthSignUpContainer = () => {
   const [loading, setLoading] = useState(false);

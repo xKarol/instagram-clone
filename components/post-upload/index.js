@@ -1,7 +1,7 @@
-export { default as PostUploadBox } from "./PostUploadBox";
-export { default as PostUploadHeader } from "./PostUploadHeader";
-export { default as PostUploadPageBox } from "./PostUploadPageBox";
-export { default as PostUploadCropButton } from "./PostUploadCropButton";
-export { default as PostUploadError } from "./PostUploadError";
-export { default as PostUploadAccordion } from "./PostUploadAccordion";
-export { default as PostUploadSpinner } from "./PostUploadSpinner";
+export { default as PostUploadBox } from "./post-upload-box";
+export { default as PostUploadHeader } from "./post-upload-header";
+export { default as PostUploadPageBox } from "./post-upload-page-box";
+export { default as PostUploadCropButton } from "./post-upload-crop-button";
+export { default as PostUploadError } from "./post-upload-error";
+export { default as PostUploadAccordion } from "./post-upload-accordion";
+export { default as PostUploadSpinner } from "./post-upload-spinner";

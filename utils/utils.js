@@ -11,7 +11,7 @@ export const isFollowing = (docId, followings = []) => {
 };
 
 export const truncate = (str, size = 10) => {
-  return str.length > size ? str.substring(0, size) + "..." : str;
+  return str.length > size ? str.slice(0, Math.max(0, size)) + "..." : str;
 };
 
 export const trimSpace = (str) => {

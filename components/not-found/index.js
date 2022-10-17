@@ -1,6 +1,6 @@
 import Link from "next/link";
-import NotFoundContainer from "./NotFoundContainer";
-import NotFoundHeading from "./NotFoundHeading";
+import NotFoundContainer from "./not-found-container";
+import NotFoundHeading from "./not-found-heading";
 import { ROUTE_HOME } from "../../constants/routes";
 
 const NotFound = () => {

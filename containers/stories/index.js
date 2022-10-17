@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { useUserContext } from "../../context/UserContext";
-import useStories from "../../hooks/useStories";
+import { useUserContext } from "../../context/user-context";
+import useStories from "../../hooks/use-stories";
 import Loading from "../../components/loading";
 import Skeleton from "../../components/skeleton";
 import {
@@ -68,7 +68,7 @@ const StoriesContainer = ({ ...props }) => {
         ref={storyBox}
       >
         {loading
-          ? [...new Array(12)].map((_, index) => (
+          ? [...Array.from({ length: 12 })].map((_, index) => (
               <Skeleton
                 key={index}
                 className="rounded-full w-[50px] h-[50px]"

@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from "react";
-import LoadingScreen from "../../components/loading-screen";
-import Link from "next/link";
-import Logo from "../../components/logo";
-import { getUserByUsername } from "../../services";
-import useRedirectLoggedUser from "../../hooks/useRedirectLoggedUser";
-import {
-  AuthContainer,
-  AuthInputField,
-  AuthError,
-  AuthSubmitButton,
-  AuthBox,
-  AuthFacebookLoginProvider,
-  AuthPhoneGallery,
-} from "../../components/auth";
-import { auth, db } from "../../config/firebase.config";
-import { getAuthErrorMessage } from "../../utils";
-import isEmail from "validator/lib/isEmail";
-import { ROUTE_SIGN_UP } from "../../constants/routes";
-import AuthAppsContainer from "./auth-apps";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInSchema } from "../../schemas";
-import { useForm } from "react-hook-form";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import isEmail from "validator/lib/isEmail";
+import AuthAppsContainer from "./auth-apps";
+import {
+  AuthBox,
+  AuthContainer,
+  AuthError,
+  AuthFacebookLoginProvider,
+  AuthInputField,
+  AuthPhoneGallery,
+  AuthSubmitButton,
+} from "../../components/auth";
 import { Divider } from "../../components/divider";
+import LoadingScreen from "../../components/loading-screen";
+import Logo from "../../components/logo";
+import { auth, db } from "../../config/firebase.config";
+import { ROUTE_SIGN_UP } from "../../constants/routes";
+import useRedirectLoggedUser from "../../hooks/use-redirect-logged-user";
+import { signInSchema } from "../../schemas";
+import { getUserByUsername } from "../../services";
+import { getAuthErrorMessage } from "../../utils";
 
 const AuthSignInContainer = () => {
   const [error, setError] = useState("");

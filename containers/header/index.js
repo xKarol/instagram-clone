@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useUserContext } from "../../context/UserContext";
-import Logo from "../../components/logo";
+import HeaderNavbarContainer from "./header-navbar";
 import {
-  HeaderContainer as Container,
   HeaderAuth,
   HeaderAuthButton,
+  HeaderContainer as Container,
   HeaderSearchBar,
 } from "../../components/header";
-import { PostUploadContainer } from "../post-upload";
-import HeaderNavbarContainer from "./HeaderNavbar";
+import Logo from "../../components/logo";
 import {
   ROUTE_HOME,
   ROUTE_SIGN_IN,
   ROUTE_SIGN_UP,
 } from "../../constants/routes";
+import { useUserContext } from "../../context/user-context";
+import { PostUploadContainer } from "../post-upload";
 
 const HeaderContainer = ({ ...props }) => {
   const [show, setShow] = useState(false);

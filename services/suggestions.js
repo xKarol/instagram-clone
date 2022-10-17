@@ -9,7 +9,7 @@ import {
 import { random } from "../utils";
 
 export const getProfilesSuggestion = async (db, username) => {
-  const rand = random(1000000);
+  const rand = random(1_000_000);
   const q = query(
     collection(db, "users"),
     where("random", ">=", rand),

@@ -12,25 +12,17 @@ import {
   startAfter,
   limit,
 } from "firebase/firestore";
-import { uploadPhoto } from "./storage";
 import { getUserByUsername } from "./user";
 
-export const getPhotos = async (db, max = 15, startId) => {
-  let q;
-  if (!startId) {
-    q = query(
-      collection(db, "photos"),
-      orderBy("timestamp", "desc"),
-      limit(max)
-    );
-  } else {
-    q = query(
-      collection(db, "photos"),
-      orderBy("timestamp", "desc"),
-      startAfter(startId),
-      limit(max)
-    );
-  }
+export const getPhotos = async ({ db, max = 15, startId }) => {
+  const q = !startId
+    ? query(collection(db, "photos"), orderBy("timestamp", "desc"), limit(max))
+    : query(
+        collection(db, "photos"),
+        orderBy("timestamp", "desc"),
+        startAfter(startId),
+        limit(max)
+      );
 
   const photosDocs = await getDocs(q);
   const lastVisible = photosDocs.docs[photosDocs.docs.length - 1];
@@ -106,8 +98,8 @@ export const getPhotoById = async (db, id) => {
 };
 
 export const addComment = async (db, comment, postId, username) => {
-  if (!comment.length) return;
-  return await addDoc(collection(db, "photos", postId, "comments"), {
+  if (comment.length === 0) return;
+  await addDoc(collection(db, "photos", postId, "comments"), {
     comment: comment,
     username: username,
     timestamp: serverTimestamp(),

@@ -13,7 +13,7 @@ const Avatar = ({ src, size, alt, className, ...props }) => {
       style={{ ...props.style, width: `${size}px`, height: `${size}px` }}
     >
       <Image
-        src={src ? src : DefaultAvatar}
+        src={src ?? DefaultAvatar}
         objectFit="cover"
         layout="fill"
         alt={alt}

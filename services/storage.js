@@ -1,10 +1,10 @@
-import { storage } from "../config/firebase.config";
 import {
   getDownloadURL,
   ref,
   deleteObject,
   uploadBytes,
 } from "firebase/storage";
+import { storage } from "../config/firebase.config";
 
 export const uploadPhoto = async (username, file) => {
   const name = Date.now() + "_" + file.filename;

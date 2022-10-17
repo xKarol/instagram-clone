@@ -1,6 +1,6 @@
-export { default as HeaderAuth } from "./HeaderAuth";
-export { default as HeaderAuthButton } from "./HeaderAuthButton";
-export { default as HeaderContainer } from "./HeaderContainer";
-export { default as HeaderNavLink } from "./HeaderNavLink";
-export { default as HeaderNavList } from "./HeaderNavList";
-export { default as HeaderSearchBar } from "./HeaderSearchBar";
+export { default as HeaderAuth } from "./header-auth";
+export { default as HeaderAuthButton } from "./header-auth-button";
+export { default as HeaderContainer } from "./header-container";
+export { default as HeaderNavLink } from "./header-nav-link";
+export { default as HeaderNavList } from "./header-nav-list";
+export { default as HeaderSearchBar } from "./header-search-bar";

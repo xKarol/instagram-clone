@@ -26,7 +26,7 @@ export const signUpUser = async ({
     fullName,
     email,
     avatar,
-    random: random(1000000),
+    random: random(1_000_000),
   });
   return { createUser, setUser };
 };

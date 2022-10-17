@@ -1,4 +1,4 @@
-export { default as PostUploadPageContainer } from "./PostUploadPage";
-export { default as PostUploadCropPageContainer } from "./PostUploadCropPage";
-export { default as PostUploadDetailsPageContainer } from "./PostUploadDetailsPage";
-export { default as PostUploadSharePageContainer } from "./PostUploadSharePage";
+export { default as PostUploadPageContainer } from "./post-upload-page";
+export { default as PostUploadCropPageContainer } from "./post-upload-crop-page";
+export { default as PostUploadDetailsPageContainer } from "./post-upload-details-page";
+export { default as PostUploadSharePageContainer } from "./post-upload-share-page";

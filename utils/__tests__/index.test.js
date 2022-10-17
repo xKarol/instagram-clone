@@ -20,6 +20,7 @@ describe("Utils tests", () => {
 
   describe("random", () => {
     it("random number should not be greater than the max value", () => {
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       const between = (start, number, end) => number <= end && number >= start;
       for (let i = 0; i < 50; i++) {
         const randomVal = random(5);

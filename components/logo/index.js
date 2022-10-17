@@ -5,13 +5,14 @@ import InstagramLogo from "../../assets/svg/instagram-logo.svg";
 import { ROUTE_HOME } from "../../constants/routes";
 
 const Logo = ({ size = 200, className, href = "", ...props }) => {
+  const isHref = href.length > 0;
   return (
-    <Link href={`${!href.length ? ROUTE_HOME : href}`}>
+    <Link href={`${isHref ? ROUTE_HOME : href}`}>
       <a
         className={clsx(
           "min-w-[200px] flex items-center",
           className,
-          !href.length && "outline-none cursor-default"
+          isHref && "outline-none cursor-default"
         )}
         {...props}
         style={{ ...props.style, minWidth: `${size}px` }}

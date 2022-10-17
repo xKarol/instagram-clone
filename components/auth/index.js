@@ -1,7 +1,7 @@
-export { default as AuthBox } from "./AuthBox";
-export { default as AuthContainer } from "./AuthContainer";
-export { default as AuthError } from "./AuthError";
-export { default as AuthFacebookLoginProvider } from "./AuthFacebookLoginProvider";
-export { default as AuthInputField } from "./AuthInputField";
-export { default as AuthPhoneGallery } from "./AuthPhoneGallery";
-export { default as AuthSubmitButton } from "./AuthSubmitButton";
+export { default as AuthBox } from "./auth-box";
+export { default as AuthContainer } from "./auth-container";
+export { default as AuthError } from "./auth-error";
+export { default as AuthFacebookLoginProvider } from "./auth-facebook-login-provider";
+export { default as AuthInputField } from "./auth-input-field";
+export { default as AuthPhoneGallery } from "./auth-phone-gallery";
+export { default as AuthSubmitButton } from "./auth-submit-button";

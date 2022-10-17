@@ -1,5 +1,5 @@
-export { default as SidebarContainer } from "./SidebarContainer";
-export { default as SidebarSuggestedProfileContainer } from "./SidebarSuggestedProfile";
-export { default as SidebarUserProfileContainer } from "./SidebarUserProfile";
-export { default as SidebarSuggestionsListContainer } from "./SidebarSuggestionsList";
-export { default as SidebarSuggestedProfileSkeletonContainer } from "./SidebarSuggestedProfileSkeleton";
+export { default as SidebarContainer } from "./sidebar-container";
+export { default as SidebarSuggestedProfileContainer } from "./sidebar-suggested-profile";
+export { default as SidebarUserProfileContainer } from "./sidebar-user-profile";
+export { default as SidebarSuggestionsListContainer } from "./sidebar-suggestions-list";
+export { default as SidebarSuggestedProfileSkeletonContainer } from "./sidebar-suggested-profile-skeleton";

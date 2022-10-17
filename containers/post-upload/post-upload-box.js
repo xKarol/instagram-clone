@@ -1,0 +1,33 @@
+import Head from "next/head";
+import Modal from "../../components/modal";
+import { PostUploadBox } from "../../components/post-upload";
+import { usePostUploadContext } from "../../context/post-upload-context";
+import {
+  PostUploadBodyContainer,
+  PostUploadDiscardBoxContainer,
+  PostUploadHeaderContainer,
+} from ".";
+
+const PostUploadBoxContainer = () => {
+  const { showDiscardBox, setShowDiscardBox } = usePostUploadContext();
+
+  return (
+    <>
+      <Head>
+        <title>Create new post • Instagram</title>
+      </Head>
+      <PostUploadBox data-testid="add-post-modal">
+        <PostUploadHeaderContainer />
+        <PostUploadBodyContainer />
+      </PostUploadBox>
+      <Modal
+        show={showDiscardBox}
+        setShow={setShowDiscardBox}
+        element={<PostUploadDiscardBoxContainer />}
+        closeHide
+      />
+    </>
+  );
+};
+
+export default PostUploadBoxContainer;

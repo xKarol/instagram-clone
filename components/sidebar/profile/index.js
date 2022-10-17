@@ -1,2 +1,2 @@
-export { default as SidebarUserProfileContainer } from "./SidebarUserProfileContainer";
-export { default as SidebarUserProfileData } from "./SidebarUserProfileData";
+export { default as SidebarUserProfileContainer } from "./sidebar-user-profile-container";
+export { default as SidebarUserProfileData } from "./sidebar-user-profile-data";
