@@ -23,6 +23,7 @@ const nextConfig = {
   eslint: {
     dirs: [
       "pages",
+      "features",
       "utils",
       "services",
       "components",
