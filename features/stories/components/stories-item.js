@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import Avatar from "../avatar";
+import Avatar from "../../../components/avatar";
 
-function StoriesProfile({ active, username, avatar }) {
+function StoriesItem({ active, username, avatar }) {
   return (
     <li className="flex flex-col items-center justify-center text-[14px] max-w-[58px] shrink-0 leading-[25px]">
       <div className={clsx("p-[2px]", active && "storyBorder")}>
@@ -16,4 +16,4 @@ function StoriesProfile({ active, username, avatar }) {
   );
 }
 
-export default StoriesProfile;
+export default StoriesItem;
