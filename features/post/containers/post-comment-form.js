@@ -1,17 +1,17 @@
-import { useState } from "react";
 import { serverTimestamp } from "firebase/firestore";
+import { useState } from "react";
+import Loading from "../../../components/loading";
+import { db } from "../../../config/firebase.config";
+import { usePostContext } from "../../../context/post-context";
+import { useUserContext } from "../../../context/user-context";
+import { addComment } from "../../../services";
+import { trimSpace } from "../../../utils";
 import {
-  PostCommentForm,
-  PostCommentInput,
   PostCommentButton,
   PostCommentEmote,
-} from "../../components/post";
-import { useUserContext } from "../../context/user-context";
-import { addComment } from "../../services";
-import { db } from "../../config/firebase.config";
-import { trimSpace } from "../../utils";
-import { usePostContext } from "../../context/post-context";
-import Loading from "../../components/loading";
+  PostCommentForm,
+  PostCommentInput,
+} from "../components";
 
 const PostCommentFormContainer = () => {
   const [comment, setComment] = useState("");

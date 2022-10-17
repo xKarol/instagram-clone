@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostMenuContainer from "./post-menu";
-import Avatar from "../../components/avatar";
-import Modal from "../../components/modal";
-import { PostHeader, PostIcon, PostUsername } from "../../components/post";
-import { usePostContext } from "../../context/post-context";
+import Avatar from "../../../components/avatar";
+import Modal from "../../../components/modal";
+import { usePostContext } from "../../../context/post-context";
+import { PostHeader, PostIcon, PostUsername } from "../components";
 
 const PostHeaderContainer = (props) => {
   const {

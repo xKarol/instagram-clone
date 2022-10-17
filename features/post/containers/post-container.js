@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Avatar from "../../components/avatar";
-import PostProvider from "../../context/post-context";
+import Avatar from "../../../components/avatar";
+import PostProvider from "../../../context/post-context";
 import {
   PostImageContainer,
   PostHeaderContainer,

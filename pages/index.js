@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import { HeaderContainer } from "../features/header/containers";
 import { StoriesContainer } from "../features/stories/containers";
 import { SidebarContainer } from "../features/sidebar/containers";
-import { PostListContainer } from "../containers/post";
+import { PostListContainer } from "../features/post/containers";
 
 const HomePage = () => {
   return (

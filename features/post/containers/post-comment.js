@@ -1,16 +1,12 @@
-import { useLayoutEffect, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
-import Avatar from "../../components/avatar";
-import {
-  PostComment,
-  PostCommentLike,
-  PostUsername,
-} from "../../components/post";
-import { db } from "../../config/firebase.config";
-import { usePostContext } from "../../context/post-context";
-import { useUserContext } from "../../context/user-context";
-import { likeComment } from "../../services";
+import { useLayoutEffect, useState } from "react";
+import Avatar from "../../../components/avatar";
+import { db } from "../../../config/firebase.config";
+import { usePostContext } from "../../../context/post-context";
+import { useUserContext } from "../../../context/user-context";
+import { likeComment } from "../../../services";
+import { PostComment, PostCommentLike, PostUsername } from "../components";
 
 const PostCommentContainer = ({
   username,

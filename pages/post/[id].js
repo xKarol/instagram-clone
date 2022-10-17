@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
-import { PostContainer } from "../../containers/post";
 import { HeaderContainer } from "../../features/header/containers";
+import { PostContainer } from "../../features/post/containers";
 import usePhoto from "../../hooks/use-photo";
 import NotFoundPage from "../../pages/404";
 

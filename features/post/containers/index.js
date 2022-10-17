@@ -1,13 +1,13 @@
 export { default as PostActionsContainer } from "./post-actions";
 export { default as PostCaptionContainer } from "./post-caption";
 export { default as PostCommentContainer } from "./post-comment";
-export { default as PostCommentsListContainer } from "./post-comments-list";
 export { default as PostCommentFormContainer } from "./post-comment-form";
-export { default as PostItemContainer } from "./post-item";
+export { default as PostCommentsListContainer } from "./post-comments-list";
 export { default as PostContainer } from "./post-container";
 export { default as PostDateContainer } from "./post-date";
 export { default as PostHeaderContainer } from "./post-header";
 export { default as PostImageContainer } from "./post-image";
+export { default as PostItemContainer } from "./post-item";
 export { default as PostLikesContainer } from "./post-likes";
 export { default as PostListContainer } from "./post-list";
 export { default as PostMenuContainer } from "./post-menu";

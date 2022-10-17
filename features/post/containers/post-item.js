@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { PostContainer, PostBody } from "../../components/post";
-import { ROUTE_POST } from "../../constants/routes";
-import PostProvider from "../../context/post-context";
+import { ROUTE_POST } from "../../../constants/routes";
+import PostProvider from "../../../context/post-context";
+import { PostBody, PostContainer } from "../components";
 import {
-  PostHeaderContainer,
-  PostDateContainer,
-  PostLikesContainer,
-  PostCommentFormContainer,
   PostActionsContainer,
-  PostCommentsListContainer,
   PostCaptionContainer,
+  PostCommentFormContainer,
+  PostCommentsListContainer,
+  PostDateContainer,
+  PostHeaderContainer,
   PostImageContainer,
+  PostLikesContainer,
 } from ".";
 
 const PostItemContainer = ({ data: photo, ...props }) => {

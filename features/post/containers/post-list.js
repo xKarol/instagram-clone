@@ -1,6 +1,6 @@
 import InfiniteScroll from "react-infinite-scroller";
-import Loading from "../../components/loading";
-import usePhotos from "../../hooks/use-photos";
+import Loading from "../../../components/loading";
+import usePhotos from "../../../hooks/use-photos";
 import { PostItemContainer } from ".";
 
 const PostListContainer = (props) => {

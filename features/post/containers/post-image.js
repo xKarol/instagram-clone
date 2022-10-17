@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
-import { PostImage } from "../../components/post";
-import { usePostContext } from "../../context/post-context";
-import { useUserContext } from "../../context/user-context";
+import { usePostContext } from "../../../context/post-context";
+import { useUserContext } from "../../../context/user-context";
+import { PostImage } from "../components";
 
 const PostImageContainer = (props) => {
   const {
