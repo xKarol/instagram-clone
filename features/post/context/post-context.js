@@ -5,14 +5,14 @@ import {
   useLayoutEffect,
   useState,
 } from "react";
-import { useUserContext } from "./user-context";
-import { db } from "../config/firebase.config";
-import { likePost } from "../services";
+import { useUserContext } from "../../../context/user-context";
+import { db } from "../../../config/firebase.config";
+import { likePost } from "../../../services";
 
 export const PostContext = createContext(null);
 export const usePostContext = () => useContext(PostContext);
 
-const PostProvider = ({ children, photo }) => {
+const PostContextProvider = ({ children, photo }) => {
   const [showModal, setShowModal] = useState(false);
   const [comments, setComments] = useState(photo.comments ?? []);
   const [likes, setLikes] = useState(photo.likes ?? []);
@@ -64,4 +64,4 @@ const PostProvider = ({ children, photo }) => {
   );
 };
 
-export default PostProvider;
+export default PostContextProvider;

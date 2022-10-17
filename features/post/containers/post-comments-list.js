@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { usePostContext } from "../../../context/post-context";
+import { usePostContext } from "../context";
 import { PostCommentContainer } from ".";
 
 const MAX_COMMENTS_ITEMS = 3;

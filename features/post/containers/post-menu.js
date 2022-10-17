@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useCopyToClipboard } from "react-use";
-import { usePostContext } from "../../../context/post-context";
-import { useUserContext } from "../../../context/user-context";
-import Button from "../../../components/modal/button";
 import Loading from "../../../components/loading";
-import { deletePost, deletePhotoFromStorage } from "../../../services";
+import Button from "../../../components/modal/button";
 import { db } from "../../../config/firebase.config";
 import { ROUTE_HOME, ROUTE_POST } from "../../../constants/routes";
+import { useUserContext } from "../../../context/user-context";
+import { deletePhotoFromStorage, deletePost } from "../../../services";
+import { usePostContext } from "../context";
 
 const PostMenuContainer = () => {
   const router = useRouter();

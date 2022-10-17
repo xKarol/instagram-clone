@@ -3,8 +3,8 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostMenuContainer from "./post-menu";
 import Avatar from "../../../components/avatar";
 import Modal from "../../../components/modal";
-import { usePostContext } from "../../../context/post-context";
 import { PostHeader, PostIcon, PostUsername } from "../components";
+import { usePostContext } from "../context";
 
 const PostHeaderContainer = (props) => {
   const {

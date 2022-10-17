@@ -3,10 +3,10 @@ import { useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import Avatar from "../../../../components/avatar";
-import { MAX_POST_CAPTION } from "../../../../constants/post";
 import { useUserContext } from "../../../../context/user-context";
 import { removeDoubleSpace } from "../../../../utils";
 import { PostUploadAccordion, PostUploadPageBox } from "../../components";
+import { MAX_POST_CAPTION } from "../../constants";
 import { usePostUploadContext } from "../../context";
 
 const PostUploadDetailsPageContainer = () => {

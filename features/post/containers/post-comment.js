@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useLayoutEffect, useState } from "react";
 import Avatar from "../../../components/avatar";
 import { db } from "../../../config/firebase.config";
-import { usePostContext } from "../../../context/post-context";
 import { useUserContext } from "../../../context/user-context";
 import { likeComment } from "../../../services";
 import { PostComment, PostCommentLike, PostUsername } from "../components";
+import { usePostContext } from "../context";
 
 const PostCommentContainer = ({
   username,

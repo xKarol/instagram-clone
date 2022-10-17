@@ -4,8 +4,8 @@ import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { RiBookmarkLine } from "react-icons/ri";
 
-import { usePostContext } from "../../../context/post-context";
 import { PostActions, PostIcon } from "../components";
+import { usePostContext } from "../context";
 
 const PostActionsContainer = (props) => {
   const { liked, handleLike } = usePostContext();

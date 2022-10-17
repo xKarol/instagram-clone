@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { MAX_CAPTION } from "../../../constants/post";
-import { usePostContext } from "../../../context/post-context";
 import { truncate } from "../../../utils";
 import { PostUsername } from "../components";
+import { MAX_CAPTION } from "../constants";
+import { usePostContext } from "../context";
 
 const PostCaptionContainer = ({ show = false }) => {
   const [showMore, setShowMore] = useState(show);

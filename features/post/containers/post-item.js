@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ROUTE_POST } from "../../../constants/routes";
-import PostProvider from "../../../context/post-context";
 import { PostBody, PostContainer } from "../components";
+import { PostContextProvider } from "../context";
 import {
   PostActionsContainer,
   PostCaptionContainer,
@@ -17,7 +17,7 @@ const PostItemContainer = ({ data: photo, ...props }) => {
   const { photoId, comments } = photo;
 
   return (
-    <PostProvider photo={photo}>
+    <PostContextProvider photo={photo}>
       <PostContainer {...props} className="mb-[20px]" data-testid="post">
         <PostHeaderContainer />
         <PostImageContainer />
@@ -39,7 +39,7 @@ const PostItemContainer = ({ data: photo, ...props }) => {
         </div>
         <PostCommentFormContainer />
       </PostContainer>
-    </PostProvider>
+    </PostContextProvider>
   );
 };
 

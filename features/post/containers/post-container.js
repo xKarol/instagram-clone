@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Avatar from "../../../components/avatar";
-import PostProvider from "../../../context/post-context";
+import { PostContextProvider } from "../context";
 import {
-  PostImageContainer,
-  PostHeaderContainer,
-  PostCaptionContainer,
   PostActionsContainer,
-  PostLikesContainer,
-  PostDateContainer,
+  PostCaptionContainer,
   PostCommentFormContainer,
   PostCommentsListContainer,
+  PostDateContainer,
+  PostHeaderContainer,
+  PostImageContainer,
+  PostLikesContainer,
 } from ".";
 
 const PostContainer = ({ ...props }) => {
@@ -19,7 +19,7 @@ const PostContainer = ({ ...props }) => {
   const { username, avatar } = user;
 
   return (
-    <PostProvider {...props}>
+    <PostContextProvider {...props}>
       <article className="w-full md:w-[80vw] flex md:h-[600px] flex-col lg:flex-row bg-white border border-gray-200 lg:overflow-hidden">
         <PostImageContainer className="w-full !pb-0 min-h-[400px] sm:min-h-[600px] lg:w-[50vw] lg:max-w-[550px]" />
         <section className="md:flex-1 flex flex-col md:h-full w-full lg:w-[350px] bg-white">
@@ -54,7 +54,7 @@ const PostContainer = ({ ...props }) => {
           <PostCommentFormContainer />
         </section>
       </article>
-    </PostProvider>
+    </PostContextProvider>
   );
 };
 
