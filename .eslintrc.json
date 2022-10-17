@@ -14,9 +14,16 @@
     "plugin:testing-library/react",
     "plugin:prettier/recommended"
   ],
+  "plugins": ["unicorn"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "case": "kebabCase"
+      }
+    ],
     "import/order": [
       1,
       {
