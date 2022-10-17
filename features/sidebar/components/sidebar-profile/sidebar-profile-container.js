@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const SidebarUserProfileContainer = ({ children, className, ...props }) => {
+const SidebarProfileContainer = ({ children, className, ...props }) => {
   return (
     <article
       className={clsx(
@@ -13,4 +13,4 @@ const SidebarUserProfileContainer = ({ children, className, ...props }) => {
     </article>
   );
 };
-export default SidebarUserProfileContainer;
+export default SidebarProfileContainer;

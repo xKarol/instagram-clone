@@ -1,8 +1,6 @@
-import useProfilesSuggestions from "../../hooks/use-profiles-suggestions";
-import {
-  SidebarSuggestedProfileContainer,
-  SidebarSuggestedProfileSkeletonContainer,
-} from ".";
+import SidebarSuggestedProfileContainer from "./sidebar-suggested-profile";
+import { useProfilesSuggestions } from "../hooks";
+import { SidebarSuggestedProfileSkeleton } from "../components";
 
 const SidebarSuggestionsListContainer = () => {
   const { data, loading, error } = useProfilesSuggestions();
@@ -13,9 +11,7 @@ const SidebarSuggestionsListContainer = () => {
       {loading
         ? [...Array.from({ length: 5 })]
             .fill()
-            .map((_, index) => (
-              <SidebarSuggestedProfileSkeletonContainer key={index} />
-            ))
+            .map((_, index) => <SidebarSuggestedProfileSkeleton key={index} />)
         : data.map((suggestion) => (
             <SidebarSuggestedProfileContainer
               skeleton={loading}

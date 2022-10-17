@@ -1,12 +1,12 @@
-import { useState } from "react";
 import Link from "next/link";
-import Avatar from "../../components/avatar";
-import { SidebarButton, SidebarSuggestionItem } from "../../components/sidebar";
-import Loading from "../../components/loading";
-import { isFollowing } from "../../utils";
-import { useUserContext } from "../../context/user-context";
-import { followUser, getUserByUsername, unfollowUser } from "../../services";
-import { db } from "../../config/firebase.config";
+import { useCallback, useState } from "react";
+import Avatar from "../../../components/avatar";
+import Loading from "../../../components/loading";
+import { db } from "../../../config/firebase.config";
+import { useUserContext } from "../../../context/user-context";
+import { followUser, getUserByUsername, unfollowUser } from "../../../services";
+import { isFollowing } from "../../../utils";
+import { SidebarButton, SidebarSuggestionItem } from "../components";
 
 const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
   const {
@@ -16,8 +16,9 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
   } = useUserContext();
   const [loading, setLoading] = useState(false);
   const following = isFollowing(docId, user.followings);
+  const followingText = following ? "Following" : "Follow";
 
-  const handleFollow = async () => {
+  const handleFollow = useCallback(async () => {
     if (loading || !loggedIn) return;
     try {
       setLoading(true);
@@ -31,7 +32,7 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [docId, following, loading, loggedIn, setUser, user.username, userId]);
 
   return (
     <SidebarSuggestionItem
@@ -60,14 +61,10 @@ const SidebarSuggestedProfileContainer = ({ avatar, username, docId }) => {
         } font-medium text-[12px]`}
         onClick={handleFollow}
       >
-        {!loading ? (
-          following ? (
-            "Following"
-          ) : (
-            "Follow"
-          )
-        ) : (
+        {loading ? (
           <Loading className="mr-[15px] w-[15px] h-[15px] border-[2px]" />
+        ) : (
+          followingText
         )}
       </SidebarButton>
     </SidebarSuggestionItem>

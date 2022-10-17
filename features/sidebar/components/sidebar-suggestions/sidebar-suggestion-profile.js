@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Avatar from "../../avatar";
-import { isFollowing } from "../../../utils";
-import Loading from "../../loading";
-import { useUserContext } from "../../../context/user-context";
-import useFollow from "../../../hooks/use-follow";
+import Avatar from "../../../../components/avatar";
+import { useUserContext } from "../../../../context/user-context";
+import useFollow from "../../../../hooks/use-follow";
+import { isFollowing } from "../../../../utils";
+import Loading from "../../../../components/loading";
 
 const SuggestedProfile = ({ avatar, username, docId }) => {
   const { user, setUser } = useUserContext();

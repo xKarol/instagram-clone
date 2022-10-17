@@ -4,7 +4,7 @@ import {
   SidebarHeading,
   SidebarSuggestionsContainer,
   SidebarSuggestionsHeader,
-} from "../../components/sidebar";
+} from "../components";
 import {
   SidebarUserProfileContainer,
   SidebarSuggestionsListContainer,

@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Avatar from "../../components/avatar";
+import Avatar from "../../../components/avatar";
+import { useUserContext } from "../../../context/user-context";
 import {
   SidebarButton,
   SidebarText,
-  SidebarUserProfileContainer as Container,
-  SidebarUserProfileData,
-} from "../../components/sidebar";
-import { useUserContext } from "../../context/user-context";
+  SidebarProfileContainer as Container,
+  SidebarProfileData,
+} from "../components";
 
 const SidebarUserProfileContainer = () => {
   const {
@@ -27,7 +27,7 @@ const SidebarUserProfileContainer = () => {
             />
           </a>
         </Link>
-        <SidebarUserProfileData>
+        <SidebarProfileData>
           <Link href={`/${username}`}>
             <a data-testid="sidebar-profile-username">
               <SidebarText>{username}</SidebarText>
@@ -39,7 +39,7 @@ const SidebarUserProfileContainer = () => {
           >
             {fullName}
           </SidebarText>
-        </SidebarUserProfileData>
+        </SidebarProfileData>
         <SidebarButton className="ml-auto text-blue">Switch</SidebarButton>
       </Container>
     )
