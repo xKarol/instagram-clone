@@ -9,21 +9,17 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/recommended",
+    "plugin:unicorn/recommended",
     "plugin:jest/recommended",
     "plugin:jest/style",
     "plugin:testing-library/react",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["unicorn"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "unicorn/filename-case": [
-      "error",
-      {
-        "case": "kebabCase"
-      }
-    ],
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-null": "off",
     "import/order": [
       1,
       {

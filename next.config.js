@@ -1,4 +1,8 @@
-module.exports = {
+/* eslint-disable unicorn/prefer-module */
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
@@ -16,4 +20,19 @@ module.exports = {
     FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
   },
+  eslint: {
+    dirs: [
+      "pages",
+      "utils",
+      "services",
+      "components",
+      "containers",
+      "hooks",
+      "context",
+      "constants",
+      "config",
+    ],
+  },
 };
+
+module.exports = nextConfig;
