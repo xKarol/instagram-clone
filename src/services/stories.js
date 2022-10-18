@@ -9,6 +9,7 @@ export const getUserStories = async (db, docId) => {
     storiesDocs.docs.map(async (docData) => {
       const userId = docData.data().uid;
       const userData = await getUserByUID(db, userId, false);
+      console.log(userData);
       return {
         username: userData?.username,
         avatar: userData?.avatar,

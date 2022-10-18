@@ -1,7 +1,14 @@
 import clsx from "clsx";
+import React from "react";
 import Avatar from "../../../components/avatar";
 
-function StoriesItem({ active, username, avatar }) {
+type Props = React.ComponentPropsWithoutRef<"section"> & {
+  active: boolean;
+  username: string;
+  avatar: string;
+};
+
+function StoriesItem({ active, username, avatar }: Props) {
   return (
     <li className="flex flex-col items-center justify-center text-[14px] max-w-[58px] shrink-0 leading-[25px]">
       <div className={clsx("p-[2px]", active && "storyBorder")}>

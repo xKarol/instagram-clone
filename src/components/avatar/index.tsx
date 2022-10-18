@@ -1,8 +1,15 @@
 import clsx from "clsx";
 import Image from "next/image";
+import React from "react";
 import DefaultAvatar from "../../assets/images/default-avatar.jpg";
 
-const Avatar = ({ src, size, alt, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"figure"> & {
+  src: string;
+  alt: string;
+  size?: number;
+};
+
+const Avatar = ({ src, size, alt, className, ...props }: Props) => {
   return (
     <figure
       className={clsx(

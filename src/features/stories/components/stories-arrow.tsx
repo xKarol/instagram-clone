@@ -1,7 +1,10 @@
-import { BiChevronRight } from "react-icons/bi";
 import clsx from "clsx";
+import React from "react";
+import { BiChevronRight } from "react-icons/bi";
 
-function StoriesArrow({ className, ...props }) {
+type Props = React.ComponentPropsWithoutRef<"div">;
+
+function StoriesArrow({ className, ...props }: Props) {
   return (
     <div
       className={clsx(

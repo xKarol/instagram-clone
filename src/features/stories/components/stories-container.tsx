@@ -1,6 +1,9 @@
 import clsx from "clsx";
+import React from "react";
 
-const StoriesContainer = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const StoriesContainer = ({ children, className, ...props }: Props) => {
   return (
     <section
       className={clsx(

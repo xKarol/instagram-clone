@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Loading from "../../../components/loading";
 import Skeleton from "../../../components/skeleton";
 import { useUserContext } from "../../../context/user-context";
@@ -10,14 +10,20 @@ import {
 } from "../components";
 import { useStories } from "../hooks";
 
-const StoriesContainer = ({ ...props }) => {
+type Props = React.ComponentProps<typeof Container>;
+
+const StoriesContainer = ({ ...props }: Props) => {
   const [scrollPos, setScrollPos] = useState(0);
   const [showRight, setShowRight] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
+  // TODO fix types errors
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { user, loggedIn } = useUserContext();
+  const storyBox = useRef<HTMLUListElement>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
   const { data, loading, error } = useStories(user.uid);
-  const storyBox = useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const visible = loggedIn && !error && user?.followings?.length;
 
   useEffect(() => {
@@ -38,7 +44,7 @@ const StoriesContainer = ({ ...props }) => {
     checkScroll();
   }, [scrollPos, loading, visible]);
 
-  const handleScroll = (direction) => {
+  const handleScroll = (direction: "left" | "right") => {
     const element = storyBox.current;
     const { clientWidth } = element;
     if (direction === "left") {
@@ -64,7 +70,7 @@ const StoriesContainer = ({ ...props }) => {
         />
       )}
       <StoriesList
-        onScroll={(e) => setScrollPos(e.target.scrollLeft)}
+        onScroll={(e) => setScrollPos(e.currentTarget.scrollLeft)}
         ref={storyBox}
       >
         {loading
