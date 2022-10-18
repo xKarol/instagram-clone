@@ -5,12 +5,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "type-check": "npx tsc --noEmit",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prettier": "prettier --check --config .prettierrc --ignore-path .gitignore .",
-    "prettier:fix": "prettier --write --config .prettierrc --ignore-path .gitignore .",
+    "prettier": "prettier --check --config .prettierrc --ignore-path .gitignore",
+    "prettier:fix": "prettier --write --config .prettierrc --ignore-path .gitignore",
     "format": "npm run prettier:fix && npm run lint:fix",
     "prepare": "husky install"
   },
@@ -66,10 +67,6 @@
     "prettier": "^2.7.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.1.5",
-    "typescript": "4.8.4"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*": "prettier --write --ignore-unknown"
+    "typescript": "^4.8.4"
   }
 }
