@@ -33,6 +33,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+#typescript
+*.tsbuildinfo
+next-env.d.ts
+
 # other
 todo.md
 serviceAccount.json
