@@ -11,7 +11,7 @@ import {
   ProfilePostsListContainer,
 } from "../../features/profile/containers";
 import { ProfileContext } from "../../features/profile/context";
-import useProfile from "../../hooks/use-profile";
+import { useProfile } from "../../features/profile/hooks";
 import NotFoundPage from "../404";
 
 const ProfilePage = () => {
