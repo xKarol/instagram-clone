@@ -3,7 +3,7 @@ import { db } from "../../../config/firebase.config";
 import { getUserStories } from "../../../services";
 import { StoryType } from "../@types";
 
-const useStories = (userId: number) => {
+const useStories = (userId: string) => {
   const response = useFirebaseFetch<StoryType[]>(
     () => getUserStories(db, userId) as Promise<StoryType[]> //TODO remove 'as' after type services folder
   );

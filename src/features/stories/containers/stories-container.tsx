@@ -16,14 +16,9 @@ const StoriesContainer = ({ ...props }: Props) => {
   const [scrollPos, setScrollPos] = useState(0);
   const [showRight, setShowRight] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
-  // TODO fix types errors
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { user, loggedIn } = useUserContext();
   const storyBox = useRef<HTMLUListElement>(null);
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-  const { data, loading, error } = useStories(user.uid);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  const { data, loading, error } = useStories(user?.uid);
   const visible = loggedIn && !error && user?.followings?.length;
 
   useEffect(() => {
