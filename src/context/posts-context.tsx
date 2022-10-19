@@ -1,11 +1,12 @@
 import { createContext, useContext, useState } from "react";
+import type { PostType } from "../@types/posts";
 
 type PostsContextType = {
-  setPhotos: React.Dispatch<React.SetStateAction<unknown[]>>; //TODO change types
-  photos: unknown[];
+  setPhotos: React.Dispatch<React.SetStateAction<PostType[]>>;
+  photos: PostType[];
 };
 
-export const PostsContext = createContext<PostsContextType | null>(null);
+export const PostsContext = createContext<PostsContextType | undefined[]>([]);
 
 export const usePostsContext = () => useContext(PostsContext);
 
