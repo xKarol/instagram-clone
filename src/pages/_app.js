@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import ViewportProvider from "../context/viewport-context";
 import UserProvider, { UserContext } from "../context/user-context";
 import LoadingScreen from "../components/loading-screen";
+import PostsProvider from "../context/posts-context";
 
 NProgress.configure({ showSpinner: false });
 
@@ -22,13 +23,15 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ViewportProvider>
-        <UserProvider>
-          <UserContext.Consumer>
-            {({ pending }) =>
-              pending ? <LoadingScreen /> : <Component {...pageProps} />
-            }
-          </UserContext.Consumer>
-        </UserProvider>
+        <PostsProvider>
+          <UserProvider>
+            <UserContext.Consumer>
+              {({ pending }) =>
+                pending ? <LoadingScreen /> : <Component {...pageProps} />
+              }
+            </UserContext.Consumer>
+          </UserProvider>
+        </PostsProvider>
       </ViewportProvider>
     </>
   );

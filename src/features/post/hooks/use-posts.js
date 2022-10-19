@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { db } from "../../../config/firebase.config";
-import { useUserContext } from "../../../context/user-context";
+import { usePostsContext } from "../../../context/posts-context";
 import { getPhotos } from "../../../services";
 
 const usePosts = () => {
@@ -8,7 +8,7 @@ const usePosts = () => {
   const [hasMore, setHasMore] = useState(true);
   const lastId = useRef();
   const isPending = useRef(false);
-  const { setPhotos, photos } = useUserContext();
+  const { setPhotos, photos } = usePostsContext();
 
   const getData = useCallback(async () => {
     try {

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { db } from "../../../../config/firebase.config";
+import { usePostsContext } from "../../../../context/posts-context";
 import { useUserContext } from "../../../../context/user-context";
 import { createPost, getPhotoById, uploadPhoto } from "../../../../services";
 import { trimSpace } from "../../../../utils";
@@ -15,12 +16,12 @@ const PostUploadSharePageContainer = () => {
   const [error, setError] = useState(false);
   const {
     user: { username },
-    setPhotos,
   } = useUserContext();
   const {
     state: { uploaded, caption, file },
     dispatch,
   } = usePostUploadContext();
+  const { setPhotos } = usePostsContext();
 
   useEffect(() => {
     const uploadFile = async () => {
