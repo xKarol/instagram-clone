@@ -4,7 +4,12 @@ import clsx from "clsx";
 import InstagramLogo from "../../assets/svg/instagram-logo.svg";
 import { ROUTE_HOME } from "../../constants/routes";
 
-const Logo = ({ size = 200, className, href = "", ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"a"> & {
+  size?: number;
+  href: string;
+};
+
+const Logo = ({ size = 200, className, href = "", ...props }: Props) => {
   const isHref = href.length > 0;
   return (
     <Link href={`${isHref ? ROUTE_HOME : href}`}>
@@ -18,7 +23,7 @@ const Logo = ({ size = 200, className, href = "", ...props }) => {
         style={{ ...props.style, minWidth: `${size}px` }}
       >
         <Image
-          src={InstagramLogo}
+          src={InstagramLogo as string}
           width={size}
           height={50}
           alt="instagram logo"

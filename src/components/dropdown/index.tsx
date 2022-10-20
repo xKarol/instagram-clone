@@ -1,14 +1,19 @@
 import clsx from "clsx";
 
+type Props = React.ComponentPropsWithoutRef<"div"> & {
+  items: React.ReactNode;
+  showIndicator?: boolean;
+};
+
 const DropdownMenu = ({
   children,
   className,
   items,
   showIndicator = true,
   ...props
-}) => {
+}: Props) => {
   return (
-    <div className="relative flex group" role="button" tabIndex="0">
+    <div className="relative flex group" role="button" tabIndex={0}>
       {children}
       <div
         className={clsx(
