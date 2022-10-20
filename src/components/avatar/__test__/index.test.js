@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import Avatar from "..";
+import { Avatar } from "..";
 
 describe("Avatar", () => {
   it("image should be in figure tag", () => {

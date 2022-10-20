@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Avatar from "../../../components/avatar";
+import { Avatar } from "../../../components/avatar";
 import { useUserContext } from "../../../context/user-context";
 import {
   SidebarButton,

@@ -20,12 +20,9 @@ const PostUploadBoxContainer = () => {
         <PostUploadHeaderContainer />
         <PostUploadBodyContainer />
       </PostUploadBox>
-      <Modal
-        show={showDiscardBox}
-        setShow={setShowDiscardBox}
-        element={<PostUploadDiscardBoxContainer />}
-        closeHide
-      />
+      <Modal show={showDiscardBox} setShow={setShowDiscardBox} hideCloseIcon>
+        <PostUploadDiscardBoxContainer />
+      </Modal>
     </>
   );
 };

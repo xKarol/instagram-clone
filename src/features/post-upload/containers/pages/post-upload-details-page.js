@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
-import Avatar from "../../../../components/avatar";
+import { Avatar } from "../../../../components/avatar";
 import { useUserContext } from "../../../../context/user-context";
 import { removeDoubleSpace } from "../../../../utils";
 import { PostUploadAccordion, PostUploadPageBox } from "../../components";

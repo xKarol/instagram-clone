@@ -4,20 +4,15 @@ import { PostUploadContextProvider, PostUploadContext } from "../context";
 
 const PostUploadContainer = ({ setShow, show }) => {
   return (
-    <>
-      <PostUploadContextProvider show={show} setShow={setShow}>
-        <PostUploadContext.Consumer>
-          {({ blockClose }) => (
-            <Modal
-              show={show}
-              setShow={setShow}
-              element={<PostUploadBoxContainer />}
-              onClose={blockClose}
-            />
-          )}
-        </PostUploadContext.Consumer>
-      </PostUploadContextProvider>
-    </>
+    <PostUploadContextProvider show={show} setShow={setShow}>
+      <PostUploadContext.Consumer>
+        {({ blockClose }) => (
+          <Modal show={show} setShow={setShow} onClose={blockClose}>
+            <PostUploadBoxContainer />
+          </Modal>
+        )}
+      </PostUploadContext.Consumer>
+    </PostUploadContextProvider>
   );
 };
 

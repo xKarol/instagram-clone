@@ -31,12 +31,9 @@ const PostHeaderContainer = (props) => {
           <HiOutlineDotsHorizontal />
         </PostIcon>
       </PostHeader>
-      <Modal
-        show={showModal}
-        setShow={setShowModal}
-        closeHide
-        element={<PostMenuContainer />}
-      />
+      <Modal show={showModal} setShow={setShowModal} hideCloseIcon>
+        <PostMenuContainer />
+      </Modal>
     </>
   );
 };

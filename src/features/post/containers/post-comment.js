@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useLayoutEffect, useState } from "react";
-import Avatar from "../../../components/avatar";
+import { Avatar } from "../../../components/avatar";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
 import { likeComment } from "../../../services";
