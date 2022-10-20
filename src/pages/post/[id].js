@@ -4,7 +4,7 @@ import { Layout } from "../../components/layout";
 import { HeaderContainer } from "../../features/header/containers";
 import { PostContainer } from "../../features/post/containers";
 import { usePost } from "../../features/post/hooks";
-import NotFoundPage from "../../pages/404";
+import NotFoundPage from "../404";
 
 const PostPage = () => {
   const router = useRouter();
