@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useCopyToClipboard } from "react-use";
-import Loading from "../../../components/loading";
+import { Loading } from "../../../components/loading";
 import Button from "../../../components/modal/button";
 import { db } from "../../../config/firebase.config";
 import { ROUTE_HOME, ROUTE_POST } from "../../../constants/routes";

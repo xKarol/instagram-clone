@@ -6,7 +6,7 @@ import {
   HeaderContainer as Container,
   HeaderSearchBar,
 } from "../components";
-import Logo from "../../../components/logo";
+import { Logo } from "../../../components/logo";
 import {
   ROUTE_HOME,
   ROUTE_SIGN_IN,

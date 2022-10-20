@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import Layout from "..";
+import { Layout } from "..";
 
 describe("Layout", () => {
   it("should be rendered", () => {

@@ -1,5 +1,5 @@
 import PostUploadBoxContainer from "./post-upload-box";
-import Modal from "../../../components/modal";
+import { Modal } from "../../../components/modal";
 import { PostUploadContextProvider, PostUploadContext } from "../context";
 
 const PostUploadContainer = ({ setShow, show }) => {

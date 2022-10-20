@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Layout from "../../components/layout";
-import LoadingScreen from "../../components/loading-screen";
+import { Layout } from "../../components/layout";
+import { LoadingScreen } from "../../components/loading-screen";
 import { SCREEN_MEDIUM } from "../../constants/screens";
 import { useViewport } from "../../context/viewport-context";
 import { HeaderContainer } from "../../features/header/containers";

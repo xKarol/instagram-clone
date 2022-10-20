@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import { Layout } from "../components/layout";
 import { HeaderContainer } from "../features/header/containers";
 import { StoriesContainer } from "../features/stories/containers";
 import { SidebarContainer } from "../features/sidebar/containers";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import Avatar from "../../../components/avatar";
-import Loading from "../../../components/loading";
+import { Avatar } from "../../../components/avatar";
+import { Loading } from "../../../components/loading";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
 import { followUser, getUserByUsername, unfollowUser } from "../../../services";

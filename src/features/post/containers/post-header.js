@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostMenuContainer from "./post-menu";
-import Avatar from "../../../components/avatar";
-import Modal from "../../../components/modal";
+import { Avatar } from "../../../components/avatar";
+import { Modal } from "../../../components/modal";
 import { PostHeader, PostIcon, PostUsername } from "../components";
 import { usePostContext } from "../context";
 

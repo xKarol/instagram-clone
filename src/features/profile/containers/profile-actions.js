@@ -2,7 +2,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { FaUserCheck } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { RiSettings3Line } from "react-icons/ri";
-import Loading from "../../../components/loading";
+import { Loading } from "../../../components/loading";
 import { useUserContext } from "../../../context/user-context";
 import useFollow from "../../../hooks/use-follow";
 import { isFollowing } from "../../../utils";

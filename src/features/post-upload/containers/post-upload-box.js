@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Modal from "../../../components/modal";
+import { Modal } from "../../../components/modal";
 import { PostUploadBox } from "../components";
 import { usePostUploadContext } from "../context";
 import {

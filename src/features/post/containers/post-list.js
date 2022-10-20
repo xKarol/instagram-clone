@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroller";
-import Loading from "../../../components/loading";
+import { Loading } from "../../../components/loading";
 import { usePosts } from "../hooks";
 import { PostItemContainer } from ".";
 

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Layout from "../../components/layout";
+import { Layout } from "../../components/layout";
 import { HeaderContainer } from "../../features/header/containers";
 import { PostContainer } from "../../features/post/containers";
 import { usePost } from "../../features/post/hooks";

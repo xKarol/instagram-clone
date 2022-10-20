@@ -1,8 +1,17 @@
 import { clsx } from "clsx";
 import React from "react";
-import Loading from "../loading";
+import { Loading } from "../loading";
 
-const LoadingButton = ({ isLoading = false, className, children, ...rest }) => {
+type Props = React.ComponentPropsWithoutRef<"button"> & {
+  isLoading: boolean;
+};
+
+const LoadingButton = ({
+  isLoading = false,
+  className,
+  children,
+  ...rest
+}: Props) => {
   return (
     <button className={clsx("relative", className)} type="button" {...rest}>
       <div className="absolute translate-x-1/2 ">

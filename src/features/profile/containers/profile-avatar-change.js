@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import Loading from "../../../components/loading";
+import { Loading } from "../../../components/loading";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
 import { getUserByUsername, updateUserAvatar } from "../../../services";

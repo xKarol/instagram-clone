@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import Loading from "../../../components/loading";
-import Skeleton from "../../../components/skeleton";
+import { Loading } from "../../../components/loading";
+import { Skeleton } from "../../../components/skeleton";
 import { useUserContext } from "../../../context/user-context";
 import {
   StoriesArrow,

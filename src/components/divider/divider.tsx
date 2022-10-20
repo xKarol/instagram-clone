@@ -1,6 +1,9 @@
+import React from "react";
 import clsx from "clsx";
 
-const Divider = ({ children, className, ...rest }) => {
+type Props = React.ComponentPropsWithoutRef<"div">;
+
+const Divider = ({ children, className, ...rest }: Props) => {
   const lineClass = clsx("flex-1 h-[1px] bg-gray-200", className);
   return (
     <div {...rest} className="flex w-full items-center my-[20px]">

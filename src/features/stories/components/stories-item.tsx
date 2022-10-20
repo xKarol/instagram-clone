@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import Avatar from "../../../components/avatar";
+import { Avatar } from "../../../components/avatar";
 
 type Props = React.ComponentPropsWithoutRef<"section"> & {
   active: boolean;

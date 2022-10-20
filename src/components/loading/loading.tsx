@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const Loading = ({ className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"div">;
+
+const Loading = ({ className, ...props }: Props) => {
   return <div className={clsx("loading", className)} {...props} />;
 };
 

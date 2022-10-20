@@ -1,6 +1,6 @@
 import { serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
-import Loading from "../../../components/loading";
+import { Loading } from "../../../components/loading";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
 import { addComment } from "../../../services";

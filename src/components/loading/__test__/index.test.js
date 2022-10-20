@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Loading from "..";
+import { Loading } from "..";
 
 describe("Loading", () => {
   it("loader should be visible", () => {

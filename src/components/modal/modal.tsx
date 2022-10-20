@@ -2,7 +2,14 @@ import clsx from "clsx";
 import { CgClose } from "react-icons/cg";
 import { useLockBodyScroll } from "react-use";
 
-const Modal = ({ show, setShow, element, closeHide, onClose }) => {
+type Props = {
+  show: boolean;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose?: () => void;
+  hideCloseIcon: boolean;
+} & React.PropsWithChildren;
+
+const Modal = ({ show, setShow, children, hideCloseIcon, onClose }: Props) => {
   useLockBodyScroll(show);
 
   const handleClose = () => {
@@ -23,7 +30,7 @@ const Modal = ({ show, setShow, element, closeHide, onClose }) => {
           )}
           onClick={handleClose}
         >
-          {!closeHide && (
+          {!hideCloseIcon && (
             <button
               aria-label="close modal"
               className="absolute top-[15px] right-[15px] text-white text-[30px] cursor-pointer"
@@ -36,7 +43,7 @@ const Modal = ({ show, setShow, element, closeHide, onClose }) => {
             className="bg-white rounded-2xl z-10 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {element}
+            {children}
           </main>
         </section>
       )}

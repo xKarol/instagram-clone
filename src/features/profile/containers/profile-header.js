@@ -1,5 +1,5 @@
-import Avatar from "../../../components/avatar";
-import Skeleton from "../../../components/skeleton";
+import { Avatar } from "../../../components/avatar";
+import { Skeleton } from "../../../components/skeleton";
 import { ProfileBiography, ProfileHeader } from "../components";
 import { useProfileContext } from "../context";
 import {

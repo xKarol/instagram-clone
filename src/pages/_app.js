@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Router from "next/router";
 import NProgress from "nprogress";
-import "../styles/nprogress.css";
-import "../styles/globals.css";
-import ViewportProvider from "../context/viewport-context";
-import UserProvider, { UserContext } from "../context/user-context";
-import LoadingScreen from "../components/loading-screen";
+import { LoadingScreen } from "../components/loading-screen";
 import PostsProvider from "../context/posts-context";
+import UserProvider, { UserContext } from "../context/user-context";
+import ViewportProvider from "../context/viewport-context";
+import "../styles/globals.css";
+import "../styles/nprogress.css";
 
 NProgress.configure({ showSpinner: false });
 

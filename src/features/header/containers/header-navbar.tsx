@@ -3,8 +3,8 @@ import { FiSend } from "react-icons/fi";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { MdHomeFilled, MdOutlineAddBox } from "react-icons/md";
 import HeaderProfileDropdownContainer from "./header-profile-dropdown";
-import Avatar from "../../../components/avatar";
-import DropdownMenu from "../../../components/dropdown";
+import { Avatar } from "../../../components/avatar";
+import { Dropdown } from "../../../components/dropdown";
 import { HeaderNavLink, HeaderNavList } from "../components";
 import { ROUTE_HOME } from "../../../constants/routes";
 import { useUserContext } from "../../../context/user-context";
@@ -44,14 +44,14 @@ const HeaderNavbarContainer = ({ setShow }: Props) => {
         className="w-[23px] h-[23px]"
         data-id="dropdown"
       >
-        <DropdownMenu items={<HeaderProfileDropdownContainer />}>
+        <Dropdown items={<HeaderProfileDropdownContainer />}>
           <Avatar
             src={avatar}
             className="pointer-events-none"
             size={23}
             alt={`${username}'s avatar`}
           />
-        </DropdownMenu>
+        </Dropdown>
       </HeaderNavLink>
     </HeaderNavList>
   );

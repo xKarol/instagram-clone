@@ -1,4 +1,4 @@
-import Loading from "../../../components/loading";
+import { Loading } from "../../../components/loading";
 import { useProfileContext } from "../context";
 import { ProfilePost, ProfilePostsList } from "../components";
 
