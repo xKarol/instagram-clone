@@ -30,6 +30,12 @@
         "ecmaFeatures": {
           "jsx": true
         }
+      },
+      "rules": {
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          { "checksVoidReturn": false }
+        ]
       }
     }
   ],
@@ -37,10 +43,7 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "unicorn/prevent-abbreviations": "off",
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      { "checksVoidReturn": false }
-    ],
+
     "unicorn/no-null": "off",
     "import/order": [
       1,
