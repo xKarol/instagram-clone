@@ -4,8 +4,15 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import type { Firestore } from "firebase/firestore";
 import { auth } from "../config/firebase.config";
 import { random } from "../utils";
+import { UserType } from "../@types/user";
+
+type SignUpProps = {
+  db: Firestore;
+  password: string;
+} & Pick<UserType, "avatar" | "username" | "fullName" | "email">;
 
 export const signUpUser = async ({
   db,
@@ -14,7 +21,7 @@ export const signUpUser = async ({
   fullName,
   email,
   password,
-}) => {
+}: SignUpProps) => {
   const auth = getAuth();
   const createUser = await createUserWithEmailAndPassword(
     auth,

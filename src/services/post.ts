@@ -12,9 +12,20 @@ import {
   startAfter,
   limit,
 } from "firebase/firestore";
+import type {
+  Firestore,
+  QueryDocumentSnapshot,
+  DocumentData,
+} from "firebase/firestore";
 import { getUserByUsername } from "./user";
 
-export const getPhotos = async ({ db, max = 15, startId }) => {
+type GetPhotosProps = {
+  db: Firestore;
+  max: number;
+  startId: QueryDocumentSnapshot<DocumentData>;
+};
+
+export const getPhotos = async ({ db, max = 15, startId }: GetPhotosProps) => {
   const q = !startId
     ? query(collection(db, "photos"), orderBy("timestamp", "desc"), limit(max))
     : query(
@@ -29,7 +40,7 @@ export const getPhotos = async ({ db, max = 15, startId }) => {
 
   const photos = await Promise.all(
     photosDocs.docs.map(async (docData) => {
-      const username = docData.data().username;
+      const username = docData.data().username as string;
       const userData = await getUserByUsername(db, username, false);
       const comments = await getPhotoComments(db, docData.id);
       const likes = await getPhotoLikes(db, docData.id);
@@ -45,14 +56,18 @@ export const getPhotos = async ({ db, max = 15, startId }) => {
   return { photos, lastId: lastVisible };
 };
 
-export const getCommentLikes = async (db, postId, commentId) => {
+export const getCommentLikes = async (
+  db: Firestore,
+  postId: string,
+  commentId: string
+) => {
   const commentsDocs = await getDocs(
     collection(db, "photos", postId, "comments", commentId, "likes")
   );
   return commentsDocs.docs.map((doc) => doc.data());
 };
 
-export const getPhotoComments = async (db, postId) => {
+export const getPhotoComments = async (db: Firestore, postId: string) => {
   const q = query(
     collection(db, "photos", postId, "comments"),
     orderBy("timestamp", "desc")
@@ -60,7 +75,7 @@ export const getPhotoComments = async (db, postId) => {
   const commentsDocs = await getDocs(q);
   const comments = await Promise.all(
     commentsDocs.docs.map(async (docData) => {
-      const username = docData.data().username;
+      const username = docData.data().username as string;
       const userData = await getUserByUsername(db, username, false);
       const commentLikes = await getCommentLikes(db, postId, docData.id);
       return {
@@ -75,15 +90,15 @@ export const getPhotoComments = async (db, postId) => {
   return comments;
 };
 
-export const getPhotoLikes = async (db, postId) => {
+export const getPhotoLikes = async (db: Firestore, postId: string) => {
   const likesDocs = await getDocs(collection(db, "photos", postId, "likes"));
   return likesDocs.docs.map((doc) => doc.data());
 };
 
-export const getPhotoById = async (db, id) => {
-  const photoDoc = await getDoc(doc(db, "photos", id));
+export const getPhotoById = async (db: Firestore, postId: string) => {
+  const photoDoc = await getDoc(doc(db, "photos", postId));
   if (!photoDoc.exists()) return null;
-  const username = photoDoc.data().username;
+  const username = photoDoc.data().username as string;
   const userData = await getUserByUsername(db, username, false);
   const comments = await getPhotoComments(db, photoDoc.id);
   const likes = await getPhotoLikes(db, photoDoc.id);
@@ -97,46 +112,74 @@ export const getPhotoById = async (db, id) => {
   return photoData;
 };
 
-export const addComment = async (db, comment, postId, username) => {
+export const addComment = async (
+  db: Firestore,
+  comment: string,
+  postId: string,
+  username: string
+) => {
   if (comment.length === 0) return;
   await addDoc(collection(db, "photos", postId, "comments"), {
-    comment: comment,
-    username: username,
+    comment,
+    username,
     timestamp: serverTimestamp(),
   });
 };
 
-export const likePost = async (db, postId, userId, liked) => {
-  if (!liked) {
-    setDoc(doc(db, "photos", postId, "likes", userId), {
-      uid: userId,
-    });
-  } else {
-    deleteDoc(doc(db, "photos", postId, "likes", userId));
-  }
+export const likePost = async (
+  db: Firestore,
+  postId: string,
+  userId: string,
+  liked: boolean
+) => {
+  !liked
+    ? await setDoc(doc(db, "photos", postId, "likes", userId), {
+        uid: userId,
+      })
+    : await deleteDoc(doc(db, "photos", postId, "likes", userId));
 };
 
-export const likeComment = async (db, postId, commentId, userId, liked) => {
-  if (!liked) {
-    setDoc(doc(db, "photos", postId, "comments", commentId, "likes", userId), {
-      uid: userId,
-    });
-  } else {
-    deleteDoc(
-      doc(db, "photos", postId, "comments", commentId, "likes", userId)
-    );
-  }
+export const likeComment = async (
+  db: Firestore,
+  postId: string,
+  commentId: string,
+  userId: string,
+  liked: boolean
+) => {
+  !liked
+    ? await setDoc(
+        doc(db, "photos", postId, "comments", commentId, "likes", userId),
+        {
+          uid: userId,
+        }
+      )
+    : await deleteDoc(
+        doc(db, "photos", postId, "comments", commentId, "likes", userId)
+      );
 };
 
-export const deletePost = async (db, postId) => {
-  return await deleteDoc(doc(db, "photos", postId));
+export const deletePost = async (db: Firestore, postId: string) => {
+  await deleteDoc(doc(db, "photos", postId));
 };
 
-export const createPost = async ({ db, username, imageURL, caption }) => {
-  return await addDoc(collection(db, "photos"), {
+type CreatePostProps = {
+  db: Firestore;
+  username: string;
+  imageURL: string;
+  caption: string;
+};
+
+export const createPost = async ({
+  db,
+  username,
+  imageURL,
+  caption,
+}: CreatePostProps) => {
+  const data = await addDoc(collection(db, "photos"), {
     image: imageURL,
     username,
     caption,
     timestamp: serverTimestamp(),
   });
+  return data;
 };

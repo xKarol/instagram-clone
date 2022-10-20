@@ -1,14 +1,21 @@
+import type { Firestore } from "firebase/firestore";
 import {
+  collection,
   getDocs,
   limit,
-  collection,
+  orderBy,
   query,
   where,
-  orderBy,
 } from "firebase/firestore";
+import type { UserType } from "../@types/user";
 import { random } from "../utils";
 
-export const getProfilesSuggestion = async (db, username) => {
+type ProfileSuggestionType = UserType & { docId: string };
+
+export const getProfilesSuggestion = async (
+  db: Firestore,
+  username: string
+) => {
   const rand = random(1_000_000);
   const q = query(
     collection(db, "users"),
@@ -17,7 +24,10 @@ export const getProfilesSuggestion = async (db, username) => {
     limit(5)
   );
   const profiles = await getDocs(q);
-  const data = profiles.docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  const data = profiles.docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  })) as ProfileSuggestionType[];
   const response = data.filter(
     (suggestion) => suggestion.username !== username
   );

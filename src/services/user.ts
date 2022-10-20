@@ -24,7 +24,10 @@ export const getAllUsers = async (db: Firestore) => {
 export const getUserMainData = async (db: Firestore, username: string) => {
   const q = query(collection(db, "users"), where("username", "==", username));
   const userDoc = await getDocs(q);
-  const user = { ...userDoc?.docs[0]?.data(), uid: userDoc?.docs[0]?.id };
+  const user = {
+    ...userDoc?.docs[0]?.data(),
+    uid: userDoc?.docs[0]?.id,
+  } as UserType;
   return user;
 };
 
@@ -43,6 +46,20 @@ export const getUserByUID = async (
   return { ...user };
 };
 
+export const getUserByUsername = async (
+  db: Firestore,
+  username: string,
+  extradata = true
+): Promise<UserType> => {
+  const user = await getUserMainData(db, username);
+  if (extradata) {
+    const followings = await getUserFollowings(db, user?.uid);
+    const followers = await getUserFollowers(db, user?.uid);
+    return { ...user, followers: followers, followings: followings };
+  }
+  return { ...user };
+};
+
 export const getUserFollowers = async (db: Firestore, uid: string) => {
   const userFollowersDoc = await getDocs(
     collection(db, "users", uid, "followers")
@@ -57,20 +74,6 @@ export const getUserFollowings = async (db: Firestore, uid: string) => {
   );
   const followings = userFollowingsDoc.docs.map((doc) => ({ ...doc.data() }));
   return followings as FollowType[];
-};
-
-export const getUserByUsername = async (
-  db: Firestore,
-  username: string,
-  extradata = true
-) => {
-  const user = await getUserMainData(db, username);
-  if (extradata) {
-    const followings = await getUserFollowings(db, user?.uid);
-    const followers = await getUserFollowers(db, user?.uid);
-    return { ...user, followers: followers, followings: followings };
-  }
-  return { ...user };
 };
 
 export const followUser = async (
