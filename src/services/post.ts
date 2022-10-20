@@ -11,6 +11,7 @@ import {
   serverTimestamp,
   startAfter,
   limit,
+  where,
 } from "firebase/firestore";
 import type {
   Firestore,
@@ -182,4 +183,26 @@ export const createPost = async ({
     timestamp: serverTimestamp(),
   });
   return data;
+};
+
+export const getUserPhotos = async (db: Firestore, username: string) => {
+  const q = query(
+    collection(db, "photos"),
+    where("username", "==", username),
+    orderBy("timestamp", "desc")
+  );
+  const photosDocs = await getDocs(q);
+  const photos = await Promise.all(
+    photosDocs.docs.map(async (docData) => {
+      const comments = await getPhotoComments(db, docData.id);
+      const likes = await getPhotoLikes(db, docData.id);
+      return {
+        ...docData.data(),
+        photoId: docData.id,
+        comments: comments,
+        likes: likes,
+      };
+    })
+  );
+  return photos;
 };

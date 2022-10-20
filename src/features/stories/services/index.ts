@@ -1,9 +1,12 @@
 import { getDocs, collection } from "firebase/firestore";
 import type { Firestore } from "firebase/firestore";
-import { getUserByUID } from "./user";
-import { StoryType } from "../features/stories/@types";
+import type { StoryType } from "../@types";
+import { getUserByUID } from "../../../services/user";
 
-export const getUserStories = async (db: Firestore, docId: string) => {
+export const getUserStories = async (
+  db: Firestore,
+  docId: string
+): Promise<StoryType[]> => {
   const storiesDocs = await getDocs(
     collection(db, "users", docId, "followings")
   );
@@ -16,7 +19,7 @@ export const getUserStories = async (db: Firestore, docId: string) => {
         avatar: userData?.avatar,
         ...docData.data(),
         storyId: docData.id,
-      };
+      } as StoryType;
     })
   );
   return stories;

@@ -7,8 +7,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import type { UserType } from "../@types/user";
-import { random } from "../utils";
+import type { UserType } from "../../../@types/user";
+import { random } from "../../../utils";
 
 type ProfileSuggestionType = UserType & { docId: string };
 

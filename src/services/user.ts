@@ -4,14 +4,12 @@ import {
   doc,
   getDoc,
   getDocs,
-  orderBy,
   query,
   setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
 import type { Firestore } from "firebase/firestore";
-import { getPhotoComments, getPhotoLikes } from "./post";
 import { deleteAvatarFromStorage, uploadAvatar } from "./storage";
 import type { FollowType, UserType } from "../@types/user";
 
@@ -98,28 +96,6 @@ export const unfollowUser = async (
   if (userDocId === followDocId) return;
   await deleteDoc(doc(db, "users", followDocId, "followers", userDocId));
   await deleteDoc(doc(db, "users", userDocId, "followings", followDocId));
-};
-
-export const getUserPhotos = async (db: Firestore, username: string) => {
-  const q = query(
-    collection(db, "photos"),
-    where("username", "==", username),
-    orderBy("timestamp", "desc")
-  );
-  const photosDocs = await getDocs(q);
-  const photos = await Promise.all(
-    photosDocs.docs.map(async (docData) => {
-      const comments = await getPhotoComments(db, docData.id);
-      const likes = await getPhotoLikes(db, docData.id);
-      return {
-        ...docData.data(),
-        photoId: docData.id,
-        comments: comments,
-        likes: likes,
-      };
-    })
-  );
-  return photos;
 };
 
 type UpdateUserAvatarProps = {
