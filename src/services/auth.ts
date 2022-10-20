@@ -38,7 +38,4 @@ export const signUpUser = async ({
   return { createUser, setUser };
 };
 
-export const logOut = async () => {
-  const res = await signOut(auth);
-  return { res };
-};
+export const logOut = async () => await signOut(auth);

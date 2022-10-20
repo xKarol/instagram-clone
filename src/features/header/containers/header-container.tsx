@@ -15,7 +15,9 @@ import {
 import { useUserContext } from "../../../context/user-context";
 import { PostUploadContainer } from "../../post-upload/containers";
 
-const HeaderContainer = ({ ...props }) => {
+type Props = React.ComponentProps<typeof Container>;
+
+const HeaderContainer = ({ ...props }: Props) => {
   const [show, setShow] = useState(false);
   const { loggedIn } = useUserContext();
 

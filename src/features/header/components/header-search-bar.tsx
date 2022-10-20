@@ -1,7 +1,15 @@
 import { BiSearch } from "react-icons/bi";
 import clsx from "clsx";
 
-const HeaderSearchBar = ({ placeholder = "Search", className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"div"> & {
+  placeholder?: string;
+};
+
+const HeaderSearchBar = ({
+  placeholder = "Search",
+  className,
+  ...props
+}: Props) => {
   return (
     <div
       className={clsx("w-[280px] relative hidden sm:block", className)}

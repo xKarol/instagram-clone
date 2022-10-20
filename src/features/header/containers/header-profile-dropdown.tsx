@@ -39,7 +39,7 @@ const HeaderProfileDropdownContainer = () => {
       </button>
       <button
         aria-label="log out"
-        onClick={async () => await logOut()}
+        onClick={async () => logOut()}
         className="w-full flex rounded-b-md py-[8px] px-[15px] border border-transparent border-t-gray-200 cursor-pointer hover:bg-gray-100"
       >
         Log Out

@@ -9,7 +9,11 @@ import { HeaderNavLink, HeaderNavList } from "../components";
 import { ROUTE_HOME } from "../../../constants/routes";
 import { useUserContext } from "../../../context/user-context";
 
-const HeaderNavbarContainer = ({ setShow }) => {
+type Props = {
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const HeaderNavbarContainer = ({ setShow }: Props) => {
   const {
     user: { username, avatar },
   } = useUserContext();

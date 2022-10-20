@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const HeaderContainer = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"header">;
+
+const HeaderContainer = ({ children, className, ...props }: Props) => {
   return (
     <header
       className={clsx(

@@ -1,13 +1,18 @@
 import Link from "next/link";
 import clsx from "clsx";
 
+type Props = React.ComponentPropsWithoutRef<"button"> & {
+  href: string;
+  variant?: "outlined" | "text";
+};
+
 const HeaderAuth = ({
   children,
   href,
   variant = "outlined",
   className,
   ...props
-}) => {
+}: Props) => {
   return (
     <button
       className={clsx("mr-[10px] sm:mr-[20px] last-of-type:mr-0", className)}

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const HeaderNavList = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"nav">;
+
+const HeaderNavList = ({ children, className, ...props }: Props) => {
   return (
     <nav className={clsx("flex items-center", className)} {...props}>
       <ul className="flex">{children}</ul>

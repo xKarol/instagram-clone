@@ -1,7 +1,11 @@
 import Link from "next/link";
 import clsx from "clsx";
 
-const HeaderNavLink = ({ children, href, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"li"> & {
+  href?: string;
+};
+
+const HeaderNavLink = ({ children, href = "", className, ...props }: Props) => {
   return (
     <li
       className={clsx(
@@ -10,7 +14,7 @@ const HeaderNavLink = ({ children, href, className, ...props }) => {
       )}
       {...props}
     >
-      {href?.length ? (
+      {href.length > 0 ? (
         <Link href={href}>
           <a>{children}</a>
         </Link>
