@@ -1,33 +1,25 @@
-import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import InstagramLogo from "../../assets/svg/instagram-logo.svg";
+import InstagramLogoSVG from "../../assets/svg/instagram-logo.svg";
 import { ROUTE_HOME } from "../../constants/routes";
 
 type Props = React.ComponentPropsWithoutRef<"a"> & {
-  size?: number;
-  href: string;
+  href?: string;
 };
 
-const Logo = ({ size = 200, className, href = "", ...props }: Props) => {
+const Logo = ({ className, href = ROUTE_HOME, ...props }: Props) => {
   const isHref = href.length > 0;
   return (
-    <Link href={`${isHref ? ROUTE_HOME : href}`}>
+    <Link href={href}>
       <a
         className={clsx(
-          "min-w-[200px] flex items-center",
+          "w-[100px] flex items-center",
           className,
-          isHref && "outline-none cursor-default"
+          isHref && "cursor-pointer"
         )}
         {...props}
-        style={{ ...props.style, minWidth: `${size}px` }}
       >
-        <Image
-          src={InstagramLogo as string}
-          width={size}
-          height={50}
-          alt="instagram logo"
-        />
+        <InstagramLogoSVG />
       </a>
     </Link>
   );

@@ -7,11 +7,7 @@ import {
   HeaderSearchBar,
 } from "../components";
 import { Logo } from "../../../components/logo";
-import {
-  ROUTE_HOME,
-  ROUTE_SIGN_IN,
-  ROUTE_SIGN_UP,
-} from "../../../constants/routes";
+import { ROUTE_SIGN_IN, ROUTE_SIGN_UP } from "../../../constants/routes";
 import { useUserContext } from "../../../context/user-context";
 import { PostUploadContainer } from "../../post-upload/containers";
 
@@ -24,7 +20,7 @@ const HeaderContainer = ({ ...props }: Props) => {
   return (
     <>
       <Container {...props} data-testid="header">
-        <Logo size={100} href={ROUTE_HOME} data-testid="logo" />
+        <Logo className="h-full" data-testid="logo" />
         <HeaderSearchBar data-testid="header-searchbar" />
         {loggedIn ? (
           <HeaderNavbarContainer setShow={setShow} />

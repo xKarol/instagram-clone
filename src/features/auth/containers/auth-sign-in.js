@@ -70,7 +70,7 @@ const AuthSignInContainer = () => {
       <AuthPhoneGallery />
       <AuthContainer data-testid="login-box">
         <AuthBox>
-          <Logo size={200} className="mb-[20px]" />
+          <Logo className="mb-[20px]" />
           <form
             className="w-full flex flex-col gap-[5px]"
             onSubmit={handleSubmit(onSubmit)}
