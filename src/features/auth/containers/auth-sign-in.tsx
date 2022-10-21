@@ -1,10 +1,4 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FirebaseError } from "firebase/app";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import isEmail from "validator/lib/isEmail";
 import AuthAppsContainer from "./auth-apps";
 import {
   AuthBox,
@@ -18,59 +12,14 @@ import {
 import { Divider } from "../../../components/divider";
 import { LoadingScreen } from "../../../components/loading-screen";
 import { Logo } from "../../../components/logo";
-import { auth, db } from "../../../config/firebase.config";
 import { ROUTE_SIGN_UP } from "../../../constants/routes";
 import useRedirectLoggedUser from "../../../hooks/use-redirect-logged-user";
-import { signInSchema } from "../schemas";
-import { getUserByUsername } from "../../../services";
-import { getAuthErrorMessage } from "../../../utils";
-
-type FormValues = {
-  login: string;
-  password: string;
-};
+import { useSignIn } from "../hooks";
 
 const AuthSignInContainer = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
   const loggedIn = useRedirectLoggedUser("/");
-  const { register, handleSubmit, watch } = useForm<FormValues>({
-    resolver: yupResolver(signInSchema),
-  });
-  const watchAll = watch();
-
-  useEffect(() => {
-    const isValidForm = () => {
-      void signInSchema
-        .isValid(watchAll)
-        .then((valid) => setIsDisabled(!valid));
-    };
-    isValidForm();
-  }, [watchAll]);
-
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      if (isDisabled) return;
-      const { login, password } = data;
-      setLoading(true);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      if (isEmail(login)) {
-        return await signInWithEmailAndPassword(auth, login, password); //email login
-      }
-      const { email } = (await getUserByUsername(db, login, false)) ?? {};
-      if (!email) throw "Invalid username or email.";
-      await signInWithEmailAndPassword(auth, email, password); //username login
-    } catch (error) {
-      const message =
-        error instanceof FirebaseError
-          ? getAuthErrorMessage(error.code)
-          : (error as string);
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { error, handleSubmit, isDisabled, loading, onSubmit, register } =
+    useSignIn();
 
   if (loggedIn) return <LoadingScreen />;
   return (

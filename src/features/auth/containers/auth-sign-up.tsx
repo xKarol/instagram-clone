@@ -1,17 +1,10 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FirebaseError } from "firebase/app";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import AuthAppsContainer from "./auth-apps";
 import { Divider } from "../../../components/divider";
 import { LoadingScreen } from "../../../components/loading-screen";
 import { Logo } from "../../../components/logo";
-import { db } from "../../../config/firebase.config";
 import { ROUTE_SIGN_IN } from "../../../constants/routes";
 import useRedirectLoggedUser from "../../../hooks/use-redirect-logged-user";
-import { getUserByUsername, signUpUser } from "../../../services";
-import { getAuthErrorMessage } from "../../../utils";
 import {
   AuthBox,
   AuthContainer,
@@ -20,54 +13,12 @@ import {
   AuthInputField,
   AuthSubmitButton,
 } from "../components";
-import { signUpSchema } from "../schemas";
-
-type FormValues = {
-  email: string;
-  fullName: string;
-  username: string;
-  password: string;
-};
+import { useSignUp } from "../hooks";
 
 const AuthSignUpContainer = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
   const loggedIn = useRedirectLoggedUser("/");
-  const { register, handleSubmit, watch } = useForm<FormValues>({
-    resolver: yupResolver(signUpSchema),
-  });
-  const watchAll = watch();
-
-  useEffect(() => {
-    const isValidForm = () => {
-      void signUpSchema
-        .isValid(watchAll)
-        .then((valid) => setIsDisabled(!valid));
-    };
-    isValidForm();
-  }, [watchAll]);
-
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      if (isDisabled) return;
-      const { email, fullName, username, password } = data;
-      setLoading(true);
-      const usernameInUse = await getUserByUsername(db, username, false);
-      if (usernameInUse) {
-        return setError("Username already in use.");
-      }
-      await signUpUser({ db, username, fullName, email, password });
-    } catch (error) {
-      const message =
-        error instanceof FirebaseError
-          ? getAuthErrorMessage(error.code)
-          : (error as string);
-      setError(getAuthErrorMessage(message));
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { loading, error, isDisabled, register, handleSubmit, onSubmit } =
+    useSignUp();
 
   if (loggedIn) return <LoadingScreen />;
   return (
