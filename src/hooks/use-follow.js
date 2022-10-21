@@ -9,7 +9,6 @@ const useFollow = ({ setUser, isFollowed, userId, followId }) => {
   const handleFollow = useCallback(async () => {
     try {
       if (pending) return;
-      console.log("handle follow");
       setPending(true);
       !isFollowed
         ? await followUser(db, userId, followId)
@@ -23,7 +22,7 @@ const useFollow = ({ setUser, isFollowed, userId, followId }) => {
     }
   }, [setUser, isFollowed, followId, pending, userId]);
 
-  return { handleFollow, error };
+  return { handleFollow, error, pending };
 };
 
 export default useFollow;
