@@ -1,16 +1,19 @@
+import React from "react";
 import {
-  SidebarContainer as Container,
   SidebarButton,
+  SidebarContainer as Container,
   SidebarHeading,
   SidebarSuggestionsContainer,
   SidebarSuggestionsHeader,
 } from "../components";
 import {
-  SidebarUserProfileContainer,
   SidebarSuggestionsListContainer,
+  SidebarUserProfileContainer,
 } from ".";
 
-const SidebarContainer = ({ ...props }) => {
+type Props = React.ComponentProps<typeof Container>;
+
+const SidebarContainer = ({ ...props }: Props) => {
   return (
     <Container {...props}>
       <SidebarUserProfileContainer />

@@ -1,8 +1,11 @@
 import clsx from "clsx";
+import React from "react";
 
-const SidebarProfileContainer = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const SidebarProfileContainer = ({ children, className, ...props }: Props) => {
   return (
-    <article
+    <section
       className={clsx(
         "h-[100px] flex items-center gap-[20px] text-[14px]",
         className
@@ -10,7 +13,7 @@ const SidebarProfileContainer = ({ children, className, ...props }) => {
       {...props}
     >
       {children}
-    </article>
+    </section>
   );
 };
 export default SidebarProfileContainer;

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const SidebarSuggestionItem = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"li">;
+
+const SidebarSuggestionItem = ({ children, className, ...props }: Props) => {
   return (
     <li
       className={clsx(

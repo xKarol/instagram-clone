@@ -1,6 +1,13 @@
 import clsx from "clsx";
+import React from "react";
 
-const SidebarSuggestionsContainer = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const SidebarSuggestionsContainer = ({
+  children,
+  className,
+  ...props
+}: Props) => {
   return (
     <section className={clsx("flex flex-col", className)} {...props}>
       {children}

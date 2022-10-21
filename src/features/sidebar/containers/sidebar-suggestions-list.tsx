@@ -1,3 +1,4 @@
+import React from "react";
 import SidebarSuggestedProfileContainer from "./sidebar-suggested-profile";
 import { useProfilesSuggestions } from "../hooks";
 import { SidebarSuggestedProfileSkeleton } from "../components";
@@ -10,11 +11,10 @@ const SidebarSuggestionsListContainer = () => {
     <ul>
       {loading
         ? [...Array.from({ length: 5 })]
-            .fill()
+            .fill(null)
             .map((_, index) => <SidebarSuggestedProfileSkeleton key={index} />)
         : data.map((suggestion) => (
             <SidebarSuggestedProfileContainer
-              skeleton={loading}
               key={suggestion.docId}
               {...suggestion}
             />

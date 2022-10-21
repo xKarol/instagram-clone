@@ -1,11 +1,21 @@
 import Link from "next/link";
-import { Avatar } from "../../../../components/avatar";
-import { Loading } from "../../../../components/loading";
-import { useUserContext } from "../../../../context/user-context";
-import useFollow from "../../../../hooks/use-follow";
-import { isFollowing } from "../../../../utils";
+import { Avatar } from "../../../components/avatar";
+import { Loading } from "../../../components/loading";
+import { useUserContext } from "../../../context/user-context";
+import useFollow from "../../../hooks/use-follow";
+import { isFollowing } from "../../../utils";
 
-const SuggestedProfile = ({ avatar, username, docId }) => {
+type Props = React.ComponentPropsWithoutRef<"li"> & {
+  avatar: string;
+  username: string;
+  docId: string;
+};
+
+const SidebarSuggestedProfileContainer = ({
+  avatar,
+  username,
+  docId,
+}: Props) => {
   const { user, setUser } = useUserContext();
   const { uid: userId, followings } = user;
   const following = isFollowing(docId, followings);
@@ -50,4 +60,4 @@ const SuggestedProfile = ({ avatar, username, docId }) => {
   );
 };
 
-export default SuggestedProfile;
+export default SidebarSuggestedProfileContainer;
