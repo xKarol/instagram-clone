@@ -1,17 +1,19 @@
 import { forwardRef, useRef } from "react";
 import clsx from "clsx";
 
-const AuthInputField = forwardRef(
+type Props = React.ComponentPropsWithoutRef<"input">;
+
+const AuthInputField = forwardRef<HTMLDivElement, Props>(
   ({ className, value, type, placeholder, ...props }, ref) => {
-    const passwordShowBtnRef = useRef(null);
-    const inputRef = useRef(null);
+    const passwordShowBtnRef = useRef<HTMLButtonElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const togglePassword = () => {
       const type =
         inputRef.current.getAttribute("type") === "password"
           ? "text"
           : "password";
-      passwordShowBtnRef.current.textContext =
+      passwordShowBtnRef.current.textContent =
         type === "password" ? "Show" : "Hide";
       inputRef.current.setAttribute("type", type);
     };

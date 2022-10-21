@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const AuthBox = ({ children, className }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const AuthBox = ({ children, className }: Props) => {
   return (
     <section
       className={clsx(

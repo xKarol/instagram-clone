@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const AuthContainer = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"div">;
+
+const AuthContainer = ({ children, className, ...props }: Props) => {
   return (
     <div
       className={clsx(

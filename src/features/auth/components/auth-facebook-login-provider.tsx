@@ -1,7 +1,15 @@
 import { AiFillFacebook } from "react-icons/ai";
 import clsx from "clsx";
 
-const AuthFacebookLoginProvider = ({ className, variant, ...rest }) => {
+type Props = React.ComponentPropsWithoutRef<"section"> & {
+  variant?: "filled" | "outlined";
+};
+
+const AuthFacebookLoginProvider = ({
+  className,
+  variant = "outlined",
+  ...rest
+}: Props) => {
   return (
     <button
       aria-label="log in with facebook"

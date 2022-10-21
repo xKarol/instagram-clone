@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const AuthError = ({ children, className, ...rest }) => {
+type Props = React.ComponentPropsWithoutRef<"span">;
+
+const AuthError = ({ children, className, ...rest }: Props) => {
   return (
     children && (
       <span

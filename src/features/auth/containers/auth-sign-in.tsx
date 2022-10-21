@@ -3,7 +3,7 @@ import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import AuthAppsContainer from "./auth-apps";
 import {
@@ -25,28 +25,36 @@ import { signInSchema } from "../schemas";
 import { getUserByUsername } from "../../../services";
 import { getAuthErrorMessage } from "../../../utils";
 
+type FormValues = {
+  login: string;
+  password: string;
+};
+
 const AuthSignInContainer = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const loggedIn = useRedirectLoggedUser("/");
-  const { register, handleSubmit, watch } = useForm({
+  const { register, handleSubmit, watch } = useForm<FormValues>({
     resolver: yupResolver(signInSchema),
   });
   const watchAll = watch();
 
   useEffect(() => {
     const isValidForm = () => {
-      signInSchema.isValid(watchAll).then((valid) => setIsDisabled(!valid));
+      void signInSchema
+        .isValid(watchAll)
+        .then((valid) => setIsDisabled(!valid));
     };
     isValidForm();
   }, [watchAll]);
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       if (isDisabled) return;
       const { login, password } = data;
       setLoading(true);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       if (isEmail(login)) {
         return await signInWithEmailAndPassword(auth, login, password); //email login
       }
@@ -57,7 +65,7 @@ const AuthSignInContainer = () => {
       const message =
         error instanceof FirebaseError
           ? getAuthErrorMessage(error.code)
-          : error;
+          : (error as string);
       setError(message);
     } finally {
       setLoading(false);
@@ -93,9 +101,11 @@ const AuthSignInContainer = () => {
           <Divider>Or</Divider>
           <AuthFacebookLoginProvider variant="outlined" />
           <AuthError>{error}</AuthError>
-          <a href="" className="text-[12px] text-[#385185] mt-[10px]">
-            Forgot password?
-          </a>
+          <Link href="#">
+            <a className="text-[12px] text-[#385185] mt-[10px]">
+              Forgot password?
+            </a>
+          </Link>
         </AuthBox>
         <AuthBox className="mt-[10px]">
           <span className="text-[14px] text-center">
