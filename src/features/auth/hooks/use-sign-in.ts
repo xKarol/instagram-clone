@@ -1,6 +1,5 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import isEmail from "validator/lib/isEmail";
 import { auth, db } from "../../../config/firebase.config";
 import { signInSchema } from "../schemas";
@@ -13,8 +12,6 @@ type FormValues = {
 };
 
 const useSignIn = () => {
-  const [isDisabled, setIsDisabled] = useState(true);
-
   const callback = useCallback(async (data: FormValues) => {
     const { login, password } = data;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -26,30 +23,18 @@ const useSignIn = () => {
     await signInWithEmailAndPassword(auth, email, password); //username login
   }, []);
 
-  const { error, isLoading, register, handleSubmit, onSubmit, watch } =
+  const { isValid, error, isLoading, register, handleSubmit, onSubmit } =
     useAuthForm<FormValues>({
-      resolver: yupResolver(signInSchema),
-      disabled: isDisabled,
+      schema: signInSchema,
       callback,
     });
-  const watchAll = watch();
-
-  useEffect(() => {
-    const isValidForm = () => {
-      void signInSchema
-        .isValid(watchAll)
-        .then((valid) => setIsDisabled(!valid));
-    };
-    isValidForm();
-  }, [watchAll]);
-
   return {
     register,
     handleSubmit,
     onSubmit,
     error,
     isLoading,
-    isDisabled,
+    isValid,
   };
 };
 

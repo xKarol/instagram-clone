@@ -18,7 +18,7 @@ import { useSignIn } from "../hooks";
 
 const AuthSignInContainer = () => {
   const loggedIn = useRedirectLoggedUser("/");
-  const { error, handleSubmit, isDisabled, isLoading, onSubmit, register } =
+  const { error, handleSubmit, isValid, isLoading, onSubmit, register } =
     useSignIn();
 
   if (loggedIn) return <LoadingScreen />;
@@ -43,7 +43,7 @@ const AuthSignInContainer = () => {
               data-testid="login-password-input"
               {...register("password")}
             />
-            <AuthSubmitButton disabled={isDisabled} isLoading={isLoading}>
+            <AuthSubmitButton disabled={!isValid} isLoading={isLoading}>
               Log In
             </AuthSubmitButton>
           </form>

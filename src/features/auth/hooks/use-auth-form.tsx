@@ -1,29 +1,34 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import {
   useForm,
-  type UseFormProps,
   type SubmitHandler,
+  type UseFormProps,
 } from "react-hook-form";
+import type { AnyObjectSchema } from "yup";
 import { getAuthErrorMessage } from "../../../utils";
+import { useIsValidForm } from ".";
 
 type Props<T> = UseFormProps<T> & {
   callback: (data: T) => Promise<unknown>;
-  disabled: boolean;
+  schema: AnyObjectSchema;
 };
 
-const useAuthForm = <T,>({
-  callback,
-  disabled = false,
-  ...props
-}: Props<T>) => {
-  const formData = useForm<T>(props);
+const useAuthForm = <T,>({ callback, schema, ...props }: Props<T>) => {
+  const { watch, ...formData } = useForm<T>({
+    resolver: yupResolver(schema),
+    ...props,
+  });
+  const watchAll = watch();
+  const { isValid } = useIsValidForm({ watch: watchAll, schema });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   const onSubmit: SubmitHandler<T> = async (data) => {
     try {
-      if (disabled === true) return;
+      if (!isValid === true) return;
       setIsLoading(true);
       await callback(data);
     } catch (error) {
@@ -42,6 +47,7 @@ const useAuthForm = <T,>({
     isLoading,
     error,
     onSubmit,
+    isValid,
   };
 };
 

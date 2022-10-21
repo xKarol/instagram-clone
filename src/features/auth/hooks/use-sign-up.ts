@@ -1,5 +1,4 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import useAuthForm from "./use-auth-form";
 import { db } from "../../../config/firebase.config";
 import { getUserByUsername, signUpUser } from "../../../services";
@@ -13,8 +12,6 @@ type FormValues = {
 };
 
 const useSignUp = () => {
-  const [isDisabled, setIsDisabled] = useState(true);
-
   const callback = useCallback(async (data: FormValues) => {
     const { email, fullName, username, password } = data;
     const usernameInUse = await getUserByUsername(db, username, false);
@@ -24,28 +21,16 @@ const useSignUp = () => {
     await signUpUser({ db, username, fullName, email, password });
   }, []);
 
-  const { error, isLoading, register, handleSubmit, onSubmit, watch } =
+  const { isValid, error, isLoading, register, handleSubmit, onSubmit } =
     useAuthForm<FormValues>({
-      resolver: yupResolver(signUpSchema),
-      disabled: isDisabled,
+      schema: signUpSchema,
       callback,
     });
-
-  const watchAll = watch();
-
-  useEffect(() => {
-    const isValidForm = () => {
-      void signUpSchema
-        .isValid(watchAll)
-        .then((valid) => setIsDisabled(!valid));
-    };
-    isValidForm();
-  }, [watchAll]);
 
   return {
     isLoading,
     error,
-    isDisabled,
+    isValid,
     register,
     handleSubmit,
     onSubmit,
