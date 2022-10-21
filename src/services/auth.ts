@@ -12,11 +12,12 @@ import { UserType } from "../@types/user";
 type SignUpProps = {
   db: Firestore;
   password: string;
-} & Pick<UserType, "avatar" | "username" | "fullName" | "email">;
+} & Pick<UserType, "username" | "fullName" | "email"> &
+  Partial<Pick<UserType, "avatar">>;
 
 export const signUpUser = async ({
   db,
-  avatar,
+  avatar = "",
   username,
   fullName,
   email,
