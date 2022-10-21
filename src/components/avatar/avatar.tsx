@@ -4,7 +4,7 @@ import React from "react";
 import DefaultAvatar from "../../assets/images/default-avatar.jpg";
 
 type Props = React.ComponentPropsWithoutRef<"figure"> & {
-  src: string;
+  src?: string;
   alt: string;
   size?: number;
 };
