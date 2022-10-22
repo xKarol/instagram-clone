@@ -4,7 +4,7 @@ import type { ProfileType } from "../@types";
 type ProfileContextType = {
   profile: ProfileType;
   loading: boolean;
-  error: string;
+  error: boolean;
   setProfile: React.Dispatch<React.SetStateAction<ProfileType>>;
 };
 
