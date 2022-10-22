@@ -1,14 +1,15 @@
 import type { Timestamp } from "firebase/firestore";
 import type { UserType } from "./user";
 
-type LikesType = { uid: string }[];
+export type PostLikesType = { uid: string }[];
 
 export type PostCommentType = {
   username: string;
+  avatar: string;
   timestamp: Timestamp;
   comment: string;
   commentId: string;
-  likes: LikesType;
+  likes: PostLikesType;
 };
 
 export type PostType = {
@@ -17,7 +18,7 @@ export type PostType = {
   caption: string;
   username: string;
   comments: PostCommentType[];
-  likes: LikesType;
+  likes: PostLikesType;
   timestamp: Timestamp;
   user: UserType;
 };
