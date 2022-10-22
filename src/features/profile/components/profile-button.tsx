@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const ProfileButton = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"button">;
+
+const ProfileButton = ({ children, className, ...props }: Props) => {
   return (
     <button
       className={clsx(

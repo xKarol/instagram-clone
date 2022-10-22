@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const ProfileStatistics = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const ProfileStatistics = ({ children, className, ...props }: Props) => {
   return (
     <section
       className={clsx(

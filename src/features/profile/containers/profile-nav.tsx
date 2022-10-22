@@ -6,7 +6,7 @@ import { ProfileNav, ProfileNavButton } from "../components";
 const ProfileNavContainer = () => {
   const activeElement = 0;
   return (
-    <ProfileNav active={activeElement}>
+    <ProfileNav activeIndex={activeElement}>
       <ProfileNavButton icon={<MdGridOn />}>Posts</ProfileNavButton>
       <ProfileNavButton icon={<FiBookmark />}>Saved</ProfileNavButton>
       <ProfileNavButton icon={<CgProfile />}>Tagged</ProfileNavButton>

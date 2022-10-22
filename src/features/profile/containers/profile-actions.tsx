@@ -10,7 +10,10 @@ import { ProfileButton } from "../components";
 import { useProfileContext } from "../context";
 
 const ProfileActionsContainer = () => {
-  const { user: profileUser, loading } = useProfileContext();
+  const {
+    profile: { user: profileUser },
+    loading,
+  } = useProfileContext();
   const { user, setUser } = useUserContext();
   const {
     uid: profileId,

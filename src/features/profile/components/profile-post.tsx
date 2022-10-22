@@ -3,8 +3,13 @@ import Link from "next/link";
 import { FaComment } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import { ROUTE_POST } from "../../../constants/routes";
+import type { PostType } from "../../../@types/posts";
 
-const ProfilePost = ({ data: photo, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"li"> & {
+  data: PostType;
+};
+
+const ProfilePost = ({ data: photo, ...props }: Props) => {
   const { photoId, comments, likes, image } = photo;
   return (
     <li

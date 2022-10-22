@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useLayoutEffect, useState } from "react";
 import { Layout } from "../../components/layout";
 import { LoadingScreen } from "../../components/loading-screen";
 import { SCREEN_MEDIUM } from "../../constants/screens";
@@ -16,11 +17,16 @@ import NotFoundPage from "../404";
 
 const ProfilePage = () => {
   const router = useRouter();
-  const { profile } = router.query;
-  const { data, loading, error } = useProfile(profile);
+  const { profile: username } = router.query;
+  const { data, loading, error } = useProfile(username);
+  const [profile, setProfile] = useState(data);
   const { width } = useViewport();
   const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
-  const notFound = (!loading && !data) || error;
+  const notFound = (!loading && !profile) || error;
+
+  useLayoutEffect(() => {
+    setProfile(data);
+  }, [data]);
 
   if (loading) return <LoadingScreen />;
   if (notFound) return <NotFoundPage />;
@@ -30,14 +36,14 @@ const ProfilePage = () => {
         <title>
           {`${
             loading
-              ? `@${profile}`
+              ? `@${username}`
               : `${data.user.fullName} (@${data.user.username})`
           } • Instagram`}
         </title>
       </Head>
 
       <HeaderContainer />
-      <ProfileContext.Provider value={{ ...data, loading }}>
+      <ProfileContext.Provider value={{ profile, loading, setProfile, error }}>
         <Layout>
           <ProfileHeaderContainer viewport={device} />
           <ProfileNavContainer />

@@ -9,9 +9,15 @@ import {
   ProfileStatisticsContainer,
 } from ".";
 
-const ProfileHeaderContainer = ({ viewport }) => {
+type Props = {
+  viewport: "desktop" | "mobile";
+};
+
+const ProfileHeaderContainer = ({ viewport }: Props) => {
   const {
-    user: { username: profileUsername, avatar: profileAvatar },
+    profile: {
+      user: { username: profileUsername, avatar: profileAvatar },
+    },
     loading,
   } = useProfileContext();
   const biography = "No bio yet";

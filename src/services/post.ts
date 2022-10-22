@@ -19,6 +19,7 @@ import type {
   DocumentData,
 } from "firebase/firestore";
 import { getUserByUsername } from "./user";
+import type { PostCommentType, PostLikesType, PostType } from "../@types/posts";
 
 type GetPhotosProps = {
   db: Firestore;
@@ -65,7 +66,7 @@ export const getCommentLikes = async (
   const commentsDocs = await getDocs(
     collection(db, "photos", postId, "comments", commentId, "likes")
   );
-  return commentsDocs.docs.map((doc) => doc.data());
+  return commentsDocs.docs.map((doc) => doc.data()) as PostLikesType[];
 };
 
 export const getPhotoComments = async (db: Firestore, postId: string) => {
@@ -74,21 +75,20 @@ export const getPhotoComments = async (db: Firestore, postId: string) => {
     orderBy("timestamp", "desc")
   );
   const commentsDocs = await getDocs(q);
-  const comments = await Promise.all(
+  const comments = (await Promise.all(
     commentsDocs.docs.map(async (docData) => {
       const username = docData.data().username as string;
       const userData = await getUserByUsername(db, username, false);
       const commentLikes = await getCommentLikes(db, postId, docData.id);
       return {
-        username: userData.username,
         avatar: userData.avatar,
-        ...docData.data(),
         commentId: docData.id,
         likes: commentLikes,
+        ...docData.data(),
       };
     })
-  );
-  return comments;
+  )) as unknown;
+  return comments as PostCommentType[];
 };
 
 export const getPhotoLikes = async (db: Firestore, postId: string) => {
@@ -204,5 +204,5 @@ export const getUserPhotos = async (db: Firestore, username: string) => {
       };
     })
   );
-  return photos;
+  return photos as PostType[];
 };

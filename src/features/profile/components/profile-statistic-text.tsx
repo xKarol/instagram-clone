@@ -1,6 +1,15 @@
 import clsx from "clsx";
 
-const ProfileStatisticText = ({ children, className, value, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"span"> & {
+  value: number;
+};
+
+const ProfileStatisticText = ({
+  children,
+  className,
+  value,
+  ...props
+}: Props) => {
   return (
     <span
       className={clsx(

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const ProfileHeader = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"header">;
+
+const ProfileHeader = ({ children, className, ...props }: Props) => {
   return (
     <header
       className={clsx("flex mb-[15px] md:mb-[50px]", className)}

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const ProfileBiography = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"p">;
+
+const ProfileBiography = ({ children, className, ...props }: Props) => {
   return (
     <p className={clsx("font-medium", className)} {...props}>
       {children}

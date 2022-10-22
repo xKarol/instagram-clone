@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const ProfilePostsList = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"ul">;
+
+const ProfilePostsList = ({ children, className, ...props }: Props) => {
   return (
     <ul
       className={clsx(
