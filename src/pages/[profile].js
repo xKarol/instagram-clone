@@ -1,19 +1,19 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useLayoutEffect, useState } from "react";
-import { Layout } from "../../components/layout";
-import { LoadingScreen } from "../../components/loading-screen";
-import { SCREEN_MEDIUM } from "../../constants/screens";
-import { useViewport } from "../../context/viewport-context";
-import { HeaderContainer } from "../../features/header/containers";
+import NotFoundPage from "./404";
+import { Layout } from "../components/layout";
+import { LoadingScreen } from "../components/loading-screen";
+import { SCREEN_MEDIUM } from "../constants/screens";
+import { useViewport } from "../context/viewport-context";
+import { HeaderContainer } from "../features/header/containers";
 import {
   ProfileHeaderContainer,
   ProfileNavContainer,
   ProfilePostsListContainer,
-} from "../../features/profile/containers";
-import { ProfileContext } from "../../features/profile/context";
-import { useProfile } from "../../features/profile/hooks";
-import NotFoundPage from "../404";
+} from "../features/profile/containers";
+import { ProfileContext } from "../features/profile/context";
+import { useProfile } from "../features/profile/hooks";
 
 const ProfilePage = () => {
   const router = useRouter();
