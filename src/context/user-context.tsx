@@ -3,7 +3,7 @@ import useAuthListener from "../hooks/use-auth";
 
 type UserContextType = ReturnType<typeof useAuthListener>;
 
-export const UserContext = createContext<UserContextType | null>(null);
+export const UserContext = createContext<UserContextType>(null);
 export const useUserContext = () => useContext(UserContext);
 
 const UserProvider = ({ children }: React.PropsWithChildren) => {
