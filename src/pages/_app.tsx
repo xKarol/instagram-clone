@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import Head from "next/head";
 import Router from "next/router";
+import React from "react";
 import NProgress from "nprogress";
 import { LoadingScreen } from "../components/loading-screen";
 import PostsProvider from "../context/posts-context";

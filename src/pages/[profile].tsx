@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import NotFoundPage from "./404";
 import { Layout } from "../components/layout";
 import { LoadingScreen } from "../components/loading-screen";
@@ -17,10 +17,10 @@ import { useProfile } from "../features/profile/hooks";
 
 const ProfilePage = () => {
   const router = useRouter();
-  const { profile: username } = router.query;
+  const { profile: username } = router.query as { profile: string };
   const { data, loading, error } = useProfile(username);
   const [profile, setProfile] = useState(data);
-  const { width } = useViewport();
+  const { width = 0 } = useViewport() || {};
   const device = width >= SCREEN_MEDIUM ? "desktop" : "mobile";
   const notFound = (!loading && !profile) || error;
 
