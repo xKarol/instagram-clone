@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { Avatar } from "../../../../components/avatar";
@@ -19,7 +19,7 @@ const PostUploadDetailsPageContainer = () => {
     user: { avatar: userAvatar, username },
   } = useUserContext();
 
-  const handleChangeCaption = (e) => {
+  const handleChangeCaption = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
     if (text.length > MAX_POST_CAPTION) return;
     setPhotoCaption(removeDoubleSpace(text));

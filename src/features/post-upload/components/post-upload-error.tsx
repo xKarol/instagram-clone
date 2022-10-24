@@ -1,13 +1,19 @@
 import clsx from "clsx";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
+type Props = React.ComponentPropsWithoutRef<"div"> & {
+  captionText: string;
+  elementsProps?: Partial<{ caption: React.ComponentPropsWithoutRef<"p"> }>;
+};
+
 const PostUploadError = ({
   children,
   captionText,
   elementsProps,
   ...props
-}) => {
-  const captionProps = elementsProps?.caption;
+}: Props) => {
+  const { className: captionClassName, ...captionProps } =
+    elementsProps.caption;
 
   return (
     <div
@@ -16,8 +22,8 @@ const PostUploadError = ({
     >
       <AiOutlineExclamationCircle className="text-[100px]" />
       <p
+        className={clsx("text-[20px] text-center", captionClassName)}
         {...captionProps}
-        className={clsx("text-[20px] text-center", captionProps?.className)}
       >
         {captionText}
       </p>

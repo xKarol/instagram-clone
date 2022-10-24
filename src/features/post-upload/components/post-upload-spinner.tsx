@@ -1,9 +1,13 @@
 import clsx from "clsx";
 import { IoMdCheckmark } from "react-icons/io";
 
-const PostUploadSpinner = ({ className, spin = true, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"figure"> & {
+  spin?: boolean;
+};
+
+const PostUploadSpinner = ({ className, spin = true, ...props }: Props) => {
   return (
-    <div
+    <figure
       className={clsx(
         spin && "animate-spin",
         className,
@@ -15,7 +19,7 @@ const PostUploadSpinner = ({ className, spin = true, ...props }) => {
       {!spin && (
         <IoMdCheckmark className="absolute text-[35px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#fcb045]" />
       )}
-    </div>
+    </figure>
   );
 };
 

@@ -1,12 +1,17 @@
 import clsx from "clsx";
 
+type Props = React.ComponentPropsWithoutRef<"header"> & {
+  leftElement: JSX.Element;
+  rightElement: JSX.Element;
+};
+
 const PostUploadHeader = ({
   children,
   className,
   leftElement,
   rightElement,
   ...props
-}) => {
+}: Props) => {
   return (
     <header
       className={clsx(

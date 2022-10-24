@@ -26,6 +26,8 @@ const PostUploadSharePageContainer = () => {
   useEffect(() => {
     const uploadFile = async () => {
       try {
+        const isValidFile = file instanceof File;
+        if (!isValidFile) throw new Error("No File");
         const { downloadURL } = await uploadPhoto(username, file);
         const photoDoc = await createPost({
           db,
@@ -40,7 +42,7 @@ const PostUploadSharePageContainer = () => {
         setError(true);
       }
     };
-    uploadFile();
+    void uploadFile();
   }, [setPhotos, file, dispatch, caption, username]);
 
   return (

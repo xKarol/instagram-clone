@@ -2,11 +2,17 @@ import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import clsx from "clsx";
 
-const PostUploadAccordion = ({ heading, children }) => {
+type Props = React.ComponentPropsWithoutRef<"button"> & {
+  heading: string;
+};
+
+const PostUploadAccordion = ({ heading, children, ...props }: Props) => {
   const [active, setActive] = useState(false);
+
   return (
     <button
       className="flex flex-col px-[15px] border border-transparent border-t-gray-200 cursor-pointer"
+      {...props}
       onClick={() => setActive(!active)}
     >
       <div className="relative w-full flex">

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const PostUploadBox = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const PostUploadBox = ({ children, className, ...props }: Props) => {
   return (
     <section
       className={clsx(

@@ -4,7 +4,11 @@ import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { PostUploadCropButton, PostUploadPageBox } from "../../components";
 import { usePostUploadContext } from "../../context";
 
-const PostUploadCropPageContainer = ({ disableBtns = false }) => {
+type Props = {
+  disableBtns?: boolean;
+};
+
+const PostUploadCropPageContainer = ({ disableBtns = false }: Props) => {
   const {
     state: { previewSrc },
   } = usePostUploadContext();

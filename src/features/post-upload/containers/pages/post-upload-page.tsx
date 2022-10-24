@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, type FileRejection } from "react-dropzone";
 import { FaPhotoVideo } from "react-icons/fa";
 import { CROP_PAGE } from "../../constants";
 import { hasExtension } from "../../../../utils";
@@ -14,7 +14,7 @@ const PostUploadPageContainer = () => {
   } = usePostUploadContext();
 
   const onDrop = useCallback(
-    (acceptedFiles) => {
+    (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
       if (!file) return dispatch({ type: "SET_ERROR", payload: true });
       dispatch({ type: "SET_ERROR", payload: false });
@@ -30,7 +30,7 @@ const PostUploadPageContainer = () => {
   );
 
   const onDropRejected = useCallback(
-    (rejectedFiles) => {
+    (rejectedFiles: FileRejection[]) => {
       const file = rejectedFiles[0].file;
       dispatch({ type: "SET_FILE", payload: file });
       dispatch({ type: "SET_ERROR", payload: true });
@@ -38,7 +38,7 @@ const PostUploadPageContainer = () => {
     [dispatch]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, inputRef } = useDropzone({
     onDrop,
     onDropRejected,
     accept: {
@@ -47,9 +47,10 @@ const PostUploadPageContainer = () => {
     },
     maxFiles: 1,
     noClick: true,
+    multiple: false,
   });
 
-  const handleClick = () => getInputProps().ref.current.click();
+  const handleClick = () => inputRef.current.click();
 
   return (
     <PostUploadPageBox
@@ -59,7 +60,7 @@ const PostUploadPageContainer = () => {
       {error ? (
         <PostUploadError captionText="This file is not supported">
           <p className="text-[13px] text-gray-300">
-            <b>{file.name ?? "File"}</b> could not be uploaded.
+            <b>{(file as File)?.name ?? "File"}</b> could not be uploaded.
           </p>
         </PostUploadError>
       ) : (
@@ -84,7 +85,7 @@ const PostUploadPageContainer = () => {
       >
         {error ? "Select other files" : "Select from computer"}
       </button>
-      <input {...getInputProps({ multiple: false })} />
+      <input {...getInputProps()} />
     </PostUploadPageBox>
   );
 };

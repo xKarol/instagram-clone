@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const PostUploadCropButton = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const PostUploadCropButton = ({ children, className, ...props }: Props) => {
   return (
     <button
       className={clsx(
