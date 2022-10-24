@@ -5,9 +5,9 @@ import type { PostCommentType } from "../../../@types/posts";
 import { Avatar } from "../../../components/avatar";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
-import { likeComment } from "../../../services";
 import { PostComment, PostCommentLike, PostUsername } from "../components";
 import { usePostContext } from "../context";
+import { likeComment } from "../services";
 
 type Props = PostCommentType & {
   className?: string;

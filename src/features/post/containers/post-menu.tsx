@@ -7,8 +7,8 @@ import { db } from "../../../config/firebase.config";
 import { ROUTE_HOME, ROUTE_POST } from "../../../constants/routes";
 import { usePostsContext } from "../../../context/posts-context";
 import { useUserContext } from "../../../context/user-context";
-import { deletePost } from "../../../services";
 import { usePostContext } from "../context";
+import { deletePost } from "../services";
 
 const PostMenuContainer = () => {
   const router = useRouter();

@@ -2,7 +2,7 @@ import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { useCallback, useRef, useState } from "react";
 import { db } from "../../../config/firebase.config";
 import { usePostsContext } from "../../../context/posts-context";
-import { getPhotos } from "../../../services";
+import { getPhotos } from "../services";
 
 const usePosts = () => {
   const [error, setError] = useState(false);

@@ -4,7 +4,6 @@ import type { PostCommentType } from "../../../@types/posts";
 import { Loading } from "../../../components/loading";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
-import { addComment } from "../../../services";
 import { trimSpace } from "../../../utils";
 import {
   PostCommentButton,
@@ -13,6 +12,7 @@ import {
   PostCommentInput,
 } from "../components";
 import { usePostContext } from "../context";
+import { addComment } from "../services";
 
 const PostCommentFormContainer = () => {
   const [comment, setComment] = useState("");

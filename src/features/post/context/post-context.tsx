@@ -5,14 +5,14 @@ import React, {
   useLayoutEffect,
   useState,
 } from "react";
-import { useUserContext } from "../../../context/user-context";
-import { db } from "../../../config/firebase.config";
-import { likePost } from "../../../services";
 import type {
-  PostType,
-  PostLikesType,
   PostCommentType,
+  PostLikesType,
+  PostType,
 } from "../../../@types/posts";
+import { db } from "../../../config/firebase.config";
+import { useUserContext } from "../../../context/user-context";
+import { likePost } from "../services";
 
 type PostContextType = {
   photo: PostType;
