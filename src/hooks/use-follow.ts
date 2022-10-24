@@ -1,8 +1,16 @@
 import { useCallback, useState } from "react";
+import type { UserType } from "../@types/user";
 import { db } from "../config/firebase.config";
 import { followUser, getUserByUID, unfollowUser } from "../services";
 
-const useFollow = ({ setUser, isFollowed, userId, followId }) => {
+type Props = {
+  setUser: React.Dispatch<React.SetStateAction<UserType>>;
+  isFollowed: boolean;
+  userId: string;
+  followId: string;
+};
+
+const useFollow = ({ setUser, isFollowed, userId, followId }: Props) => {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(false);
 

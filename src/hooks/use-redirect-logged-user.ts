@@ -7,9 +7,12 @@ const useRedirectLoggedUser = (path = "/") => {
   const { loggedIn } = useUserContext();
 
   useEffect(() => {
-    if (loggedIn) {
-      router.push(path);
-    }
+    const changeRoute = async () => {
+      if (loggedIn) {
+        await router.push(path);
+      }
+    };
+    void changeRoute();
   }, [path, loggedIn, router]);
 
   return loggedIn;
