@@ -6,7 +6,7 @@ type PostsContextType = {
   photos: PostType[];
 };
 
-export const PostsContext = createContext<PostsContextType | undefined[]>([]);
+export const PostsContext = createContext<PostsContextType>(null);
 
 export const usePostsContext = () => useContext(PostsContext);
 
