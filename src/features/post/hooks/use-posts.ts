@@ -1,3 +1,4 @@
+import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { useCallback, useRef, useState } from "react";
 import { db } from "../../../config/firebase.config";
 import { usePostsContext } from "../../../context/posts-context";
@@ -6,7 +7,7 @@ import { getPhotos } from "../../../services";
 const usePosts = () => {
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const lastId = useRef();
+  const lastId = useRef<QueryDocumentSnapshot<DocumentData>>(null);
   const isPending = useRef(false);
   const { setPhotos, photos } = usePostsContext();
 

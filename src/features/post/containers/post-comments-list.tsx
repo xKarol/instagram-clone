@@ -1,13 +1,19 @@
 import clsx from "clsx";
 import { usePostContext } from "../context";
+import { MAX_COMMENTS_ITEMS } from "../constants";
 import { PostCommentContainer } from ".";
 
-const MAX_COMMENTS_ITEMS = 3;
+type Props = React.ComponentPropsWithoutRef<"ul"> & {
+  showAvatar?: boolean;
+  className: string;
+};
 
-const PostCommentsList = ({ showAvatar = false, className, ...props }) => {
+const PostCommentsList = ({
+  showAvatar = false,
+  className,
+  ...props
+}: Props) => {
   const { comments } = usePostContext();
-
-  console.log(comments.length);
 
   return (
     <ul className={clsx(className)} {...props} data-testid="post-comments-list">

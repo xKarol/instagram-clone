@@ -6,7 +6,9 @@ import { Modal } from "../../../components/modal";
 import { PostHeader, PostIcon, PostUsername } from "../components";
 import { usePostContext } from "../context";
 
-const PostHeaderContainer = (props) => {
+type Props = React.ComponentProps<typeof PostHeader>;
+
+const PostHeaderContainer = (props: Props) => {
   const {
     photo: { user },
     setShowModal,

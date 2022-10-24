@@ -4,13 +4,15 @@ import { useUserContext } from "../../../context/user-context";
 import { PostImage } from "../components";
 import { usePostContext } from "../context";
 
-const PostImageContainer = (props) => {
+type Props = Partial<React.ComponentProps<typeof PostImage>>;
+
+const PostImageContainer = (props: Props) => {
   const {
     photo: {
       user: { username },
       image: src,
+      caption,
     },
-    caption,
     liked,
     handleLike,
   } = usePostContext();

@@ -4,7 +4,11 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const PostDate = ({ children, className, ...props }) => {
+type Props = Omit<React.ComponentPropsWithoutRef<"p">, "children"> & {
+  children: Date;
+};
+
+const PostDate = ({ children, className, ...props }: Props) => {
   return (
     <p
       className={clsx(

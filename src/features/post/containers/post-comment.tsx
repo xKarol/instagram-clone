@@ -1,12 +1,18 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useLayoutEffect, useState } from "react";
+import type { PostCommentType } from "../../../@types/posts";
 import { Avatar } from "../../../components/avatar";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
 import { likeComment } from "../../../services";
 import { PostComment, PostCommentLike, PostUsername } from "../components";
 import { usePostContext } from "../context";
+
+type Props = PostCommentType & {
+  className?: string;
+  showAvatar: boolean;
+};
 
 const PostCommentContainer = ({
   username,
@@ -16,7 +22,7 @@ const PostCommentContainer = ({
   avatar,
   showAvatar = false,
   className,
-}) => {
+}: Props) => {
   const [pending, setPending] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(commentLikes ?? []);

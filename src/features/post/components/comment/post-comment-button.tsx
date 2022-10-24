@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const PostCommentButton = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"button">;
+
+const PostCommentButton = ({ children, className, ...props }: Props) => {
   return (
     <button
       className={clsx(

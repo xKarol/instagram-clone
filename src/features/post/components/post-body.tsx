@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const PostBody = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const PostBody = ({ children, className, ...props }: Props) => {
   return (
     <section className={clsx("w-full flex flex-col", className)} {...props}>
       {children}

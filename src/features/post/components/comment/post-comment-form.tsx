@@ -1,11 +1,15 @@
 import clsx from "clsx";
 
+type Props = React.ComponentPropsWithoutRef<"form"> & {
+  pending: boolean;
+};
+
 const PostCommentForm = ({
   pending = false,
   children,
   className,
   ...props
-}) => {
+}: Props) => {
   return (
     <form
       className={clsx(

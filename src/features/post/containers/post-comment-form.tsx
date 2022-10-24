@@ -1,5 +1,6 @@
-import { serverTimestamp } from "firebase/firestore";
+import { serverTimestamp, type Timestamp } from "firebase/firestore";
 import { useState } from "react";
+import type { PostCommentType } from "../../../@types/posts";
 import { Loading } from "../../../components/loading";
 import { db } from "../../../config/firebase.config";
 import { useUserContext } from "../../../context/user-context";
@@ -24,7 +25,7 @@ const PostCommentFormContainer = () => {
   } = usePostContext();
   const disabled = comment.length === 0 || !loggedIn;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (disabled || pending || !loggedIn) return;
     try {
@@ -38,16 +39,16 @@ const PostCommentFormContainer = () => {
         user.username
       );
 
-      setComments((prevState) => [
-        {
-          commentId: res.id,
-          comment: trimSpace(comment),
-          username: user.username,
-          avatar: user.avatar,
-          timestamp: serverTimestamp(),
-        },
-        ...prevState,
-      ]);
+      const newCommentData: PostCommentType = {
+        likes: [],
+        commentId: res.id,
+        comment: trimSpace(comment),
+        username: user.username,
+        avatar: user.avatar,
+        timestamp: serverTimestamp() as Timestamp,
+      };
+
+      setComments((prevState) => [newCommentData, ...prevState]);
     } catch {
       setError(true);
     } finally {

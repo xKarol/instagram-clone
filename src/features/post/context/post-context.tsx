@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   useCallback,
   useContext,
@@ -8,11 +8,30 @@ import {
 import { useUserContext } from "../../../context/user-context";
 import { db } from "../../../config/firebase.config";
 import { likePost } from "../../../services";
+import type {
+  PostType,
+  PostLikesType,
+  PostCommentType,
+} from "../../../@types/posts";
 
-export const PostContext = createContext(null);
+type PostContextType = {
+  photo: PostType;
+  liked: boolean;
+  setComments: React.Dispatch<React.SetStateAction<PostCommentType[]>>;
+  comments: PostCommentType[];
+  setLikes: React.Dispatch<React.SetStateAction<PostLikesType>>;
+  likes: PostLikesType;
+  handleLike: () => Promise<void>;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showModal: boolean;
+};
+
+export const PostContext = createContext<PostContextType>(null);
 export const usePostContext = () => useContext(PostContext);
 
-const PostContextProvider = ({ children, photo }) => {
+type Props = React.PropsWithChildren & { photo: PostType };
+
+const PostContextProvider = ({ children, photo }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [comments, setComments] = useState(photo.comments ?? []);
   const [likes, setLikes] = useState(photo.likes ?? []);
@@ -49,7 +68,6 @@ const PostContextProvider = ({ children, photo }) => {
       value={{
         photo,
         liked,
-        setLiked,
         setComments,
         comments,
         setLikes,

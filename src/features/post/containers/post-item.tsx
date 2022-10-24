@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ROUTE_POST } from "../../../constants/routes";
 import { PostBody, PostContainer } from "../components";
 import { PostContextProvider } from "../context";
+import type { PostType } from "../../../@types/posts";
 import {
   PostActionsContainer,
   PostCaptionContainer,
@@ -13,7 +14,11 @@ import {
   PostLikesContainer,
 } from ".";
 
-const PostItemContainer = ({ data: photo, ...props }) => {
+type Props = React.ComponentProps<typeof PostContainer> & {
+  data: PostType;
+};
+
+const PostItemContainer = ({ data: photo, ...props }: Props) => {
   const { photoId, comments } = photo;
 
   return (

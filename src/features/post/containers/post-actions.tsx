@@ -7,7 +7,9 @@ import { RiBookmarkLine } from "react-icons/ri";
 import { PostActions, PostIcon } from "../components";
 import { usePostContext } from "../context";
 
-const PostActionsContainer = (props) => {
+type Props = React.ComponentProps<typeof PostActions>;
+
+const PostActionsContainer = (props: Props) => {
   const { liked, handleLike } = usePostContext();
 
   return (

@@ -2,9 +2,11 @@ import { PostDate } from "../components";
 import { usePostContext } from "../context";
 
 const PostDateContainer = () => {
-  const { photo } = usePostContext();
+  const {
+    photo: { timestamp },
+  } = usePostContext();
 
-  return <PostDate>{photo.timestamp?.toDate()}</PostDate>;
+  return <PostDate>{timestamp.toDate()}</PostDate>;
 };
 
 export default PostDateContainer;

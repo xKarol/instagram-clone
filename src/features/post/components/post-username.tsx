@@ -1,8 +1,11 @@
 import Link from "next/link";
 import clsx from "clsx";
 
-const PostUsername = ({ children, className, ...props }) => {
-  const username = String(children);
+type Prop = Omit<React.ComponentPropsWithoutRef<"a">, "children"> & {
+  children?: string;
+};
+
+const PostUsername = ({ children: username, className, ...props }: Prop) => {
   return (
     <Link href={`/${username}`}>
       <a

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const PostContainer = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"article">;
+
+const PostContainer = ({ children, className, ...props }: Props) => {
   return (
     <article
       className={clsx(

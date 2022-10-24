@@ -12,7 +12,9 @@ import {
   PostLikesContainer,
 } from ".";
 
-const PostContainer = ({ ...props }) => {
+type Props = React.ComponentProps<typeof PostContextProvider>;
+
+const PostContainer = ({ ...props }: Props) => {
   const {
     photo: { caption, user },
   } = props;

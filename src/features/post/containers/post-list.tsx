@@ -3,7 +3,9 @@ import { Loading } from "../../../components/loading";
 import { usePosts } from "../hooks";
 import { PostItemContainer } from ".";
 
-const PostListContainer = (props) => {
+type Props = React.ComponentProps<typeof InfiniteScroll>;
+
+const PostListContainer = (props: Props) => {
   const { getData, photos, hasMore } = usePosts();
 
   return (
@@ -15,8 +17,8 @@ const PostListContainer = (props) => {
       loader={<Loading className="mt-[50px]" key={0} />}
       useWindow={true}
     >
-      {photos.map((photo, index) => (
-        <PostItemContainer key={photo.photoId + index} data={photo} />
+      {photos.map((photo) => (
+        <PostItemContainer key={photo.photoId} data={photo} />
       ))}
     </InfiniteScroll>
   );

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 
-const PostActions = ({ children, className, ...props }) => {
+type Props = React.ComponentPropsWithoutRef<"section">;
+
+const PostActions = ({ children, className, ...props }: Props) => {
   return (
     <section
       className={clsx(
