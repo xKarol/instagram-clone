@@ -40,7 +40,7 @@ export const getPhotos = async ({ db, max = 15, startId }: GetPhotosProps) => {
   const photosDocs = await getDocs(q);
   const lastVisible = photosDocs.docs[photosDocs.docs.length - 1];
 
-  const photos = await Promise.all(
+  const photos = (await Promise.all(
     photosDocs.docs.map(async (docData) => {
       const username = docData.data().username as string;
       const userData = await getUserByUsername(db, username, false);
@@ -54,7 +54,7 @@ export const getPhotos = async ({ db, max = 15, startId }: GetPhotosProps) => {
         likes: likes,
       };
     })
-  );
+  )) as PostType[];
   return { photos, lastId: lastVisible };
 };
 
@@ -110,7 +110,7 @@ export const getPhotoById = async (db: Firestore, postId: string) => {
     comments: comments,
     likes: likes,
   };
-  return photoData;
+  return photoData as PostType;
 };
 
 export const addComment = async (
@@ -120,11 +120,12 @@ export const addComment = async (
   username: string
 ) => {
   if (comment.length === 0) return;
-  await addDoc(collection(db, "photos", postId, "comments"), {
+  const response = await addDoc(collection(db, "photos", postId, "comments"), {
     comment,
     username,
     timestamp: serverTimestamp(),
   });
+  return response;
 };
 
 export const likePost = async (
