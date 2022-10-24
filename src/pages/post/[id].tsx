@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+import React, { useRouter } from "next/router";
 import { Layout } from "../../components/layout";
 import { HeaderContainer } from "../../features/header/containers";
 import { PostContainer } from "../../features/post/containers";
@@ -9,7 +9,7 @@ import NotFoundPage from "../404";
 const PostPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading } = usePost(id);
+  const { data, loading } = usePost(id as string);
 
   if (!data && !loading) return <NotFoundPage />;
   return (
