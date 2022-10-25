@@ -12,7 +12,7 @@ type Props = React.ComponentPropsWithoutRef<"div">;
 const ProfileAvatarChangeContainer = ({ children, className }: Props) => {
   const {
     setUser,
-    user: { uid: userId, username },
+    user: { uid: userId, username, avatar },
   } = useUserContext();
   const {
     profile: { user: profileUser },
@@ -31,7 +31,7 @@ const ProfileAvatarChangeContainer = ({ children, className }: Props) => {
         await updateUserAvatar({
           db,
           fileName: file.name,
-          oldAvatarName: "", //TODO remove this field
+          currentAvatarName: avatar.name,
           userId: userId,
           file,
         });
@@ -44,7 +44,7 @@ const ProfileAvatarChangeContainer = ({ children, className }: Props) => {
         setPending(false);
       }
     },
-    [pending, userId, setProfile, setUser, username, isAuthorized]
+    [pending, userId, setProfile, setUser, username, isAuthorized, avatar]
   );
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,

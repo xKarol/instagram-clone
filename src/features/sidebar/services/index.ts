@@ -7,10 +7,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import type { UserType } from "../../../@types/user";
 import { random } from "../../../utils";
-
-type ProfileSuggestionType = UserType & { docId: string };
+import type { ProfileSuggestionType } from "../@types";
 
 export const getProfilesSuggestion = async (
   db: Firestore,

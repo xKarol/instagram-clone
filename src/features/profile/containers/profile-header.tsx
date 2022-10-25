@@ -27,7 +27,7 @@ const ProfileHeaderContainer = ({ viewport }: Props) => {
       <ProfileAvatarChangeContainer className="mx-[100px]">
         {!loading ? (
           <Avatar
-            src={profileAvatar}
+            src={profileAvatar.src}
             size={150}
             alt={`${profileUsername}'s avatar`}
           />
@@ -52,7 +52,7 @@ const ProfileHeaderContainer = ({ viewport }: Props) => {
             <ProfileAvatarChangeContainer className="mx-[25px]">
               {!loading ? (
                 <Avatar
-                  src={profileAvatar}
+                  src={profileAvatar.src}
                   size={80}
                   alt={`${profileUsername}'s avatar`}
                 />

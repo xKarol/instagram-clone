@@ -18,7 +18,10 @@ const PostCommentFormContainer = () => {
   const [comment, setComment] = useState("");
   const [pending, setPending] = useState(false);
   const [, setError] = useState(false);
-  const { user, loggedIn } = useUserContext();
+  const {
+    user: { username, avatar },
+    loggedIn,
+  } = useUserContext();
   const {
     photo: { photoId },
     setComments,
@@ -32,19 +35,14 @@ const PostCommentFormContainer = () => {
       setPending(true);
       setError(false);
 
-      const res = await addComment(
-        db,
-        trimSpace(comment),
-        photoId,
-        user.username
-      );
+      const res = await addComment(db, trimSpace(comment), photoId, username);
 
       const newCommentData: PostCommentType = {
         likes: [],
         commentId: res.id,
         comment: trimSpace(comment),
-        username: user.username,
-        avatar: user.avatar,
+        username: username,
+        avatar: avatar.src,
         timestamp: serverTimestamp() as Timestamp,
       };
 

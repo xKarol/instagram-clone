@@ -1,6 +1,5 @@
+import type { UserType } from "../../../@types/user";
+
 export type StoryType = {
-  username: string;
-  avatar: string;
-  uid: string;
   storyId: string;
-};
+} & Pick<UserType, "avatar" | "username" | "uid">;

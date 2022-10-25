@@ -1,15 +1,15 @@
 import Link from "next/link";
+import type { UserType } from "../../../@types/user";
 import { Avatar } from "../../../components/avatar";
 import { Loading } from "../../../components/loading";
 import { useUserContext } from "../../../context/user-context";
 import useFollow from "../../../hooks/use-follow";
 import { isFollowing } from "../../../utils";
 
-type Props = React.ComponentPropsWithoutRef<"li"> & {
-  avatar: string;
-  username: string;
-  docId: string;
-};
+type Props = React.ComponentPropsWithoutRef<"li"> &
+  Pick<UserType, "avatar" | "username"> & {
+    docId: string;
+  };
 
 const SidebarSuggestedProfileContainer = ({
   avatar,
@@ -32,7 +32,7 @@ const SidebarSuggestedProfileContainer = ({
       <Link href={`/${username}`}>
         <a className="w-[30px] h-[30px]">
           <Avatar
-            src={avatar}
+            src={avatar.src}
             className="cursor-pointer"
             alt={`${username}'s avatar`}
           />

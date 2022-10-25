@@ -15,6 +15,7 @@ const useAuthListener = () => {
       if (authUser) {
         const userData = await getUserByUID(db, authUser.uid);
         if (userData) {
+          console.log(userData);
           setUser(userData);
           setLoggedIn(true);
           setPending(false);

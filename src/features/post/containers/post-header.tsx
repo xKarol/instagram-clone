@@ -21,7 +21,7 @@ const PostHeaderContainer = (props: Props) => {
       <PostHeader {...props}>
         <Link href={`/${username}`}>
           <a className={"mr-[15px]"}>
-            <Avatar src={avatar} size={30} alt={`${username}'s avatar`} />
+            <Avatar src={avatar.src} size={30} alt={`${username}'s avatar`} />
           </a>
         </Link>
         <PostUsername>{username}</PostUsername>

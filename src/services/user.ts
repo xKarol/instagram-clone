@@ -101,7 +101,7 @@ export const unfollowUser = async (
 type UpdateUserAvatarProps = {
   db: Firestore;
   fileName: string;
-  oldAvatarName: string;
+  currentAvatarName: string;
   userId: string;
   file: File;
 };
@@ -109,7 +109,7 @@ type UpdateUserAvatarProps = {
 export const updateUserAvatar = async ({
   db,
   fileName,
-  oldAvatarName,
+  currentAvatarName,
   userId,
   file,
 }: UpdateUserAvatarProps) => {
@@ -118,11 +118,10 @@ export const updateUserAvatar = async ({
     fileName
   );
   await updateDoc(doc(db, "users", userId), {
-    avatar: downloadURL,
-    avatarFileName: uploadedFileName,
+    avatar: { src: downloadURL, name: uploadedFileName },
   });
-  if (oldAvatarName) {
-    await deleteAvatarFromStorage(oldAvatarName);
+  if (currentAvatarName) {
+    await deleteAvatarFromStorage(currentAvatarName);
   }
   return downloadURL;
 };

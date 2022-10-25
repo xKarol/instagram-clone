@@ -33,7 +33,7 @@ const PostContainer = ({ ...props }: Props) => {
                   <Link href={`/${username}`}>
                     <a>
                       <Avatar
-                        src={avatar}
+                        src={avatar.src}
                         size={30}
                         alt={`${username}'s avatar`}
                       />

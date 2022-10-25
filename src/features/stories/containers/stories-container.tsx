@@ -47,7 +47,7 @@ const StoriesContainer = ({ ...props }: Props) => {
               <StoriesItem
                 key={uid}
                 username={username}
-                avatar={avatar}
+                avatar={avatar.src}
                 active
               />
             ))}

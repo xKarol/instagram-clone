@@ -17,10 +17,10 @@ export const getUserStories = async (
       return {
         username: userData?.username,
         avatar: userData?.avatar,
-        ...docData.data(),
+        uid: userId,
         storyId: docData.id,
-      } as StoryType;
+      } as unknown;
     })
   );
-  return stories;
+  return stories as StoryType[];
 };
