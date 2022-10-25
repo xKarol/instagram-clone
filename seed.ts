@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { db } from "./src/config/firebase.config";
 import { signUpUser, getAllUsers, createPost } from "./src/services";
 
-const seedInit = async (callback, amount = 10) => {
+const seedInit = async (callback: () => void, amount = 10) => {
   const data = Array.from({ length: amount }).fill(callback());
   for (const element of data) await element;
 };
@@ -11,7 +11,7 @@ const seedUser = async () => {
   await seedInit(() =>
     signUpUser({
       db,
-      avatar: faker.image.avatar(),
+      avatar: { src: faker.image.avatar() },
       username: faker.internet.userName(),
       fullName: faker.name.fullName(),
       email: faker.internet.email(),
@@ -25,10 +25,10 @@ const seedPost = async () => {
   const randUserIndex = Math.floor(Math.random() * users.length);
   const randUser = users[randUserIndex];
   await seedInit(() => {
-    createPost({
+    void createPost({
       db,
       username: randUser.username,
-      imageURL: faker.image.image(1280, 960),
+      image: { src: faker.image.image(1280, 960) },
       caption: faker.lorem.text(),
     });
   });

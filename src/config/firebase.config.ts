@@ -7,7 +7,7 @@ import {
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
-// import { seed } from "../seed";
+// import { seed } from "../../seed";
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.FIREBASE_API,
