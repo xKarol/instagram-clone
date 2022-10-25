@@ -26,7 +26,7 @@ export const getUserMainData = async (db: Firestore, username: string) => {
     ...userDoc?.docs[0]?.data(),
     uid: userDoc?.docs[0]?.id,
   } as UserType;
-  return user;
+  if (user.uid) return user;
 };
 
 export const getUserByUID = async (
@@ -50,6 +50,7 @@ export const getUserByUsername = async (
   extradata = true
 ): Promise<UserType> => {
   const user = await getUserMainData(db, username);
+  if (!user) return;
   if (extradata) {
     const followings = await getUserFollowings(db, user?.uid);
     const followers = await getUserFollowers(db, user?.uid);
