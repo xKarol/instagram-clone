@@ -7,7 +7,7 @@ import {
   type UseFormProps,
 } from "react-hook-form";
 import type { AnyObjectSchema } from "yup";
-import { getAuthErrorMessage } from "../../../utils";
+import { getAuthErrorMessage } from "../utils";
 import { useIsValidForm } from ".";
 
 type Props<T> = UseFormProps<T> & {

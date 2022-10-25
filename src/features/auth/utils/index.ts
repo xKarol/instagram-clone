@@ -1,4 +1,4 @@
-import { authErrors } from "../constants/auth-errors";
+import { authErrors } from "../constants";
 
 export const getAuthErrorMessage = (code: string): string => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
