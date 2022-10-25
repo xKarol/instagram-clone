@@ -6,7 +6,7 @@ const PostDateContainer = () => {
     photo: { timestamp },
   } = usePostContext();
 
-  return <PostDate>{timestamp.toDate()}</PostDate>;
+  return <PostDate>{timestamp?.toDate()}</PostDate>;
 };
 
 export default PostDateContainer;
