@@ -15,7 +15,7 @@ type Props<T> = UseFormProps<T> & {
   schema: AnyObjectSchema;
 };
 
-const useAuthForm = <T,>({ callback, schema, ...props }: Props<T>) => {
+const useAuthForm = <T>({ callback, schema, ...props }: Props<T>) => {
   const { watch, ...formData } = useForm<T>({
     resolver: yupResolver(schema),
     ...props,
