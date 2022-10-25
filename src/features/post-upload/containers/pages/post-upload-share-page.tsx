@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { db } from "../../../../config/firebase.config";
 import { usePostsContext } from "../../../../context/posts-context";
 import { useUserContext } from "../../../../context/user-context";
@@ -14,6 +14,7 @@ import { usePostUploadContext } from "../../context";
 
 const PostUploadSharePageContainer = () => {
   const [error, setError] = useState(false);
+  const isPending = useRef(false);
   const {
     user: { username },
   } = useUserContext();
@@ -26,6 +27,8 @@ const PostUploadSharePageContainer = () => {
   useEffect(() => {
     const uploadFile = async () => {
       try {
+        if (isPending.current) return;
+        isPending.current = true;
         const isValidFile = file instanceof File;
         if (!isValidFile) throw new Error("No File");
         const { downloadURL, fileName } = await uploadPhoto(username, file);
@@ -40,6 +43,7 @@ const PostUploadSharePageContainer = () => {
         setPhotos((prevState) => [photoData, ...prevState]);
       } catch {
         setError(true);
+        isPending.current = false;
       }
     };
     void uploadFile();
