@@ -31,7 +31,9 @@ const PostMenuContainer = () => {
     if (!isAuthorized || pending || !loggedIn) return;
     setPending(true);
     await deletePost(db, photoId);
-    await deletePhotoFromStorage(username, image.name);
+    if (image.name.length > 0) {
+      await deletePhotoFromStorage(username, image.name);
+    }
     setPhotos(photos.filter((el) => el.photoId !== photoId));
     setPending(false);
     setShowModal(false);
