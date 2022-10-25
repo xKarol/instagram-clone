@@ -13,10 +13,10 @@ import type { Firestore } from "firebase/firestore";
 import { deleteAvatarFromStorage, uploadAvatar } from "./storage";
 import type { FollowType, UserType } from "../@types/user";
 
-export const getAllUsers = async (db: Firestore) => {
+export const getAllUsers = async (db: Firestore): Promise<UserType[]> => {
   const usersDoc = await getDocs(collection(db, "users"));
   const users = usersDoc.docs.map((doc) => ({ ...doc.data(), uid: doc.id }));
-  return users;
+  return users as UserType[];
 };
 
 export const getUserMainData = async (db: Firestore, username: string) => {

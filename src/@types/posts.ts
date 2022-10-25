@@ -14,7 +14,7 @@ export type PostCommentType = {
 
 export type PostType = {
   photoId: string;
-  image: { name: string; src: string };
+  image: { name?: string; src: string };
   caption: string;
   username: string;
   comments: PostCommentType[];

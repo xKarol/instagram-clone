@@ -1,7 +1,7 @@
 export type FollowType = { uid: string };
 
 export type UserType = {
-  avatar: { src: string; name: string };
+  avatar: { src: string; name?: string };
   fullName: string;
   username: string;
   email: string;
