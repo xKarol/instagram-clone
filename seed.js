@@ -1,9 +1,9 @@
-import { db } from "./config/firebase.config";
-import { signUpUser, getAllUsers, createPost } from "./services";
 import { faker } from "@faker-js/faker";
+import { db } from "./src/config/firebase.config";
+import { signUpUser, getAllUsers, createPost } from "./src/services";
 
 const seedInit = async (callback, amount = 10) => {
-  const data = new Array(amount).fill(callback());
+  const data = Array.from({ length: amount }).fill(callback());
   for (const element of data) await element;
 };
 
