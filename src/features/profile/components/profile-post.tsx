@@ -29,7 +29,7 @@ const ProfilePost = ({ data: photo, ...props }: Props) => {
             </div>
           </div>
           <Image
-            src={image}
+            src={image.src}
             alt={"photo"}
             layout="fill"
             objectFit="cover"

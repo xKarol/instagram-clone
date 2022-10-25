@@ -10,7 +10,7 @@ const PostImageContainer = (props: Props) => {
   const {
     photo: {
       user: { username },
-      image: src,
+      image,
       caption,
     },
     liked,
@@ -35,7 +35,7 @@ const PostImageContainer = (props: Props) => {
 
   return (
     <PostImage
-      src={src}
+      src={image.src}
       alt={`${username}'s photo ${caption ?? ""}`}
       onDoubleClick={handleDoubleClick}
       {...props}

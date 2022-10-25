@@ -1,9 +1,7 @@
 import {
   addDoc,
-  setDoc,
   getDoc,
   getDocs,
-  deleteDoc,
   doc,
   collection,
   query,
@@ -35,19 +33,16 @@ export const getPhotoById = async (db: Firestore, postId: string) => {
 
 type CreatePostProps = {
   db: Firestore;
-  username: string;
-  imageURL: string;
-  caption: string;
-};
+} & Pick<PostType, "image" | "caption" | "username">;
 
 export const createPost = async ({
   db,
   username,
-  imageURL,
+  image,
   caption,
 }: CreatePostProps) => {
   const data = await addDoc(collection(db, "photos"), {
-    image: imageURL,
+    image,
     username,
     caption,
     timestamp: serverTimestamp(),

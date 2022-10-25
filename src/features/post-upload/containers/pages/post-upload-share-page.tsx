@@ -28,11 +28,11 @@ const PostUploadSharePageContainer = () => {
       try {
         const isValidFile = file instanceof File;
         if (!isValidFile) throw new Error("No File");
-        const { downloadURL } = await uploadPhoto(username, file);
+        const { downloadURL, fileName } = await uploadPhoto(username, file);
         const photoDoc = await createPost({
           db,
           username,
-          imageURL: downloadURL,
+          image: { name: fileName, src: downloadURL },
           caption: trimSpace(caption),
         });
         const photoData = await getPhotoById(db, photoDoc.id);

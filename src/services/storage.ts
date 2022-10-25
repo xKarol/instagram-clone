@@ -7,11 +7,11 @@ import {
 import { storage } from "../config/firebase.config";
 
 export const uploadPhoto = async (username: string, file: File) => {
-  const name = `${Date.now()}_${file.name}`;
+  const name = `${Date.now() + Math.random()}_${file.name}`;
   const imageRef = ref(storage, `images/${username}/${name}`);
   await uploadBytes(imageRef, file);
   const downloadURL = await getDownloadURL(imageRef);
-  return { downloadURL };
+  return { downloadURL, fileName: name };
 };
 
 export const uploadAvatar = async (file: File, fileName: string) => {

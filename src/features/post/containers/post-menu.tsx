@@ -7,6 +7,7 @@ import { db } from "../../../config/firebase.config";
 import { ROUTE_HOME, ROUTE_POST } from "../../../constants/routes";
 import { usePostsContext } from "../../../context/posts-context";
 import { useUserContext } from "../../../context/user-context";
+import { deletePhotoFromStorage } from "../../../services";
 import { usePostContext } from "../context";
 import { deletePost } from "../services";
 
@@ -16,11 +17,11 @@ const PostMenuContainer = () => {
   const [isCopied, setIsCopied] = useState(false);
   const [state, copyToClipboard] = useCopyToClipboard();
   const {
-    photo: { photoId, user: photoUser },
+    photo: { photoId, image, user: photoUser },
     setShowModal,
   } = usePostContext();
   const {
-    user: { uid: userId },
+    user: { uid: userId, username },
     loggedIn,
   } = useUserContext();
   const { photos, setPhotos } = usePostsContext();
@@ -30,8 +31,7 @@ const PostMenuContainer = () => {
     if (!isAuthorized || pending || !loggedIn) return;
     setPending(true);
     await deletePost(db, photoId);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    // await deletePhotoFromStorage(username, fileName);//TODO fix deleting photo
+    await deletePhotoFromStorage(username, image.name);
     setPhotos(photos.filter((el) => el.photoId !== photoId));
     setPending(false);
     setShowModal(false);
