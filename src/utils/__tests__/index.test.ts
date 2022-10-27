@@ -5,7 +5,7 @@ import {
   trimSpace,
   truncate,
   isFollowing,
-} from "../";
+} from "..";
 
 describe("Utils tests", () => {
   describe("hasExtension", () => {

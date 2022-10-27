@@ -11,7 +11,7 @@ describe("Avatar", () => {
 
   it("should contain default avatar", () => {
     render(<Avatar />);
-    const avatarElement = screen.getByRole("img");
+    const avatarElement = screen.getByRole<HTMLImageElement>("img");
     expect(avatarElement.src).not.toBeNull();
   });
 
