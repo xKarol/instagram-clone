@@ -1,35 +1,44 @@
 <center>
 <br/>
 <h1>Instagram Clone</h1>
-A Instagram app made with Next JS.
+
 <br/>
 </center>
 <h2 style="display: inline-block">Table of Contents</h2>
 <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#links">Links</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#testing">Testing</a></li>
     <li><a href="#screens">Screens</a></li>
 </ol>
 
-## About the Project
+## Features
 
-This project is a clone of Instagram web app. It contains such functionalities as: adding new posts, deleting posts, liking posts, adding comments, following users and others.
+- Infinite scroller
+- Authentication
+- Uploading posts
+- Deleting posts
+- Liking posts
+- Commenting posts
+- Following users
 
 ## Built With
 
 - <a href="https://nextjs.org/">Next JS</a>
+- <a href="https://www.typescriptlang.org/">Typescript</a>
 - <a href="https://firebase.google.com/">Firebase</a>
 - <a href="https://tailwindcss.com/">Tailwind CSS</a>
 - <a href="https://day.js.org/">Day.js</a>
 - <a href="https://react-icons.github.io/react-icons/">React Icons</a>
+- ... and more
 
 ## Links
 
-- Project URL: https://insta-clone-rouge-three.vercel.app/
-- Original URL: https://www.instagram.com/
+- Project URL: <https://insta-clone-rouge-three.vercel.app/>
+- Original URL: <https://www.instagram.com/>
 
 ## Installation
 
@@ -69,6 +78,8 @@ FIREBASE_PROJECT_ID=YOUR_KEY_HERE
 FIREBASE_STORAGE_BUCKET=YOUR_KEY_HERE
 FIREBASE_MESSAGING_SENDER_ID=YOUR_KEY_HERE
 FIREBASE_APP_ID=YOUR_KEY_HERE
+
+NEXT_PUBLIC_HOST=YOUR_HOST_HERE
 ```
 
 11. Create new firebase project [here](https://console.firebase.google.com/)
@@ -94,9 +105,13 @@ FIREBASE_APP_ID=YOUR_KEY_HERE
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Testing
+
+Run `npm run test` or `npx cypress open` in terminal
+
 ## Screens
 
-<details open="open">
+<details>
   <summary><h4 style="display: inline-block">Mobile</h2></summary>
   
 ![Screenshot_20220127-133932_Chrome](https://user-images.githubusercontent.com/83913433/151362583-2bb7eb04-a97b-4231-9231-fa57aa30a55d.jpg)
@@ -111,7 +126,7 @@ FIREBASE_APP_ID=YOUR_KEY_HERE
 
 </details>
 
-<details open="open">
+<details>
   <summary><h4 style="display: inline-block">Desktop</h2></summary>
   
 ![FireShot Capture 020 - Sign Up • Instagram - insta-clone-rouge-three vercel app](https://user-images.githubusercontent.com/83913433/151358579-e7121464-eee4-4e5e-b47e-4532fc367d98.png)
