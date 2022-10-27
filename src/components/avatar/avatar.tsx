@@ -5,11 +5,11 @@ import DefaultAvatar from "../../assets/images/default-avatar.jpg";
 
 type Props = React.ComponentPropsWithoutRef<"figure"> & {
   src?: string;
-  alt: string;
+  alt?: string;
   size?: number;
 };
 
-const Avatar = ({ src, size, alt, className, ...props }: Props) => {
+const Avatar = ({ src, size, alt = "", className, ...props }: Props) => {
   return (
     <figure
       className={clsx(
