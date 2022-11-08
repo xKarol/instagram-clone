@@ -33,6 +33,8 @@
 - <a href="https://tailwindcss.com/">Tailwind CSS</a>
 - <a href="https://day.js.org/">Day.js</a>
 - <a href="https://react-icons.github.io/react-icons/">React Icons</a>
+- <a href="https://react-hook-form.com/">React Hook Form</a>
+- <a href="https://www.npmjs.com/package/yup">yup</a>
 - ... and more
 
 ## Links
