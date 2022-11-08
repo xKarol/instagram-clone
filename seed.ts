@@ -34,7 +34,7 @@ const seedPost = async () => {
   });
 };
 
-export const seed = async (type = "ALL") => {
+export const seed = async (type: "ALL" | "USER" | "POST" = "ALL") => {
   if (type === "USER") await seedUser();
   if (type === "POST") await seedPost();
   if (type === "ALL") {
