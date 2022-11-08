@@ -18,7 +18,7 @@ const SidebarUserProfileContainer = () => {
       <Link href={`/${username}`}>
         <a>
           <Avatar
-            src={avatar.src}
+            src={avatar?.src}
             size={55}
             alt={`${username}'s avatar`}
             data-testid="sidebar-profile-avatar"

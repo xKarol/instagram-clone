@@ -46,7 +46,7 @@ const HeaderNavbarContainer = ({ setShow }: Props) => {
       >
         <Dropdown items={<HeaderProfileDropdownContainer />}>
           <Avatar
-            src={avatar.src}
+            src={avatar?.src}
             className="pointer-events-none"
             size={23}
             alt={`${username}'s avatar`}
